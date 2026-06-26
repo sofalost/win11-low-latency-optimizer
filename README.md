@@ -1,4 +1,3 @@
-[README_LOW_LATENCY.md](https://github.com/user-attachments/files/29383134/README_LOW_LATENCY.md)
 # Windows 11 Low-Latency Gaming Optimizer
 
 > **Francophones** : ce script fonctionne aussi en français — la langue est détectée automatiquement d'après celle de ton Windows (affichage ou région).
