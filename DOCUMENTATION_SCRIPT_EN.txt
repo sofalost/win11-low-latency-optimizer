@@ -1,0 +1,337 @@
+================================================================================
+              LOW_LATENCY_GAMING_SCRIPT.bat  --  DOCUMENTATION
+                  How it works, detection, ordering
+================================================================================
+
+This document explains from A to Z how the main script works: its structure,
+how it adapts to your machine, and in what order it applies each setting.
+Everything is in English.
+
+
+--------------------------------------------------------------------------------
+1. WHAT THE SCRIPT DOES (and its philosophy)
+--------------------------------------------------------------------------------
+
+It is a "low latency" optimizer for Windows 11, aimed at competitive gaming. It
+reduces input lag and stabilizes responsiveness, WITHOUT breaking anticheats and
+WITHOUT touching hardware security (Secure Boot, TPM, VBS / Memory Integrity and
+kernel isolation stay ON; Defender stays active).
+
+Principle: it applies a large number of known settings (registry, services,
+power plan, bcdedit, scheduled tasks), grouped into 47 sections numbered [0] to
+[46]. Many settings are CONDITIONAL: they adapt to your GPU, your CPU (notably
+X3D), and the chosen mode.
+
+
+--------------------------------------------------------------------------------
+2. FILE STRUCTURE
+--------------------------------------------------------------------------------
+
+- It is a pure .bat (no .exe, no external dependency).
+- Encoding: Windows-1252 (ANSI), CRLF line endings. Keep it as-is.
+  -> If you re-save it, choose ANSI / Windows-1252, NEVER UTF-8, otherwise the
+     accents in the comments and labels would break.
+- It starts with "@echo off" + "chcp 1252" and ends with "exit /b".
+- It self-elevates to administrator (UAC) on launch.
+- It uses "setlocal EnableDelayedExpansion": variables are read with !VAR! (not
+  %VAR%), which allows changing them during execution.
+
+Internal code organization:
+  a) Common header block (elevation, ANSI colors, language detection).
+  b) Block of ENGLISH labels (the text variables M0, M4, ...), ending with the
+     label  :_strdone.
+  c) Block of FRENCH labels (label :_strfr ... :_strdone).
+  d) After :_strdone: all the SHARED code (menu, hardware detection, application
+     of the 47 sections, summary, and restore mode).
+  -> Only the TEXTS differ between EN and FR. The logic, the colors and the
+     layout are identical in both languages.
+
+
+--------------------------------------------------------------------------------
+3. EXECUTION FLOW (step by step)
+--------------------------------------------------------------------------------
+
+  1) Self-elevation: if not admin, the script relaunches as admin and exits.
+  2) Definition of the ANSI colors (green, cyan, yellow, red, orange, blue...).
+  3) Detection of the system language -> picks the EN or FR labels.
+  4) Welcome banner (title + subtitle + signature).
+  5) MENU: the script asks for
+        - the language (if needed),
+        - the MODE: "soft" (balanced) or "lowest" (minimum latency),
+        - then applies, or switches to restore mode.
+  6) HARDWARE DETECTION (see section 4 below).
+  7) APPLICATION of sections [0] to [46], in order, each showing a confirmation
+     line  [ OK ] [NN] <description>.
+  8) Final SUMMARY: recap of what was applied.
+  9) Prompt to REBOOT (some settings are only fully active after a reboot: CPU
+     parking, global timer request, MSI mode, etc.).
+
+
+--------------------------------------------------------------------------------
+4. HARDWARE DETECTION (how the script "sees" your machine)
+--------------------------------------------------------------------------------
+
+Just before applying, a DETECTION block queries Windows via PowerShell
+(Get-CimInstance) and fills variables:
+
+  GPUVENDOR  -> "NVIDIA", "AMD" or "OTHER"
+               (read from the graphics card name, Win32_VideoController)
+  RAMGB      -> amount of RAM in GB (rounded)
+  CPUVENDOR  -> "Intel", "AMD" or "OTHER" (from Win32_Processor.Name)
+  ISX3D      -> "1" if the CPU name contains "X3D", otherwise "0"
+                -> the detection screen at startup then shows "AMD X3D mono-CCD"
+                   (or "AMD X3D bi-CCD" if the CPU is multi-CCD)
+  CPUCORES   -> number of physical cores
+  X3DMULTI   -> "1" if AMD X3D MULTI-CCD CPU (X3D + more than 8 cores, e.g.
+                7950X3D), otherwise "0"
+  ISLAPTOP   -> "1" if laptop (battery present OR laptop chassis type),
+                otherwise "0"
+  HASWIFI    -> "1" if a physical Wi-Fi adapter is present, otherwise "0"
+
+These variables are then used to CHOOSE the right settings:
+  - GPUVENDOR steers section [04] (NVIDIA OR AMD settings).
+  - ISX3D steers the parking + C-states of section [36] (see section 8).
+  - X3DMULTI steers tscsyncpolicy [07] (enabled only on AMD X3D bi-CCD).
+  - ISLAPTOP / HASWIFI steer the laptop settings (see section 5, LAPTOP
+    subsection).
+  - RAMGB AUTOMATICALLY computes the svchost threshold [01]:
+        SvcHostSplitThresholdInKB = RAM in KB (fallback 32 GB).
+    Result: Windows GROUPS services into fewer svchost processes (instead of one
+    process per service above 3.5 GB). A smart tweak, adapted to the detected
+    RAM.
+  - CPUCORES is used as info / a safety guard.
+
+
+--------------------------------------------------------------------------------
+5. THE TWO MODES: "soft" vs "lowest"
+--------------------------------------------------------------------------------
+
+In the menu, you choose a mode. Most sections are identical; here are ALL the
+differences between the two modes:
+
+  - SystemResponsiveness (multimedia reserve):
+        soft = 10                      |   lowest = 0
+  - Win32PrioritySeparation (quantums):
+        soft = 38                      |   lowest = 42
+  - disabledynamictick (fixed tick):
+        soft = no                      |   lowest = yes
+  - Power plan:
+        soft = High performance        |   lowest = Ultimate Performance
+  - IFEO, per-game priority (section [03]):
+        soft = default (none)          |   lowest = high priority
+  - TdrDelay, GPU timeout (section [04]):
+        soft = default (removed)       |   lowest = 8 seconds
+
+In BOTH modes, the CPU-adapted parking / C-states overlay (section 8) is applied
+ON TOP of the chosen plan (it stays the priority).
+
+"lowest" pushes latency further (game priorities, longer GPU timeout, fixed
+tick, Ultimate plan) at the cost of higher power/heat. "soft" stays the balance:
+no per-game priority, default timeouts, High performance plan, cooler CPU.
+
+The 0.5 ms timer (section [45]) is INDEPENDENT of the mode: applied the same in
+both cases, and designed to last 24/7 (see section 9).
+
+
+  LAPTOP: AUTODETECTION AND FORCED OVERRIDES
+  ------------------------------------------
+  The script automatically detects whether the machine is a laptop (battery
+  present + laptop chassis type) or a desktop (variable ISLAPTOP).
+
+  On a DESKTOP: nothing changes, you pick soft or lowest as usual, and
+  everything described above applies as-is.
+
+  On a LAPTOP: you STILL pick soft or lowest, BUT 6 settings are FORCED (they
+  take priority over the chosen mode) to preserve battery and thermals. They
+  override the mode's values for these 6 specific points only:
+
+    1. 0.5 ms timer only on AC power (the timer is power-aware, see section 9;
+       on battery it releases).
+    2. Wi-Fi power saving only on battery, and only if a Wi-Fi adapter is
+       present (AC = max performance, battery = max power saving). Otherwise it
+       is left untouched.
+    3. ULPS kept ENABLED for AMD GPUs (on desktop, lowest disables it).
+    4. CPU parking restored to default + C-states kept (priority to the CPU,
+       instead of the forced unpark used on desktop).
+    5. Power plan forced to High Performance (never Ultimate).
+    6. disabledynamictick forced to no (fixed tick not applied).
+
+  The rest of the chosen mode (soft or lowest) applies normally.
+
+  PERSISTENCE: the re-application task [46] (which restores settings after a
+  major Windows update) IS laptop-aware. It reads IsLaptop from the registry
+  and re-applies the 6 laptop overrides (power-aware timer, Wi-Fi eco if an
+  adapter is present, ULPS kept, default parking, High Performance plan,
+  dynamictick no). All 6 laptop settings therefore PERSIST after a big Windows
+  update, with NO need to re-run the script.
+
+
+--------------------------------------------------------------------------------
+6. THE ORDER OF TWEAKS  --  the 47 sections [0] to [46]
+--------------------------------------------------------------------------------
+
+The order follows a logic: first raw performance, then debloat and privacy, then
+peripherals, then the interface, then the system, and finally maintenance.
+Detail:
+
+  PERFORMANCE / LATENCY
+   [0]  Administrator elevation
+   [01] CPU / RAM kernel (svchost threshold by RAM, priorities, global timer, SysMain)
+   [02] MMCSS (multimedia priorities for games)
+   [03] IFEO: priority of game executables
+   [04] GPU (NVIDIA or AMD, incl. ULPS off on AMD) + MSI mode + TdrDelay (lowest)
+   [05] Mouse + keyboard + accessibility + Store pop-up block
+   [06] Network + QoS (RSS on, RSC off, QoS queue...)
+   [07] bcdedit + NTFS timers (fixed tick by mode; tscsync if AMD X3D bi-CCD)
+
+  PRIVACY / CLEANUP
+   [08] Telemetry        [09] Telemetry tasks
+   [09b] Hosts: ad + MS telemetry blocking (215 domains) + Defender exclusion
+   [10] Services         [11] Indexing
+   [12] FSO (Fullscreen Optimizations)
+   [13] Game DVR + Game Mode
+   [14] Defender exclusions (the games, to avoid scanning mid-match)
+   [15] Debloat (useless apps)    [16] Privacy
+   [17] Camera
+
+  PERIPHERALS
+   [18] Wifi / Ethernet   [19] Bluetooth   [20] Printer
+   [21] Xbox              [22] OneDrive
+
+  INTERFACE / COMFORT
+   [23] Edge                  [24] Appearance   [25] Taskbar
+   [26] Start menu            [27] Explorer     [28] Dynamic Lighting
+   [29] Multitasking          [30] UAC          [31] Remote Desktop
+
+  SYSTEM
+   [32] Memory Integrity (left ON)     [33] Boot
+   [34] Ghost devices                  [35] FTH (Fault Tolerant Heap)
+   [36] Power (plan + parking + adaptive C-states: see section 8)
+   [37] HAGS (checks support THEN enables)
+   [38] Fast Startup (left ON)         [39] Startup icons
+   [40] Drivers
+
+  MAINTENANCE
+   [41] Disk optimization     [42] Storage Sense   [43] Cleanup
+   [44] Windows Update (Microsoft Update, INCLUDING optional updates) + winget
+   [45] 0.5 ms timer (resolution + task at startup)
+   [46] Re-application at startup (see section 9)
+
+Each section shows  [ OK ] [NN] <description>  when it has run.
+
+
+--------------------------------------------------------------------------------
+7. THE CONDITIONAL TWEAKS (how it adapts)
+--------------------------------------------------------------------------------
+
+  GPU (section [04]):
+    - if GPUVENDOR = NVIDIA  -> NVIDIA settings (incl. EnableGR535 = 0)
+    - if GPUVENDOR = AMD     -> AMD settings, incl. EnableUlps = 0 (prevents the
+      GPU from dropping into an ultra-low-power state -> avoids micro-stutters)
+    - MSI mode is applied for all; TdrDelay only in lowest mode.
+
+  MODE (soft / lowest):
+    - changes several values: multimedia reserve, quantums, fixed tick, power
+      plan, per-game priority (IFEO) and TdrDelay (see section 5).
+
+  CPU / X3D:
+    - parking + C-states by ISX3D (section [36], see section 8);
+    - tscsyncpolicy enhanced only if AMD X3D bi-CCD (X3DMULTI, section [07]).
+
+Everything else is applied identically on all machines.
+
+
+--------------------------------------------------------------------------------
+8. ADAPTIVE PARKING + C-STATES BY CPU (section [36])
+--------------------------------------------------------------------------------
+
+This is the most "intelligent" part. The script chooses TWO opposite behaviors
+depending on whether the CPU is an X3D or not:
+
+  X3D CPU (e.g. 7800X3D, 9800X3D):
+    - Parking: LEFT ACTIVE (CPMINCORES = 0). At idle, cores park to let one core
+      boost higher -> better single-core.
+    - C-states: ENABLED (idle allowed). The X3D runs hot and throttles: letting
+      it breathe reduces stutter.
+
+  NON-X3D or INTEL CPU:
+    - Parking: DISABLED (unpark, CPMINCORES = 100). All cores stay ready ->
+      maximum responsiveness.
+    - C-states: DISABLED (idle off). No core wake-up latency.
+
+How it is made to OVERRIDE the power plan:
+  The plan is activated first (Ultimate Performance in lowest, High performance
+  in soft). But these plans themselves force unpark. The script THEN REWRITES
+  the CPMINCORES and IDLEDISABLE values (AC + DC) on the ACTIVE plan, THEN
+  re-activates the plan. Because this rewrite happens AFTER activation, the
+  CPU-adapted values win -- whatever the mode. The AMD chipset driver + a reboot
+  finalize the real parking.
+
+Honest note: on an X3D MONO-CCD (8 cores on a single CCD, the 7800X3D case), the
+parking gain on single-core is MODEST. The big benefit of parking mainly
+concerns BI-CCD chips (such as the 7950X3D). On the non-X3D side, disabling
+C-states increases heat/power for a marginal latency gain: it is the classic
+"low latency" trade-off, accepted on purpose.
+
+
+--------------------------------------------------------------------------------
+9. 0.5 ms TIMER [45] AND RE-APPLICATION AT STARTUP [46]
+--------------------------------------------------------------------------------
+
+  [45] 0.5 ms timer (designed to last 24/7):
+    - sets GlobalTimerResolutionRequests = 1 (makes the request GLOBAL, not just
+      for the current process),
+    - writes a small PowerShell script (timerres.ps1 in C:\Windows) that calls
+      NtSetTimerResolution(5000) (0.5 ms) in a loop, protected by a mutex.
+      POWER-AWARE: it reads the power state and only applies 0.5 ms on AC; on
+      battery it releases (desktop = continuous, laptop = AC only),
+    - creates a ROBUST scheduled task "TimerRes 0.5ms":
+        * 2 triggers: AT STARTUP (AtStartup, SYSTEM account, even BEFORE logon)
+          AND at EACH LOGON (AtLogOn);
+        * elevated privileges, no time limit;
+        * AUTO RESTART if the process stops (3 attempts, 1 min).
+      -> the timer is active from boot, system-wide, and restarts on its own.
+    - launches it immediately.
+    (The separate TIMER_0.5MS.bat installs the SAME robust task.)
+
+  [46] Re-application at startup:
+    - creates a "LowLat Reapply" task that, AT EACH STARTUP, checks whether a
+      Windows update changed the system build. ONLY if so, it RE-APPLIES the
+      WHOLE set of settings that an update could reset, based on the mode, the
+      hardware AND the laptop state (IsLaptop) stored at apply time: multimedia reserve + NetworkThrottling,
+      Win32PrioritySeparation, disabledynamictick, MMCSS games, global timer,
+      PowerThrottling, GameDVR off / Game Mode on, DirectX swap, WSearch,
+      privacy, mouse (precision off), HAGS, SvcHostSplitThreshold, tscsyncpolicy
+      (by bi-CCD), TdrDelay (by mode), per-game IFEO priorities (by mode), NVIDIA
+      EnableGR535 and the GPU MSI mode.
+    - If the build has not changed, it skips this registry part.
+    - AT EACH startup (even without an update), it runs the SAFE routines:
+      * GUARANTEES the 0.5ms timer: if the "TimerRes 0.5ms" task disappeared
+        (e.g. after a big update) it RECREATES it + sets
+        GlobalTimerResolutionRequests = 1  -> timer bulletproof to updates.
+      * RE-ACTIVATES the chosen power plan (Ultimate / High perf) + RE-APPLIES
+        the CPU-adapted parking / C-states (from the stored detection). The power
+        plan can fall back to Balanced after sleep or an update: so it is
+        guaranteed at each boot (X3D logic respected).
+      * REMOVES ghost devices (Status 'Unknown') via pnputil.
+      * empties the Temp folders (user + Windows) and runs ipconfig /flushdns.
+    - The hardware decisions (X3D, bi-CCD, RAM->KB) are stored at apply time in
+      HKLM\SOFTWARE\LowLatOptimizer for re-reading without re-detection.
+
+
+--------------------------------------------------------------------------------
+10. RESTORE MODE
+--------------------------------------------------------------------------------
+
+From the menu, you can launch the restore. It puts Windows back into a clean
+state: default values for the scheduler and the network, removal of the
+scheduled tasks created, return to the "Balanced" power plan (which natively
+parks and re-enables C-states), removal of the recent settings (Store pop-up
+block, TdrDelay), and reset of the Spectre/Meltdown mitigations to the Windows
+default (enabled). The Defender exclusions and the debloat are not all undone
+automatically (safe to leave).
+
+
+================================================================================
+End of document.
+================================================================================
