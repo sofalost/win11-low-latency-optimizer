@@ -29,7 +29,7 @@ Secure Boot, TPM, Core Isolation / Memory Integrity / VBS / HVCI, Fast Startup a
 
 - `LOW_LATENCY_GAMING_SCRIPT.bat` — the optimizer
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (including the placebo-adjacent ones, clearly flagged)
-- *(optional)* a **black cursor pack** to make the Windows pointer black and a bit nicer. Right-click its `install.inf` -> **Install**, then pick the scheme in *Settings -> Bluetooth & devices -> Mouse -> Additional mouse settings -> Pointers*.
+- *(optional)* a **BLACK_W11_CURSOR.zip** pack to make the Windows pointer black and a bit nicer. Unzip -> Right-click its `install.inf` -> **Install** -> Apply
 
 ## How to use
 
