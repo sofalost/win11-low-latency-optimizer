@@ -30,6 +30,8 @@ Secure Boot, TPM, Core Isolation / Memory Integrity / VBS / HVCI, Fast Startup a
 
 In-game and driver settings that matter most for CS2 input latency.
 
+**Common launch option** — +r_show_build_info false
+
 ### NVIDIA
 - In the **NVIDIA app**, turn **Low Latency Mode** off.
 - In **CS2 → Settings → Video**, set **NVIDIA Reflex Low Latency** to **On** (not `On + Boost`).
