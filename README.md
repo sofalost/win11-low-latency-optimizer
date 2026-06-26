@@ -26,6 +26,19 @@ Main areas covered:
 
 Secure Boot, TPM, Core Isolation / Memory Integrity / VBS / HVCI, Fast Startup and Windows Defender all stay **on**. The script is **anticheat-safe** and **fully reversible** — a RESTORE path undoes the changes.
 
+## Counter-Strike 2 — recommended settings
+
+In-game and driver settings that matter most for CS2 input latency.
+
+### NVIDIA
+- In the **NVIDIA app**, turn **Low Latency Mode** off.
+- In **CS2 → Settings → Video**, set **NVIDIA Reflex Low Latency** to **On** (not `On + Boost`).
+
+### AMD
+- Install **AMD Adrenalin 25.9.1** — official download: https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-25-9-1.html
+  Once you're on 25.9.1, this optimizer locks GPU driver updates so Windows Update won't silently replace it.
+- With that driver, add one Steam launch option (CS2 → Properties → Launch Options): `+engine_low_latency_sleep_after_client_tick true` — not needed on NVIDIA.
+- 
 ## Files in this repo
 
 - `win11-low-latency-optimizer.bat` — the optimizer
