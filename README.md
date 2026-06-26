@@ -20,6 +20,7 @@ Main areas covered:
 - **Debloat / privacy** — services trim, telemetry, camera, Xbox, OneDrive, Edge, and more
 - **0.5 ms timer** — persistent SYSTEM task (`NtSetTimerResolution`)
 - **Auto-reapply** — key settings are re-applied after a Windows feature update
+- **Laptop-support** — Autodetected
 
 ## What it deliberately does NOT touch
 
