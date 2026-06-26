@@ -40,7 +40,8 @@ In-game and driver settings that matter most for CS2 input latency.
 - Install **AMD Adrenalin 25.9.1** — official download: https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-25-9-1.html
   Once you're on 25.9.1, this optimizer locks GPU driver updates so Windows Update won't silently replace it.
 - With that driver, add one Steam launch option (CS2 → Properties → Launch Options): `+engine_low_latency_sleep_after_client_tick true` — not needed on NVIDIA.
-- 
+- Disable **Anti-lag 2.0** from AMD **Ingame**
+  
 ## Files in this repo
 
 - `win11-low-latency-optimizer.bat` — the optimizer
