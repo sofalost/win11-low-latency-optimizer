@@ -11,7 +11,7 @@ The script is self-elevating and hardware-aware: it detects your GPU vendor, you
 Main areas covered:
 
 - **CPU / RAM** — SvcHost split threshold sized to your RAM, priority separation
-- **Scheduling** — MMCSS / `SystemResponsiveness`, network throttling index
+- **Scheduling** — MMCSS / `SystemResponsiveness`
 - **Per-game priority** — IFEO high priority for 10 common competitive titles
 - **GPU** — NVIDIA `EnableGR535=0` (or AMD ULPS off), MSI mode, TdrDelay
 - **Input** — mouse (pointer precision off) and keyboard responsiveness
@@ -20,7 +20,7 @@ Main areas covered:
 - **Debloat / privacy** — services trim, telemetry, camera, Xbox, OneDrive, Edge, and more
 - **0.5 ms timer** — persistent SYSTEM task (`NtSetTimerResolution`)
 - **Auto-reapply** — key settings are re-applied after a Windows feature update
-- **Laptop-support** — Autodetected
+- **Laptop support** — Autodetected
 
 ## What it deliberately does NOT touch
 
