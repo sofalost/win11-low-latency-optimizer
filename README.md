@@ -45,6 +45,7 @@ In-game and driver settings that matter most for CS2 input latency.
 ## Files in this repo
 
 - `win11-low-latency-optimizer.bat` — the optimizer
+- - **`DEBUG_TWEAKS.bat`** — Read-only checker. After running the optimizer, reads every tweak back from the system (registry, BCD, power plan, services) and prints each value with an `OK` / `FAIL` verdict, so you can confirm everything applied. Self-elevating, language-independent, changes nothing.
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (including the placebo-adjacent ones, clearly flagged)
 - *(optional)* a **BLACK_W11_CURSOR.zip** pack to make the Windows pointer black and a bit nicer. Unzip -> Right-click its `install.inf` -> **Install** -> Apply
 
