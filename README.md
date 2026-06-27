@@ -6,7 +6,7 @@ A bilingual (EN / FR) batch script that applies a **curated, reversible** set of
 
 ## What it does
 
-The script is self-elevating and hardware-aware: it detects your GPU vendor, your RAM size and whether your CPU is an AMD X3D part, then adapts. It offers two profiles — **lowest** (aggressive) and **soft**.
+The script is self-elevating and hardware-aware: it detects your GPU vendor, your RAM size and whether your CPU is an AMD X3D part, if your PC is a desktop/laptop then adapts. It offers two profiles — **lowest** (aggressive) and **soft**.
 
 Main areas covered:
 
