@@ -30,7 +30,7 @@ Secure Boot, TPM, Core Isolation / Memory Integrity / VBS / HVCI, Fast Startup a
 
 In-game and driver settings that matter most for CS2 input latency.
 
-**Common launch option** — +r_show_build_info false (remove version in bottom left corner, cool for OLED screen)
+**Common launch option** — +r_show_build_info false (remove ingame CS2 version in bottom left corner, cool for OLED screen) (or type "r_show_build_info false" in CS2 console)
 
 ### NVIDIA
 - In the **NVIDIA app**, turn **Low Latency Mode** off.
