@@ -77,8 +77,6 @@ The in-game and driver settings that matter most for CS2 input latency.
 ## Files in this repo
 
 - **`win11-low-latency-optimizer-AIO.bat`** — the all-in-one (menu above); **this is the only file you need** — it embeds the optimizer, the 0.5 ms timer + NVIDIA tweak, the QWERTY tool and the read-only debug checker, and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected
-- `win11-low-latency-optimizer.bat` — *(optional)* standalone optimizer, same core without the menu (already inside the AIO)
-- **`DEBUG_TWEAKS.bat`** — read-only checker. Reads every tweak back from the system (registry, BCD, power plan, services) and prints each value with an `OK` / `FAIL` verdict. Self-elevating, language-independent, changes nothing. *(Optional — also built into the AIO as menu **[8]**.)*
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (placebo-adjacent ones clearly flagged)
 - *(optional)* **`BLACK_W11_CURSOR.zip`** — a black Windows pointer pack. Unzip -> right-click `install.inf` -> **Install** -> apply it in Mouse settings.
 
