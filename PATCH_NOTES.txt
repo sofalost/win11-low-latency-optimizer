@@ -1,0 +1,177 @@
+================================================================================
+  WIN11 LOW-LATENCY OPTIMIZER : ALL-IN-ONE  --  PATCH NOTES
+================================================================================
+
+Chronological history of what changed, newest version first.
+Version numbers are indicative (this is a personal project, not a release).
+
+Legend:   +  added      *  changed / fixed      -  removed
+
+How to add a future entry:
+  - Bump the version (patch = x.Y+1, minor rework = X+1.0).
+  - Add a new block AT THE TOP, right under this header, same format.
+  - One line per change, short and factual.
+
+
+--------------------------------------------------------------------------------
+ v4.1  --  Phantom device cleanup
+--------------------------------------------------------------------------------
+  + [3] Timer + NVIDIA: applying the 0.5 ms timer now also removes phantom
+    (non-present / ghost) devices via pnputil, with the count shown in the
+    on-screen summary.
+  + Fully bilingual (subtitle announcing it, progress line, summary line).
+  * Cleanup runs as a one-time action on timer APPLY, not inside the holder
+    loop (running pnputil every 5 s would be harmful).
+
+
+--------------------------------------------------------------------------------
+ v4.0  --  Fully bilingual EN / FR
+--------------------------------------------------------------------------------
+  + Whole UI now auto-detected EN/FR: menu header (OPTIMIZER / OPTIMISEUR),
+    category labels (optimize / standalone tweaks / system), and the complete
+    TIMER + NVIDIA screen, which was French-only and reachable in English.
+  + "LOW-LATENCY" and "ALL-IN-ONE" kept in English by design.
+  * QWERTY tool stays French-only on purpose: its revert rebuilds a French-only
+    keyboard list, so it is gated to French Windows and never reached in EN.
+
+
+--------------------------------------------------------------------------------
+ v3.5  --  Menu colours + NVIDIA sharpening wording
+--------------------------------------------------------------------------------
+  * [3] and [4] now use two clearly distinct greens.
+  * Restore group [5][6][7] uses a light-to-dark blue gradient.
+  * Debug entry [8] uses a pure-yellow number and is grouped with [0] Quit.
+  * EnableGR535=0 is now labelled "old sharpening method" everywhere: menu
+    label, apply message, timer screen and documentation.
+  - Menu signature line removed.
+
+
+--------------------------------------------------------------------------------
+ v3.4  --  Debug accuracy fixes
+--------------------------------------------------------------------------------
+  * EnableSuperfetch check made informational (SysMain is kept ON by design,
+    and Windows does not always persist that legacy value).
+  * Spectre "mitigations mask" check made mode-aware (3 in Lowest, absent in
+    Soft) instead of always expecting absent.
+  * Removed the volatile HKCU keyboard-indicator check (Windows rewrites it per
+    session); kept the reliable HKU\.DEFAULT one.
+  * Fixed the "show" sentinel in the debug helper so an informational value that
+    is absent no longer counts as a failure.
+
+
+--------------------------------------------------------------------------------
+ v3.3  --  Full idempotence (no residue between modes)
+--------------------------------------------------------------------------------
+  + Every mode-sensitive tweak is now written in BOTH directions, so switching
+    modes and re-running always resets what the new mode no longer applies.
+  + Defender real-time protection is re-enabled when leaving Lowest.
+  * Menu [7] "Restore Defender real-time" reworked accordingly.
+
+
+--------------------------------------------------------------------------------
+ v3.2  --  Mitigations decoupled from the anticheat answer
+--------------------------------------------------------------------------------
+  * Spectre / Meltdown mitigations are turned off by the LOWEST profile only,
+    independently of the anticheat question. Vanguard and FACEIT confirmed to
+    keep working without them, so the old warning was removed.
+
+
+--------------------------------------------------------------------------------
+ v3.1  --  Anticheat question warning removed
+--------------------------------------------------------------------------------
+  - Removed the red "verify Vanguard/FACEIT" warning under the Lowest option.
+  * Wording clarified: the only anticheat-relevant choice is answering NO to the
+    anticheat question (which turns VBS / HVCI / hypervisor off).
+
+
+--------------------------------------------------------------------------------
+ v3.0  --  Anticheat as an upfront question
+--------------------------------------------------------------------------------
+  + "Do you need your anticheat?" is now asked before the Soft/Lowest choice
+    and is independent of it (four combinations).
+  + Answering NO turns off VBS / HVCI / the hypervisor for more performance.
+  - Removed the old dedicated "no anticheat" menu mode.
+
+
+--------------------------------------------------------------------------------
+ v2.2  --  Battery-aware 0.5 ms timer
+--------------------------------------------------------------------------------
+  * The timer holder reads the power state: 0.5 ms on a desktop or a laptop on
+    AC, released on laptop battery, re-applied within 5 s when plugged back in.
+
+
+--------------------------------------------------------------------------------
+ v2.1  --  Bilingual foundation
+--------------------------------------------------------------------------------
+  + EN/FR label sets and system-language detection for the menu and questions.
+
+
+--------------------------------------------------------------------------------
+ v2.0  --  All-in-one (AIO)
+--------------------------------------------------------------------------------
+  + Single self-contained win11-low-latency-optimizer-AIO.bat with a start menu
+    that embeds the optimizer, the 0.5 ms timer + NVIDIA tweak, the QWERTY tool
+    and the full read-only debug checker. No sibling file needed.
+
+
+--------------------------------------------------------------------------------
+ v1.7  --  Built-in live verification
+--------------------------------------------------------------------------------
+  + At the end of an apply run, the script re-reads the registry and prints an
+    [ ok ] / [ X ] list for the key settings, with an "X / Y confirmed" total.
+    Read-only; expected values adapt to the chosen mode and hardware.
+
+
+--------------------------------------------------------------------------------
+ v1.6  --  Standalone tools
+--------------------------------------------------------------------------------
+  + TIMER_0.5MS.bat (standalone timer), CLAVIER_QWERTY.bat (keyboard toggle),
+    DEBUG_TWEAKS.bat (read-only checker, ~200 checks reading the saved state).
+
+
+--------------------------------------------------------------------------------
+ v1.5  --  0.5 ms timer holder
+--------------------------------------------------------------------------------
+  + Background PowerShell holder (NtSetTimerResolution) re-armed at startup via
+    a SYSTEM scheduled task, with no visible window flash.
+
+
+--------------------------------------------------------------------------------
+ v1.4  --  Defender performance + self-protection
+--------------------------------------------------------------------------------
+  + Game folder / process exclusions, scheduled scan disabled, scans throttled.
+  + The script excludes its own path early to avoid a HackTool false positive.
+
+
+--------------------------------------------------------------------------------
+ v1.3  --  Debloat + cleanup
+--------------------------------------------------------------------------------
+  + Debloat (Store Appx + winget uninstalls), temp cleanup, telemetry off.
+  + Downloads wipe guard: skips wiping Downloads when run from that folder.
+
+
+--------------------------------------------------------------------------------
+ v1.2  --  Hardware autodetection
+--------------------------------------------------------------------------------
+  + Detects desktop vs laptop, X3D single-CCD CPU and GPU vendor, with laptop
+    overrides applied automatically.
+
+
+--------------------------------------------------------------------------------
+ v1.1  --  Core tweak set
+--------------------------------------------------------------------------------
+  + CPU priority, system responsiveness, MMCSS games task, network throttling
+    off, HAGS, MSI mode, TdrDelay (Lowest), NVIDIA EnableGR535=0 / AMD ULPS off,
+    Ultimate Performance power plan.
+
+
+--------------------------------------------------------------------------------
+ v1.0  --  Initial optimizer
+--------------------------------------------------------------------------------
+  + First single-file win11-low-latency-optimizer.bat: a curated, reversible set
+    of latency tweaks for competitive gaming on Windows 11.
+  + Two profiles: Soft and Lowest. Self-elevating, ANSI-coloured UI.
+
+================================================================================
+End of patch notes.
+================================================================================
