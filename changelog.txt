@@ -1,216 +1,267 @@
 ================================================================================
-                    ULTRA GAMING  -  LOW LATENCY OPTIMIZER
-                       CHANGELOG  -  HISTORIQUE DES VERSIONS
+               WIN11 LOW-LATENCY OPTIMIZER   (ALL-IN-ONE)
+                       CHANGELOG  -  VERSION HISTORY
 ================================================================================
 
-  Legende :  [+] ajout   [~] modification   [x] correction   [-] retrait
-             i  note      !  point d'attention
+  Legend :  [+] added   [~] changed   [x] fixed   [-] removed
+            i  note      !  heads-up
 
-
-================================================================================
-  v1.0   -   BASE FONCTIONNELLE
-================================================================================
-   [+] Premier .bat unique, auto-elevateur (admin), pur ASCII + CRLF
-   [+] Detection materiel : GPU / RAM / CPU
-   [+] Tweaks CPU / RAM / planificateur (Win32PrioritySeparation, prefetch...)
-   [+] Plan d'alimentation "performances optimales", aucun economiseur
-   [+] GameDVR / Game Bar OFF + Mode Jeu ON
-   [+] Menu bilingue de base, resume en fin d'execution
-    i  Integrite memoire laissee ON (requise par les anticheats)
+  Latest version : v3.4
 
 
 ================================================================================
-  v1.1   -   DEBLOAT + CONFIDENTIALITE
+  v1.0   -   CORE FUNCTIONALITY
 ================================================================================
-   [+] Debloat des applis inutiles (UWP) via question OUI/NON
-   [+] Confidentialite : acces applis OFF (micro conserve)
-   [+] Xbox / OneDrive : retrait optionnel
-    !  SysMain volontairement laisse ON (pas de gain net a le couper)
+   [+] First single .bat, self-elevating (admin), pure ASCII + CRLF
+   [+] Hardware detection: GPU / RAM / CPU
+   [+] CPU / RAM / scheduler tweaks (Win32PrioritySeparation, prefetch...)
+   [+] "Ultimate performance" power plan, no power saving
+   [+] GameDVR / Game Bar OFF + Game Mode ON
+   [+] Basic bilingual menu, end-of-run summary
+    i  Memory integrity left ON (required by anticheats)
 
 
 ================================================================================
-  v1.2   -   RESEAU 2.5G + FSO / GPU PAR JEU
+  v1.1   -   DEBLOAT + PRIVACY
 ================================================================================
-   [+] Reseau optimise pour la fibre 2.5 Gb/s (Nagle, throttling reseau)
-   [+] FSO (plein ecran optimise) OFF par jeu : ~ DISABLEDXMAXIMIZEDWINDOWEDMODE
-   [+] GpuPreference=2 (perfs max) force sur les 7 jeux
-   [+] Priorites IFEO (High) + MMCSS profil Games
-    i  Chemins Steam detectes via libraryfolders.vdf (toutes les bibliotheques)
+   [+] Debloat of useless apps (UWP) via a YES/NO question
+   [+] Privacy: app access OFF (microphone kept)
+   [+] Xbox / OneDrive: optional removal
+    !  SysMain deliberately left ON (no net gain from disabling it)
 
 
 ================================================================================
-  v1.3   -   TIMER 0.5 ms PERSISTANT
+  v1.2   -   2.5G NETWORK + FSO / PER-GAME GPU
 ================================================================================
-   [+] Process PowerShell de fond qui force NtSetTimerResolution(5000) et le tient
-   [+] GlobalTimerResolutionRequests=1 (timer global, pas seulement par process)
-   [+] Lancement au demarrage par tache planifiee, fenetre cachee (aucun flash)
-    i  Verif : NtQueryTimerResolution doit afficher ~0.500 ms au repos
-    !  Le timer registre/bcdedit seul ne suffit pas : il faut le process qui tient
+   [+] Network optimised for 2.5 Gb/s fibre (Nagle, network throttling)
+   [+] FSO (fullscreen optimizations) OFF per game: ~ DISABLEDXMAXIMIZEDWINDOWEDMODE
+   [+] GpuPreference=2 (max perf) forced on the 7 games
+   [+] IFEO priorities (High) + MMCSS Games profile
+    i  Steam paths detected via libraryfolders.vdf (all libraries)
 
 
 ================================================================================
-  v1.4   -   BLOCAGE PUB / TELEMETRIE
+  v1.3   -   PERSISTENT 0.5 ms TIMER
 ================================================================================
-   [+] Fichier hosts : blocage pub + telemetrie (0.0.0.0), section delimitee
-   [+] Taches planifiees de telemetrie desactivees (CEIP, DiskDiagnostic...)
-   [+] Services inutiles OFF (DiagTrack, MapsBroker, RemoteRegistry...)
-    i  Le blocage hosts est contourne par le DoH ; AdGuard conseille pour 100%
+   [+] Background PowerShell process that forces NtSetTimerResolution(5000) and holds it
+   [+] GlobalTimerResolutionRequests=1 (global timer, not just per-process)
+   [+] Launched at startup by a scheduled task, hidden window (no flash)
+    i  Check: NtQueryTimerResolution should read ~0.500 ms at idle
+    !  The registry/bcdedit timer alone is not enough: the holding process is needed
 
 
 ================================================================================
-  v2.0   -   REFONTE PRO BILINGUE EN/FR   (reecriture complete)
+  v1.4   -   AD / TELEMETRY BLOCKING
 ================================================================================
-   [~] Reecriture totale : un seul script propre, structure en sections [01..47]
-   [+] Selection de langue au demarrage ; TOUTES les chaines localisees (EN+FR)
-   [+] Palette de couleurs ANSI, banniere ASCII, resume final lisible
-   [+] Mode RESTAURATION (remet Windows par defaut, au mieux)
-   [+] Questions numerotees homogenes (debloat, cam, wifi, bt, xbox, edge...)
-   [-] Fichier .txt annexe genere en trop (retire)
-   [-] Traces personnelles (mentions internes) retirees
-    i  Deux blocs base64 embarques : timer 0.5 ms + reglage frequence d'ecran
+   [+] hosts file: ad + telemetry blocking (0.0.0.0), delimited section
+   [+] Telemetry scheduled tasks disabled (CEIP, DiskDiagnostic...)
+   [+] Useless services OFF (DiagTrack, MapsBroker, RemoteRegistry...)
+    i  hosts blocking is bypassed by DoH; AdGuard recommended for 100%
 
 
 ================================================================================
-  v2.1   -   HAGS, SNAP, APEX EA, DEBLOAT ELARGI
+  v2.0   -   PRO BILINGUAL EN/FR REWRITE   (full rewrite)
 ================================================================================
-   [~] HAGS (planification GPU materielle) force ON (HwSchMode=2 inconditionnel)
-   [+] Snap / multitache renforce (SnapBar, SnapAssistFlyout, JointResize)
-   [+] Apex Legends : optimisation aussi pour la version EA app / Origin
-       (l'IFEO couvre deja Steam + EA par nom d'exe ; chemins EA ajoutes au FSO)
-   [+] Debloat elargi : WhatsApp, Assistance rapide (QuickAssist), controle a
-       distance, LinkedIn, Journal, Teams, BingTranslator...
-    !  Spotify, Calculatrice, Paint, Store, Securite : volontairement CONSERVES
+   [~] Full rewrite: one clean script, structured in sections [01..47]
+   [+] Language selection at startup; ALL strings localised (EN+FR)
+   [+] ANSI colour palette, ASCII banner, readable final summary
+   [+] RESTORE mode (returns Windows to defaults, best effort)
+   [+] Consistent numbered questions (debloat, cam, wifi, bt, xbox, edge...)
+   [-] Extra generated .txt file (removed)
+   [-] Personal traces (internal mentions) removed
+    i  Two embedded base64 blocks: 0.5 ms timer + refresh-rate setting
 
 
 ================================================================================
-  v2.2   -   AUDIO, SONS, COPILOT/EDGE, SERVICES/HOSTS
+  v2.1   -   HAGS, SNAP, APEX EA, WIDER DEBLOAT
 ================================================================================
-   [x] Ameliorations audio OFF corrigees : ecrites sous FxProperties ET
-       Properties, cote HP (Render) ET micro (Capture) - c'etait FxProperties
-       qui manquait pour les micros
-   [+] Stereo Mix / peripheriques loopback capture desactives (sans risque)
-   [+] Modele de sons = "Aucun son" MAIS carillon de demarrage conserve
-   [+] Communications detectees = "Ne rien faire" (UserDuckingPreference=3)
-   [x] Copilot vraiment retire (policy HKCU + winget uninstall en plus de l'appx)
-   [x] Edge vraiment desinstalle (setup.exe --force-uninstall, autorise en UE/EEE)
-   [+] Liste de domaines telemetrie/pub elargie (hosts)
-   [+] Services desactives elargis (SharedAccess, Wdi*, DusmSvc, PcaSvc, icssvc)
+   [~] HAGS (hardware GPU scheduling) forced ON (HwSchMode=2, unconditional)
+   [+] Snap / multitasking hardened (SnapBar, SnapAssistFlyout, JointResize)
+   [+] Apex Legends: also optimised for the EA app / Origin build
+       (IFEO already covers Steam + EA by exe name; EA paths added to FSO)
+   [+] Wider debloat: WhatsApp, Quick Assist, remote control, LinkedIn,
+       Journal, Teams, BingTranslator...
+    !  Spotify, Calculator, Paint, Store, Security: deliberately KEPT
 
 
 ================================================================================
-  v2.3   -   REAPPLICATION AU DEMARRAGE  +  FIX INDEXATION
+  v2.2   -   AUDIO, SOUNDS, COPILOT/EDGE, SERVICES/HOSTS
 ================================================================================
-   [+] Le PowerShell de fond, a CHAQUE ouverture de session, en silence :
-        - reapplique ~21 valeurs de registre (valeurs fixes uniquement)
-        - REACTIVE l'indexation Windows (sc config/start WSearch)
-        - nettoie les pilotes fantomes + les fichiers temp
-        - PUIS force le timer 0.5 ms et le maintient
-   [x] "L'indexation qui saute" corrige : reactivee a chaque demarrage, meme
-       apres une mise a jour Windows
-   [+] Suppression des points de restauration + restauration systeme desactivee
-       (aucun point cree sans ton accord)
-   [+] Nettoyage AppData sur : vignettes, INetCache, caches shaders
+   [x] Audio enhancements OFF fixed: written under FxProperties AND Properties,
+       on the speaker side (Render) AND mic side (Capture) - FxProperties was
+       the part missing for microphones
+   [+] Stereo Mix / loopback capture devices disabled (safe)
+   [+] Sound scheme = "No Sounds" BUT the startup chime is kept
+   [+] Communications detected = "Do nothing" (UserDuckingPreference=3)
+   [x] Copilot really removed (HKCU policy + winget uninstall on top of the appx)
+   [x] Edge really uninstalled (setup.exe --force-uninstall, allowed in EU/EEA)
+   [+] Telemetry/ad domain list expanded (hosts)
+   [+] Disabled services expanded (SharedAccess, Wdi*, DusmSvc, PcaSvc, icssvc)
+
+
+================================================================================
+  v2.3   -   RE-APPLY AT STARTUP  +  INDEXING FIX
+================================================================================
+   [+] The background PowerShell, at EACH logon, silently:
+        - re-applies ~21 registry values (fixed values only)
+        - RE-ENABLES Windows indexing (sc config/start WSearch)
+        - cleans phantom drivers + temp files
+        - THEN forces the 0.5 ms timer and holds it
+   [x] "Indexing that keeps dropping" fixed: re-enabled at each startup, even
+       after a Windows update
+   [+] Restore points removed + System Restore disabled (no point created
+       without your consent)
+   [+] AppData cleanup on: thumbnails, INetCache, shader caches
        (NVIDIA/AMD/D3D), CrashDumps
-   [-] Nettoyage residuel de l'ancienne tache timer retire (deja fait)
-    !  Reapplication 100% cachee, aucun popup, aucune fenetre
+   [-] Residual cleanup of the old timer task removed (already done)
+    !  Re-apply is 100% hidden, no popup, no window
 
 
 ================================================================================
-  v2.4   -   OPTIONS DE LANCEMENT, GPU, LANGUES
+  v2.4   -   LAUNCH OPTIONS, GPU, LANGUAGES
 ================================================================================
-   [~] Resume final : options de lancement reduites a l'essentiel
+   [~] Final summary: launch options reduced to the essentials
         CS2        : -nojoy +engine_low_latency_sleep_after_client_tick 1
         Brawlhalla : -unlockfps
         R6 Siege   : -vulkan
         Apex       : -dev
-   [~] Wording GPU : "RTX" remplace par "GPU dedie" (GpuPreference=2 marche
-       aussi pour les gros GPU AMD - c'est vendor-agnostic)
-   [+] Question LANGUES (3 choix) :
-        [1] tout garder   [2] garder seulement la langue par defaut
-        [3] defaut + clavier anglais uniquement (pas le pack complet)
-    i  Icone de langue dans la barre des taches : geree auto par Windows
+   [~] GPU wording: "RTX" replaced by "dedicated GPU" (GpuPreference=2 also works
+       for big AMD GPUs - it is vendor-agnostic)
+   [+] LANGUAGES question (3 choices):
+        [1] keep everything   [2] keep only the default language
+        [3] default + English keyboard only (not the full pack)
+    i  Taskbar language icon: handled automatically by Windows
 
 
 ================================================================================
-  v2.5   -   NETTOYAGE C:\WINDOWS, RETOUR ARRIERE, STORE -> iGPU
+  v2.5   -   C:\WINDOWS CLEANUP, ROLLBACK, STORE -> iGPU
 ================================================================================
-   [+] Nettoyage C:\Windows sur : cache Windows Update (SoftwareDistribution\
-       Download), logs CBS/DISM/WindowsUpdate, Panther, SystemTemp,
+   [+] C:\Windows cleanup on: Windows Update cache (SoftwareDistribution\
+       Download), CBS/DISM/WindowsUpdate logs, Panther, SystemTemp,
        LiveKernelReports, Minidump + MEMORY.DMP, Downloaded Program Files,
-       cache Delivery Optimization
-   [+] RETOUR EN ARRIERE sur les questions : confirmation en fin de questionnaire
-       "Toutes tes reponses sont-elles bonnes ? [1] Oui [2] Non, refaire" ->
-       rien n'est applique tant que tu n'as pas confirme
-   [+] Applis Microsoft Store basculees sur le petit GPU (GpuPreference=1) via
-       l'onglet Graphismes - libere la RTX ; les jeux restent en GPU dedie
-   [x] Motif de filtre PowerShell contenant un ! litteral corrige ([char]33)
-       pour ne pas etre mange par l'expansion differee
-    !  Non touche volontairement (trop risque) : suppression des traces de
-       logiciels desinstalles, desactivation auto des peripheriques audio actifs
-       non-defaut, desepinglage force du menu Demarrer
+       Delivery Optimization cache
+   [+] ROLLBACK on the questions: confirmation at the end of the questionnaire
+       "Are all your answers correct? [1] Yes [2] No, redo" -> nothing is
+       applied until you confirm
+   [+] Microsoft Store apps switched to the small GPU (GpuPreference=1) via the
+       Graphics tab - frees the RTX; games stay on the dedicated GPU
+   [x] PowerShell filter pattern containing a literal ! fixed ([char]33) so it
+       is not eaten by delayed expansion
+    !  Deliberately untouched (too risky): removing traces of uninstalled
+       software, auto-disabling active non-default audio devices, forced
+       unpinning of the Start menu
 
 
 ================================================================================
-  v2.6   -   QUESTION ANTICHEAT + TIMER CONSCIENT DE LA BATTERIE
+  v2.6   -   ANTICHEAT QUESTION   (mode selection rework)
 ================================================================================
-   [~] Le besoin de l'anticheat est pose en QUESTION avant le choix souple/lowest
-       et independamment de lui (4 combinaisons possibles). Elle pilote
-       uniquement VBS / HVCI / hyperviseur.
-   [-] Ancien mode "sans anticheat" du menu supprime (remplace par la question)
-   [~] Mitigations Spectre/Meltdown coupees par le mode LOWEST seul, sans lien
-       avec la reponse anticheat. Vanguard et FACEIT confirmes fonctionnels
-       sans elles.
-   [~] Holder du timer 0.5 ms rendu conscient de la batterie (GetSystemPowerStatus):
-       0.5 ms sur PC fixe et portable sur secteur, relache sur batterie,
-       re-applique dans les 5 s au rebranchement
-   [x] Retour au clavier francais (outil QWERTY) : la disposition US 00000409
-       restante dans Preload est desormais retiree ; l'icone et le clavier
-       anglais disparaissent vraiment
+   [~] The anticheat need is now asked as a QUESTION before the soft/lowest
+       choice, and independently of it: 4 possible combinations
+       (soft or lowest  x  anticheat yes or no)
+   [~] The question controls ONLY VBS / HVCI / hypervisor: answering NO turns
+       them off for more perf; answering YES keeps them (required by Vanguard,
+       FACEIT and other kernel anticheats)
+   [-] Old "no anticheat" menu mode removed (replaced by the question)
+   [~] Spectre/Meltdown mitigations turned off by the LOWEST profile only, with
+       no link to the anticheat answer
+    i  Vanguard and FACEIT confirmed working without the Spectre mitigations
 
 
 ================================================================================
-  v2.7   -   IDEMPOTENCE + FIABILITE DU DEBUG
+  v2.7   -   BATTERY-AWARE TIMER
 ================================================================================
-   [+] Chaque tweak sensible au mode est ecrit dans les DEUX sens : changer de
-       mode et relancer remet a zero ce que le nouveau mode ne touche plus,
-       aucun residu ne subsiste
-   [+] Protection temps reel Defender reactivee automatiquement hors LOWEST
-   [x] Check EnableSuperfetch passe en informatif (SysMain garde ON expres, et
-       Windows ne persiste pas toujours cette valeur legacy)
-   [x] Check "mitigations mask" rendu conscient du mode (3 en lowest, absent en
-       souple) au lieu d'attendre toujours "absent"
-   [x] Check clavier HKCU volatil retire (Windows le reecrit a chaque session) ;
-       le check HKU\.DEFAULT fiable est conserve
-   [x] Sentinelle "show" du helper debug corrigee : une valeur informative
-       absente ne compte plus comme un echec
+   [~] The 0.5 ms timer holder now reads the power state (GetSystemPowerStatus)
+   [~] 0.5 ms continuously on a desktop and on a laptop plugged into AC
+   [~] On battery the timer is released (back to Windows default); it is
+       re-applied within 5 s as soon as you plug back in
+    i  On a desktop (no battery), behaviour is identical to before: 0.5 ms at
+       all times
 
 
 ================================================================================
-  v2.8   -   MENU + WORDING NVIDIA
+  v2.8   -   IDEMPOTENCE (no residue between modes)  +  QWERTY KEYBOARD FIX
 ================================================================================
-   [~] Deux verts bien distincts pour [3] et [4]
-   [~] Degrade de bleu clair -> fonce pour le groupe restauration [5][6][7]
-   [~] Entree debug [8] en jaune pur, regroupee en bas avec [0] Quitter
-   [~] "Restaurer Defender temps reel" deplace dans le groupe systeme
-   [-] Signature du menu retiree
-   [-] Avertissement rouge "verifie Vanguard/FACEIT" sous l'option lowest retire
-   [~] EnableGR535=0 libelle "ancienne methode de sharpening" partout : menu,
-       message d'application, ecran timer et documentation
+   [+] Every mode-sensitive tweak is written in BOTH directions: switching mode
+       and re-running resets what the new mode no longer touches, so no residue
+       from a previous run lingers
+   [+] Defender real-time protection re-enabled automatically outside LOWEST
+       (policy keys deleted + Set-MpPreference)
+   [x] Return to the French keyboard (QWERTY tool): the leftover US layout
+       00000409 in Preload is now removed; the English icon and keyboard really
+       disappear after signing out and back in
 
 
 ================================================================================
-  v3.0   -   BILINGUE INTEGRAL + NETTOYAGE FANTOMES
+  v2.9   -   DEBUG FIXES
 ================================================================================
-   [+] Toute l'interface est auto-detectee EN/FR : en-tete du menu (OPTIMIZER /
-       OPTIMISEUR), libelles de categories, et l'ecran TIMER + NVIDIA
-       entierement traduit (il etait francais-only mais atteignable en anglais)
-    i  "LOW-LATENCY" et "ALL-IN-ONE" gardes en anglais volontairement
-   [~] Outil QWERTY laisse francais-only : son retour arriere reconstruit une
-       liste clavier fr-FR, donc il reste reserve au Windows francais
-   [+] L'application du timer 0.5 ms (menu [3]) nettoie les peripheriques
-       fantomes (absents) via pnputil, avec le compte affiche dans le resume
+   [x] EnableSuperfetch check made informational: SysMain is kept ON on purpose
+       and Windows does not always persist that legacy value (no more false fail)
+   [x] "Mitigations mask" check made mode-aware: 3 expected in lowest, absent in
+       soft (instead of always expecting "absent")
+   [x] Volatile HKCU keyboard check removed (Windows rewrites it every session);
+       only the reliable HKU\.DEFAULT check is kept
+   [x] "show" sentinel of the verification helper fixed: an informational value
+       that is absent no longer counts as a failure
 
 
 ================================================================================
-                            FIN DU FICHIER
+  v3.0   -   MENU VISUAL REWORK
+================================================================================
+   [~] Two clearly distinct greens for entries [3] and [4]
+   [~] Light-to-dark blue gradient for the restore group [5][6][7]
+   [~] Debug entry [8] in pure yellow, grouped at the bottom with [0] Quit
+   [~] "Restore Defender real-time protection" moved into the system group
+       (right before the debug tool)
+   [-] Menu signature line removed
+
+
+================================================================================
+  v3.1   -   NVIDIA WORDING  +  LOWEST WARNING
+================================================================================
+   [~] EnableGR535=0 labelled "old sharpening method" everywhere: menu label,
+       apply message, timer screen and documentation
+   [-] Red "verify Vanguard/FACEIT" warning under the lowest option removed
+       (the anticheats work without the mitigations)
+
+
+================================================================================
+  v3.2   -   FULLY BILINGUAL EN/FR
+================================================================================
+   [+] The whole UI is auto-detected EN/FR: menu header (OPTIMIZER / OPTIMISEUR),
+       category labels (optimize / standalone tweaks / system), and the TIMER +
+       NVIDIA screen fully translated (it was French-only while reachable in
+       English)
+    i  "LOW-LATENCY" and "ALL-IN-ONE" kept in English on purpose
+   [~] QWERTY tool left French-only: its revert rebuilds a fr-FR keyboard list,
+       so it stays reserved to French Windows and is never reached in English
+
+
+================================================================================
+  v3.3   -   PHANTOM DEVICE CLEANUP
+================================================================================
+   [+] Applying the 0.5 ms timer (menu [3]) now also cleans phantom devices
+       (non-present / disconnected) via pnputil, with the removed count shown in
+       the summary
+   [~] Cleanup tied to APPLYING the timer (choice [1]): it does not run if you
+       remove or skip the timer
+    i  Safe: Windows re-detects any present device on the next scan/boot; only
+       phantoms (unplugged) stay removed
+
+
+================================================================================
+  v3.4   -   SAFER CLEANUP + TIMER SCREEN COLOURS + CREDITS
+================================================================================
+   [x] Phantom cleanup made safer in ALL three places (optimizer, timer screen
+       AND the at-logon re-apply): it now removes ONLY disconnected devices,
+       excluding disabled ones and audio/media devices
+   [x] Fixes the sound-card microphone being reset to "default" on every restart
+       (the at-logon re-apply was removing the audio endpoints)
+   [~] The TIMER + NVIDIA screen is now fully coloured (was plain white)
+   [+] The menu now shows the script version, plus @sofalost and a
+       "Made with Claude.ai" credit
+   [~] Script renamed to carry its version: win11-low-latency-optimizer_v3.4.bat
+
+
+================================================================================
+                            END OF FILE
 ================================================================================

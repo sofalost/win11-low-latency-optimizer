@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer.bat  --  DOCUMENTATION
+              win11-low-latency-optimizer   (v3.4)
                   Fonctionnement complet, detection, ordre
 ================================================================================
 

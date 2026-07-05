@@ -1,10 +1,12 @@
-# Windows 11 Low-Latency Gaming Optimizer
+# Windows 11 Low-Latency Optimizer (all-in-one)
+
+**Current version: v3.4** — see `changelog.txt` for the full history.
 
 > **Francophones** : ce script fonctionne aussi en français — la langue est détectée automatiquement d'après celle de ton Windows (affichage ou région).
 
 A bilingual (EN / FR) batch project that applies a **curated, reversible** set of latency and responsiveness tweaks for competitive gaming on Windows 11. No third-party software — everything runs through native registry keys, services and scheduled tasks.
 
-The main file is **`win11-low-latency-optimizer-AIO.bat`** — a single self-contained all-in-one. It is self-elevating and hardware-aware: it detects your GPU vendor, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), then offers two profiles — **soft** and **lowest**.
+The main file is **`win11-low-latency-optimizer_v3.4.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), then offers two profiles — **soft** and **lowest**.
 
 ## The all-in-one menu
 
@@ -66,8 +68,17 @@ The in-game and driver settings that matter most for CS2 input latency.
 **Launch option** — `+r_show_build_info false` hides the build-number overlay in the bottom-left corner (nice on OLED). You can also run `r_show_build_info false` from the CS2 console.
 
 ### NVIDIA
+
+**Without G-SYNC** (default)
 - In the **NVIDIA app**, set **Low Latency Mode** to **Off**.
 - In **CS2 -> Settings -> Video**, set **NVIDIA Reflex Low Latency** to **On** (not `On + Boost`).
+- In **CS2 -> Settings -> Video**, set **V-Sync** to **Off**.
+- If you'd rather run **uncapped**, leave the NVIDIA app frame cap off and set `fps_max 0` in CS2.
+
+**With G-SYNC**
+- In the **NVIDIA app**: **Low Latency Mode Off**, and **cap the frame rate to your monitor's refresh rate** (e.g. 240 fps on a 240 Hz panel).
+- In **CS2 -> Settings -> Video**: **NVIDIA Reflex Low Latency** = **On + Boost**.
+- **V-Sync**: test it **with and without** the in-game option and keep whichever feels best.
 
 ### AMD
 - Install **AMD Adrenalin 25.9.1** — https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-25-9-1.html. Once on 25.9.1, this optimizer locks GPU driver updates so Windows Update won't silently replace it.
@@ -76,7 +87,7 @@ The in-game and driver settings that matter most for CS2 input latency.
 
 ## Files in this repo
 
-- **`win11-low-latency-optimizer-AIO.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the QWERTY tool and the read-only debug checker (menu **[8]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
+- **`win11-low-latency-optimizer_v3.4.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the QWERTY tool and the read-only debug checker (menu **[8]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (placebo-adjacent ones clearly flagged)
 - `changelog.txt` — the full version history: every version with its detailed changes
 - *(optional)* **`BLACK_W11_CURSOR.zip`** — a black Windows pointer pack. Unzip -> right-click `install.inf` -> **Install** -> apply it in Mouse settings.
