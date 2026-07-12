@@ -1,0 +1,46 @@
+name: Deploy to GitHub
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_message:
+        description: 'Commit message for deployment'
+        required: true
+        default: 'Deploy: Update docs FR/EN, script .bat and changelog'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Prepare deployment files
+        run: |
+          # Remove old v3.4 file if exists
+          rm -f win11-low-latency-optimizer_v3.4.bat
+
+          # Ensure new files are present
+          ls -la *.bat *.txt *.md 2>/dev/null || true
+
+      - name: Commit and push changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "${{ github.event.inputs.deploy_message }}"
+            git push origin main
+            echo "Deployment complete"
+          fi
