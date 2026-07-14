@@ -124,7 +124,7 @@ set "M47=Snap and multitasking !CG!on!C0!, Aero Shake !CR!off!C0!"
 set "M48=!CW!UAC!C0!: !CY!never prompts!C0! (silent elevation)"
 set "M49=Remote Desktop and Remote Assistance !CR!off!C0!"
 set "M50=Memory integrity (core isolation) !CG!kept on!C0! - required by some !CW!anticheats!C0!"
-set "M50NOAC=Memory integrity + VBS + hypervisor !CR!OFF!C0! (no-anticheat, max perf)"
+set "M50OFF=Memory integrity + VBS + hypervisor !CR!OFF!C0! (no-anticheat, max perf)"
 set "M51=!CW!Boot!C0!: no GUI, OS not shown, !CC!0 second!C0! delay"
 set "M52=Ghost (unplugged) devices !CR!removed!C0!"
 set "M53=!CW!Extras!C0!: FTH !CR!off!C0!, app startup delay !CC!0!C0!, faster shutdown"
@@ -159,18 +159,15 @@ set "DESC1=Reduces system latency and input lag for gaming."
 set "DESC2=Anticheat-safe. Fully reversible with the Restore option."
 set "MODE_2=!CG!Restore!C0! Windows default values"
 set "QMODE_HEAD=CHOOSE YOUR OPTIMIZATION MODE"
-set "QAC_HEAD=DO YOU NEED YOUR ANTICHEAT?"
-set "QAC_YES_NAME=YES - Vanguard / FACEIT"
-set "QAC_YES_DESC=Keeps VBS / HVCI / hypervisor ON - required by kernel anticheats"
-set "QAC_NO_NAME=NO - no kernel anticheat"
-set "QAC_NO_DESC=Turns VBS / HVCI / hypervisor OFF - more perf, lower security"
-set "QVM_HEAD=DO YOU NEED VIRTUALIZATION / AI ?"
-set "QVM_YES_NAME=YES - WSL2 / Hyper-V / VM / AI (Copilot, Recall, etc.)"
-set "QVM_YES_DESC=Keeps VBS / HVCI / hypervisor ON - required for virtualization and AI"
-set "QVM_NO_NAME=NO - no virtualization or AI"
-set "QVM_NO_DESC=Turns VBS / HVCI / hypervisor OFF - more perf, no VM/AI"
-set "M9A_AI_KEPT=AI / Copilot / Recall kept ON - virtualization or AI needed"
-set "M9A_AI_OFF=AI / Copilot / Recall turned OFF - no virtualization, no AI"
+set "QVBS_HEAD=KEEP KERNEL SECURITY + VIRTUALIZATION ?"
+set "QVBS_YES_NAME=YES - keep ON (anticheat / VM / WSL2 / AI)"
+set "QVBS_YES_DESC=Keeps VBS / HVCI / hypervisor ON - needs: Vanguard / FACEIT,
+set "QVBS_YES_DESC2=WSL2 / Hyper-V / VMs, Copilot and Recall"
+set "QVBS_NO_NAME=NO - turn OFF for max performance"
+set "QVBS_NO_DESC=Turns VBS / HVCI / hypervisor OFF + Copilot / Recall OFF - pure perf,
+set "QVBS_NO_DESC2=no anticheat, no VM, no AI"
+set "M9A_AI_KEPT=AI / Copilot / Recall kept ON - VBS kept for anticheat/VM/AI"
+set "M9A_AI_OFF=AI / Copilot / Recall turned OFF - VBS off for max performance"
 set "QMODE_S_NAME=SOFT MODE"
 set "QMODE_S_DESC=Strong latency gains, every safety feature stays on. Safe pick if unsure."
 set "QMODE_L_NAME=LOWEST LATENCY"
@@ -309,7 +306,7 @@ set "M47=Ancrage et multitâche !CG!on!C0!, Aero Shake !CR!off!C0!"
 set "M48=!CW!UAC!C0! : !CY!ne prévient jamais!C0! (élévation silencieuse)"
 set "M49=Bureau à distance et Assistance à distance !CR!off!C0!"
 set "M50=Intégrité mémoire (core isolation) !CG!gardée on!C0! - requise par certains !CW!anticheats!C0!"
-set "M50NOAC=Intégrité mémoire + VBS + hyperviseur !CR!OFF!C0! (sans anticheat, perf max)"
+set "M50OFF=Intégrité mémoire + VBS + hyperviseur !CR!OFF!C0! (sans anticheat, perf max)"
 set "M51=!CW!Démarrage!C0! : pas d'interface, OS non affiché, délai !CC!0 seconde!C0!"
 set "M52=Périphériques fantômes (débranchés) !CR!supprimés!C0!"
 set "M53=!CW!Extras!C0! : FTH !CR!off!C0!, délai de démarrage des applis !CC!0!C0!, arrêt accéléré"
@@ -344,18 +341,15 @@ set "DESC1=Réduit la latence et le lag d'entrée pour le jeu."
 set "DESC2=Compatible anticheat. Entièrement réversible (Restaurer)."
 set "MODE_2=!CG!Restaurer!C0! les valeurs par défaut Windows"
 set "QMODE_HEAD=CHOISIS TON MODE D'OPTIMISATION"
-set "QAC_HEAD=AS-TU BESOIN DE TON ANTICHEAT ?"
-set "QAC_YES_NAME=OUI - Vanguard / FACEIT"
-set "QAC_YES_DESC=Garde VBS / HVCI / hyperviseur ON - requis par les anticheats noyau"
-set "QAC_NO_NAME=NON - pas d'anticheat noyau"
-set "QAC_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF - plus de perf, sécurité réduite"
-set "QVM_HEAD=AS-TU BESOIN DE VIRTUALISATION / IA ?"
-set "QVM_YES_NAME=OUI - WSL2 / Hyper-V / VM / IA (Copilot, Recall, etc.)"
-set "QVM_YES_DESC=Garde VBS / HVCI / hyperviseur ON - requis pour la virtualisation et l'IA"
-set "QVM_NO_NAME=NON - pas de virtualisation ni d'IA"
-set "QVM_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF - plus de perf, ni VM ni IA"
-set "M9A_AI_KEPT=IA / Copilot / Recall gardés ON - virtualisation ou IA requise"
-set "M9A_AI_OFF=IA / Copilot / Recall coupés OFF - ni virtualisation ni IA"
+set "QVBS_HEAD=GARDER LA S{e9}CURIT{e9} NOYAU + VIRTUALISATION ?"
+set "QVBS_YES_NAME=OUI - garder ON (anticheat / VM / WSL2 / IA)"
+set "QVBS_YES_DESC=Garde VBS / HVCI / hyperviseur ON - n{e9}cessite : Vanguard / FACEIT,
+set "QVBS_YES_DESC2=WSL2 / Hyper-V / VM, Copilot et Recall"
+set "QVBS_NO_NAME=NON - couper pour la perf max"
+set "QVBS_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF + Copilot / Recall OFF - perf pure,
+set "QVBS_NO_DESC2=pas d'anticheat, pas de VM, pas d'IA"
+set "M9A_AI_KEPT=IA / Copilot / Recall gard{e9}s ON - VBS gard{e9} pour anticheat/VM/IA"
+set "M9A_AI_OFF=IA / Copilot / Recall coup{e9}s OFF - VBS off pour la perf max"
 set "QMODE_S_NAME=MODE SOUPLE"
 set "QMODE_S_DESC=Gros gain de latence, toutes les protections restent actives. Sûr si tu hésites."
 set "QMODE_L_NAME=LATENCE MINIMALE"
@@ -558,40 +552,22 @@ if "!ISLAPTOP!"=="1" echo   !CO!  [ // ]  !LAPDET!!C0!
 echo.
 
 rem ============ QUESTIONS ============
-:QQ_AC
+:QQ_VBS
 echo.
 echo   !CC!=============================================================!C0!
-echo                !CW!!QAC_HEAD!!C0!
+echo                !CW!!QVBS_HEAD!!C0!
 echo   !CC!=============================================================!C0!
 echo.
-echo     !CG![1]   [ + ]   !CW!!QAC_YES_NAME!!C0!
-echo            !CK!!QAC_YES_DESC!!C0!
+echo     !CG![1]   [ + ]   !CW!!QVBS_YES_NAME!!C0!
+echo            !CK!!QVBS_YES_DESC!!C0!  !CK!!QVBS_YES_DESC2!!C0!
 echo.
-echo     !CO3![2]   [ - ]   !CW!!QAC_NO_NAME!!C0!
-echo            !CK!!QAC_NO_DESC!!C0!
+echo     !CO3![2]   [ - ]   !CW!!QVBS_NO_NAME!!C0!
+echo            !CK!!QVBS_NO_DESC!!C0!  !CK!!QVBS_NO_DESC2!!C0!
 echo.
 choice /C 12 /N /M "        !PROMPT!"
-set "QACR=!errorlevel!"
-set "NOAC=0"
-if "!QACR!"=="2" set "NOAC=1"
-set "NOVM=0"
-if "!QACR!"=="1" goto QQ_MODE
-:QQ_VM
-echo.
-echo   !CC!=============================================================!C0!
-echo                !CW!!QVM_HEAD!!C0!
-echo   !CC!=============================================================!C0!
-echo.
-echo     !CG![1]   [ + ]   !CW!!QVM_YES_NAME!!C0!
-echo            !CK!!QVM_YES_DESC!!C0!
-echo.
-echo     !CO3![2]   [ - ]   !CW!!QVM_NO_NAME!!C0!
-echo            !CK!!QVM_NO_DESC!!C0!
-echo.
-choice /C 12 /N /M "        !PROMPT!"
-set "QVMR=!errorlevel!"
-set "NOVM=0"
-if "!QVMR!"=="2" set "NOVM=1"
+set "QVBSR=!errorlevel!"
+set "NOVBS=0"
+if "!QVBSR!"=="2" set "NOVBS=1"
 :QQ_MODE
 echo.
 echo   !CC!=============================================================!C0!
@@ -771,8 +747,7 @@ rem ============ [01] NOYAU CPU / RAM ============
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v SvcHostSplitThresholdInKB /t REG_DWORD /d !SVCKB! /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d !PRIOSEP! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v Mode /t REG_SZ /d !MODEMARK! /f >nul 2>&1
-reg add "HKLM\SOFTWARE\LowLatOptimizer" /v NoAC /t REG_SZ /d !NOAC! /f >nul 2>&1
-reg add "HKLM\SOFTWARE\LowLatOptimizer" /v NoVM /t REG_SZ /d !NOVM! /f >nul 2>&1
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v NoVBS /t REG_SZ /d !NOVBS! /f >nul 2>&1
 if defined MICNAME reg add "HKLM\SOFTWARE\LowLatOptimizer" /v MicName /t REG_SZ /d "!MICNAME!" /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v IsLaptop /t REG_SZ /d !ISLAPTOP! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v IsX3D /t REG_DWORD /d !ISX3D! /f >nul 2>&1
@@ -911,7 +886,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338388Enabled /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v BingSearchEnabled /t REG_DWORD /d 0 /f >nul 2>&1
 rem -- IA (Copilot / Recall / WindowsAI) : OFF sauf si VM/IA conservee --
-if "!NOVM!"=="0" goto _ia_kept
+if "!NOVBS!"=="0" goto _ia_kept
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v DisableAIDataAnalysis /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f >nul 2>&1
@@ -927,7 +902,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" /v Disabled /t
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsRunInBackground /t REG_DWORD /d 2 /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v StartupBoostEnabled /t REG_DWORD /d 0 /f >nul 2>&1
 echo   !OK! !CC![08]!C0! !M9!
-if "!NOVM!"=="0" ( echo   !OK! !CC![08]!C0! !M9A_AI_KEPT! ) else ( echo   !OK! !CC![08]!C0! !M9A_AI_OFF! )
+if "!NOVBS!"=="0" ( echo   !OK! !CC![08]!C0! !M9A_AI_KEPT! ) else ( echo   !OK! !CC![08]!C0! !M9A_AI_OFF! )
 
 rem ============ [09b] BLOCAGE PUB / TELEMETRIE via le fichier HOSTS ============
 attrib -r "%SystemRoot%\System32\drivers\etc\hosts" >nul 2>&1
@@ -1241,7 +1216,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Pe
 reg add "HKCU\SOFTWARE\Microsoft\TabletTip\1.7" /v TipbandDesiredVisibility /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" /v TaskbarEndTask /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f >nul 2>&1
-if "!NOVM!"=="0" ( reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 1 /f >nul 2>&1 ) else ( reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 0 /f >nul 2>&1 )
+if "!NOVBS!"=="0" ( reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 1 /f >nul 2>&1 ) else ( reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 0 /f >nul 2>&1 )
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowTaskViewButton /t REG_DWORD /d 0 /f >nul 2>&1
 echo   !OK! !CC![24]!C0! !M43!
 
@@ -1292,8 +1267,7 @@ echo   !OK! !CC![30]!C0! !M49!
 
 rem ============ [31] INTEGRITE MEMOIRE (core isolation) ============
 rem Mode normal : ON (requise par certains anticheats). Mode no-anticheat : OFF (perf).
-if "!NOAC!"=="1" if "!NOVM!"=="1" goto _noac_vbs
-if "!NOAC!"=="1" if "!NOVM!"=="0" goto _noac_done
+if "!NOVBS!"=="1" goto _noac_vbs
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v EnableVirtualizationBasedSecurity /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" /v Enabled /t REG_DWORD /d 1 /f >nul 2>&1
 bcdedit /set hypervisorlaunchtype auto >nul 2>&1
@@ -1303,7 +1277,7 @@ goto _noac_done
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v EnableVirtualizationBasedSecurity /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" /v Enabled /t REG_DWORD /d 0 /f >nul 2>&1
 bcdedit /set hypervisorlaunchtype off >nul 2>&1
-echo   !OK! !CC![31]!C0! !M50NOAC!
+echo   !OK! !CC![31]!C0! !M50OFF!
 :_noac_done
 
 rem ============ [32] DEMARRAGE : NE PAS AFFICHER L'OS ============
@@ -1534,16 +1508,19 @@ if "!TMROK!"=="0" echo   !CR!  -^> !C0!!M69NG!
 
 rem ============ [44b] MICROPHONE : DEFINIR LE DEVICE PAR DEFAUT ============
 rem Uniquement si l'utilisateur a choisi un micro par nom (MICNAME defini).
-rem Genere un script PS (micdef.ps1) qui met le micro par defaut via l'API COM
-rem IPolicyConfig (SetDefaultEndpoint), puis cree une tache ONLOGON qui le
-rem re-applique a chaque ouverture de session (comme le timer).
-if defined MICNAME if not "!MICNAME!"=="" (
-    schtasks /Delete /F /TN "LowLat Mic Default" >nul 2>&1
-    powershell -NoProfile -Command "[IO.File]::WriteAllText($env:SystemRoot+'\micdef.ps1',[Text.Encoding]::ASCII.GetString([Convert]::FromBase64String('!MICPSB64!')))" >nul 2>&1
-    powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" "!MICNAME!" apply >nul 2>&1
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ps=$env:SystemRoot+'\micdef.ps1'; $a=New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "+$ps+' !MICNAME! apply'); $t=New-ScheduledTaskTrigger -AtLogOn; $p=New-ScheduledTaskPrincipal -UserId 'NT AUTHORITY\SYSTEM' -LogonType ServiceAccount -RunLevel Highest; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit ([TimeSpan]::Zero) -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) -StartWhenAvailable; Register-ScheduledTask -TaskName 'LowLat Mic Default' -Action $a -Trigger $t -Principal $p -Settings $s -Force | Out-Null" >nul 2>&1
-    echo   !OK! !CC![44b]!C0! !CW!!QH_MIC!!C0! !CK!->!C0! !CG!!MICNAME!!C0!
-)
+rem Genere micdef.ps1 (IPolicyConfig::SetDefaultEndpoint), l'applique, et
+rem cree une tache ONLOGON "LowLat Mic Default" qui le re-applique a chaque session.
+if not defined MICNAME goto _mic_skip
+if "!MICNAME!"=="" goto _mic_skip
+schtasks /Delete /F /TN "LowLat Mic Default" >nul 2>&1
+powershell -NoProfile -Command "[IO.File]::WriteAllText($env:SystemRoot+'\micdef.ps1',[Text.Encoding]::ASCII.GetString([Convert]::FromBase64String('!MICPSB64!')))" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" "!MICNAME!" apply >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ps=$env:SystemRoot+'\micdef.ps1'; $a=New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "+$ps+' !MICNAME! apply'); $t=New-ScheduledTaskTrigger -AtLogOn; $p=New-ScheduledTaskPrincipal -UserId 'NT AUTHORITY\SYSTEM' -LogonType ServiceAccount -RunLevel Highest; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit ([TimeSpan]::Zero) -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) -StartWhenAvailable; Register-ScheduledTask -TaskName 'LowLat Mic Default' -Action $a -Trigger $t -Principal $p -Settings $s -Force | Out-Null" >nul 2>&1
+echo   !OK! !CC![44b]!C0! !CW!!QH_MIC!!C0! !CK!->!C0! !CG!!MICNAME!!C0!
+goto _mic_done
+:_mic_skip
+rem (micro non configure : aucune tache creee)
+:_mic_done
 
 
 rem ============ [45] RE-APPLICATION DES REGLAGES AU DEMARRAGE (valeurs fixes) ============
@@ -2188,14 +2165,13 @@ echo.
 
 rem ===== etat stocke =====
 set "MODE="
-set "NOAC="
+set "NOVBS="
 set "ISX3D="
 set "ISLAP="
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v Mode 2^>nul ^| findstr /i /c:"REG_"') do set "MODE=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v IsX3D 2^>nul ^| findstr /i /c:"REG_"') do set "ISX3D=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v IsLaptop 2^>nul ^| findstr /i /c:"REG_"') do set "ISLAP=%%a"
-for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v NoAC 2^>nul ^| findstr /i /c:"REG_"') do set "NOAC=%%a"
-for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v NoVM 2^>nul ^| findstr /i /c:"REG_"') do set "NOVM=%%a"
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v NoVBS 2^>nul ^| findstr /i /c:"REG_"') do set "NOVBS=%%a"
 for /f "tokens=2,*" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v MicName 2^>nul ^| findstr /i /c:"REG_"') do set "MICNAME=%%b"
 
 if "!ISX3D!"=="0x1" set "ISX3D=1"
@@ -2210,8 +2186,7 @@ if not defined MODE (
 )
 if not defined ISX3D set "ISX3D=?"
 if not defined ISLAP set "ISLAP=?"
-if not defined NOAC set "NOAC=0"
-if not defined NOVM set "NOVM=0"
+if not defined NOVBS set "NOVBS=0"
 set "X3DMULTI="
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v X3DMulti 2^>nul ^| findstr /i /c:"REG_"') do set "X3DMULTI=%%a"
 if "!X3DMULTI!"=="0x1" set "X3DMULTI=1"
@@ -2488,11 +2463,9 @@ echo   !CO! !H9!!C0!
 set "VBSEXP=1"
 set "VBSLBL=VBS enabled ............."
 set "HVCLBL=HVCI memory integrity ..."
-if "!NOAC!"=="1" if "!NOVM!"=="1" set "VBSEXP=0"
-if "!NOAC!"=="1" if "!NOVM!"=="1" set "VBSLBL=VBS off (no-anticheat) ..."
-if "!NOAC!"=="1" if "!NOVM!"=="1" set "HVCLBL=HVCI off (no-anticheat) ."
-if "!NOAC!"=="1" if "!NOVM!"=="0" set "VBSLBL=VBS kept (VM/AI) ........."
-if "!NOAC!"=="1" if "!NOVM!"=="0" set "HVCLBL=HVCI kept (VM/AI) ........"
+if "!NOVBS!"=="1" set "VBSEXP=0"
+if "!NOVBS!"=="1" set "VBSLBL=VBS off (max perf) ..........."
+if "!NOVBS!"=="1" set "HVCLBL=HVCI off (max perf) ............"
 call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" EnableVirtualizationBasedSecurity !VBSEXP! "!VBSLBL!"
 call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" Enabled !VBSEXP! "!HVCLBL!"
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" ConsentPromptBehaviorAdmin 0 "UAC admin prompt (0) ...."
@@ -2504,14 +2477,14 @@ echo   !CO! !H10!!C0!
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" AllowTelemetry 0 "Telemetry (policy) ......"
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" AllowTelemetry 0 "Telemetry (cv) .........."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" DODownloadMode 0 "Delivery Optimization ..."
-if "!NOVM!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" DisableAIDataAnalysis 1 "Recall off .............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" "Recall kept (VM/AI) ....." )
+if "!NOVBS!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" DisableAIDataAnalysis 1 "Recall off .............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" "Recall kept (VM/AI) ....." )
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" DisableWindowsConsumerFeatures 1 "Consumer features off ..."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" BingSearchEnabled 0 "Bing search off ........."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" AllowGameDVR 0 "GameDVR policy off ......"
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" AppCaptureEnabled 0 "App capture off ........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\GameBar" AutoGameModeEnabled 1 "Game Mode on ............"
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Edge" StartupBoostEnabled 0 "Edge startup boost off .."
-if "!NOVM!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "Copilot off ............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot kept (VM/AI) ...." )
+if "!NOVBS!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "Copilot off ............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot kept (VM/AI) ...." )
 
 echo.
 echo   !CO! !H11!!C0!
@@ -2544,7 +2517,7 @@ echo   !CO! !H13!!C0!
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" Enabled 0 "Enabled ................."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" SystemPaneSuggestionsEnabled 0 "SystemPaneSuggestionsEnabled .."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" SubscribedContent-338388Enabled 0 "SubscribedContent-338388Enabled .."
-if "!NOVM!"=="1" ( call :ckdw "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "TurnOffWindowsCopilot ..." ) else ( call :cksvci "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot HKCU kept (VM/AI)." )
+if "!NOVBS!"=="1" ( call :ckdw "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "TurnOffWindowsCopilot ..." ) else ( call :cksvci "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot HKCU kept (VM/AI)." )
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Dsh" AllowNewsAndInterests 0 "AllowNewsAndInterests ..."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" EnableFeeds 0 "EnableFeeds ............."
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" Disabled 1 "Disabled ................"
@@ -2659,7 +2632,7 @@ call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" NoUseStoreOpenWit
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Psched" NonBestEffortLimit 0 "NonBestEffortLimit ......"
 call :ckdw "HKCU\SOFTWARE\Microsoft\GameBar" AllowAutoGameMode 1 "AllowAutoGameMode ......."
 call :cksz "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" DirectXUserGlobalSettings "SwapEffectUpgradeEnable=1;" "DirectXUserGlobalSettings .."
-if "!NOVM!"=="1" ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 0 "ShowCopilotButton ......." ) else ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 1 "Copilot btn kept (VM/AI)." )
+if "!NOVBS!"=="1" ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 0 "ShowCopilotButton ......." ) else ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 1 "Copilot btn kept (VM/AI)." )
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" DisableFileSyncNGSC 1 "DisableFileSyncNGSC ....."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" DisallowShaking 1 "DisallowShaking ........."
 call :cksz "HKCU\Control Panel\Desktop" WindowArrangementActive "1" "WindowArrangementActive .."
