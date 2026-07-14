@@ -1,8 +1,8 @@
 @echo off
 chcp 1252 >nul
-title win11-low-latency-optimizer  -  ALL-IN-ONE  v3.4
+title win11-low-latency-optimizer  -  ALL-IN-ONE  v3.5
 setlocal EnableExtensions EnableDelayedExpansion
-set "SCRIPT_VER=v3.4"
+set "SCRIPT_VER=v3.5"
 
 rem ====================================================================
 rem   LOW LATENCY GAMING SCRIPT
@@ -53,6 +53,7 @@ set "OK=!CG![!CW!OK!CG!]!C0!"
 color 0F
 set "TRPSB64=JEVycm9yQWN0aW9uUHJlZmVyZW5jZT0nU2lsZW50bHlDb250aW51ZScKJG10eD1OZXctT2JqZWN0IFN5c3RlbS5UaHJlYWRpbmcuTXV0ZXgoJGZhbHNlLCdHbG9iYWxcTG93TGF0VGltZXJSZXMwNScpCmlmKC1ub3QgJG10eC5XYWl0T25lKDApKXtleGl0fQpTdGFydC1TbGVlcCAtU2Vjb25kcyA1CiRzaWc9QCcKW0RsbEltcG9ydCgibnRkbGwuZGxsIildIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGludCBOdFNldFRpbWVyUmVzb2x1dGlvbih1aW50IERlc2lyZWRSZXNvbHV0aW9uLCBib29sIFNldFJlc29sdXRpb24sIG91dCB1aW50IEN1cnJlbnRSZXNvbHV0aW9uKTsKW0RsbEltcG9ydCgia2VybmVsMzIuZGxsIildIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGJvb2wgR2V0U3lzdGVtUG93ZXJTdGF0dXMob3V0IFNQUyBzKTsKW1N0cnVjdExheW91dChMYXlvdXRLaW5kLlNlcXVlbnRpYWwpXSBwdWJsaWMgc3RydWN0IFNQUyB7IHB1YmxpYyBieXRlIEFDTGluZVN0YXR1czsgcHVibGljIGJ5dGUgQmF0dGVyeUZsYWc7IHB1YmxpYyBieXRlIEJhdHRlcnlMaWZlUGVyY2VudDsgcHVibGljIGJ5dGUgU3lzdGVtU3RhdHVzRmxhZzsgcHVibGljIGludCBCYXR0ZXJ5TGlmZVRpbWU7IHB1YmxpYyBpbnQgQmF0dGVyeUZ1bGxMaWZlVGltZTsgfQonQAokVFI9JG51bGwKJG49MAp3aGlsZSgkbnVsbCAtZXEgJFRSIC1hbmQgJG4gLWx0IDEyMCl7CnRyeXskVFI9QWRkLVR5cGUgLU5hbWUgVHJzIC1OYW1lc3BhY2UgTGwgLU1lbWJlckRlZmluaXRpb24gJHNpZyAtUGFzc1RocnUgLUVycm9yQWN0aW9uIFN0b3B9Y2F0Y2h7U3RhcnQtU2xlZXAgLVNlY29uZHMgMn0KJG4rKwp9CmlmKCRudWxsIC1lcSAkVFIpe2V4aXR9CiRjPTAKd2hpbGUoJHRydWUpewokaG9sZD0kdHJ1ZQp0cnl7CiRzPU5ldy1PYmplY3QgJ0xsLlRycytTUFMnCmlmKCRUUjo6R2V0U3lzdGVtUG93ZXJTdGF0dXMoW3JlZl0kcykpewppZigkcy5CYXR0ZXJ5RmxhZyAtbmUgMTI4IC1hbmQgJHMuQUNMaW5lU3RhdHVzIC1lcSAwKXskaG9sZD0kZmFsc2V9Cn0KfWNhdGNoeyRob2xkPSR0cnVlfQppZigkaG9sZCl7JFRSOjpOdFNldFRpbWVyUmVzb2x1dGlvbig1MDAwLCR0cnVlLFtyZWZdJGMpfE91dC1OdWxsfWVsc2V7JFRSOjpOdFNldFRpbWVyUmVzb2x1dGlvbig1MDAwLCRmYWxzZSxbcmVmXSRjKXxPdXQtTnVsbH0KU3RhcnQtU2xlZXAgLVNlY29uZHMgNQp9Cg=="
 set "TASKB64=JEVycm9yQWN0aW9uUHJlZmVyZW5jZT0nU2lsZW50bHlDb250aW51ZScKJHRuPSdUaW1lclJlcyAwLjVtcycKJHBzPSRlbnY6U3lzdGVtUm9vdCsnXHRpbWVycmVzLnBzMScKJGE9TmV3LVNjaGVkdWxlZFRhc2tBY3Rpb24gLUV4ZWN1dGUgJ3Bvd2Vyc2hlbGwuZXhlJyAtQXJndW1lbnQgKCctTm9Qcm9maWxlIC1XaW5kb3dTdHlsZSBIaWRkZW4gLUV4ZWN1dGlvblBvbGljeSBCeXBhc3MgLUZpbGUgIicrJHBzKyciJykKJHQxPU5ldy1TY2hlZHVsZWRUYXNrVHJpZ2dlciAtQXRTdGFydHVwCiR0Mj1OZXctU2NoZWR1bGVkVGFza1RyaWdnZXIgLUF0TG9nT24KJHA9TmV3LVNjaGVkdWxlZFRhc2tQcmluY2lwYWwgLVVzZXJJZCAnTlQgQVVUSE9SSVRZXFNZU1RFTScgLUxvZ29uVHlwZSBTZXJ2aWNlQWNjb3VudCAtUnVuTGV2ZWwgSGlnaGVzdAokcz1OZXctU2NoZWR1bGVkVGFza1NldHRpbmdzU2V0IC1BbGxvd1N0YXJ0SWZPbkJhdHRlcmllcyAtRG9udFN0b3BJZkdvaW5nT25CYXR0ZXJpZXMgLUV4ZWN1dGlvblRpbWVMaW1pdCAoW1RpbWVTcGFuXTo6WmVybykgLVJlc3RhcnRDb3VudCAzIC1SZXN0YXJ0SW50ZXJ2YWwgKE5ldy1UaW1lU3BhbiAtTWludXRlcyAxKSAtTXVsdGlwbGVJbnN0YW5jZXMgSWdub3JlTmV3IC1TdGFydFdoZW5BdmFpbGFibGUKUmVnaXN0ZXItU2NoZWR1bGVkVGFzayAtVGFza05hbWUgJHRuIC1BY3Rpb24gJGEgLVRyaWdnZXIgJHQxLCR0MiAtUHJpbmNpcGFsICRwIC1TZXR0aW5ncyAkcyAtRm9yY2UgfCBPdXQtTnVsbApTdGFydC1TY2hlZHVsZWRUYXNrIC1UYXNrTmFtZSAkdG4K"
+set "MICPSB64=JEVycm9yQWN0aW9uUHJlZmVyZW5jZT0nU2lsZW50bHlDb250aW51ZScKJG5hbWU9JGFyZ3NbMF0KJGFjdD0kYXJnc1sxXQppZigtbm90ICRuYW1lKXtleGl0IDF9CmlmKCRhY3QgLW5lICdhcHBseScpe2V4aXQgMH0KQWRkLVR5cGUgLVR5cGVEZWZpbml0aW9uIEAnCnVzaW5nIFN5c3RlbTt1c2luZyBTeXN0ZW0uUnVudGltZS5JbnRlcm9wU2VydmljZXM7CnB1YmxpYyBlbnVtIEVSb2xle2VDb25zb2xlLGVNdWx0aW1lZGlhLGVDb21tdW5pY2F0aW9uc30KW1N0cnVjdExheW91dChMYXlvdXRLaW5kLlNlcXVlbnRpYWwpXXB1YmxpYyBzdHJ1Y3QgUHJvcGVydHlLZXl7cHVibGljIEd1aWQgZm10aWQ7cHVibGljIGludCBwaWQ7fQpbQ29tSW1wb3J0LEd1aWQoIjg4NmQ4ZWViLThjZjItNDQ0Ni04ZDAyLWNkYmExZGJkY2Y5OSIpLEludGVyZmFjZVR5cGUoQ29tSW50ZXJmYWNlVHlwZS5JbnRlcmZhY2VJc0lVbmtub3duKV0KaW50ZXJmYWNlIElQcm9wZXJ0eVN0b3Jle3VpbnQgR2V0Q291bnQoW291dF1vdXQgdWludCBjKTt1aW50IEdldEF0KFtJbl11aW50IGksW291dF1vdXQgUHJvcGVydHlLZXkgayk7dWludCBHZXRWYWx1ZShbSW5dcmVmIFByb3BlcnR5S2V5IGssb3V0IEludFB0ciB2KTt9CltDb21JbXBvcnQsR3VpZCgiRDY2NjA2M0YtMTU4Ny00RTdBLTkxMDktMUREMkE1RDZDMEI0IiksSW50ZXJmYWNlVHlwZShDb21JbnRlcmZhY2VUeXBlLkludGVyZmFjZUlzSVVua25vd24pXQppbnRlcmZhY2UgSU1NRGV2aWNlQ29sbGVjdGlvbnt1aW50IEdldENvdW50KFtvdXRdb3V0IHVpbnQgYyk7dWludCBJdGVtKFtJbl11aW50IGksW091dCxNYXJzaGFsQXMoVW5tYW5hZ2VkVHlwZS5JVW5rbm93bildb3V0IG9iamVjdCBkKTt9CltDb21JbXBvcnQsR3VpZCgiQTk1NjY0RDItOTYxNC00RjM1LUE3NDYtREU4REI2MzYxN0U0IiksSW50ZXJmYWNlVHlwZShDb21JbnRlcmZhY2VUeXBlLkludGVyZmFjZUlzSVVua25vd24pXQppbnRlcmZhY2UgSU1NRGV2aWNlRW51bWVyYXRvcnt1aW50IEVudW1BdWRpb0VuZHBvaW50cyhbSW5daW50IGZsb3csW0luXXVpbnQgbWFzayxbT3V0XW91dCBJTU1EZXZpY2VDb2xsZWN0aW9uIGNvbCk7dWludCBHZXREZXZpY2UoW0luLE1hcnNoYWxBcyhVbm1hbmFnZWRUeXBlLkxQV1N0cildc3RyaW5nIGlkLFtPdXQsTWFyc2hhbEFzKFVubWFuYWdlZFR5cGUuSVVua25vd24pXW91dCBvYmplY3QgZGV2KTt9CltDb21JbXBvcnQsR3VpZCgiRDNCREFBNDctN0FGRC00RDI1LTlEQkYtN0E1MkUxRkQ1QjdFIiksSW50ZXJmYWNlVHlwZShDb21JbnRlcmZhY2VUeXBlLkludGVyZmFjZUlzSVVua25vd24pXQppbnRlcmZhY2UgSU1NRGV2aWNle3VpbnQgQWN0aXZhdGUoW0luXXJlZiBHdWlkIGlkLFtJbl1pbnQgY2xzY3R4LFtJbl1JbnRQdHIgcCxbT3V0LE1hcnNoYWxBcyhVbm1hbmFnZWRUeXBlLklVbmtub3duKV1vdXQgb2JqZWN0IGlmYWNlKTt1aW50IE9wZW5Qcm9wZXJ0eVN0b3JlKFtJbl1pbnQgYWNjZXNzLFtPdXQsTWFyc2hhbEFzKFVubWFuYWdlZFR5cGUuSVVua25vd24pXW91dCBvYmplY3Qgc3RvcmUpO3VpbnQgR2V0SWQoW091dCxNYXJzaGFsQXMoVW5tYW5hZ2VkVHlwZS5MUFdTdHIpXW91dCBzdHJpbmcgaWQpO30KW0NvbUltcG9ydCxHdWlkKCI4NzBBRjk5Qy0wN0QzLTRCOUYtODYxNC04RDYzQUU1QjZGNEYiKSxJbnRlcmZhY2VUeXBlKENvbUludGVyZmFjZVR5cGUuSW50ZXJmYWNlSXNJVW5rbm93bildCmludGVyZmFjZSBJUG9saWN5Q29uZmlne3VpbnQgR2V0TWl4Rm9ybWF0KFtPdXRdb3V0IEludFB0ciBwKTt1aW50IFNldE1peEZvcm1hdChbSW5dcmVmIEd1aWQgaWQpO3VpbnQgUmVzZXREZXZpY2VGb3JtYXQoKTt1aW50IEdldERldmljZUZvcm1hdChbSW5dSW50UHRyIHAsW0luXWludCBiLFtJbixPdXRdcmVmIEd1aWQgaWQpO3VpbnQgU2V0RGV2aWNlRm9ybWF0KFtJbl1yZWYgR3VpZCBpZCxbSW5dSW50UHRyIHAyKTt1aW50IEdldFByb2Nlc3NpbmdQZXJpb2QoW091dF1vdXQgbG9uZyBhLFtPdXRdb3V0IGxvbmcgYik7dWludCBTZXRQcm9jZXNzaW5nUGVyaW9kKFtJbl1yZWYgbG9uZyBhLFtJbl1yZWYgbG9uZyBiKTt1aW50IEdldFNoYXJlTW9kZSgpO3VpbnQgU2V0U2hhcmVNb2RlKCk7dWludCBHZXRQcm9wZXJ0eVZhbHVlKCk7dWludCBTZXRQcm9wZXJ0eVZhbHVlKCk7dWludCBTZXREZWZhdWx0RW5kcG9pbnQoW0luLE1hcnNoYWxBcyhVbm1hbmFnZWRUeXBlLkxQV1N0cildc3RyaW5nIGlkLFtJbl1FUm9sZSByb2xlKTt9CltDb21JbXBvcnQsR3VpZCgiODcwQUY5OUMtMDdEMy00QjlGLTg2MTQtOEQ2M0FFNUI2RjRGIiksQ2xhc3NJbnRlcmZhY2UoQ2xhc3NJbnRlcmZhY2VUeXBlLk5vbmUpXWNsYXNzIFBvbGljeUNvbmZpZ0NsaWVudHt9CnB1YmxpYyBzdGF0aWMgY2xhc3MgTWljewogIHB1YmxpYyBzdGF0aWMgdm9pZCBTZXQoc3RyaW5nIG5hbWUpewogICAgdmFyIHQ9VHlwZS5HZXRUeXBlRnJvbUNMU0lEKG5ldyBHdWlkKCJCQ0RFMDM5NS1FNTJGLTQ2N0MtOEUzRC1DNDU3OTI5MTY5MkUiKSk7CiAgICB2YXIgZW51PShJTU1EZXZpY2VFbnVtZXJhdG9yKUFjdGl2YXRvci5DcmVhdGVJbnN0YW5jZSh0KTsKICAgIElNTURldmljZUNvbGxlY3Rpb24gY29sO2VudS5FbnVtQXVkaW9FbmRwb2ludHMoMSwxLG91dCBjb2wpOwogICAgdWludCBjbnQ7Y29sLkdldENvdW50KG91dCBjbnQpOwogICAgdmFyIHBrZXk9bmV3IFByb3BlcnR5S2V5e2ZtdGlkPW5ldyBHdWlkKCJBNDVDMjU0RS1ERjFDLTRFRkQtODAyMC02N0QxNDZBODUwRTAiKSxwaWQ9Mn07CiAgICBmb3IodWludCBpPTA7aTxjbnQ7aSsrKXsKICAgICAgb2JqZWN0IGQ7Y29sLkl0ZW0oaSxvdXQgZCk7CiAgICAgIHZhciBkZXY9KElNTURldmljZSlkOwogICAgICBvYmplY3Qgc3RvcmVvO2Rldi5PcGVuUHJvcGVydHlTdG9yZSgwLG91dCBzdG9yZW8pOwogICAgICB2YXIgcHM9KElQcm9wZXJ0eVN0b3JlKXN0b3JlbzsKICAgICAgdWludCBwYztwcy5HZXRDb3VudChvdXQgcGMpOwogICAgICBzdHJpbmcgZm5hbWU9bnVsbDtzdHJpbmcgZGlkPW51bGw7CiAgICAgIGZvcih1aW50IGo9MDtqPHBjO2orKyl7UHJvcGVydHlLZXkgaztwcy5HZXRBdChqLG91dCBrKTtpZihrLmZtdGlkPT1wa2V5LmZtdGlkJiZrLnBpZD09cGtleS5waWQpe0ludFB0ciB2O3BzLkdldFZhbHVlKHJlZiBrLG91dCB2KTtmbmFtZT1NYXJzaGFsLlB0clRvU3RyaW5nVW5pKHYpO319CiAgICAgIGRldi5HZXRJZChvdXQgZGlkKTsKICAgICAgaWYoZm5hbWUhPW51bGwmJmRpZCE9bnVsbCYmZm5hbWUuVG9Mb3dlckludmFyaWFudCgpPT1uYW1lLlRvTG93ZXJJbnZhcmlhbnQoKSl7CiAgICAgICAgdmFyIHBjMj0oSVBvbGljeUNvbmZpZyluZXcgUG9saWN5Q29uZmlnQ2xpZW50KCk7CiAgICAgICAgcGMyLlNldERlZmF1bHRFbmRwb2ludChkaWQsRVJvbGUuZUNvbnNvbGUpOwogICAgICAgIHBjMi5TZXREZWZhdWx0RW5kcG9pbnQoZGlkLEVSb2xlLmVNdWx0aW1lZGlhKTsKICAgICAgICBwYzIuU2V0RGVmYXVsdEVuZHBvaW50KGRpZCxFUm9sZS5lQ29tbXVuaWNhdGlvbnMpOwogICAgICAgIHJldHVybjsKICAgICAgfQogICAgfQogIH0KfQonQAp0cnl7IFtNaWNdOjpTZXQoJG5hbWUpIH1jYXRjaHsgZXhpdCAyIH0K"
 
 rem ---- Detection automatique de la langue (FR si Windows/region FR, sinon EN) ----
 set "L=EN"
@@ -60,7 +61,7 @@ powershell -NoProfile -Command "if((Get-UICulture).Name -like 'fr*' -or (Get-Cul
 for /f "usebackq delims=" %%i in ("%TEMP%\_lllang.txt") do set "L=%%i"
 del /q "%TEMP%\_lllang.txt" >nul 2>&1
 set "BSUB=Less input lag, more reactivity"
-if /i "!L!"=="FR" set "BSUB=Moins de lag, plus de réactivité"
+if /i "!L!"=="FR" set "BSUB=Moins de lag, plus de rï¿½activitï¿½"
 cls
 echo  !CM!================================================================!C0!
 echo  !CW!                   LOW LATENCY GAMING SCRIPT!C0!
@@ -163,6 +164,13 @@ set "QAC_YES_NAME=YES - Vanguard / FACEIT"
 set "QAC_YES_DESC=Keeps VBS / HVCI / hypervisor ON - required by kernel anticheats"
 set "QAC_NO_NAME=NO - no kernel anticheat"
 set "QAC_NO_DESC=Turns VBS / HVCI / hypervisor OFF - more perf, lower security"
+set "QVM_HEAD=DO YOU NEED VIRTUALIZATION / AI ?"
+set "QVM_YES_NAME=YES - WSL2 / Hyper-V / VM / AI (Copilot, Recall, etc.)"
+set "QVM_YES_DESC=Keeps VBS / HVCI / hypervisor ON - required for virtualization and AI"
+set "QVM_NO_NAME=NO - no virtualization or AI"
+set "QVM_NO_DESC=Turns VBS / HVCI / hypervisor OFF - more perf, no VM/AI"
+set "M9A_AI_KEPT=AI / Copilot / Recall kept ON - virtualization or AI needed"
+set "M9A_AI_OFF=AI / Copilot / Recall turned OFF - no virtualization, no AI"
 set "QMODE_S_NAME=SOFT MODE"
 set "QMODE_S_DESC=Strong latency gains, every safety feature stays on. Safe pick if unsure."
 set "QMODE_L_NAME=LOWEST LATENCY"
@@ -185,11 +193,18 @@ set "QH_WIFI=NETWORK ADAPTERS (WI-FI / ETHERNET)"
 set "QH_BT=BLUETOOTH"
 set "QH_PRINT=PRINTER"
 set "QH_XBOX=XBOX"
+set "QH_MIC=MICROPHONE (set default)"
 set "QO_YESNO=!CG![1] Yes!C0!  !CR![2] No!C0!"
 set "CFM_KEEP=unchanged"
 set "CFM_OFF=disabled"
 set "CFM_RST=restored"
 set "QO_CAM=!CL![1] Keep active!C0!  !CR![2] Disable!C0!  !CG![3] Restore default!C0!"
+set "QO_MIC=!CL![1] Keep current!C0!  !CR![2] Set by name!C0!  !CG![3] List devices!C0!"
+set "QO_MIC_NAME=Enter exact microphone name (case-sensitive):"
+set "QO_MIC_LIST=--- Microphones detected ---"
+set "QO_MIC_NONE=No microphone found."
+set "QO_MIC_SET=Default microphone set to:"
+set "QO_MIC_KEPT=Microphone left unchanged."
 set "QO_NDR=!CL![1] Leave as is!C0!  !CR![2] Disable!C0!  !CG![3] Restore default!C0!"
 set "QO_NET=!CL![1] Keep!C0!  !CR![2] Disable Wi-Fi!C0!  !CR![3] Disable Ethernet!C0!"
 set "QO_NET2=!CG![4] Restore Wi-Fi!C0!  !CG![5] Restore Ethernet!C0!"
@@ -239,109 +254,116 @@ set "BAN_H=Real-time latency"
 set "BACK=Back"
 goto _strdone
 :_strfr
-set "M0=!CW!CPU/RAM!C0! : svchost regroupé, quantum premier plan, SysMain on"
-set "M2=!CW!MMCSS!C0! profil Games : priorité GPU et CPU !CG!maximale!C0!"
-set "M3L=Priorité CPU et E/S élevée sur !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite!C0!"
-set "M3S=Priorité CPU/E-S par jeu : !CG!défaut (soft)!C0!"
-set "M4=GPU !CW!NVIDIA!C0! : ancienne méthode de sharpening !CG!restaurée!C0!, mode MSI !CG!activé!C0!"
+set "M0=!CW!CPU/RAM!C0! : svchost regroupï¿½, quantum premier plan, SysMain on"
+set "M2=!CW!MMCSS!C0! profil Games : prioritï¿½ GPU et CPU !CG!maximale!C0!"
+set "M3L=Prioritï¿½ CPU et E/S ï¿½levï¿½e sur !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite!C0!"
+set "M3S=Prioritï¿½ CPU/E-S par jeu : !CG!dï¿½faut (soft)!C0!"
+set "M4=GPU !CW!NVIDIA!C0! : ancienne mï¿½thode de sharpening !CG!restaurï¿½e!C0!, mode MSI !CG!activï¿½!C0!"
 set "M5=GPU !CW!AMD!C0! : ULPS !CR!off!C0!, mode MSI !CG!on!C0!"
-set "MDLOCK=AMD 25.9.1 -> MAJ pilote GPU !CR!bloquées!C0! (Windows Update)"
-set "MDFREE=MAJ pilote GPU !CG!laissées débloquées!C0!"
-set "M6=Souris !CG!1:1!C0! (accélération !CR!off!C0!), clavier rapide, touches rémanentes !CR!off!C0!, Impr écran ouvre !CW!Capture!C0!"
-set "M7=!CW!Réseau!C0! : RSC !CR!off!C0!, RSS !CG!on!C0!, économie et modération carte réseau !CR!off!C0!"
-set "M8=Timers de démarrage réglés, noms courts 8.3 NTFS !CR!off!C0!"
-set "M9=Télémétrie, publicité, !CW!Recall, Widgets!C0! !CR!off!C0!"
-set "M10=!CW!Liste de blocage pub et télémétrie!C0! : !CC!215 domaines!C0! via hosts"
-set "M11=Tâches planifiées de télémétrie !CR!désactivées!C0!"
-set "M12=Services inutiles !CR!désactivés!C0! (!CW!anticheats!C0! et pilotes intacts)"
-set "M13=Indexation Windows !CG!activée!C0! (recherche de fichiers)"
-set "M14=Plein écran exclusif !CG!forcé!C0!, GPU hautes performances sur les !CC!7!C0! jeux"
-set "M15=!CW!GameDVR!C0! !CR!off!C0!, !CW!Mode Jeu!C0! !CG!on!C0!, optimisations jeux fenêtrés !CG!on!C0!"
-set "M16=!CW!Defender!C0! : jeux !CG!exclus!C0!, analyse planifiée !CR!off!C0!, analyses bridées"
-set "M16RT=!CW!Temps réel + comportement + IOAV + cloud + échantillons!C0! !CR!OFF!C0! (Tamper Protection était off)"
-set "M16NT=!CW!Protection temps réel ON!C0! (off seulement en LOWEST + Tamper Protection off)"
-set "M17=Debloat !CG!effectué!C0! (!CW!Store, Sécurité, Capture, Calculatrice, Paint, Spotify!C0! gardés)"
-set "M19=!CW!Outlook!C0! (nouveau) !CR!retiré!C0!"
-set "M20=!CW!Confidentialité!C0! : accès applis !CR!off!C0! sauf !CG!microphone!C0! ; applis en arrière-plan !CR!off!C0!"
+set "MDLOCK=AMD 25.9.1 -> MAJ pilote GPU !CR!bloquï¿½es!C0! (Windows Update)"
+set "MDFREE=MAJ pilote GPU !CG!laissï¿½es dï¿½bloquï¿½es!C0!"
+set "M6=Souris !CG!1:1!C0! (accï¿½lï¿½ration !CR!off!C0!), clavier rapide, touches rï¿½manentes !CR!off!C0!, Impr ï¿½cran ouvre !CW!Capture!C0!"
+set "M7=!CW!Rï¿½seau!C0! : RSC !CR!off!C0!, RSS !CG!on!C0!, ï¿½conomie et modï¿½ration carte rï¿½seau !CR!off!C0!"
+set "M8=Timers de dï¿½marrage rï¿½glï¿½s, noms courts 8.3 NTFS !CR!off!C0!"
+set "M9=Tï¿½lï¿½mï¿½trie, publicitï¿½, !CW!Recall, Widgets!C0! !CR!off!C0!"
+set "M10=!CW!Liste de blocage pub et tï¿½lï¿½mï¿½trie!C0! : !CC!215 domaines!C0! via hosts"
+set "M11=Tï¿½ches planifiï¿½es de tï¿½lï¿½mï¿½trie !CR!dï¿½sactivï¿½es!C0!"
+set "M12=Services inutiles !CR!dï¿½sactivï¿½s!C0! (!CW!anticheats!C0! et pilotes intacts)"
+set "M13=Indexation Windows !CG!activï¿½e!C0! (recherche de fichiers)"
+set "M14=Plein ï¿½cran exclusif !CG!forcï¿½!C0!, GPU hautes performances sur les !CC!7!C0! jeux"
+set "M15=!CW!GameDVR!C0! !CR!off!C0!, !CW!Mode Jeu!C0! !CG!on!C0!, optimisations jeux fenï¿½trï¿½s !CG!on!C0!"
+set "M16=!CW!Defender!C0! : jeux !CG!exclus!C0!, analyse planifiï¿½e !CR!off!C0!, analyses bridï¿½es"
+set "M16RT=!CW!Temps rï¿½el + comportement + IOAV + cloud + ï¿½chantillons!C0! !CR!OFF!C0! (Tamper Protection ï¿½tait off)"
+set "M16NT=!CW!Protection temps rï¿½el ON!C0! (off seulement en LOWEST + Tamper Protection off)"
+set "M17=Debloat !CG!effectuï¿½!C0! (!CW!Store, Sï¿½curitï¿½, Capture, Calculatrice, Paint, Spotify!C0! gardï¿½s)"
+set "M19=!CW!Outlook!C0! (nouveau) !CR!retirï¿½!C0!"
+set "M20=!CW!Confidentialitï¿½!C0! : accï¿½s applis !CR!off!C0! sauf !CG!microphone!C0! ; applis en arriï¿½re-plan !CR!off!C0!"
 set "M72=!CW!Infos de saisie!C0! + !CW!suggestions!C0! + spotlight/voix/presse-papier !CR!OFF!C0!"
-set "M73=!CW!MSI mode!C0! sur le GPU (interruptions signalées) : !CG!ON!C0! (au reboot)"
-set "M74=Historique presse-papier, bouton Chat, récents Explorateur, Cortana, sons, verrouillage/veille !CR!OFF!C0!"
-set "M75=!CW!nag OOBE!C0!, redémarrage auto MAJ, feedback, réveil maintenance, animation 1re connexion !CR!OFF!C0!"
-set "M21=!CW!Caméra!C0! !CG!gardée active!C0! (applis autorisées)"
-set "M22=!CW!Caméra!C0! !CR!désactivée!C0! (périphérique et accès applis off)"
-set "M23=!CW!Caméra!C0! !CG!restaurée!C0! (périphérique réactivé)"
-set "M24=!CW!Wi-Fi + Ethernet!C0! : inchangé"
-set "M25=!CW!Wi-Fi!C0! !CR!désactivé!C0! (service et adaptateurs)"
-set "M26=!CW!Wi-Fi!C0! !CG!restauré!C0! (service et adaptateurs)"
-set "M25E=!CW!Ethernet!C0! !CR!désactivé!C0! (adaptateur)"
-set "M26E=!CW!Ethernet!C0! !CG!restauré!C0! (adaptateur)"
-set "M27=!CW!Bluetooth!C0! : inchangé"
-set "M28=!CW!Bluetooth!C0! !CR!désactivé!C0! (services et radios)"
-set "M29=!CW!Bluetooth!C0! !CG!restauré!C0! (services et radios)"
-set "M30=!CW!Imprimante!C0! : inchangée"
-set "M31=!CW!Imprimante!C0! !CR!désactivée!C0! (spouleur off)"
-set "M32=!CW!Imprimante!C0! !CG!restaurée!C0! (spouleur on)"
-set "M33=!CW!Xbox!C0! : inchangé"
-set "M34=!CW!Xbox!C0! !CR!supprimé!C0! (apps, services, tâche)"
-set "M35=!CW!Xbox!C0! !CG!restauré!C0! (services en manuel)"
-set "M36=!CW!OneDrive!C0! !CR!désinstallé!C0!"
-set "M40=!CW!Apparence!C0! : transparence, accent gris, fond noir, !CW!thème sombre!C0!"
-set "M43=Barre des tâches épurée (recherche masquée, combinée, !CW!Widgets!C0! !CR!off!C0!, !CW!Task View!C0! !CR!off!C0!, Terminer la tâche !CG!on!C0!)"
-set "M44=!CW!Menu Démarrer!C0! : pas de reco, pas d'applis récentes, notifs !CR!off!C0!"
-set "M45=!CW!Explorateur!C0! : éléments masqués visibles, extensions !CG!on!C0!, ouvre sur !CW!Ce PC!C0!"
-set "M46=!CW!Avertissements de sécurité!C0! !CR!off!C0!"
-set "M47=Ancrage et multitâche !CG!on!C0!, Aero Shake !CR!off!C0!"
-set "M48=!CW!UAC!C0! : !CY!ne prévient jamais!C0! (élévation silencieuse)"
-set "M49=Bureau à distance et Assistance à distance !CR!off!C0!"
-set "M50=Intégrité mémoire (core isolation) !CG!gardée on!C0! - requise par certains !CW!anticheats!C0!"
-set "M50NOAC=Intégrité mémoire + VBS + hyperviseur !CR!OFF!C0! (sans anticheat, perf max)"
-set "M51=!CW!Démarrage!C0! : pas d'interface, OS non affiché, délai !CC!0 seconde!C0!"
-set "M52=Périphériques fantômes (débranchés) !CR!supprimés!C0!"
-set "M53=!CW!Extras!C0! : FTH !CR!off!C0!, délai de démarrage des applis !CC!0!C0!, arrêt accéléré"
+set "M73=!CW!MSI mode!C0! sur le GPU (interruptions signalï¿½es) : !CG!ON!C0! (au reboot)"
+set "M74=Historique presse-papier, bouton Chat, rï¿½cents Explorateur, Cortana, sons, verrouillage/veille !CR!OFF!C0!"
+set "M75=!CW!nag OOBE!C0!, redï¿½marrage auto MAJ, feedback, rï¿½veil maintenance, animation 1re connexion !CR!OFF!C0!"
+set "M21=!CW!Camï¿½ra!C0! !CG!gardï¿½e active!C0! (applis autorisï¿½es)"
+set "M22=!CW!Camï¿½ra!C0! !CR!dï¿½sactivï¿½e!C0! (pï¿½riphï¿½rique et accï¿½s applis off)"
+set "M23=!CW!Camï¿½ra!C0! !CG!restaurï¿½e!C0! (pï¿½riphï¿½rique rï¿½activï¿½)"
+set "M24=!CW!Wi-Fi + Ethernet!C0! : inchangï¿½"
+set "M25=!CW!Wi-Fi!C0! !CR!dï¿½sactivï¿½!C0! (service et adaptateurs)"
+set "M26=!CW!Wi-Fi!C0! !CG!restaurï¿½!C0! (service et adaptateurs)"
+set "M25E=!CW!Ethernet!C0! !CR!dï¿½sactivï¿½!C0! (adaptateur)"
+set "M26E=!CW!Ethernet!C0! !CG!restaurï¿½!C0! (adaptateur)"
+set "M27=!CW!Bluetooth!C0! : inchangï¿½"
+set "M28=!CW!Bluetooth!C0! !CR!dï¿½sactivï¿½!C0! (services et radios)"
+set "M29=!CW!Bluetooth!C0! !CG!restaurï¿½!C0! (services et radios)"
+set "M30=!CW!Imprimante!C0! : inchangï¿½e"
+set "M31=!CW!Imprimante!C0! !CR!dï¿½sactivï¿½e!C0! (spouleur off)"
+set "M32=!CW!Imprimante!C0! !CG!restaurï¿½e!C0! (spouleur on)"
+set "M33=!CW!Xbox!C0! : inchangï¿½"
+set "M34=!CW!Xbox!C0! !CR!supprimï¿½!C0! (apps, services, tï¿½che)"
+set "M35=!CW!Xbox!C0! !CG!restaurï¿½!C0! (services en manuel)"
+set "M36=!CW!OneDrive!C0! !CR!dï¿½sinstallï¿½!C0!"
+set "M40=!CW!Apparence!C0! : transparence, accent gris, fond noir, !CW!thï¿½me sombre!C0!"
+set "M43=Barre des tï¿½ches ï¿½purï¿½e (recherche masquï¿½e, combinï¿½e, !CW!Widgets!C0! !CR!off!C0!, !CW!Task View!C0! !CR!off!C0!, Terminer la tï¿½che !CG!on!C0!)"
+set "M44=!CW!Menu Dï¿½marrer!C0! : pas de reco, pas d'applis rï¿½centes, notifs !CR!off!C0!"
+set "M45=!CW!Explorateur!C0! : ï¿½lï¿½ments masquï¿½s visibles, extensions !CG!on!C0!, ouvre sur !CW!Ce PC!C0!"
+set "M46=!CW!Avertissements de sï¿½curitï¿½!C0! !CR!off!C0!"
+set "M47=Ancrage et multitï¿½che !CG!on!C0!, Aero Shake !CR!off!C0!"
+set "M48=!CW!UAC!C0! : !CY!ne prï¿½vient jamais!C0! (ï¿½lï¿½vation silencieuse)"
+set "M49=Bureau ï¿½ distance et Assistance ï¿½ distance !CR!off!C0!"
+set "M50=Intï¿½gritï¿½ mï¿½moire (core isolation) !CG!gardï¿½e on!C0! - requise par certains !CW!anticheats!C0!"
+set "M50NOAC=Intï¿½gritï¿½ mï¿½moire + VBS + hyperviseur !CR!OFF!C0! (sans anticheat, perf max)"
+set "M51=!CW!Dï¿½marrage!C0! : pas d'interface, OS non affichï¿½, dï¿½lai !CC!0 seconde!C0!"
+set "M52=Pï¿½riphï¿½riques fantï¿½mes (dï¿½branchï¿½s) !CR!supprimï¿½s!C0!"
+set "M53=!CW!Extras!C0! : FTH !CR!off!C0!, dï¿½lai de dï¿½marrage des applis !CC!0!C0!, arrï¿½t accï¿½lï¿½rï¿½"
 set "M54L=!CW!Performances optimales!C0! : USB suspend !CR!off!C0!, ASPM !CR!off!C0!, jamais de veille; parking/C-states selon le CPU"
-set "M54S=!CW!Performances élevées!C0! : USB suspend !CR!off!C0!, ASPM !CR!off!C0! ; parking/C-states selon le CPU"
-set "M55=!CW!HAGS!C0! supporté : !CG!activé!C0! (effet au redémarrage)"
-set "M56=!CW!HAGS!C0! non exposé par la plateforme : !CY!non activé!C0!"
-set "M57=!CW!Démarrage rapide!C0! !CG!activé!C0!"
-set "M58=!CW!Icônes au démarrage masquées!C0! : !CW!Vanguard + Defender!C0! (services actifs)"
-set "M59=Pilotes maintenus !CG!à jour!C0! via Windows Update"
-set "M60=!CW!Optimisation des disques!C0! : tâche !CW!Windows!C0! native !CG!on!C0! (silencieuse, quotidienne)"
-set "M61=!CW!Assistant de stockage!C0! !CG!on!C0! : temp + corbeille 1j + téléchargements 1j, chaque jour"
+set "M54S=!CW!Performances ï¿½levï¿½es!C0! : USB suspend !CR!off!C0!, ASPM !CR!off!C0! ; parking/C-states selon le CPU"
+set "M55=!CW!HAGS!C0! supportï¿½ : !CG!activï¿½!C0! (effet au redï¿½marrage)"
+set "M56=!CW!HAGS!C0! non exposï¿½ par la plateforme : !CY!non activï¿½!C0!"
+set "M57=!CW!Dï¿½marrage rapide!C0! !CG!activï¿½!C0!"
+set "M58=!CW!Icï¿½nes au dï¿½marrage masquï¿½es!C0! : !CW!Vanguard + Defender!C0! (services actifs)"
+set "M59=Pilotes maintenus !CG!ï¿½ jour!C0! via Windows Update"
+set "M60=!CW!Optimisation des disques!C0! : tï¿½che !CW!Windows!C0! native !CG!on!C0! (silencieuse, quotidienne)"
+set "M61=!CW!Assistant de stockage!C0! !CG!on!C0! : temp + corbeille 1j + tï¿½lï¿½chargements 1j, chaque jour"
 set "M62=!CW!Nettoyage!C0! : temp, cache !CW!Discord/Steam!C0!, WinSxS, Windows.old, corbeille"
-set "M63=!CW!Windows Update!C0! !CY!en cours!C0! (y compris les !CW!facultatives!C0!)... peut être long, ne ferme pas"
-set "M64=!CW!Windows Update!C0! !CG!terminé!C0!"
-set "M66=Mise à jour des applis via !CW!winget!C0!... peut être long"
-set "M67=!CW!winget!C0! !CG!terminé!C0!"
-set "M69=Timer Windows forcé à !CC!0.5 ms!C0! au démarrage (aucun outil externe)"
-set "M69NG=!CR!Tâche timer NON enregistrée!C0! - relance en admin, puis reboot"
-set "M71=Réglages ré-appliqués !CG!seulement après une MAJ Windows!C0! ; nettoyage sûr temp + DNS !CG!à chaque session!C0!"
-set "R0=Restauré : !CW!noyau CPU/RAM!C0! par défaut"
-set "R1=Restauré : !CW!réseau!C0! par défaut"
-set "R2=Restauré : !CW!priorités par jeu et plein écran!C0! par défaut"
-set "R3=Restauré : !CW!GameDVR et affûtage NVIDIA!C0! par défaut"
-set "R4=Restauré : !CW!timers, démarrage et NTFS!C0! par défaut"
-set "R5=Restauré : !CW!services!C0! par défaut"
-set "R6=Restauré : !CW!UAC, distance, SmartScreen, alimentation, télémétrie!C0! ; blocage !CW!AMD!C0! retiré"
-set "R7=Restauré : !CW!tâches personnalisées!C0! retirées"
+set "M63=!CW!Windows Update!C0! !CY!en cours!C0! (y compris les !CW!facultatives!C0!)... peut ï¿½tre long, ne ferme pas"
+set "M64=!CW!Windows Update!C0! !CG!terminï¿½!C0!"
+set "M66=Mise ï¿½ jour des applis via !CW!winget!C0!... peut ï¿½tre long"
+set "M67=!CW!winget!C0! !CG!terminï¿½!C0!"
+set "M69=Timer Windows forcï¿½ ï¿½ !CC!0.5 ms!C0! au dï¿½marrage (aucun outil externe)"
+set "M69NG=!CR!Tï¿½che timer NON enregistrï¿½e!C0! - relance en admin, puis reboot"
+set "M71=Rï¿½glages rï¿½-appliquï¿½s !CG!seulement aprï¿½s une MAJ Windows!C0! ; nettoyage sï¿½r temp + DNS !CG!ï¿½ chaque session!C0!"
+set "R0=Restaurï¿½ : !CW!noyau CPU/RAM!C0! par dï¿½faut"
+set "R1=Restaurï¿½ : !CW!rï¿½seau!C0! par dï¿½faut"
+set "R2=Restaurï¿½ : !CW!prioritï¿½s par jeu et plein ï¿½cran!C0! par dï¿½faut"
+set "R3=Restaurï¿½ : !CW!GameDVR et affï¿½tage NVIDIA!C0! par dï¿½faut"
+set "R4=Restaurï¿½ : !CW!timers, dï¿½marrage et NTFS!C0! par dï¿½faut"
+set "R5=Restaurï¿½ : !CW!services!C0! par dï¿½faut"
+set "R6=Restaurï¿½ : !CW!UAC, distance, SmartScreen, alimentation, tï¿½lï¿½mï¿½trie!C0! ; blocage !CW!AMD!C0! retirï¿½"
+set "R7=Restaurï¿½ : !CW!tï¿½ches personnalisï¿½es!C0! retirï¿½es"
 set "MODE_HEAD=MODE"
 set "MODE_1=!CO!Appliquer!C0! les optimisations"
-set "DESC1=Réduit la latence et le lag d'entrée pour le jeu."
-set "DESC2=Compatible anticheat. Entièrement réversible (Restaurer)."
-set "MODE_2=!CG!Restaurer!C0! les valeurs par défaut Windows"
+set "DESC1=Rï¿½duit la latence et le lag d'entrï¿½e pour le jeu."
+set "DESC2=Compatible anticheat. Entiï¿½rement rï¿½versible (Restaurer)."
+set "MODE_2=!CG!Restaurer!C0! les valeurs par dï¿½faut Windows"
 set "QMODE_HEAD=CHOISIS TON MODE D'OPTIMISATION"
 set "QAC_HEAD=AS-TU BESOIN DE TON ANTICHEAT ?"
 set "QAC_YES_NAME=OUI - Vanguard / FACEIT"
 set "QAC_YES_DESC=Garde VBS / HVCI / hyperviseur ON - requis par les anticheats noyau"
 set "QAC_NO_NAME=NON - pas d'anticheat noyau"
-set "QAC_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF - plus de perf, sécurité réduite"
+set "QAC_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF - plus de perf, sï¿½curitï¿½ rï¿½duite"
+set "QVM_HEAD=AS-TU BESOIN DE VIRTUALISATION / IA ?"
+set "QVM_YES_NAME=OUI - WSL2 / Hyper-V / VM / IA (Copilot, Recall, etc.)"
+set "QVM_YES_DESC=Garde VBS / HVCI / hyperviseur ON - requis pour la virtualisation et l'IA"
+set "QVM_NO_NAME=NON - pas de virtualisation ni d'IA"
+set "QVM_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF - plus de perf, ni VM ni IA"
+set "M9A_AI_KEPT=IA / Copilot / Recall gardes ON - virtualisation ou IA requise"
+set "M9A_AI_OFF=IA / Copilot / Recall coupes OFF - ni virtualisation ni IA"
 set "QMODE_S_NAME=MODE SOUPLE"
-set "QMODE_S_DESC=Gros gain de latence, toutes les protections restent actives. Sûr si tu hésites."
+set "QMODE_S_DESC=Gros gain de latence, toutes les protections restent actives. Sï¿½r si tu hï¿½sites."
 set "QMODE_L_NAME=LATENCE MINIMALE"
-set "QMODE_L_DESC=Tout ce que Souple fait, plus priorité par jeu et timeout GPU. Chauffe plus."
+set "QMODE_L_DESC=Tout ce que Souple fait, plus prioritï¿½ par jeu et timeout GPU. Chauffe plus."
 set "MODE_ACTIVE=MODE ACTIF"
 set "PROMPT=Ton choix : "
 set "DET_GPU=Carte graphique"
-set "DET_RAM=Mémoire vive "
+set "DET_RAM=Mï¿½moire vive "
 set "DET_CPU=Processeur   "
 set "DET_CORES=coeurs"
 set "DET_TYPE=Type machine "
@@ -350,63 +372,70 @@ set "TYPEPORT=Portable"
 set "DET_THRESH=seuil svchost"
 set "DET_GB=Go"
 set "DET_KB=Ko"
-set "Q_INTRO=Réponds aux questions ci-dessous (une touche; tape 0 pour revenir) :"
-set "QH_CAM=CAMÉRA"
-set "QH_WIFI=CARTES RÉSEAU (WI-FI / ETHERNET)"
+set "Q_INTRO=Rï¿½ponds aux questions ci-dessous (une touche; tape 0 pour revenir) :"
+set "QH_CAM=CAMï¿½RA"
+set "QH_WIFI=CARTES Rï¿½SEAU (WI-FI / ETHERNET)"
 set "QH_BT=BLUETOOTH"
 set "QH_PRINT=IMPRIMANTE"
 set "QH_XBOX=XBOX"
+set "QH_MIC=MICROPHONE (mode par defaut)"
 set "QO_YESNO=!CG![1] Oui!C0!  !CR![2] Non!C0!"
-set "CFM_KEEP=inchangé"
-set "CFM_OFF=désactivé"
-set "CFM_RST=restauré"
-set "QO_CAM=!CL![1] Garder active!C0!  !CR![2] Désactiver!C0!  !CG![3] Restaurer défaut!C0!"
-set "QO_NDR=!CL![1] Ne rien faire!C0!  !CR![2] Désactiver!C0!  !CG![3] Restaurer défaut!C0!"
-set "QO_NET=!CL![1] Garder!C0!  !CR![2] Désactiver Wi-Fi!C0!  !CR![3] Désactiver Ethernet!C0!"
+set "CFM_KEEP=inchangï¿½"
+set "CFM_OFF=dï¿½sactivï¿½"
+set "CFM_RST=restaurï¿½"
+set "QO_CAM=!CL![1] Garder active!C0!  !CR![2] Dï¿½sactiver!C0!  !CG![3] Restaurer dï¿½faut!C0!"
+set "QO_MIC=!CL![1] Garder actuel!C0!  !CR![2] Choisir par nom!C0!  !CG![3] Lister!C0!"
+set "QO_MIC_NAME=Entre le nom exact du micro (sensible a la casse) :"
+set "QO_MIC_LIST=--- Microphones detectes ---"
+set "QO_MIC_NONE=Aucun microphone trouve."
+set "QO_MIC_SET=Micro par defaut defini :"
+set "QO_MIC_KEPT=Micro laisse inchange."
+set "QO_NDR=!CL![1] Ne rien faire!C0!  !CR![2] Dï¿½sactiver!C0!  !CG![3] Restaurer dï¿½faut!C0!"
+set "QO_NET=!CL![1] Garder!C0!  !CR![2] Dï¿½sactiver Wi-Fi!C0!  !CR![3] Dï¿½sactiver Ethernet!C0!"
 set "QO_NET2=!CG![4] Restaurer Wi-Fi!C0!  !CG![5] Restaurer Ethernet!C0!"
 set "QO_XBOX=!CL![1] Ne rien faire!C0!  !CR![2] Tout supprimer!C0!  !CG![3] Restaurer services!C0!"
 set "APPLYING=Application des optimisations, patiente..."
-set "DONE_APPLY=TERMINÉ"
-set "SUMMARY_HEAD=RÉSUMÉ"
-set "SUM02=Le jeu au premier plan a la !CG!priorité maximale!C0!."
-set "SUM03=CPU totalement !CG!déparké!C0!, aucun économiseur, pas de veille."
-set "SUM03L=Parking CPU laissé par !CG!défaut!C0!, C-states gardés (batterie)."
-set "M5LAP=!CW!ULPS!C0! gardé ON pour la batterie"
-set "LAPDET=Portable détecté -> réglages batterie + thermiques forcés par-dessus le mode choisi."
-set "SUMLAP=Réglages portable : timer sur secteur seulement, ULPS gardé, parking CPU par défaut, plan Perf élevées, dynamic tick on, éco Wi-Fi sur batterie."
-set "SUM04=Souris !CG!1:1!C0!, zéro accélération Windows."
-set "SUM05=Réseau réglé pour le minimum de lag."
-set "SUM06=Mouchards, télémétrie et services inutiles !CR!coupés!C0!."
-set "SUM07=Blocage pub + télémétrie MS via hosts (!CC!215 domaines!C0! + exclusion Defender)."
-set "SUM08=!CW!Widgets, Outlook (nouveau), Task View!C0! !CR!retirés!C0!."
-set "SUM09=Plein écran exclusif + GPU hautes performances sur les jeux."
-set "SUM11=Intégrité mémoire !CG!gardée on!C0!, !CW!UAC!C0! ne prévient jamais."
-set "SUM12=Bureau à distance !CR!off!C0!, indexation !CG!activée!C0!."
+set "DONE_APPLY=TERMINï¿½"
+set "SUMMARY_HEAD=Rï¿½SUMï¿½"
+set "SUM02=Le jeu au premier plan a la !CG!prioritï¿½ maximale!C0!."
+set "SUM03=CPU totalement !CG!dï¿½parkï¿½!C0!, aucun ï¿½conomiseur, pas de veille."
+set "SUM03L=Parking CPU laissï¿½ par !CG!dï¿½faut!C0!, C-states gardï¿½s (batterie)."
+set "M5LAP=!CW!ULPS!C0! gardï¿½ ON pour la batterie"
+set "LAPDET=Portable dï¿½tectï¿½ -> rï¿½glages batterie + thermiques forcï¿½s par-dessus le mode choisi."
+set "SUMLAP=Rï¿½glages portable : timer sur secteur seulement, ULPS gardï¿½, parking CPU par dï¿½faut, plan Perf ï¿½levï¿½es, dynamic tick on, ï¿½co Wi-Fi sur batterie."
+set "SUM04=Souris !CG!1:1!C0!, zï¿½ro accï¿½lï¿½ration Windows."
+set "SUM05=Rï¿½seau rï¿½glï¿½ pour le minimum de lag."
+set "SUM06=Mouchards, tï¿½lï¿½mï¿½trie et services inutiles !CR!coupï¿½s!C0!."
+set "SUM07=Blocage pub + tï¿½lï¿½mï¿½trie MS via hosts (!CC!215 domaines!C0! + exclusion Defender)."
+set "SUM08=!CW!Widgets, Outlook (nouveau), Task View!C0! !CR!retirï¿½s!C0!."
+set "SUM09=Plein ï¿½cran exclusif + GPU hautes performances sur les jeux."
+set "SUM11=Intï¿½gritï¿½ mï¿½moire !CG!gardï¿½e on!C0!, !CW!UAC!C0! ne prï¿½vient jamais."
+set "SUM12=Bureau ï¿½ distance !CR!off!C0!, indexation !CG!activï¿½e!C0!."
 set "SUM13=Apparence : transparence, accent gris, fond noir, secondes."
-set "SUM14=Disques optimisés par la tâche native + !CW!Assistant de stockage!C0!."
-set "SUM15=Nettoyage temp, cache et !CW!Windows.old!C0! effectué."
-set "SUM16=Timer forcé à !CC!0.5 ms!C0! au démarrage (aucun outil externe)."
-set "SUM17=Réglages clés ré-appliqués après les MAJ ; nettoyage sûr !CG!à chaque session!C0!."
-set "SUM18=Infos de saisie, suggestions, spotlight écran verrouillé, voix en ligne, actions suggérées : OFF"
-set "SUM_DEV=Périphériques & Xbox (!CW!caméra, Wi-Fi, Bluetooth, imprimante!C0!) : selon tes choix."
-set "Q_RESTART=Redémarrer le PC maintenant pour tout appliquer ?"
-set "RESTARTING=Redémarrage dans 5 secondes..."
-set "RESTART_LATER=OK - pense à redémarrer plus tard pour tout appliquer."
-set "REST_INTRO=Restauration des valeurs par défaut Windows..."
-set "REST_DONE_HEAD=RESTAURATION TERMINÉE"
-set "REST_NOTE1=Valeurs par défaut Windows restaurées."
-set "REST_NOTE2=Non auto-restauré : applis debloatées, OneDrive, épingles."
-set "REST_NOTE3=L'isolation du noyau n'a PAS été touchée par ce script."
+set "SUM14=Disques optimisï¿½s par la tï¿½che native + !CW!Assistant de stockage!C0!."
+set "SUM15=Nettoyage temp, cache et !CW!Windows.old!C0! effectuï¿½."
+set "SUM16=Timer forcï¿½ ï¿½ !CC!0.5 ms!C0! au dï¿½marrage (aucun outil externe)."
+set "SUM17=Rï¿½glages clï¿½s rï¿½-appliquï¿½s aprï¿½s les MAJ ; nettoyage sï¿½r !CG!ï¿½ chaque session!C0!."
+set "SUM18=Infos de saisie, suggestions, spotlight ï¿½cran verrouillï¿½, voix en ligne, actions suggï¿½rï¿½es : OFF"
+set "SUM_DEV=Pï¿½riphï¿½riques & Xbox (!CW!camï¿½ra, Wi-Fi, Bluetooth, imprimante!C0!) : selon tes choix."
+set "Q_RESTART=Redï¿½marrer le PC maintenant pour tout appliquer ?"
+set "RESTARTING=Redï¿½marrage dans 5 secondes..."
+set "RESTART_LATER=OK - pense ï¿½ redï¿½marrer plus tard pour tout appliquer."
+set "REST_INTRO=Restauration des valeurs par dï¿½faut Windows..."
+set "REST_DONE_HEAD=RESTAURATION TERMINï¿½E"
+set "REST_NOTE1=Valeurs par dï¿½faut Windows restaurï¿½es."
+set "REST_NOTE2=Non auto-restaurï¿½ : applis debloatï¿½es, OneDrive, ï¿½pingles."
+set "REST_NOTE3=L'isolation du noyau n'a PAS ï¿½tï¿½ touchï¿½e par ce script."
 set "SIGN_BY=par"
-set "SIGN_TAIL=réalisé avec Claude.ai"
-set "BAN_A=Moteur système : CPU, planificateur, GPU, souris, réseau"
-set "BAN_B=Confidentialité, télémétrie et mode jeu"
-set "BAN_C=Périphériques & Xbox (selon tes choix)"
+set "SIGN_TAIL=rï¿½alisï¿½ avec Claude.ai"
+set "BAN_A=Moteur systï¿½me : CPU, planificateur, GPU, souris, rï¿½seau"
+set "BAN_B=Confidentialitï¿½, tï¿½lï¿½mï¿½trie et mode jeu"
+set "BAN_C=Pï¿½riphï¿½riques & Xbox (selon tes choix)"
 set "BAN_D=Applis, apparence et interface"
-set "BAN_E=Alimentation et démarrage"
+set "BAN_E=Alimentation et dï¿½marrage"
 set "BAN_F=Disques et maintenance"
-set "BAN_G=Mises à jour"
-set "BAN_H=Latence temps réel"
+set "BAN_G=Mises ï¿½ jour"
+set "BAN_H=Latence temps rï¿½el"
 set "BACK=Retour"
 :_strdone
 rem ============ MENU AIO ============
@@ -423,12 +452,12 @@ set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
 if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : tweaks seuls)"
-if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne méthode de sharpening)"
+if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne mï¿½thode de sharpening)"
 if /i "!L!"=="FR" set "AO4=Disposition clavier QWERTY"
 if /i "!L!"=="FR" set "AO5=Restaurer toutes les valeurs Windows"
 if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
-if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
-if /i "!L!"=="FR" set "AO8=Outil de vérification / debug"
+if /i "!L!"=="FR" set "AO7=Restaurer la protection temps rï¿½el Defender"
+if /i "!L!"=="FR" set "AO8=Outil de vï¿½rification / debug"
 if /i "!L!"=="FR" set "AO0=Quitter"
 set "MOPT=OPTIMIZER"
 set "MCAT1=optimize"
@@ -436,8 +465,8 @@ set "MCAT2=standalone tweaks"
 set "MCAT3=system"
 if /i "!L!"=="FR" set "MOPT=OPTIMISEUR"
 if /i "!L!"=="FR" set "MCAT1=optimisation"
-if /i "!L!"=="FR" set "MCAT2=réglages indépendants"
-if /i "!L!"=="FR" set "MCAT3=système"
+if /i "!L!"=="FR" set "MCAT2=rï¿½glages indï¿½pendants"
+if /i "!L!"=="FR" set "MCAT3=systï¿½me"
 set "SIG_MW=Made with "
 if /i "!L!"=="FR" set "SIG_MW=Fait avec "
 
@@ -545,6 +574,24 @@ choice /C 12 /N /M "        !PROMPT!"
 set "QACR=!errorlevel!"
 set "NOAC=0"
 if "!QACR!"=="2" set "NOAC=1"
+set "NOVM=0"
+if "!QACR!"=="1" goto QQ_MODE
+:QQ_VM
+echo.
+echo   !CC!=============================================================!C0!
+echo                !CW!!QVM_HEAD!!C0!
+echo   !CC!=============================================================!C0!
+echo.
+echo     !CG![1]   [ + ]   !CW!!QVM_YES_NAME!!C0!
+echo            !CK!!QVM_YES_DESC!!C0!
+echo.
+echo     !CO3![2]   [ - ]   !CW!!QVM_NO_NAME!!C0!
+echo            !CK!!QVM_NO_DESC!!C0!
+echo.
+choice /C 12 /N /M "        !PROMPT!"
+set "QVMR=!errorlevel!"
+set "NOVM=0"
+if "!QVMR!"=="2" set "NOVM=1"
 :QQ_MODE
 echo.
 echo   !CC!=============================================================!C0!
@@ -669,6 +716,37 @@ if "!XBOX!"=="2" echo !CR!!QH_XBOX! : !CFM_OFF!!C0!
 if "!XBOX!"=="3" echo !CG!!QH_XBOX! : !CFM_RST!!C0!
 echo.
 
+:QQ_MIC
+echo   !CY![ ? ]!C0!  !CW!!QH_MIC!!C0!
+echo.
+echo        !QO_MIC!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+<nul set /p "=        !PROMPT!"
+choice /C 1230 /N >nul
+set "MICC=!errorlevel!"
+set "MICNAME="
+if "!MICC!"=="4" goto QQ_XBOX
+if "!MICC!"=="3" goto _mic_list
+if "!MICC!"=="1" goto _mic_keep
+goto _mic_name
+:_mic_list
+echo   !CC!!QO_MIC_LIST!!C0!
+powershell -NoProfile -Command "Get-CimInstance Win32_SoundDevice -Filter 'Status=\"OK\"' | Select-Object -ExpandProperty Name" 2>nul
+if errorlevel 1 echo   !CK!!QO_MIC_NONE!!C0!
+echo.
+goto QQ_MIC
+:_mic_name
+set /p "MICNAME=        !QO_MIC_NAME! "
+if not defined MICNAME goto _mic_keep
+echo !CG!!QO_MIC_SET! !CW!!MICNAME!!C0!
+goto _mic_done
+:_mic_keep
+set "MICNAME="
+echo !CL!!QO_MIC_KEPT!!C0!
+:_mic_done
+echo.
+
 set "CAMALLOW=1"
 if "!CAM!"=="2" set "CAMALLOW=0"
 
@@ -694,6 +772,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v SvcHostSplitThresholdInKB /t 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d !PRIOSEP! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v Mode /t REG_SZ /d !MODEMARK! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v NoAC /t REG_SZ /d !NOAC! /f >nul 2>&1
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v NoVM /t REG_SZ /d !NOVM! /f >nul 2>&1
+if defined MICNAME reg add "HKLM\SOFTWARE\LowLatOptimizer" /v MicName /t REG_SZ /d "!MICNAME!" /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v IsLaptop /t REG_SZ /d !ISLAPTOP! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v IsX3D /t REG_DWORD /d !ISX3D! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v X3DMulti /t REG_DWORD /d !X3DMULTI! /f >nul 2>&1
@@ -830,13 +910,24 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v DisableWindow
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SystemPaneSuggestionsEnabled /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338388Enabled /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v BingSearchEnabled /t REG_DWORD /d 0 /f >nul 2>&1
+rem -- IA (Copilot / Recall / WindowsAI) : OFF sauf si VM/IA conservee --
+if "!NOVM!"=="0" goto _ia_kept
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v DisableAIDataAnalysis /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f >nul 2>&1
+goto _ia_done
+:_ia_kept
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v DisableAIDataAnalysis /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
+reg delete "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
+:_ia_done
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Dsh" /v AllowNewsAndInterests /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v EnableFeeds /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" /v Disabled /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsRunInBackground /t REG_DWORD /d 2 /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v StartupBoostEnabled /t REG_DWORD /d 0 /f >nul 2>&1
 echo   !OK! !CC![08]!C0! !M9!
+if "!NOVM!"=="0" ( echo   !OK! !CC![08]!C0! !M9A_AI_KEPT! ) else ( echo   !OK! !CC![08]!C0! !M9A_AI_OFF! )
 
 rem ============ [09b] BLOCAGE PUB / TELEMETRIE via le fichier HOSTS ============
 attrib -r "%SystemRoot%\System32\drivers\etc\hosts" >nul 2>&1
@@ -1150,7 +1241,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Pe
 reg add "HKCU\SOFTWARE\Microsoft\TabletTip\1.7" /v TipbandDesiredVisibility /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" /v TaskbarEndTask /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 0 /f >nul 2>&1
+if "!NOVM!"=="0" ( reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 1 /f >nul 2>&1 ) else ( reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 0 /f >nul 2>&1 )
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowTaskViewButton /t REG_DWORD /d 0 /f >nul 2>&1
 echo   !OK! !CC![24]!C0! !M43!
 
@@ -1201,7 +1292,9 @@ echo   !OK! !CC![30]!C0! !M49!
 
 rem ============ [31] INTEGRITE MEMOIRE (core isolation) ============
 rem Mode normal : ON (requise par certains anticheats). Mode no-anticheat : OFF (perf).
-if "!NOAC!"=="1" goto _noac_vbs
+rem Sauf si l'utilisateur garde la virtualisation/AI (NOVM=0) : VBS/HVCI reste ON.
+if "!NOAC!"=="1" if "!NOVM!"=="1" goto _noac_vbs
+if "!NOAC!"=="1" if "!NOVM!"=="0" goto _noac_done
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v EnableVirtualizationBasedSecurity /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" /v Enabled /t REG_DWORD /d 1 /f >nul 2>&1
 bcdedit /set hypervisorlaunchtype auto >nul 2>&1
@@ -1340,7 +1433,7 @@ if /i "!L!"=="FR" set "CL4=Composants Windows (WinSxS)"
 if /i "!L!"=="FR" set "CL5=Ancienne installation (Windows.old)"
 if /i "!L!"=="FR" set "CL6=Corbeille"
 if /i "!L!"=="FR" set "CL7=Dossier Telechargements (vidage total)"
-if /i "!L!"=="FR" set "CL7B=Telechargements gardé (script lancé depuis ce dossier)"
+if /i "!L!"=="FR" set "CL7B=Telechargements gardï¿½ (script lancï¿½ depuis ce dossier)"
 if /i "!L!"=="FR" set "CLW=peut prendre quelques minutes"
 if /i "!L!"=="FR" set "CLS=Resume du nettoyage :"
 if /i "!L!"=="FR" set "CLT=Total libere :"
@@ -1439,6 +1532,19 @@ schtasks /query /tn "TimerRes 0.5ms" >nul 2>&1 && set "TMROK=1"
 if "!TMROK!"=="1" echo   !OK! !CC![44]!C0! !M69!
 if "!TMROK!"=="0" echo   !CR!  -^> !C0!!M69NG!
 
+
+rem ============ [44b] MICROPHONE : DEFINIR LE DEVICE PAR DEFAUT ============
+rem Uniquement si l'utilisateur a choisi un micro par nom (MICNAME defini).
+rem Genere un script PS (micdef.ps1) qui met le micro par defaut via l'API COM
+rem IPolicyConfig (SetDefaultEndpoint), puis cree une tache ONLOGON qui le
+rem re-applique a chaque ouverture de session (comme le timer).
+if defined MICNAME if not "!MICNAME!"=="" (
+    schtasks /Delete /F /TN "LowLat Mic Default" >nul 2>&1
+    powershell -NoProfile -Command "[IO.File]::WriteAllText($env:SystemRoot+'\micdef.ps1',[Text.Encoding]::ASCII.GetString([Convert]::FromBase64String('!MICPSB64!')))" >nul 2>&1
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" "!MICNAME!" apply >nul 2>&1
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ps=$env:SystemRoot+'\micdef.ps1'; $a=New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "+$ps+' !MICNAME! apply'); $t=New-ScheduledTaskTrigger -AtLogOn; $p=New-ScheduledTaskPrincipal -UserId 'NT AUTHORITY\SYSTEM' -LogonType ServiceAccount -RunLevel Highest; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit ([TimeSpan]::Zero) -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) -StartWhenAvailable; Register-ScheduledTask -TaskName 'LowLat Mic Default' -Action $a -Trigger $t -Principal $p -Settings $s -Force | Out-Null" >nul 2>&1
+    echo   !OK! !CC![44b]!C0! !CW!!QH_MIC!!C0! !CK!->!C0! !CG!!MICNAME!!C0!
+)
 
 rem ============ [45] RE-APPLICATION DES REGLAGES AU DEMARRAGE (valeurs fixes) ============
 rem Petit script (valeurs FIXES, aucune dependance aux reponses). Il ne reecrit le
@@ -1557,6 +1663,10 @@ echo  !CY!!REST_INTRO!!C0!
 echo.
 rem -- GPU : debloque les MAJ pilote (securite restauration) --
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions" /v DenyDeviceIDs /t REG_DWORD /d 0 /f >nul 2>&1
+rem -- Micro : supprime la tache planifiee du micro par defaut --
+schtasks /Delete /F /TN "LowLat Mic Default" >nul 2>&1
+del /f /q "%SystemRoot%\micdef.ps1" >nul 2>&1
+reg delete "HKLM\SOFTWARE\LowLatOptimizer" /v MicName /f >nul 2>&1
 rem -- CPU / RAM / planificateur --
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 2 /f >nul 2>&1
 reg delete "HKLM\SYSTEM\CurrentControlSet\Control" /v SvcHostSplitThresholdInKB /f >nul 2>&1
@@ -1566,6 +1676,10 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v Powe
 reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v GlobalTimerResolutionRequests /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v SystemResponsiveness /t REG_DWORD /d 20 /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 10 /f >nul 2>&1
+rem -- IA (Copilot / Recall / WindowsAI) : restaure les valeurs Windows par defaut --
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v DisableAIDataAnalysis /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
+reg delete "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
 echo   !OK! !R0!
 rem -- Anti pop-up Store + TdrDelay + mitigations : retour defaut --
 for %%P in (ms-gamingoverlay ms-gamebar ms-gamebarservices ms-xbox ms-xboxlive ms-yourphone ms-getstarted ms-feedback ms-retaildemo) do reg delete "HKCU\Software\Classes\%%P" /f >nul 2>&1
@@ -2075,12 +2189,15 @@ echo.
 rem ===== etat stocke =====
 set "MODE="
 set "NOAC="
+set "NOVM="
 set "ISX3D="
 set "ISLAP="
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v Mode 2^>nul ^| findstr /i /c:"REG_"') do set "MODE=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v IsX3D 2^>nul ^| findstr /i /c:"REG_"') do set "ISX3D=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v IsLaptop 2^>nul ^| findstr /i /c:"REG_"') do set "ISLAP=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v NoAC 2^>nul ^| findstr /i /c:"REG_"') do set "NOAC=%%a"
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v NoVM 2^>nul ^| findstr /i /c:"REG_"') do set "NOVM=%%a"
+for /f "tokens=2,*" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v MicName 2^>nul ^| findstr /i /c:"REG_"') do set "MICNAME=%%b"
 
 if "!ISX3D!"=="0x1" set "ISX3D=1"
 if "!ISX3D!"=="0x0" set "ISX3D=0"
@@ -2095,6 +2212,7 @@ if not defined MODE (
 if not defined ISX3D set "ISX3D=?"
 if not defined ISLAP set "ISLAP=?"
 if not defined NOAC set "NOAC=0"
+if not defined NOVM set "NOVM=0"
 set "X3DMULTI="
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v X3DMulti 2^>nul ^| findstr /i /c:"REG_"') do set "X3DMULTI=%%a"
 if "!X3DMULTI!"=="0x1" set "X3DMULTI=1"
@@ -2371,9 +2489,11 @@ echo   !CO! !H9!!C0!
 set "VBSEXP=1"
 set "VBSLBL=VBS enabled ............."
 set "HVCLBL=HVCI memory integrity ..."
-if "!NOAC!"=="1" set "VBSEXP=0"
-if "!NOAC!"=="1" set "VBSLBL=VBS off (no-anticheat) ..."
-if "!NOAC!"=="1" set "HVCLBL=HVCI off (no-anticheat) ."
+if "!NOAC!"=="1" if "!NOVM!"=="1" set "VBSEXP=0"
+if "!NOAC!"=="1" if "!NOVM!"=="1" set "VBSLBL=VBS off (no-anticheat) ..."
+if "!NOAC!"=="1" if "!NOVM!"=="1" set "HVCLBL=HVCI off (no-anticheat) ."
+if "!NOAC!"=="1" if "!NOVM!"=="0" set "VBSLBL=VBS kept (VM/AI) ........."
+if "!NOAC!"=="1" if "!NOVM!"=="0" set "HVCLBL=HVCI kept (VM/AI) ........"
 call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" EnableVirtualizationBasedSecurity !VBSEXP! "!VBSLBL!"
 call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" Enabled !VBSEXP! "!HVCLBL!"
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" ConsentPromptBehaviorAdmin 0 "UAC admin prompt (0) ...."
@@ -2385,14 +2505,14 @@ echo   !CO! !H10!!C0!
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" AllowTelemetry 0 "Telemetry (policy) ......"
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" AllowTelemetry 0 "Telemetry (cv) .........."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" DODownloadMode 0 "Delivery Optimization ..."
-call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" DisableAIDataAnalysis 1 "Recall off .............."
+if "!NOVM!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" DisableAIDataAnalysis 1 "Recall off .............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" "Recall kept (VM/AI) ....." )
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" DisableWindowsConsumerFeatures 1 "Consumer features off ..."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" BingSearchEnabled 0 "Bing search off ........."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" AllowGameDVR 0 "GameDVR policy off ......"
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" AppCaptureEnabled 0 "App capture off ........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\GameBar" AutoGameModeEnabled 1 "Game Mode on ............"
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Edge" StartupBoostEnabled 0 "Edge startup boost off .."
-call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "Copilot off ............."
+if "!NOVM!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "Copilot off ............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot kept (VM/AI) ...." )
 
 echo.
 echo   !CO! !H11!!C0!
@@ -2425,7 +2545,7 @@ echo   !CO! !H13!!C0!
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" Enabled 0 "Enabled ................."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" SystemPaneSuggestionsEnabled 0 "SystemPaneSuggestionsEnabled .."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" SubscribedContent-338388Enabled 0 "SubscribedContent-338388Enabled .."
-call :ckdw "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "TurnOffWindowsCopilot ..."
+if "!NOVM!"=="1" ( call :ckdw "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "TurnOffWindowsCopilot ..." ) else ( call :cksvci "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot HKCU kept (VM/AI)." )
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Dsh" AllowNewsAndInterests 0 "AllowNewsAndInterests ..."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" EnableFeeds 0 "EnableFeeds ............."
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" Disabled 1 "Disabled ................"
@@ -2540,7 +2660,7 @@ call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" NoUseStoreOpenWit
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Psched" NonBestEffortLimit 0 "NonBestEffortLimit ......"
 call :ckdw "HKCU\SOFTWARE\Microsoft\GameBar" AllowAutoGameMode 1 "AllowAutoGameMode ......."
 call :cksz "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" DirectXUserGlobalSettings "SwapEffectUpgradeEnable=1;" "DirectXUserGlobalSettings .."
-call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 0 "ShowCopilotButton ......."
+if "!NOVM!"=="1" ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 0 "ShowCopilotButton ......." ) else ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 1 "Copilot btn kept (VM/AI)." )
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" DisableFileSyncNGSC 1 "DisableFileSyncNGSC ....."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" DisallowShaking 1 "DisallowShaking ........."
 call :cksz "HKCU\Control Panel\Desktop" WindowArrangementActive "1" "WindowArrangementActive .."
