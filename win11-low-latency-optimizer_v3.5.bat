@@ -438,16 +438,18 @@ set "AO1=Apply optimizations   (full: tweaks + cleanup + updates)"
 set "AO2=Apply optimizations   (fast: tweaks only)"
 set "AO3=0.5 ms timer + NVIDIA tweak (old sharpening method)"
 set "AO4=QWERTY keyboard layout"
-set "AO5=Restore all Windows defaults"
-set "AO6=Restore Spectre/Meltdown mitigations"
-set "AO7=Restore Defender real-time protection"
-set "AO8=Verification / debug tool"
+set "AO5=Default microphone (set by name)"
+set "AO6=Restore all Windows defaults"
+set "AO7=Restore Spectre/Meltdown mitigations"
+set "AO8=Restore Defender real-time protection"
+set "AO9=Verification / debug tool"
 set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
 if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : tweaks seuls)"
 if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne méthode de sharpening)"
 if /i "!L!"=="FR" set "AO4=Disposition clavier QWERTY"
+if /i "!L!"=="FR" set "AO5=Micro par d{e9}faut (choisir par nom)"
 if /i "!L!"=="FR" set "AO5=Restaurer toutes les valeurs Windows"
 if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
 if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
@@ -485,16 +487,17 @@ echo.
 echo   !CK!   !MCAT2!!C0!
 echo       !CG2![3]!C0!   !AO3!
 if /i "!L!"=="FR" echo       !CGE![4]!C0!   !AO4!
+echo       !CG2![5]!C0!   !AO5!
 echo.
 echo   !CK!   !MCAT3!!C0!
-echo       !CBG1![5]!C0!   !AO5!
-echo       !CBG2![6]!C0!   !AO6!
-echo       !CBG3![7]!C0!   !AO7!
+echo       !CBG1![6]!C0!   !AO6!
+echo       !CBG2![7]!C0!   !AO7!
+echo       !CBG3![8]!C0!   !AO8!
 echo.
-echo       !CJ![8]!C0!   !AO8!
+echo       !CJ![9]!C0!   !AO9!
 echo       !CK![0]!C0!   !AO0!
 echo.
-choice /C 123456780 /N /M "   !PROMPT!"
+choice /C 1234567890 /N /M "   !PROMPT!"
 set "CH=!errorlevel!"
 if "!CH!"=="1" set "FASTMODE=0"
 if "!CH!"=="1" goto _aiofast
@@ -502,11 +505,12 @@ if "!CH!"=="2" set "FASTMODE=1"
 if "!CH!"=="2" goto _aiofast
 if "!CH!"=="3" goto TIMERNV
 if "!CH!"=="4" if /i "!L!"=="FR" goto QWMENU
-if "!CH!"=="5" goto RESTORE
-if "!CH!"=="6" goto SPECREVERT
-if "!CH!"=="7" goto RTREVERT
-if "!CH!"=="8" goto DEBUGRUN
-if "!CH!"=="9" goto AIOEND
+if "!CH!"=="5" goto MICMENU
+if "!CH!"=="6" goto RESTORE
+if "!CH!"=="7" goto SPECREVERT
+if "!CH!"=="8" goto RTREVERT
+if "!CH!"=="9" goto DEBUGRUN
+if "!CH!"=="10" goto AIOEND
 goto MENU
 :_aiofast
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Add-MpPreference -ExclusionPath '%~f0'" >nul 2>&1
@@ -692,36 +696,6 @@ if "!XBOX!"=="2" echo !CR!!QH_XBOX! : !CFM_OFF!!C0!
 if "!XBOX!"=="3" echo !CG!!QH_XBOX! : !CFM_RST!!C0!
 echo.
 
-:QQ_MIC
-echo   !CY![ ? ]!C0!  !CW!!QH_MIC!!C0!
-echo.
-echo        !QO_MIC!!C0!
-echo        !CK![0] !BACK!!C0!
-echo.
-<nul set /p "=        !PROMPT!"
-choice /C 1230 /N >nul
-set "MICC=!errorlevel!"
-set "MICNAME="
-if "!MICC!"=="4" goto QQ_XBOX
-if "!MICC!"=="3" goto _mic_list
-if "!MICC!"=="1" goto _mic_keep
-goto _mic_name
-:_mic_list
-echo   !CC!!QO_MIC_LIST!!C0!
-powershell -NoProfile -Command "Get-CimInstance Win32_SoundDevice -Filter 'Status=\"OK\"' | Select-Object -ExpandProperty Name" 2>nul
-if errorlevel 1 echo   !CK!!QO_MIC_NONE!!C0!
-echo.
-goto QQ_MIC
-:_mic_name
-set /p "MICNAME=        !QO_MIC_NAME! "
-if not defined MICNAME goto _mic_keep
-echo !CG!!QO_MIC_SET! !CW!!MICNAME!!C0!
-goto _mic_done
-:_mic_keep
-set "MICNAME="
-echo !CL!!QO_MIC_KEPT!!C0!
-:_mic_done
-echo.
 
 set "CAMALLOW=1"
 if "!CAM!"=="2" set "CAMALLOW=0"
@@ -1506,15 +1480,6 @@ if "!TMROK!"=="1" echo   !OK! !CC![44]!C0! !M69!
 if "!TMROK!"=="0" echo   !CR!  -^> !C0!!M69NG!
 
 
-rem ============ [44b] MICROPHONE : DEFINIR LE DEVICE PAR DEFAUT ============
-rem micdef.ps1 (IPolicyConfig) definit le micro par defaut ET cree la tache
-rem ONLOGON "LowLat Mic Default". Un seul appel PS : plus de PS inline crashant.
-if not defined MICNAME goto _mic_done
-if "!MICNAME!"=="" goto _mic_done
-powershell -NoProfile -Command "[IO.File]::WriteAllText($env:SystemRoot+'\micdef.ps1',[Text.Encoding]::ASCII.GetString([Convert]::FromBase64String('!MICPSB64!')))" >nul 2>&1
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" "!MICNAME!" apply >nul 2>&1
-echo   !OK! !CC![44b]!C0! !CW!!QH_MIC!!C0! !CK!->!C0! !CG!!MICNAME!!C0!
-:_mic_done
 
 
 rem ============ [45] RE-APPLICATION DES REGLAGES AU DEMARRAGE (valeurs fixes) ============
@@ -1628,6 +1593,55 @@ goto ENDOK
 rem #####################################################################
 rem #                   MODE RESTAURATION (Windows clean)               #
 rem #####################################################################
+:MICMENU
+rem ============ STANDALONE : MICROPHONE PAR DEFAUT ============
+rem micdef.ps1 (IPolicyConfig::SetDefaultEndpoint) definit le micro par defaut
+rem ET cree la tache ONLOGON "LowLat Mic Default" (re-applique a chaque session).
+powershell -NoProfile -Command "[IO.File]::WriteAllText($env:SystemRoot+'\micdef.ps1',[Text.Encoding]::ASCII.GetString([Convert]::FromBase64String('!MICPSB64!')))" >nul 2>&1
+:_micm_menu
+cls
+echo.
+echo   !CC!=============================================================!C0!
+echo                !CW!!QH_MIC!!C0!
+echo   !CC!=============================================================!C0!
+echo.
+echo        !QO_MIC!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+<nul set /p "=        !PROMPT!"
+choice /C 1230 /N >nul
+set "MICC=!errorlevel!"
+if "!MICC!"=="4" goto MENU
+if "!MICC!"=="3" goto _micm_list
+if "!MICC!"=="1" goto _micm_skip
+goto _micm_name
+:_micm_list
+echo   !CC!!QO_MIC_LIST!!C0!
+powershell -NoProfile -Command "Get-CimInstance Win32_SoundDevice -Filter 'Status=\"OK\"' | Select-Object -ExpandProperty Name" 2>nul
+if errorlevel 1 echo   !CK!!QO_MIC_NONE!!C0!
+echo.
+pause
+goto _micm_menu
+:_micm_name
+set /p "MICNAME=        !QO_MIC_NAME! "
+if not defined MICNAME goto _micm_skip
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v MicName /t REG_SZ /d "!MICNAME!" /f >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" "!MICNAME!" apply >nul 2>&1
+echo.
+echo   !OK! !CC![44b]!C0! !CW!!QH_MIC!!C0! !CK!->!C0! !CG!!MICNAME!!C0!
+pause
+goto MENU
+:_micm_skip
+rem (aucun micro force : suppression tache planifiee)
+schtasks /Delete /F /TN "LowLat Mic Default" >nul 2>&1
+del /f /q "%SystemRoot%\micdef.ps1" >nul 2>&1
+reg delete "HKLM\SOFTWARE\LowLatOptimizer" /v MicName /f >nul 2>&1
+echo.
+echo   !CL!!QO_MIC_KEPT!!C0!
+pause
+goto MENU
+
+
 :RESTORE
 echo.
 echo  !CY!!REST_INTRO!!C0!
