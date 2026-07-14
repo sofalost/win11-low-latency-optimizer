@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.4
+  Latest version : v3.5
 
 
 ================================================================================
@@ -260,6 +260,38 @@
    [+] The menu now shows the script version, plus @sofalost and a
        "Made with Claude.ai" credit
    [~] Script renamed to carry its version: win11-low-latency-optimizer_v3.4.bat
+
+
+================================================================================
+  v3.5   -   VM/AI QUESTION, CONDITIONAL COPILOT, DEFAULT MICROPHONE
+================================================================================
+   [+] NEW QUESTION: "Do you need virtualization / AI ?" — asked after the
+       anticheat question, only when you answered NO to the anticheat.
+       Answering YES keeps VBS / HVCI / hypervisor ON (needed for WSL2,
+       Hyper-V, VMs, Copilot and Recall). Answering NO turns them OFF for
+       extra performance and disables virtualization and AI features.
+   [~] Section [31] core isolation: VBS / HVCI / hypervisor now turned OFF
+       only when BOTH anticheat=NO and VM/AI=NO. If you keep VM/AI, VBS stays
+       ON even in no-anticheat mode (so WSL2 / Copilot keep working).
+   [~] Section [08]: Copilot, Recall and WindowsAI are now turned OFF only
+       when VM/AI=NO. When VM/AI=YES they are restored to Windows defaults
+       (kept ON). A new summary line (M9A) shows which path was taken.
+   [~] Section [24] taskbar: ShowCopilotButton follows the same rule
+       (shown when AI is kept, hidden when AI is turned off).
+   [+] NEW QUESTION: "Microphone (set default)" — pick the default capture
+       device by name. Generates micdef.ps1 which sets the default microphone
+       via the IPolicyConfig COM interface (SetDefaultEndpoint), and a
+       scheduled task "LowLat Mic Default" re-applies it at every logon.
+   [+] Persistence: NoVM and MicName stored in HKLM\SOFTWARE\LowLatOptimizer,
+       read back in the debug/verification screen.
+   [~] Debug screen: the VBS / Copilot / Recall / ShowCopilotButton checks
+       are now mode-aware (expected value depends on the VM/AI answer).
+   [~] Restore: cleans up the "LowLat Mic Default" task, micdef.ps1 and the
+       MicName registry value; restores Copilot / WindowsAI to defaults.
+   [~] Script renamed: win11-low-latency-optimizer_v3.5.bat
+    i  The default-microphone feature uses IPolicyConfig::SetDefaultEndpoint
+       (no third-party module). It sets all three roles (Console, Multimedia,
+       Communications). Re-applied at each logon, like the 0.5 ms timer.
 
 
 ================================================================================
