@@ -468,6 +468,29 @@ set "SIG_MW=Made with "
 if /i "!L!"=="FR" set "SIG_MW=Fait avec "
 
 :MENU
+rem -- Override defensive : force les strings du menu (ecrase tout heritage cmd/environnement) --
+set "AHEAD=Choose an action:"
+set "AO1=Apply optimizations   (full: tweaks + cleanup + updates)"
+set "AO2=Apply optimizations   (fast: tweaks only)"
+set "AO3=0.5 ms timer + NVIDIA tweak (old sharpening method)"
+set "AO4=QWERTY keyboard layout"
+set "AO5=Default microphone (set by name)"
+set "AO6=Restore all Windows defaults"
+set "AO7=Restore Spectre/Meltdown mitigations"
+set "AO8=Restore Defender real-time protection"
+set "AO9=Verification / debug tool"
+set "AO0=Quit"
+if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
+if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
+if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : tweaks seuls)"
+if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne m{e9}thode de sharpening)"
+if /i "!L!"=="FR" set "AO4=Disposition clavier QWERTY"
+if /i "!L!"=="FR" set "AO5=Micro par d{e9}faut (choisir par nom)"
+if /i "!L!"=="FR" set "AO6=Restaurer les valeurs Windows"
+if /i "!L!"=="FR" set "AO7=Restaurer les mitigations Spectre/Meltdown"
+if /i "!L!"=="FR" set "AO8=Restaurer la protection temps r{e9}el Defender"
+if /i "!L!"=="FR" set "AO9=Outil de v{e9}rification / debug"
+if /i "!L!"=="FR" set "AO0=Quitter"
 cls
 echo.
 echo   !CB2!===============================================================!C0!
