@@ -595,8 +595,11 @@ echo.
 echo     !CO3![2]   [ - ]   !CW!!QVBS_NO_NAME!!C0!
 echo            !CK!!QVBS_NO_DESC!!C0!  !CK!!QVBS_NO_DESC2!!C0!
 echo.
-choice /C 12 /N /M "        !PROMPT!"
+echo     !CK![0]   !BACK!!C0!
+echo.
+choice /C 120 /N /M "        !PROMPT!"
 set "QVBSR=!errorlevel!"
+if "!QVBSR!"=="3" goto MENU
 set "NOVBS=0"
 if "!QVBSR!"=="2" set "NOVBS=1"
 :QQ_MODE
@@ -611,8 +614,11 @@ echo.
 echo     !CO![2]   [//]   !CW!!QMODE_L_NAME!!C0!
 echo            !CK!!QMODE_L_DESC!!C0!
 echo.
-choice /C 12 /N /M "        !PROMPT!"
+echo     !CK![0]   !BACK!!C0!
+echo.
+choice /C 120 /N /M "        !PROMPT!"
 set "MM=!errorlevel!"
+if "!MM!"=="3" goto MENU
 :_qmode_apply
 if "!MM!"=="2" (
     set "PRIOSEP=42"
@@ -1601,21 +1607,26 @@ echo.
 echo   !CY![ ? ]!C0!  !CW!!Q_RESTART!!C0!
 echo.
 echo        !QO_YESNO!!C0!
+echo        !CK![0] !BACK!!C0!
 echo.
 powershell -NoProfile -Command "try{while([Console]::KeyAvailable){[Console]::ReadKey($true)|Out-Null}}catch{}" >nul 2>&1
-choice /C 12 /N /M "        !PROMPT!"
+choice /C 120 /N /M "        !PROMPT!"
 set "RBANS=!errorlevel!"
 if "!RBANS!"=="1" (
     echo.
     echo   !CG!!RESTARTING!!C0!
     shutdown /r /t 5
+    pause
+    goto ENDOK
+) else if "!RBANS!"=="3" (
+    goto MENU
 ) else (
     echo.
     echo   !CY!!RESTART_LATER!!C0!
+    echo.
+    pause
+    goto MENU
 )
-echo.
-pause
-goto ENDOK
 
 rem #####################################################################
 rem #                   MODE RESTAURATION (Windows clean)               #
@@ -2061,9 +2072,9 @@ for /f "delims=" %%k in ('powershell -NoProfile -Command "(Get-WinUserLanguageLi
 echo.
 echo       !CG2![1]!C0!   Ajouter le clavier !CW!QWERTY (US)!C0! en plus du francais
 echo       !CO3![2]!C0!   Revenir au !CW!francais seul!C0! + masquer l'icone clavier
-echo       !CK![3]!C0!   Quitter
+echo       !CK![0]!C0!   !BACK!
 echo.
-choice /c 123 /n /m "   Choix : "
+choice /c 120 /n /m "   Choix : "
 if errorlevel 3 goto MENU
 if errorlevel 2 goto QWREVERT
 if errorlevel 1 goto QWADD
