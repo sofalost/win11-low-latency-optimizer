@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.5
+  Latest version : v3.6
 
 
 ================================================================================
@@ -293,6 +293,40 @@
        (no third-party module). It sets all three roles (Console, Multimedia,
        Communications). Re-applied at each logon, like the 0.5 ms timer.
 
+
+================================================================================
+  v3.6   -   BILINGUAL FIX, MIC LIST, [0] BACK, FR/EN COHERENCE
+================================================================================
+   [x] ROOT FIX (micdef.ps1): the C# COM interfaces used "[out]" (lowercase
+       attribute), which Add-Type rejects -> the microphone enumeration phase
+       never compiled, so the device list came back empty. Now "out" (no
+       attribute), micdef.ps1 actually compiles and enumerates microphones.
+   [x] Microphone selection by number: typing a microphone name broke on the
+       RODE NT-USB+ because the "Ø" character is mangled by cmd / ACP. You
+       now pick the device by NUMBER, never typing its name.
+   [x] Empty mic list + frozen flow after pick/keep: the PowerShell mic
+       enumerator was split into two base64 halves (to stay under cmd.exe's
+       line-length limit) and relocated, and the menu returns to the mic
+       submenu after a pick or "keep" instead of stalling.
+   [x] Menu [5] color: the lime/teal conflict on the main optimizer menu
+       broke readability. Menu [5] is now teal-consistent with the others.
+   [x] FR menu markers: the {e9}-style placeholders (e9 = accented e in CP1252)
+       were converted to real CP1252 bytes, the missing "d" in AO5 restored,
+       and AO6-AO8 realigned with the canonical menu.
+   [+] [0] Back is now offered contextually on the four optimizer questions
+       that lacked it (QVBS, QMODE, RBANS, QWERTY). On the optimizer flow it
+       returns to the main menu; inside submenus it returns to the previous
+       submenu.
+   [~] FR/EN coherence (root display bug): the script had an EN base block
+       (L73-253) immediately followed by an UNCONDITIONAL FR re-definition
+       block (L256-436). The FR block overwrote the EN base, so the script
+       displayed FRENCH even in EN mode. Fixed by conditioning those 181 FR
+       lines as `if /i "!L!"=="FR"` overrides: EN base shows in EN mode, FR
+       overrides apply in FR mode. No string was retranslated - the FR text
+       was already correct, it just needed to be conditional.
+    i  Encoding rule reminder: the .bat stays CP1252 / CRLF. Never edit it
+       with a UTF-8 tool (produces U+FFFD). Docs (this file, README, the two
+       DOCUMENTATION_SCRIPT_*.txt) ARE UTF-8 and are safe to edit normally.
 
 ================================================================================
                             END OF FILE
