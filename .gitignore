@@ -1,0 +1,15 @@
+# Backups of the main .bat (regenerated locally, never commit)
+*.bak
+*.bak2
+*.bak3
+
+# Graphify analysis cache (regenerated via the graphify skill)
+graphify-out/
+.graphify_*
+
+# Claude Code worktrees (separate git worktrees, not part of the repo)
+.claude/worktrees/
+
+# OS junk
+Thumbs.db
+desktop.ini
