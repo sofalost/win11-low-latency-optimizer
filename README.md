@@ -19,14 +19,15 @@ Everything lives behind one start menu:
 **Standalone tweaks**
 - **[3]** 0.5 ms timer + NVIDIA tweak (restores the old sharpening method) + phantom-device cleanup
 - **[4]** QWERTY keyboard layout (shown only on a French system)
+- **[5]** Default microphone (set by number)
 
 **System**
-- **[5]** Restore all Windows defaults
-- **[6]** Restore Spectre/Meltdown mitigations
-- **[7]** Restore Defender real-time protection
+- **[6]** Restore all Windows defaults
+- **[7]** Restore Spectre/Meltdown mitigations
+- **[8]** Restore Defender real-time protection
 
 **Tools**
-- **[8]** Verification / debug
+- **[9]** Verification / debug
 - **[0]** Quit
 
 When you pick **[1]** or **[2]**, the script first asks whether you need your kernel anticheat (Vanguard / FACEIT), then asks for the Soft or Lowest profile.
