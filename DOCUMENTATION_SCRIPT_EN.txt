@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.4)
+              win11-low-latency-optimizer   (v3.6)
                   How it works, detection, ordering
 ================================================================================
 
@@ -60,10 +60,17 @@ Internal code organization:
   2) Definition of the ANSI colors (green, cyan, yellow, red, orange, blue...).
   3) Detection of the system language -> picks the EN or FR labels.
   4) Welcome banner (title + subtitle + signature).
-  5) MENU: the script asks for
-        - the language (if needed),
-        - the MODE: "soft" (balanced) or "lowest" (minimum latency),
-        - then applies, or switches to restore mode.
+  5) MAIN MENU (labels AO0-AO9): a single menu offers
+        [1] Apply (full)        [2] Apply (fast)
+        [3] 0.5 ms timer + NVIDIA tweak + phantom-device cleanup
+        [4] QWERTY layout       (FR systems only)
+        [5] Default microphone  (pick by NUMBER, see section 12)
+        [6] Restore Windows defaults   [7] Restore Spectre/Meltdown
+        [8] Restore Defender    [9] Verification / debug   [0] Quit
+     When you pick [1] or [2], the script first asks whether you need your kernel
+     anticheat (Vanguard / FACEIT), then the MODE "soft" or "lowest", then applies.
+     The profile questions accept [0] to go back to the menu (contextual "Back",
+     v3.6).
   6) HARDWARE DETECTION (see section 4 below).
   7) APPLICATION of sections [0] to [46], in order, each showing a confirmation
      line  [ OK ] [NN] <description>.
@@ -398,6 +405,27 @@ parks and re-enables C-states), removal of the recent settings (Store pop-up
 block, TdrDelay), and reset of the Spectre/Meltdown mitigations to the Windows
 default (enabled). The Defender exclusions and the debloat are not all undone
 automatically (safe to leave).
+
+
+--------------------------------------------------------------------------------
+12. CONDITIONAL BILINGUAL + MICROPHONE BY NUMBER (v3.5 / v3.6)
+--------------------------------------------------------------------------------
+
+CONDITIONAL BILINGUAL (Phase 2a, v3.6):
+  The labels exist in two blocks: an EN base (unconditional) then a block of FR
+  overrides. Since v3.6, every "set" in the FR block is guarded by
+  `if /i "!L!"=="FR"`: the FR override applies ONLY in FR mode. In EN mode, the EN
+  base is shown. (Previously the FR block overwrote EN in every case, and FR was
+  shown even in EN mode.) The logic, colors and layout stay identical across both
+  languages.
+
+MICROPHONE BY NUMBER (v3.5 / v3.6):
+  Menu choice [5] sets the default microphone via the COM IPolicyConfig interface.
+  Since v3.5, selection is done by NUMBER (you type the device's number in the
+  detected list), never by typing its name. Reason: the special character in some
+  device names (e.g. RODE NT-USB+ with its special character) broke under the
+  cmd/ACP encoding. Numbering removes that problem. The [5] menu label correctly
+  reads "by number" (v3.6, fixed from "by name").
 
 
 ================================================================================
