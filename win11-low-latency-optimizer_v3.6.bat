@@ -43,7 +43,6 @@ set "CG2=!ESC![38;5;82m"
 set "CB1=!ESC![38;5;39m"
 set "CB2=!ESC![38;5;75m"
 set "CO3=!ESC![38;5;202m"
-set "CB3=!ESC![38;5;111m"
 set "CBG1=!ESC![38;5;117m"
 set "CBG2=!ESC![38;5;75m"
 set "CBG3=!ESC![38;5;63m"
@@ -154,11 +153,6 @@ set "R4=Restored: !CW!timers, boot and NTFS!C0! to default"
 set "R5=Restored: !CW!services!C0! to default"
 set "R6=Restored: !CW!UAC, remote, SmartScreen, power, telemetry!C0!; !CW!AMD!C0! lock removed"
 set "R7=Restored: !CW!custom tasks!C0! removed"
-set "MODE_HEAD=MODE"
-set "MODE_1=!CO!Apply!C0! optimizations"
-set "DESC1=Reduces system latency and input lag for gaming."
-set "DESC2=Anticheat-safe. Fully reversible with the Restore option."
-set "MODE_2=!CG!Restore!C0! Windows default values"
 set "QMODE_HEAD=CHOOSE YOUR OPTIMIZATION MODE"
 set "QVBS_HEAD=KEEP KERNEL SECURITY + VIRTUALIZATION ?"
 set "QVBS_YES_NAME=YES - keep ON (anticheat / VM / WSL2 / AI)"
@@ -201,7 +195,6 @@ set "QO_MIC=!CL![1] Keep current!C0!  !CR![2] Set by number!C0!  !CG![3] List de
 set "QO_MIC_NAME=Enter the microphone number:"
 set "QO_MIC_LIST=--- Microphones detected ---"
 set "QO_MIC_NONE=No microphone found."
-set "QO_MIC_SET=Default microphone set to:"
 set "QO_MIC_KEPT=Microphone left unchanged."
 set "QO_MIC_BADNUM=Invalid microphone number."
 set "QO_NDR=!CL![1] Leave as is!C0!  !CR![2] Disable!C0!  !CG![3] Restore default!C0!"
@@ -337,11 +330,6 @@ if /i "!L!"=="FR" set "R4=Restauré : !CW!timers, démarrage et NTFS!C0! par défau
 if /i "!L!"=="FR" set "R5=Restauré : !CW!services!C0! par défaut"
 if /i "!L!"=="FR" set "R6=Restauré : !CW!UAC, distance, SmartScreen, alimentation, télémétrie!C0! ; blocage !CW!AMD!C0! retiré"
 if /i "!L!"=="FR" set "R7=Restauré : !CW!tâches personnalisées!C0! retirées"
-if /i "!L!"=="FR" set "MODE_HEAD=MODE"
-if /i "!L!"=="FR" set "MODE_1=!CO!Appliquer!C0! les optimisations"
-if /i "!L!"=="FR" set "DESC1=Réduit la latence et le lag d'entrée pour le jeu."
-if /i "!L!"=="FR" set "DESC2=Compatible anticheat. Entièrement réversible (Restaurer)."
-if /i "!L!"=="FR" set "MODE_2=!CG!Restaurer!C0! les valeurs par défaut Windows"
 if /i "!L!"=="FR" set "QMODE_HEAD=CHOISIS TON MODE D'OPTIMISATION"
 if /i "!L!"=="FR" set "QVBS_HEAD=GARDER LA SéCURITé NOYAU + VIRTUALISATION ?"
 if /i "!L!"=="FR" set "QVBS_YES_NAME=OUI - garder ON (anticheat / VM / WSL2 / IA)"
@@ -384,7 +372,6 @@ if /i "!L!"=="FR" set "QO_MIC=!CL![1] Garder actuel!C0!  !CR![2] Choisir par num
 if /i "!L!"=="FR" set "QO_MIC_NAME=Entre le numéro du micro :"
 if /i "!L!"=="FR" set "QO_MIC_LIST=--- Microphones detectes ---"
 if /i "!L!"=="FR" set "QO_MIC_NONE=Aucun microphone trouvé."
-if /i "!L!"=="FR" set "QO_MIC_SET=Micro par défaut défini :"
 if /i "!L!"=="FR" set "QO_MIC_KEPT=Micro laissé inchangé."
 if /i "!L!"=="FR" set "QO_MIC_BADNUM=Numéro de micro invalide."
 if /i "!L!"=="FR" set "QO_NDR=!CL![1] Ne rien faire!C0!  !CR![2] Désactiver!C0!  !CG![3] Restaurer défaut!C0!"
@@ -2019,7 +2006,6 @@ powershell -NoProfile -Command "Get-CimInstance Win32_Process | Where-Object {$_
 del /f /q "%SystemRoot%\timerres.ps1" >nul 2>&1
 set "TIMERSTATE=!TN_TREMST!"
 echo   !CG!!TN_TREMOK!!C0!
-goto T_DONE
 :T_DONE
 
 echo.
@@ -2042,7 +2028,6 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\FTS" /v EnableGR535 
 reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters\FTS" /v EnableGR535 /f >nul 2>&1
 set "NVSTATE=!TN_NVREMST!"
 echo   !CG!!TN_NVREMOK!!C0!
-goto NV_DONE
 :NV_DONE
 
 echo.
@@ -2306,7 +2291,6 @@ if "!MODE!"=="?" (
     echo   !CR! [!LF!]!C0! disabledynamictick ...... !CW!!ddt!!C0!  ^(!LEX!: !EXPDDT!^)
 )
 
-set "EXPGTR=1"
 call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" GlobalTimerResolutionRequests 1 "GlobalTimerResolutionReq ."
 
 rem -- tache timer 0.5ms --
