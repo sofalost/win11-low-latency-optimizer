@@ -43,7 +43,7 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 - **Defender (performance)** — game folders/processes excluded, scheduled scan disabled, scans throttled
 - **Security warnings** — SmartScreen and the "Open File" attachment warning suppressed for downloaded files
 - **Debloat / privacy** — services trim, telemetry, camera, Xbox, OneDrive, Edge, WhatsApp, and more
-- **0.5 ms timer** — persistent SYSTEM task (`NtSetTimerResolution`), re-armed at every startup; power-aware (0.5 ms on desktop / laptop-on-AC, released on laptop battery)
+- **0.5 ms timer** — persistent SYSTEM task (`NtSetTimerResolution`), re-armed at every startup; power-aware (0.5 ms on desktop / laptop-on-AC; on laptop battery the script stops requesting 0.5 ms — note another process like Chrome can keep the global timer high regardless)
 - **Auto-reapply** — key settings are re-applied after a Windows feature update
 
 ## Profiles and modes

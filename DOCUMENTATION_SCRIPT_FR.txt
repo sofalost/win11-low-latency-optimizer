@@ -178,7 +178,9 @@ d'un run precedent ne subsiste.
   Ils ecrasent les valeurs du mode pour ces 6 points precis uniquement :
 
     1. Timer 0.5 ms uniquement sur secteur (le timer est power-aware, voir
-       section 9 ; sur batterie il relache).
+       section 9 ; sur batterie le script cesse de DEMANDER 0.5 ms — note :
+       un autre processus comme Chrome peut maintenir le timer global haut
+       independamment de ce script).
     2. Eco Wi-Fi seulement sur batterie, et seulement si une carte Wi-Fi est
        presente (secteur = perf max, batterie = economie max). Sinon on n'y
        touche pas.
@@ -316,8 +318,10 @@ compromis "low latency classique", assume.
     - ecrit un petit script PowerShell (timerres.ps1 dans C:\Windows) qui appelle
       en boucle NtSetTimerResolution(5000) (0.5 ms), protege par un mutex.
       POWER-AWARE : il lit l'etat d'alimentation et n'applique le 0.5 ms que sur
-      secteur ; sur batterie il relache (PC fixe = continu, portable = secteur
-      uniquement),
+      secteur ; sur batterie il cesse de demander 0.5 ms (PC fixe = continu,
+      portable = secteur uniquement). Note : "cesse de demander" retire la
+      requete de CE script ; un autre process peut toutefois maintenir le timer
+      global a 0.5 ms de son cote,
     - cree une tache planifiee ROBUSTE "TimerRes 0.5ms" :
         * 2 declencheurs : AU DEMARRAGE (AtStartup, compte SYSTEM, AVANT meme
           l'ouverture de session) ET a CHAQUE OUVERTURE DE SESSION (AtLogOn) ;

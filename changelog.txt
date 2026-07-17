@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.7
+  Latest version : v3.7.1
 
 
 ================================================================================
@@ -293,6 +293,31 @@
        (no third-party module). It sets all three roles (Console, Multimedia,
        Communications). Re-applied at each logon, like the 0.5 ms timer.
 
+
+================================================================================
+  v3.7.1 -   0.5 ms TIMER WATCHDOG HARDENED (Fable 5 review)
+================================================================================
+   [x] KILLER BUG: AbandonedMutexException. If the timer watchdog was killed
+       while holding the Global\LowLatTimerRes05 mutex, the scheduler restart
+       hit WaitOne(0) which THREW (abandoned mutex) instead of returning true;
+       with SilentlyContinue that evaluated to null -> exit 0 (= success in the
+       scheduler's eyes) -> RestartCount neutralized, watchdog dead until next
+       boot. Now the abandoned mutex is caught and treated as acquisition.
+   [x] Silent-zombie: if Add-Type fails 120x (AV / WDAC / AppLocker blocking
+       in-memory compile), the script used to spin forever requesting nothing,
+       silently. Now it exits 1 so the scheduler sees the failure and retries.
+   [+] Observability: NtQueryTimerResolution logs the effective resolution and
+       the state (held / released) to HKLM:\SOFTWARE\LowLatOptimizer so the
+       timer can actually be VERIFIED (TimerCur, TimerState, TimerAbandoned).
+   [x] Battery: BatteryFlag is a bitfield; the test was -ne 128 (brittle on the
+       unknown/255 state). Now (BatteryFlag -band 128) -eq 0.
+   [~] Wording: docs/README no longer claim the timer is "released" on battery.
+       Accurate claim: the script stops REQUESTING 0.5 ms. Another process
+       (Chrome, some games) can keep the global timer high regardless.
+   i  GlobalTimerResolutionRequests=1 is STRICTLY required on Win11 (without it
+       the SYSTEM process only gets 0.5 ms for itself; the game sees nothing).
+       It is read at boot, so the guarantee holds after reboot but NOT during
+       the install session before the first reboot. Do NOT remove this key.
 
 ================================================================================
   v3.7   -   MICROPHONE FEATURE REMOVED, MENU RENUMBERED

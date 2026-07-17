@@ -175,7 +175,8 @@ run lingers.
   override the mode's values for these 6 specific points only:
 
     1. 0.5 ms timer only on AC power (the timer is power-aware, see section 9;
-       on battery it releases).
+       on battery the script stops REQUESTING 0.5 ms — note: another process like
+       Chrome can keep the global timer high regardless).
     2. Wi-Fi power saving only on battery, and only if a Wi-Fi adapter is
        present (AC = max performance, battery = max power saving). Otherwise it
        is left untouched.
@@ -313,7 +314,9 @@ C-states increases heat/power for a marginal latency gain: it is the classic
     - writes a small PowerShell script (timerres.ps1 in C:\Windows) that calls
       NtSetTimerResolution(5000) (0.5 ms) in a loop, protected by a mutex.
       POWER-AWARE: it reads the power state and only applies 0.5 ms on AC; on
-      battery it releases (desktop = continuous, laptop = AC only),
+      battery it stops requesting 0.5 ms (desktop = continuous, laptop = AC only).
+      Note: "stops requesting" only drops THIS script's request; another process
+      may still keep the global timer at 0.5 ms on its own,
     - creates a ROBUST scheduled task "TimerRes 0.5ms":
         * 2 triggers: AT STARTUP (AtStartup, SYSTEM account, even BEFORE logon)
           AND at EACH LOGON (AtLogOn);

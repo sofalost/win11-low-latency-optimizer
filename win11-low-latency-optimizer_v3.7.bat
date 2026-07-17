@@ -1,8 +1,8 @@
 @echo off
 chcp 1252 >nul
-title win11-low-latency-optimizer  -  ALL-IN-ONE  v3.7
+title win11-low-latency-optimizer  -  ALL-IN-ONE  v3.7.1
 setlocal EnableExtensions EnableDelayedExpansion
-set "SCRIPT_VER=v3.7"
+set "SCRIPT_VER=v3.7.1"
 
 rem ====================================================================
 rem   LOW LATENCY GAMING SCRIPT
