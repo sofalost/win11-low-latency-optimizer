@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.6
+  Latest version : v3.7
 
 
 ================================================================================
@@ -293,6 +293,32 @@
        (no third-party module). It sets all three roles (Console, Multimedia,
        Communications). Re-applied at each logon, like the 0.5 ms timer.
 
+
+================================================================================
+  v3.7   -   MICROPHONE FEATURE REMOVED, MENU RENUMBERED
+================================================================================
+   [-] Removed the "default microphone" feature entirely (menu [5], the
+       standalone MICMENU / _micm_* submenu, the generated micdef.ps1, the
+       MICPSB64A/B base64 chunks, QO_MIC* / QH_MIC labels, the AO5 mic label,
+       the LowLat Mic Default scheduled task, and the mic cleanup in RESTORE).
+   !  Why: the COM enumerator (IMMDeviceEnumerator via Activator.CreateInstance
+       on the CLSID) returned E_NOINTERFACE (0x80004002) cross-apartment, so
+       the device list came back empty on real installs - unfixable without
+       STA-thread hacks, and it added nothing the Windows Sound panel doesn't
+       already do. The "root fix" claimed in v3.6 only fixed the Add-Type
+       compile step; it did not fix the runtime COM cast.
+   [~] Main menu renumbered after the removal:
+         [5] micro (gone)
+         [6] Restore Windows defaults  -> [5]
+         [7] Restore Spectre/Meltdown  -> [6]
+         [8] Restore Defender          -> [7]
+         [9] Verification / debug      -> [8]
+         [10] Quit                     -> [9]
+       choice /C 1234567890 unchanged (still 10 keys).
+   i  Privacy tweak [16] "app access off EXCEPT microphone" is UNAFFECTED -
+       it is a separate privacy setting, not the removed mic-default feature.
+   [~] Cosmetic: removed 8 dead variables and 2 redundant gotos (no behavior
+       change); added .gitignore; deleted the obsolete deploy-workflow branch.
 
 ================================================================================
   v3.6   -   BILINGUAL FIX, MIC LIST, [0] BACK, FR/EN COHERENCE

@@ -1,12 +1,12 @@
 # Windows 11 Low-Latency Optimizer (all-in-one)
 
-**Current version: v3.6** — see `changelog.txt` for the full history.
+**Current version: v3.7** — see `changelog.txt` for the full history.
 
 > **Francophones** : ce script fonctionne aussi en français — la langue est détectée automatiquement d'après celle de ton Windows (affichage ou région).
 
 A bilingual (EN / FR) batch project that applies a **curated, reversible** set of latency and responsiveness tweaks for competitive gaming on Windows 11. No third-party software — everything runs through native registry keys, services and scheduled tasks.
 
-The main file is **`win11-low-latency-optimizer_v3.6.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), whether you need virtualization / AI, then offers two profiles — **soft** and **lowest**.
+The main file is **`win11-low-latency-optimizer_v3.7.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), whether you need virtualization / AI, then offers two profiles — **soft** and **lowest**.
 
 ## The all-in-one menu
 
@@ -19,15 +19,14 @@ Everything lives behind one start menu:
 **Standalone tweaks**
 - **[3]** 0.5 ms timer + NVIDIA tweak (restores the old sharpening method) + phantom-device cleanup
 - **[4]** QWERTY keyboard layout (shown only on a French system)
-- **[5]** Default microphone (set by number)
 
 **System**
-- **[6]** Restore all Windows defaults
-- **[7]** Restore Spectre/Meltdown mitigations
-- **[8]** Restore Defender real-time protection
+- **[5]** Restore all Windows defaults
+- **[6]** Restore Spectre/Meltdown mitigations
+- **[7]** Restore Defender real-time protection
 
 **Tools**
-- **[9]** Verification / debug
+- **[8]** Verification / debug
 - **[0]** Quit
 
 When you pick **[1]** or **[2]**, the script first asks whether you need your kernel anticheat (Vanguard / FACEIT), then asks for the Soft or Lowest profile.
@@ -88,7 +87,7 @@ The in-game and driver settings that matter most for CS2 input latency.
 
 ## Files in this repo
 
-- **`win11-low-latency-optimizer_v3.6.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the default-microphone setter (IPolicyConfig COM), the QWERTY tool and the read-only debug checker (menu **[8]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
+- **`win11-low-latency-optimizer_v3.7.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the QWERTY tool and the read-only debug checker (menu **[8]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (placebo-adjacent ones clearly flagged)
 - `changelog.txt` — the full version history: every version with its detailed changes
 - *(optional)* **`BLACK_W11_CURSOR.zip`** — a black Windows pointer pack. Unzip -> right-click `install.inf` -> **Install** -> apply it in Mouse settings.
