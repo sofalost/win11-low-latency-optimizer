@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.6)
+              win11-low-latency-optimizer   (v3.7)
                   Fonctionnement complet, detection, ordre
 ================================================================================
 
@@ -65,9 +65,8 @@ Organisation interne du code :
         [1] Appliquer (complet)   [2] Appliquer (rapide)
         [3] Timer 0.5 ms + tweak NVIDIA + nettoyage peripheriques fantomes
         [4] Disposition QWERTY   (FR uniquement)
-        [5] Micro par defaut (choix par NUMERO, voir section 12)
-        [6] Restaurer les valeurs Windows   [7] Restaurer Spectre/Meltdown
-        [8] Restaurer Defender   [9] Verification / debug   [0] Quitter
+        [5] Restaurer les valeurs Windows   [6] Restaurer Spectre/Meltdown
+        [7] Restaurer Defender   [8] Verification / debug   [0] Quitter
      Quand on choisit [1] ou [2], le script demande d'abord si tu as besoin de
      ton anticheat noyau (Vanguard / FACEIT), puis le MODE "soft" ou "lowest",
      puis applique. Les questions de profil acceptent [0] pour revenir au menu
@@ -414,10 +413,9 @@ automatiquement (sans danger a laisser).
 
 
 --------------------------------------------------------------------------------
-12. BILINGUE CONDITIONNEL + MICRO PAR NUMERO (v3.5 / v3.6)
+12. BILINGUE CONDITIONNEL (Phase 2a, v3.6)
 --------------------------------------------------------------------------------
 
-BILINGUE CONDITIONNEL (Phase 2a, v3.6) :
   Les libelles existent en deux blocs : une base EN (inconditionnelle) puis un
   bloc d'overrides FR. Depuis la v3.6, chaque "set" du bloc FR est protege par
   `if /i "!L!"=="FR"` : l'override FR ne s'applique QU'en mode FR. En mode EN,
@@ -425,13 +423,11 @@ BILINGUE CONDITIONNEL (Phase 2a, v3.6) :
   cas, et le FR s'affichait meme en mode EN.) La logique, les couleurs et la mise
   en page restent identiques entre les deux langues.
 
-MICRO PAR NUMERO (v3.5 / v3.6) :
-  Le choix [5] du menu definit le micro par defaut via COM IPolicyConfig. Depuis
-  la v3.5, la selection se fait par NUMERO (on saisit le numero du peripherique
-  dans la liste detectee), jamais en tapant son nom. Raison : le caractere special
-  dans certains noms de peripheriques (ex. RODE NT-USB+ avec le caractere special)
-  cassait en encodage cmd/ACP. Le numeroteur elimine ce probleme. Le label menu
-  [5] reflete bien "par numero" (v3.6, corrige depuis "par nom").
+Note v3.7 : la fonction "micro par defaut" (menu [5] precedant, via COM
+  IPolicyConfig / micdef.ps1) a ete RETIREe du script. Elle echouait en silence
+  (E_NOINTERFACE sur IMMDeviceEnumerator, cross-apartment) et n'apportait rien
+  que le Panneau de son Windows ne fasse deja. Le menu a ete renumerate :
+  Restore->[5], Spectre->[6], Defender->[7], Verification->[8].
 
 
 ================================================================================
