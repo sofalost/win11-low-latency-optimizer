@@ -52,8 +52,6 @@ set "OK=!CG![!CW!OK!CG!]!C0!"
 color 0F
 set "TRPSB64=JEVycm9yQWN0aW9uUHJlZmVyZW5jZT0nU2lsZW50bHlDb250aW51ZScKJG10eD1OZXctT2JqZWN0IFN5c3RlbS5UaHJlYWRpbmcuTXV0ZXgoJGZhbHNlLCdHbG9iYWxcTG93TGF0VGltZXJSZXMwNScpCmlmKC1ub3QgJG10eC5XYWl0T25lKDApKXtleGl0fQpTdGFydC1TbGVlcCAtU2Vjb25kcyA1CiRzaWc9QCcKW0RsbEltcG9ydCgibnRkbGwuZGxsIildIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGludCBOdFNldFRpbWVyUmVzb2x1dGlvbih1aW50IERlc2lyZWRSZXNvbHV0aW9uLCBib29sIFNldFJlc29sdXRpb24sIG91dCB1aW50IEN1cnJlbnRSZXNvbHV0aW9uKTsKW0RsbEltcG9ydCgia2VybmVsMzIuZGxsIildIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGJvb2wgR2V0U3lzdGVtUG93ZXJTdGF0dXMob3V0IFNQUyBzKTsKW1N0cnVjdExheW91dChMYXlvdXRLaW5kLlNlcXVlbnRpYWwpXSBwdWJsaWMgc3RydWN0IFNQUyB7IHB1YmxpYyBieXRlIEFDTGluZVN0YXR1czsgcHVibGljIGJ5dGUgQmF0dGVyeUZsYWc7IHB1YmxpYyBieXRlIEJhdHRlcnlMaWZlUGVyY2VudDsgcHVibGljIGJ5dGUgU3lzdGVtU3RhdHVzRmxhZzsgcHVibGljIGludCBCYXR0ZXJ5TGlmZVRpbWU7IHB1YmxpYyBpbnQgQmF0dGVyeUZ1bGxMaWZlVGltZTsgfQonQAokVFI9JG51bGwKJG49MAp3aGlsZSgkbnVsbCAtZXEgJFRSIC1hbmQgJG4gLWx0IDEyMCl7CnRyeXskVFI9QWRkLVR5cGUgLU5hbWUgVHJzIC1OYW1lc3BhY2UgTGwgLU1lbWJlckRlZmluaXRpb24gJHNpZyAtUGFzc1RocnUgLUVycm9yQWN0aW9uIFN0b3B9Y2F0Y2h7U3RhcnQtU2xlZXAgLVNlY29uZHMgMn0KJG4rKwp9CmlmKCRudWxsIC1lcSAkVFIpe2V4aXR9CiRjPTAKd2hpbGUoJHRydWUpewokaG9sZD0kdHJ1ZQp0cnl7CiRzPU5ldy1PYmplY3QgJ0xsLlRycytTUFMnCmlmKCRUUjo6R2V0U3lzdGVtUG93ZXJTdGF0dXMoW3JlZl0kcykpewppZigkcy5CYXR0ZXJ5RmxhZyAtbmUgMTI4IC1hbmQgJHMuQUNMaW5lU3RhdHVzIC1lcSAwKXskaG9sZD0kZmFsc2V9Cn0KfWNhdGNoeyRob2xkPSR0cnVlfQppZigkaG9sZCl7JFRSOjpOdFNldFRpbWVyUmVzb2x1dGlvbig1MDAwLCR0cnVlLFtyZWZdJGMpfE91dC1OdWxsfWVsc2V7JFRSOjpOdFNldFRpbWVyUmVzb2x1dGlvbig1MDAwLCRmYWxzZSxbcmVmXSRjKXxPdXQtTnVsbH0KU3RhcnQtU2xlZXAgLVNlY29uZHMgNQp9Cg=="
 set "TASKB64=JEVycm9yQWN0aW9uUHJlZmVyZW5jZT0nU2lsZW50bHlDb250aW51ZScKJHRuPSdUaW1lclJlcyAwLjVtcycKJHBzPSRlbnY6U3lzdGVtUm9vdCsnXHRpbWVycmVzLnBzMScKJGE9TmV3LVNjaGVkdWxlZFRhc2tBY3Rpb24gLUV4ZWN1dGUgJ3Bvd2Vyc2hlbGwuZXhlJyAtQXJndW1lbnQgKCctTm9Qcm9maWxlIC1XaW5kb3dTdHlsZSBIaWRkZW4gLUV4ZWN1dGlvblBvbGljeSBCeXBhc3MgLUZpbGUgIicrJHBzKyciJykKJHQxPU5ldy1TY2hlZHVsZWRUYXNrVHJpZ2dlciAtQXRTdGFydHVwCiR0Mj1OZXctU2NoZWR1bGVkVGFza1RyaWdnZXIgLUF0TG9nT24KJHA9TmV3LVNjaGVkdWxlZFRhc2tQcmluY2lwYWwgLVVzZXJJZCAnTlQgQVVUSE9SSVRZXFNZU1RFTScgLUxvZ29uVHlwZSBTZXJ2aWNlQWNjb3VudCAtUnVuTGV2ZWwgSGlnaGVzdAokcz1OZXctU2NoZWR1bGVkVGFza1NldHRpbmdzU2V0IC1BbGxvd1N0YXJ0SWZPbkJhdHRlcmllcyAtRG9udFN0b3BJZkdvaW5nT25CYXR0ZXJpZXMgLUV4ZWN1dGlvblRpbWVMaW1pdCAoW1RpbWVTcGFuXTo6WmVybykgLVJlc3RhcnRDb3VudCAzIC1SZXN0YXJ0SW50ZXJ2YWwgKE5ldy1UaW1lU3BhbiAtTWludXRlcyAxKSAtTXVsdGlwbGVJbnN0YW5jZXMgSWdub3JlTmV3IC1TdGFydFdoZW5BdmFpbGFibGUKUmVnaXN0ZXItU2NoZWR1bGVkVGFzayAtVGFza05hbWUgJHRuIC1BY3Rpb24gJGEgLVRyaWdnZXIgJHQxLCR0MiAtUHJpbmNpcGFsICRwIC1TZXR0aW5ncyAkcyAtRm9yY2UgfCBPdXQtTnVsbApTdGFydC1TY2hlZHVsZWRUYXNrIC1UYXNrTmFtZSAkdG4K"
-set "MICPSB64A=JEVycm9yQWN0aW9uUHJlZmVyZW5jZT0nU2lsZW50bHlDb250aW51ZScKJGNtZD0kYXJnc1swXQokcHMxPSRNeUludm9jYXRpb24uTXlDb21tYW5kLlBhdGgKJHJlZz0nSEtMTTpcU09GVFdBUkVcTG93TGF0T3B0aW1pemVyJwokYWRkRXJyPSRudWxsCnRyeSB7IEFkZC1UeXBlIC1UeXBlRGVmaW5pdGlvbiBAJwp1c2luZyBTeXN0ZW07dXNpbmcgU3lzdGVtLlJ1bnRpbWUuSW50ZXJvcFNlcnZpY2VzOwpwdWJsaWMgZW51bSBFUm9sZXtlQ29uc29sZSxlTXVsdGltZWRpYSxlQ29tbXVuaWNhdGlvbnN9CltTdHJ1Y3RMYXlvdXQoTGF5b3V0S2luZC5TZXF1ZW50aWFsKV1wdWJsaWMgc3RydWN0IFByb3BlcnR5S2V5e3B1YmxpYyBHdWlkIGZtdGlkO3B1YmxpYyBpbnQgcGlkO30KW0NvbUltcG9ydCxHdWlkKCI4ODZkOGVlYi04Y2YyLTQ0NDYtOGQwMi1jZGJhMWRiZGNmOTkiKSxJbnRlcmZhY2VUeXBlKENvbUludGVyZmFjZVR5cGUuSW50ZXJmYWNlSXNJVW5rbm93bildCmludGVyZmFjZSBJUHJvcGVydHlTdG9yZXt1aW50IEdldENvdW50KG91dCB1aW50IGMpO3VpbnQgR2V0QXQoW0luXXVpbnQgaSxvdXQgUHJvcGVydHlLZXkgayk7dWludCBHZXRWYWx1ZShbSW5dcmVmIFByb3BlcnR5S2V5IGssb3V0IEludFB0ciB2KTt9CltDb21JbXBvcnQsR3VpZCgiRDY2NjA2M0YtMTU4Ny00RTdBLTkxMDktMUREMkE1RDZDMEI0IiksSW50ZXJmYWNlVHlwZShDb21JbnRlcmZhY2VUeXBlLkludGVyZmFjZUlzSVVua25vd24pXQppbnRlcmZhY2UgSU1NRGV2aWNlQ29sbGVjdGlvbnt1aW50IEdldENvdW50KG91dCB1aW50IGMpO3VpbnQgSXRlbShbSW5ddWludCBpLFtPdXQsTWFyc2hhbEFzKFVubWFuYWdlZFR5cGUuSVVua25vd24pXW91dCBvYmplY3QgZCk7fQpbQ29tSW1wb3J0LEd1aWQoIkE5NTY2NEQyLTk2MTQtNEYzNS1BNzQ2LURFOERCNjM2MTdFNCIpLEludGVyZmFjZVR5cGUoQ29tSW50ZXJmYWNlVHlwZS5JbnRlcmZhY2VJc0lVbmtub3duKV0KaW50ZXJmYWNlIElNTURldmljZUVudW1lcmF0b3J7dWludCBFbnVtQXVkaW9FbmRwb2ludHMoW0luXWludCBmbG93LFtJbl11aW50IG1hc2ssW091dF1vdXQgSU1NRGV2aWNlQ29sbGVjdGlvbiBjb2wpO3VpbnQgR2V0RGV2aWNlKFtJbixNYXJzaGFsQXMoVW5tYW5hZ2VkVHlwZS5MUFdTdHIpXXN0cmluZyBpZCxbT3V0LE1hcnNoYWxBcyhVbm1hbmFnZWRUeXBlLklVbmtub3duKV1vdXQgb2JqZWN0IGRldik7fQpbQ29tSW1wb3J0LEd1aWQoIkQzQkRBQTQ3LTdBRkQtNEQyNS05REJGLTdBNTJFMUZENUI3RSIpLEludGVyZmFjZVR5cGUoQ29tSW50ZXJmYWNlVHlwZS5JbnRlcmZhY2VJc0lVbmtub3duKV0KaW50ZXJmYWNlIElNTURldmljZXt1aW50IEFjdGl2YXRlKFtJbl1yZWYgR3VpZCBpZCxbSW5daW50IGNsc2N0eCxbSW5dSW50UHRyIHAsW091dCxNYXJzaGFsQXMoVW5tYW5hZ2VkVHlwZS5JVW5rbm93bildb3V0IG9iamVjdCBpZmFjZSk7dWludCBPcGVuUHJvcGVydHlTdG9yZShbSW5daW50IGFjY2VzcyxbT3V0LE1hcnNoYWxBcyhVbm1hbmFnZWRUeXBlLklVbmtub3duKV1vdXQgb2JqZWN0IHN0b3JlKTt1aW50IEdldElkKFtPdXQsTWFyc2hhbEFzKFVubWFuYWdlZFR5cGUuTFBXU3RyKV1vdXQgc3RyaW5nIGlkKTt9CltDb21JbXBvcnQsR3VpZCgiODcwQUY5OUMtMDdEMy00QjlGLTg2MTQtOEQ2M0FFNUI2RjRGIiksSW50ZXJmYWNlVHlwZShDb21JbnRlcmZhY2VUeXBlLkludGVyZmFjZUlzSVVua25vd24pXQppbnRlcmZhY2UgSVBvbGljeUNvbmZpZ3t1aW50IEdldE1peEZvcm1hdChbT3V0XW91dCBJbnRQdHIgcCk7dWludCBTZXRNaXhGb3JtYXQoW0luXXJlZiBHdWlkIGlkKTt1aW50IFJlc2V0RGV2aWNlRm9ybWF0KCk7dWludCBHZXREZXZpY2VGb3JtYXQoW0luXUludFB0ciBwLFtJbl1pbnQgYixbSW4sT3V0XXJlZiBHdWlkIGlkKTt1aW50IFNldERldmljZUZvcm1hdChbSW5dcmVmIEd1aWQgaWQsW0luXUludFB0ciBwMik7dWludCBHZXRQcm9jZXNzaW5nUGVyaW9kKFtPdXRdb3V0IGxvbmcgYSxbT3V0XW91dCBsb25nIGIpO3VpbnQgU2V0UHJvY2Vzc2luZ1BlcmlvZChbSW5dcmVmIGxvbmcgYSxbSW5dcmVmIGxvbmcgYik7dWludCBHZXRTaGFyZU1vZGUoKTt1aW50IFNldFNoYXJlTW9kZSgpO3VpbnQgR2V0UHJvcGVydHlWYWx1ZSgpO3VpbnQgU2V0UHJvcGVydHlWYWx1ZSgpO3VpbnQgU2V0RGVmYXVsdEVuZHBvaW50KFtJbixNYXJzaGFsQXMoVW5tYW5hZ2VkVHlwZS5MUFdTdHIpXXN0cmluZyBpZCxbSW5dRVJvbGUgcm9sZSk7fQpbQ29tSW1wb3J0LEd1aWQoIjg3MEFGOTlDLTA3RDMtNEI5Ri04NjE0LThENjNBRTVCNkY0RiIpLENsYXNzSW50ZXJmYWNlKENsYXNzSW50ZXJmYWNlVHlwZS5Ob25lKV1jbGFzcyBQb2xpY3lDb25maWdDbGllbnR7fQpwdWJsaWMgc3RhdGljIGNsYXNzIE1pY3sKICBzdGF0aWMgcmVhZG9ubHkgR3VpZCBfYmNkZT1uZXcgR3VpZCgiQkNERTAzOTUtRTUyRi00NjdDLThFM0QtQzQ1NzkyOTE2OTJFIik7CiAgc3RhdGljIHJlYWRvbmx5IFByb3BlcnR5S2V5IF9wa2V5PW5ldyBQcm9wZXJ0eUtleXtmbXRpZD1uZXcgR3VpZCgiQTQ1QzI1NEUtREYxQy00RUZELTgwMjAtNjdEMTQ2QTg1MEUwIikscGlkPTJ9OwogIHN0YXRpYyBJTU1EZXZpY2VDb2xsZWN0aW9uIF9jb2woKXt2YXIgZW51PShJTU1EZXZpY2VFbnVtZXJhdG9yKUFjdGl2YXRvci5DcmVhdGVJbnN0YW5jZShUeXBlLkdldFR5cGVGcm9tQ0xTSUQoX2JjZGUpKTtJTU1EZXZpY2VDb2xsZWN0aW9uIGM7ZW51LkVudW1BdWRpb0VuZHBvaW50cygxLDEsb3V0IGMpO3JldHVybiBjO30KICBwdWJsaWMgc3RhdGljIGludCBDb3VudCgpe0lNTURldmljZUNvbGxlY3Rpb24gY29sPV9jb2woKTt1aW50IGM7Y29sLkdldENvdW50KG91dCBjKTtyZXR1cm4gKGludCljO30KICBwdWJsaWMgc3RhdGljIHN0cmluZ1tdIEdldFBhaXIoaW50IGlkeCl7CiAgICBJTU1EZXZpY2VDb2xsZWN0aW9uIGNvbD1fY29sKCk7dWludCBjbnQ7Y29sLkdldENvdW50KG91dCBjbnQpOwogICAgaWYoaWR4PDB8"
-set "MICPSB64B=fGlkeD49KGludCljbnQpcmV0dXJuIG51bGw7CiAgICBvYmplY3QgZDtjb2wuSXRlbSgodWludClpZHgsb3V0IGQpO3ZhciBkZXY9KElNTURldmljZSlkOwogICAgb2JqZWN0IHN0b3JlbztkZXYuT3BlblByb3BlcnR5U3RvcmUoMCxvdXQgc3RvcmVvKTt2YXIgcHM9KElQcm9wZXJ0eVN0b3JlKXN0b3JlbzsKICAgIHVpbnQgcGM7cHMuR2V0Q291bnQob3V0IHBjKTtzdHJpbmcgZm5hbWU9bnVsbDtzdHJpbmcgZGlkPW51bGw7CiAgICBmb3IodWludCBqPTA7ajxwYztqKyspe1Byb3BlcnR5S2V5IGs7cHMuR2V0QXQoaixvdXQgayk7aWYoay5mbXRpZD09X3BrZXkuZm10aWQmJmsucGlkPT1fcGtleS5waWQpe0ludFB0ciB2O3BzLkdldFZhbHVlKHJlZiBrLG91dCB2KTtmbmFtZT1NYXJzaGFsLlB0clRvU3RyaW5nVW5pKHYpO319CiAgICBkZXYuR2V0SWQob3V0IGRpZCk7CiAgICByZXR1cm4gbmV3IHN0cmluZ1tde2ZuYW1lLGRpZH07CiAgfQogIHB1YmxpYyBzdGF0aWMgdm9pZCBBcHBseUlkKHN0cmluZyBkaWQpewogICAgdmFyIHBjMj0oSVBvbGljeUNvbmZpZyluZXcgUG9saWN5Q29uZmlnQ2xpZW50KCk7CiAgICBwYzIuU2V0RGVmYXVsdEVuZHBvaW50KGRpZCxFUm9sZS5lQ29uc29sZSk7CiAgICBwYzIuU2V0RGVmYXVsdEVuZHBvaW50KGRpZCxFUm9sZS5lTXVsdGltZWRpYSk7CiAgICBwYzIuU2V0RGVmYXVsdEVuZHBvaW50KGRpZCxFUm9sZS5lQ29tbXVuaWNhdGlvbnMpOwogIH0KICBwdWJsaWMgc3RhdGljIHZvaWQgU2V0KHN0cmluZyBuYW1lKXsKICAgIHZhciBjb2w9X2NvbCgpO3VpbnQgY250O2NvbC5HZXRDb3VudChvdXQgY250KTsKICAgIGZvcih1aW50IGk9MDtpPGNudDtpKyspewogICAgICB2YXIgcHI9R2V0UGFpcigoaW50KWkpOwogICAgICBzdHJpbmcgZm5hbWU9cHJbMF0sZGlkPXByWzFdOwogICAgICBpZihmbmFtZSE9bnVsbCYmZGlkIT1udWxsJiZmbmFtZS5Ub0xvd2VySW52YXJpYW50KCk9PW5hbWUuVG9Mb3dlckludmFyaWFudCgpKXtBcHBseUlkKGRpZCk7cmV0dXJuO30KICAgIH0KICB9Cn0KJ0AgLUVycm9yQWN0aW9uIFN0b3AgfSBjYXRjaCB7ICRhZGRFcnIgPSAkXy5FeGNlcHRpb24uTWVzc2FnZSB9CmZ1bmN0aW9uIFdyaXRlTWljTmFtZSgkbil7aWYoLW5vdCAoVGVzdC1QYXRoICRyZWcpKXtOZXctSXRlbSAtUGF0aCAkcmVnIC1Gb3JjZXxPdXQtTnVsbH1TZXQtSXRlbVByb3BlcnR5IC1QYXRoICRyZWcgLU5hbWUgJ01pY05hbWUnIC1WYWx1ZSAkbiAtVHlwZSBTdHJpbmd9CmZ1bmN0aW9uIFJlYWRNaWNOYW1le3RyeXtyZXR1cm4gKEdldC1JdGVtUHJvcGVydHkgLVBhdGggJHJlZyAtTmFtZSBNaWNOYW1lKS5NaWNOYW1lfWNhdGNoe3JldHVybiAkbnVsbH19CmZ1bmN0aW9uIENsZWFyTWljTmFtZXtSZW1vdmUtSXRlbVByb3BlcnR5IC1QYXRoICRyZWcgLU5hbWUgJ01pY05hbWUnIC1FcnJvckFjdGlvbiBTaWxlbnRseUNvbnRpbnVlfQpmdW5jdGlvbiBCdWlsZFRhc2t7CiAgc2NodGFza3MgL0RlbGV0ZSAvRiAvVE4gJ0xvd0xhdCBNaWMgRGVmYXVsdCcgMj4kbnVsbAogICRhPU5ldy1TY2hlZHVsZWRUYXNrQWN0aW9uIC1FeGVjdXRlICdwb3dlcnNoZWxsLmV4ZScgLUFyZ3VtZW50ICgnLU5vUHJvZmlsZSAtV2luZG93U3R5bGUgSGlkZGVuIC1FeGVjdXRpb25Qb2xpY3kgQnlwYXNzIC1GaWxlICInKyRwczErJyIgcmVhcHBseScpCiAgJHQ9TmV3LVNjaGVkdWxlZFRhc2tUcmlnZ2VyIC1BdExvZ09uCiAgJHA9TmV3LVNjaGVkdWxlZFRhc2tQcmluY2lwYWwgLVVzZXJJZCAnTlQgQVVUSE9SSVRZXFNZU1RFTScgLUxvZ29uVHlwZSBTZXJ2aWNlQWNjb3VudCAtUnVuTGV2ZWwgSGlnaGVzdAogICRzPU5ldy1TY2hlZHVsZWRUYXNrU2V0dGluZ3NTZXQgLUFsbG93U3RhcnRJZk9uQmF0dGVyaWVzIC1Eb250U3RvcElmR29pbmdPbkJhdHRlcmllcyAtRXhlY3V0aW9uVGltZUxpbWl0IChbVGltZVNwYW5dOjpaZXJvKSAtUmVzdGFydENvdW50IDMgLVJlc3RhcnRJbnRlcnZhbCAoTmV3LVRpbWVTcGFuIC1NaW51dGVzIDEpIC1TdGFydFdoZW5BdmFpbGFibGUKICBSZWdpc3Rlci1TY2hlZHVsZWRUYXNrIC1UYXNrTmFtZSAnTG93TGF0IE1pYyBEZWZhdWx0JyAtQWN0aW9uICRhIC1UcmlnZ2VyICR0IC1QcmluY2lwYWwgJHAgLVNldHRpbmdzICRzIC1Gb3JjZXxPdXQtTnVsbAp9CnN3aXRjaCgkY21kKXsKICdsaXN0J3sKICAgaWYoJGFkZEVycil7IFdyaXRlLU91dHB1dCAoJ1ttaWNkZWZdIEFkZC1UeXBlIGNvbXBpbGUgRkFJTEVEOiAnICsgJGFkZEVycik7IGV4aXQgMyB9CiAgICRjPVtNaWNdOjpDb3VudCgpCiAgIGZvcigkaT0wOyRpIC1sdCAkYzskaSsrKXsgJHByPVtNaWNdOjpHZXRQYWlyKCRpKTsgaWYoJHByIC1hbmQgJHByWzBdKXsgV3JpdGUtT3V0cHV0ICgnWycrKCRpKzEpKyddICcrJHByWzBdKSB9IH0KICAgaWYoJGMgLWVxIDApeyBXcml0ZS1PdXRwdXQgJ1ttaWNkZWZdIE5vIGFjdGl2ZSBjYXB0dXJlIGVuZHBvaW50cyBmb3VuZC4nIH0KICAgZXhpdCAwCiB9CiAncGljayd7CiAgIGlmKCRhZGRFcnIpeyBleGl0IDMgfQogICAkaWR4PVtpbnRdJGFyZ3NbMV0tMTsgJHByPVtNaWNdOjpHZXRQYWlyKCRpZHgpOwogICBpZigkcHIgLWFuZCAkcHJbMF0gLWFuZCAkcHJbMV0peyBbTWljXTo6QXBwbHlJZCgkcHJbMV0pOyBXcml0ZU1pY05hbWUgJHByWzBdOyBCdWlsZFRhc2s7IGV4aXQgMCB9ZWxzZXsgZXhpdCAyIH0KIH0KICdyZWFwcGx5J3sgJG49UmVhZE1pY05hbWU7IGlmKCRuKXsgdHJ5eyBbTWljXTo6U2V0KCRuKSB9Y2F0Y2h7fSB9OyBleGl0IDAgfQogJ2tlZXAneyBzY2h0YXNrcyAvRGVsZXRlIC9GIC9UTiAnTG93TGF0IE1pYyBEZWZhdWx0JyAyPiRudWxsOyBDbGVhck1pY05hbWU7IGV4aXQgMCB9CiAnYXBwbHkneyAkbmFtZT0kYXJnc1sxXTsgaWYoLW5vdCAkbmFtZSl7ZXhpdCAxfTsgdHJ5eyBbTWljXTo6U2V0KCRuYW1lKSB9Y2F0Y2h7IGV4aXQgMiB9OyBXcml0ZU1pY05hbWUgJG5hbWU7IEJ1aWxkVGFzazsgZXhpdCAwIH0KIGRlZmF1bHR7IGV4aXQgMSB9Cn0="
 
 rem ---- Detection automatique de la langue (FR si Windows/region FR, sinon EN) ----
 set "L=EN"
@@ -185,18 +183,11 @@ set "QH_WIFI=NETWORK ADAPTERS (WI-FI / ETHERNET)"
 set "QH_BT=BLUETOOTH"
 set "QH_PRINT=PRINTER"
 set "QH_XBOX=XBOX"
-set "QH_MIC=MICROPHONE (set default)"
 set "QO_YESNO=!CG![1] Yes!C0!  !CR![2] No!C0!"
 set "CFM_KEEP=unchanged"
 set "CFM_OFF=disabled"
 set "CFM_RST=restored"
 set "QO_CAM=!CL![1] Keep active!C0!  !CR![2] Disable!C0!  !CG![3] Restore default!C0!"
-set "QO_MIC=!CL![1] Keep current!C0!  !CR![2] Set by number!C0!  !CG![3] List devices!C0!"
-set "QO_MIC_NAME=Enter the microphone number:"
-set "QO_MIC_LIST=--- Microphones detected ---"
-set "QO_MIC_NONE=No microphone found."
-set "QO_MIC_KEPT=Microphone left unchanged."
-set "QO_MIC_BADNUM=Invalid microphone number."
 set "QO_NDR=!CL![1] Leave as is!C0!  !CR![2] Disable!C0!  !CG![3] Restore default!C0!"
 set "QO_NET=!CL![1] Keep!C0!  !CR![2] Disable Wi-Fi!C0!  !CR![3] Disable Ethernet!C0!"
 set "QO_NET2=!CG![4] Restore Wi-Fi!C0!  !CG![5] Restore Ethernet!C0!"
@@ -362,18 +353,11 @@ if /i "!L!"=="FR" set "QH_WIFI=CARTES RÉSEAU (WI-FI / ETHERNET)"
 if /i "!L!"=="FR" set "QH_BT=BLUETOOTH"
 if /i "!L!"=="FR" set "QH_PRINT=IMPRIMANTE"
 if /i "!L!"=="FR" set "QH_XBOX=XBOX"
-if /i "!L!"=="FR" set "QH_MIC=MICROPHONE (mode par défaut)"
 if /i "!L!"=="FR" set "QO_YESNO=!CG![1] Oui!C0!  !CR![2] Non!C0!"
 if /i "!L!"=="FR" set "CFM_KEEP=inchangé"
 if /i "!L!"=="FR" set "CFM_OFF=désactivé"
 if /i "!L!"=="FR" set "CFM_RST=restauré"
 if /i "!L!"=="FR" set "QO_CAM=!CL![1] Garder active!C0!  !CR![2] Désactiver!C0!  !CG![3] Restaurer défaut!C0!"
-if /i "!L!"=="FR" set "QO_MIC=!CL![1] Garder actuel!C0!  !CR![2] Choisir par numéro!C0!  !CG![3] Lister!C0!"
-if /i "!L!"=="FR" set "QO_MIC_NAME=Entre le numéro du micro :"
-if /i "!L!"=="FR" set "QO_MIC_LIST=--- Microphones detectes ---"
-if /i "!L!"=="FR" set "QO_MIC_NONE=Aucun microphone trouvé."
-if /i "!L!"=="FR" set "QO_MIC_KEPT=Micro laissé inchangé."
-if /i "!L!"=="FR" set "QO_MIC_BADNUM=Numéro de micro invalide."
 if /i "!L!"=="FR" set "QO_NDR=!CL![1] Ne rien faire!C0!  !CR![2] Désactiver!C0!  !CG![3] Restaurer défaut!C0!"
 if /i "!L!"=="FR" set "QO_NET=!CL![1] Garder!C0!  !CR![2] Désactiver Wi-Fi!C0!  !CR![3] Désactiver Ethernet!C0!"
 if /i "!L!"=="FR" set "QO_NET2=!CG![4] Restaurer Wi-Fi!C0!  !CG![5] Restaurer Ethernet!C0!"
@@ -428,23 +412,21 @@ set "AO1=Apply optimizations   (full: tweaks + cleanup + updates)"
 set "AO2=Apply optimizations   (fast: tweaks only)"
 set "AO3=0.5 ms timer + NVIDIA tweak (old sharpening method)"
 set "AO4=QWERTY keyboard layout"
-set "AO5=Default microphone (set by number)"
-set "AO6=Restore all Windows defaults"
-set "AO7=Restore Spectre/Meltdown mitigations"
-set "AO8=Restore Defender real-time protection"
-set "AO9=Verification / debug tool"
+set "AO5=Restore all Windows defaults"
+set "AO6=Restore Spectre/Meltdown mitigations"
+set "AO7=Restore Defender real-time protection"
+set "AO8=Verification / debug tool"
 set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
 if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : tweaks seuls)"
 if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne méthode de sharpening)"
 if /i "!L!"=="FR" set "AO4=Disposition clavier QWERTY"
-if /i "!L!"=="FR" set "AO5=Micro par défaut (choisir par numéro)"
 
-if /i "!L!"=="FR" set "AO6=Restaurer les valeurs Windows"
-if /i "!L!"=="FR" set "AO7=Restaurer les mitigations Spectre/Meltdown"
-if /i "!L!"=="FR" set "AO8=Restaurer la protection temps réel Defender"
-if /i "!L!"=="FR" set "AO9=Outil de vérification / debug"
+if /i "!L!"=="FR" set "AO5=Restaurer les valeurs Windows"
+if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
+if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
+if /i "!L!"=="FR" set "AO8=Outil de vérification / debug"
 if /i "!L!"=="FR" set "AO0=Quitter"
 set "MOPT=OPTIMIZER"
 set "MCAT1=optimize"
@@ -464,22 +446,20 @@ set "AO1=Apply optimizations   (full: tweaks + cleanup + updates)"
 set "AO2=Apply optimizations   (fast: tweaks only)"
 set "AO3=0.5 ms timer + NVIDIA tweak (old sharpening method)"
 set "AO4=QWERTY keyboard layout"
-set "AO5=Default microphone (set by number)"
-set "AO6=Restore all Windows defaults"
-set "AO7=Restore Spectre/Meltdown mitigations"
-set "AO8=Restore Defender real-time protection"
-set "AO9=Verification / debug tool"
+set "AO5=Restore all Windows defaults"
+set "AO6=Restore Spectre/Meltdown mitigations"
+set "AO7=Restore Defender real-time protection"
+set "AO8=Verification / debug tool"
 set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
 if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : tweaks seuls)"
 if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne méthode de sharpening)"
 if /i "!L!"=="FR" set "AO4=Disposition clavier QWERTY"
-if /i "!L!"=="FR" set "AO5=Micro par défaut (choisir par numéro)"
-if /i "!L!"=="FR" set "AO6=Restaurer les valeurs Windows"
-if /i "!L!"=="FR" set "AO7=Restaurer les mitigations Spectre/Meltdown"
-if /i "!L!"=="FR" set "AO8=Restaurer la protection temps réel Defender"
-if /i "!L!"=="FR" set "AO9=Outil de vérification / debug"
+if /i "!L!"=="FR" set "AO5=Restaurer les valeurs Windows"
+if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
+if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
+if /i "!L!"=="FR" set "AO8=Outil de vérification / debug"
 if /i "!L!"=="FR" set "AO0=Quitter"
 cls
 echo.
@@ -501,14 +481,13 @@ echo.
 echo   !CK!   !MCAT2!!C0!
 echo       !CG2![3]!C0!   !AO3!
 if /i "!L!"=="FR" echo       !CGE![4]!C0!   !AO4!
-echo       !CT![5]!C0!   !AO5!
 echo.
 echo   !CK!   !MCAT3!!C0!
-echo       !CBG1![6]!C0!   !AO6!
-echo       !CBG2![7]!C0!   !AO7!
-echo       !CBG3![8]!C0!   !AO8!
+echo       !CBG1![5]!C0!   !AO5!
+echo       !CBG2![6]!C0!   !AO6!
+echo       !CBG3![7]!C0!   !AO7!
 echo.
-echo       !CJ![9]!C0!   !AO9!
+echo       !CJ![8]!C0!   !AO8!
 echo       !CK![0]!C0!   !AO0!
 echo.
 choice /C 1234567890 /N /M "   !PROMPT!"
@@ -519,12 +498,11 @@ if "!CH!"=="2" set "FASTMODE=1"
 if "!CH!"=="2" goto _aiofast
 if "!CH!"=="3" goto TIMERNV
 if "!CH!"=="4" if /i "!L!"=="FR" goto QWMENU
-if "!CH!"=="5" goto MICMENU
-if "!CH!"=="6" goto RESTORE
-if "!CH!"=="7" goto SPECREVERT
-if "!CH!"=="8" goto RTREVERT
-if "!CH!"=="9" goto DEBUGRUN
-if "!CH!"=="10" goto AIOEND
+if "!CH!"=="5" goto RESTORE
+if "!CH!"=="6" goto SPECREVERT
+if "!CH!"=="7" goto RTREVERT
+if "!CH!"=="8" goto DEBUGRUN
+if "!CH!"=="9" goto AIOEND
 goto MENU
 :_aiofast
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Add-MpPreference -ExclusionPath '%~f0'" >nul 2>&1
@@ -1618,77 +1596,12 @@ if "!RBANS!"=="1" (
 rem #####################################################################
 rem #                   MODE RESTAURATION (Windows clean)               #
 rem #####################################################################
-:MICMENU
-rem ============ STANDALONE : MICROPHONE PAR DEFAUT ============
-rem micdef.ps1 (IPolicyConfig::SetDefaultEndpoint) definit le micro par defaut
-rem ET cree la tache ONLOGON "LowLat Mic Default" (re-applique a chaque session).
-powershell -NoProfile -Command "[IO.File]::WriteAllText($env:SystemRoot+'\micdef_a.b64','!MICPSB64A!')" >nul 2>&1
-powershell -NoProfile -Command "[IO.File]::WriteAllText($env:SystemRoot+'\micdef_b.b64','!MICPSB64B!')" >nul 2>&1
-powershell -NoProfile -Command "$k=[IO.File]::ReadAllText($env:SystemRoot+'\micdef_a.b64')+[IO.File]::ReadAllText($env:SystemRoot+'\micdef_b.b64');[IO.File]::WriteAllText($env:SystemRoot+'\micdef.ps1',[Text.Encoding]::ASCII.GetString([Convert]::FromBase64String($k)));Remove-Item $env:SystemRoot+'\micdef_a.b64',$env:SystemRoot+'\micdef_b.b64' -ErrorAction SilentlyContinue" >nul 2>&1
-:_micm_menu
-cls
-echo.
-echo   !CC!=============================================================!C0!
-echo                !CW!!QH_MIC!!C0!
-echo   !CC!=============================================================!C0!
-echo.
-echo        !QO_MIC!!C0!
-echo        !CK![0] !BACK!!C0!
-echo.
-<nul set /p "=        !PROMPT!"
-choice /C 1230 /N >nul
-set "MICC=!errorlevel!"
-if "!MICC!"=="4" goto MENU
-if "!MICC!"=="3" goto _micm_list
-if "!MICC!"=="1" goto _micm_skip
-goto _micm_name
-:_micm_list
-echo   !CC!!QO_MIC_LIST!!C0!
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" list 2>nul
-if errorlevel 1 echo   !CK!!QO_MIC_NONE!!C0!
-echo.
-pause
-goto _micm_menu
-:_micm_name
-cls
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" list 2>nul
-echo.
-set /p "MICNUM=        !QO_MIC_NAME! "
-if not defined MICNUM goto _micm_menu
-echo %MICNUM%| findstr /r "^[1-9][0-9]*$" >nul
-if errorlevel 1 (
-  echo   !CR!!QO_MIC_BADNUM!!C0!
-  pause
-  goto _micm_menu
-)
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" pick !MICNUM! >nul 2>&1
-if errorlevel 1 (
-  echo   !CR!!QO_MIC_BADNUM!!C0!
-  pause
-  goto _micm_menu
-)
-echo.
-echo   !OK! !CC![44b]!C0! !CW!!QH_MIC!!C0!
-pause
-goto _micm_menu
-:_micm_skip
-rem (aucun micro force : suppression tache planifiee)
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" keep >nul 2>&1
-echo.
-echo   !CL!!QO_MIC_KEPT!!C0!
-pause
-goto _micm_menu
-
-
 :RESTORE
 echo.
 echo  !CY!!REST_INTRO!!C0!
 echo.
 rem -- GPU : debloque les MAJ pilote (securite restauration) --
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions" /v DenyDeviceIDs /t REG_DWORD /d 0 /f >nul 2>&1
-rem -- Micro : supprime la tache planifiee du micro par defaut --
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SystemRoot%\micdef.ps1" keep >nul 2>&1
-del /f /q "%SystemRoot%\micdef.ps1" >nul 2>&1
 rem -- IA (Copilot / Recall / WindowsAI) : restaure les valeurs Windows par defaut --
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v DisableAIDataAnalysis /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
