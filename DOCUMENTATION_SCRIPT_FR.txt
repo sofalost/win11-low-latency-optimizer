@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.7)
+              win11-low-latency-optimizer   (v3.8)
                   Fonctionnement complet, detection, ordre
 ================================================================================
 
@@ -89,6 +89,14 @@ Juste avant d'appliquer, un bloc DETECTION interroge Windows via PowerShell
   GPUVENDOR  -> "NVIDIA", "AMD" ou "OTHER"
                (lu depuis le nom de la carte video Win32_VideoController)
   RAMGB      -> quantite de RAM en Go (arrondie)
+  ISIGPU     -> "1" si la machine n'a AUCUNE carte graphique dediee, sinon "0".
+                Lu depuis Win32_VideoController : si aucun nom d'adaptateur ne
+                correspond a GeForce / Quadro / RTX / GTX / Radeon RX /
+                Radeon Pro / Arc, la machine tourne sur un GPU integre seul.
+                Un portable qui a a la fois un iGPU et un GPU dedie compte
+                comme "0" (il a une carte dediee), c'est voulu.
+  LIGHTFX    -> "1" si ISIGPU = 1 OU RAMGB <= 16, sinon "0".
+                Aiguille les effets visuels de la section [24] (voir plus bas).
   CPUVENDOR  -> "Intel", "AMD" ou "OTHER" (depuis Win32_Processor.Name)
   ISX3D      -> "1" si le nom du CPU contient "X3D", sinon "0"
                 -> l'ecran de detection au demarrage affiche "AMD X3D mono-CCD"
@@ -112,6 +120,9 @@ Ces variables servent ensuite a CHOISIR les bons reglages :
     (au lieu d'un processus par service au-dela de 3,5 Go). Tweak intelligent,
     adapte a la RAM detectee.
   - CPUCORES sert d'information / de garde-fou.
+  - LIGHTFX aiguille les effets visuels de la section [24] : les machines
+    modestes passent en "personnalise, presque tout coupe", les machines plus
+    costaudes gardent "meilleure apparence".
 
 
 --------------------------------------------------------------------------------
@@ -233,7 +244,7 @@ la maintenance. Detail :
    [21] Xbox              [22] OneDrive
 
   INTERFACE / CONFORT
-   [23] Edge                  [24] Apparence   [25] Barre des taches
+   [23] Edge                  [24] Apparence (adaptative, voir section 7)   [25] Barre des taches
    [26] Menu Demarrer         [27] Explorateur [27] Avertissements securite
    [29] Multitache            [30] UAC         [31] Bureau a distance
 
@@ -246,7 +257,7 @@ la maintenance. Detail :
    [40] Pilotes
 
   MAINTENANCE
-   [41] Optimisation disque   [42] Storage Sense   [43] Nettoyage (voir section 10)
+   [41] Optimisation disque   [42] Storage Sense (Telechargements non touches)   [43] Nettoyage (voir section 10)
    [44] Windows Update (Microsoft Update, Y COMPRIS les MAJ facultatives) + winget
    [45] Timer 0.5 ms (resolution + tache au demarrage)
    [46] Re-application au demarrage (voir section 9)
@@ -271,6 +282,44 @@ Chaque section affiche  [ OK ] [NN] <description>  quand elle est passee.
   CPU / X3D :
     - parking + C-states selon ISX3D (section [36], voir section 8) ;
     - tscsyncpolicy enhanced seulement si AMD X3D bi-CCD (X3DMULTI, section [07]).
+
+  EFFETS VISUELS (section [24], LIGHTFX) :
+    Windows expose trois etats pour les effets visuels : 1 = meilleure
+    apparence, 2 = meilleures performances, 3 = personnalise. Jusqu'en v3.7 le
+    script ecrivait toujours 1. Depuis la v3.8 :
+
+    - si LIGHTFX = 0 (une carte dediee est presente ET plus de 16 Go de RAM)
+      -> VisualFXSetting = 1, transparence ON. Comportement inchange.
+
+    - si LIGHTFX = 1 (GPU integre seul, OU 16 Go de RAM ou moins)
+      -> VisualFXSetting = 3 (personnalise) et les effets sont coupes un par
+         un, SAUF deux qui sont gardes volontairement :
+           * FontSmoothing = "2" + FontSmoothingType = 2
+             -> "Lisser les polices ecran" (ClearType). Ca ne coute rien et le
+                texte est vraiment penible a lire sans.
+           * ListviewAlphaSelect = 1
+             -> "Afficher un rectangle de selection translucide". Ca ne coute
+                rien et la selection a la souris dans l'Explorateur devient
+                illisible sans.
+         Coupes : UserPreferencesMask (animations de menus, d'infobulles, de
+         listes deroulantes, defilement lisse), DragFullWindows, MinAnimate
+         (animations de reduction et d'agrandissement des fenetres),
+         ListviewShadow, TaskbarAnimations, EnableAeroPeek,
+         AlwaysHibernateThumbnails, et EnableTransparency (la transparence
+         Windows coute du vrai temps GPU sur un iGPU).
+
+    Dans les DEUX cas le theme sombre, l'accent gris et le fond noir sont
+    appliques : leur rendu ne coute rien.
+
+    Pourquoi "GPU integre seul" plutot qu'un seuil de VRAM : une carte dediee,
+    meme ancienne, a sa propre memoire et son propre budget de composition, donc
+    les effets du bureau y sont gratuits en pratique. Un GPU integre partage la
+    bande passante memoire avec le CPU, et c'est exactement la que la
+    composition fait mal.
+
+    LIGHTFX est enregistre dans HKLM\SOFTWARE\LowLatOptimizer pour que l'ecran
+    de verification (menu [8]) controle les valeurs que ta machine a vraiment
+    recues.
 
 Tout le reste est applique de maniere identique sur toutes les machines.
 
@@ -391,6 +440,18 @@ Suppression robuste de Windows.old :
   Resultat : Windows.old (y compris le sous-dossier "Windows") est reellement
   supprime. C'est sans danger : il ne s'agit que de l'ancienne installation.
 
+Telechargements et Storage Sense - deux choses differentes :
+  Un passage COMPLET propose aussi de vider le dossier Telechargements dans ce
+  nettoyage ponctuel (et il SAUTE cette etape si le script est lance depuis
+  Telechargements). Ca, c'est inchange.
+  Ce qui change en v3.8, c'est la PLANIFICATION Storage Sense de la section
+  [42] : elle ne configure plus Windows pour supprimer automatiquement les
+  Telechargements. Les valeurs 32 (supprimer le contenu de Telechargements) et
+  512 (duree de retention Telechargements) ne sont plus ecrites du tout, donc
+  ce que tu avais regle la reste intact. Le reste de Storage Sense est
+  inchange : active (01), fichiers temporaires des applications nettoyes (04),
+  corbeille videe apres 1 jour (08 + 256), execution quotidienne (2048).
+
 A noter : d'autres etapes longues et silencieuses affichent aussi une ligne de
 progression en temps reel (fleche grise) pour montrer que le script travaille :
 le debloat [15], le retrait Outlook (new) + Copilot [16b] et la suppression
@@ -412,7 +473,9 @@ propre : valeurs par defaut du planificateur et du reseau, suppression des
 taches planifiees creees, retour au plan d'alimentation "Equilibre" (qui parque
 nativement et reactive les C-states), retrait des reglages recents (anti pop-up
 Store, TdrDelay), et remise des mitigations Spectre/Meltdown au defaut Windows
-(activees). Les exclusions Defender et le debloat ne sont pas tous annules
+(activees). Depuis la v3.8 elle remet aussi les effets visuels au defaut
+Windows : VisualFXSetting = 0, UserPreferencesMask supprime, et animations de
+fenetres, ombres, Aero Peek et transparence reactives. Les exclusions Defender et le debloat ne sont pas tous annules
 automatiquement (sans danger a laisser).
 
 

@@ -1,12 +1,12 @@
 # Windows 11 Low-Latency Optimizer (all-in-one)
 
-**Current version: v3.7** — see `changelog.txt` for the full history.
+**Current version: v3.8** — see `changelog.txt` for the full history.
 
 > **Francophones** : ce script fonctionne aussi en français — la langue est détectée automatiquement d'après celle de ton Windows (affichage ou région).
 
 A bilingual (EN / FR) batch project that applies a **curated, reversible** set of latency and responsiveness tweaks for competitive gaming on Windows 11. No third-party software — everything runs through native registry keys, services and scheduled tasks.
 
-The main file is **`win11-low-latency-optimizer_v3.7.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), whether you need virtualization / AI, then offers two profiles — **soft** and **lowest**.
+The main file is **`win11-low-latency-optimizer_v3.8.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, whether that GPU is discrete or integrated, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), whether you need virtualization / AI, then offers two profiles — **soft** and **lowest**.
 
 ## The all-in-one menu
 
@@ -45,6 +45,7 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 - **Debloat / privacy** — services trim, telemetry, camera, Xbox, OneDrive, Edge, WhatsApp, and more
 - **0.5 ms timer** — persistent SYSTEM task (`NtSetTimerResolution`), re-armed at every startup; power-aware (0.5 ms on desktop / laptop-on-AC; on laptop battery the script stops requesting 0.5 ms — note another process like Chrome can keep the global timer high regardless)
 - **Auto-reapply** — key settings are re-applied after a Windows feature update
+- **Appearance, adapted to your hardware** — on a machine with **integrated graphics only** or **16 GB of RAM or less**, Windows visual effects are switched to *custom* and turned off, keeping only **font smoothing (ClearType)** and the **translucent selection rectangle**; transparency goes off too. On anything stronger, the previous "best appearance" behaviour is kept. The dark theme, grey accent and black wallpaper apply either way.
 
 ## Profiles and modes
 
@@ -58,6 +59,8 @@ The two choices combine freely (Soft or Lowest × anticheat Yes or No), and the 
 Everything is reversible from the menu: **[7]** re-enables Defender real-time, **[6]** restores the Spectre/Meltdown mitigations, and **[5]** restores all Windows defaults (VBS / HVCI / hypervisor included). After answering No to the anticheat question, reboot and confirm the anticheats you use still launch; if one refuses, run the matching restore.
 
 ## What it deliberately does NOT touch
+
+Storage Sense is enabled and set to clean app temp files and empty the Recycle Bin daily, but it is **never pointed at your Downloads folder** — whatever you had configured there stays untouched. (The optional one-shot cleanup in a *full* run is separate and still offers to wipe Downloads; see "How to use" below.)
 
 Secure Boot and TPM are firmware settings the script never changes. Core Isolation / Memory Integrity / VBS / HVCI and Fast Startup stay **on** in the Soft and Lowest profiles — the kernel-level anticheats rely on them. Only answering **No** to the anticheat question turns VBS / HVCI / the hypervisor off, and a full restore puts them back.
 
@@ -87,7 +90,7 @@ The in-game and driver settings that matter most for CS2 input latency.
 
 ## Files in this repo
 
-- **`win11-low-latency-optimizer_v3.7.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the QWERTY tool and the read-only debug checker (menu **[8]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
+- **`win11-low-latency-optimizer_v3.8.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the QWERTY tool and the read-only debug checker (menu **[8]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (placebo-adjacent ones clearly flagged)
 - `changelog.txt` — the full version history: every version with its detailed changes
 - *(optional)* **`BLACK_W11_CURSOR.zip`** — a black Windows pointer pack. Unzip -> right-click `install.inf` -> **Install** -> apply it in Mouse settings.

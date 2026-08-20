@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.7.1
+  Latest version : v3.8
 
 
 ================================================================================
@@ -293,6 +293,49 @@
        (no third-party module). It sets all three roles (Console, Multimedia,
        Communications). Re-applied at each logon, like the 0.5 ms timer.
 
+
+================================================================================
+  v3.8   -   ADAPTIVE VISUAL EFFECTS  +  DOWNLOADS LEFT ALONE
+================================================================================
+   [+] Adaptive visual effects. Until now the script forced "best appearance"
+       (VisualFXSetting = 1) on every machine, which is the wrong default on
+       modest hardware. A new LIGHTFX detection now decides:
+         - LIGHTFX = 1 when the machine has NO discrete GPU (integrated
+           graphics only: Intel UHD/Iris, AMD Radeon Graphics, etc.)
+           OR when it has 16 GB of RAM or less.
+         - LIGHTFX = 0 otherwise -> unchanged v3.7 behaviour.
+       On LIGHTFX = 1 the script switches Windows to CUSTOM visual effects
+       (VisualFXSetting = 3) and turns everything OFF except the two options
+       that cost nothing and hurt readability when missing:
+         - "Smooth edges of screen fonts"      (FontSmoothing, ClearType)
+         - "Show translucent selection rectangle" (ListviewAlphaSelect)
+       Turned off: window/menu/tooltip animations, taskbar animations,
+       shadows, Aero Peek, thumbnail caching, drag-full-windows, and
+       Windows transparency (EnableTransparency = 0 - it costs GPU time).
+   [~] The dark theme, the grey accent and the black wallpaper are KEPT on
+       both paths: they cost nothing to render and they are the point of the
+       section. Only the effects that actually consume GPU/CPU are dropped.
+   [-] Storage Sense no longer touches the Downloads folder. Values 32
+       (delete Downloads content) and 512 (Downloads retention age) are no
+       longer written, so whatever the user has set there stays as it is.
+       Everything else in Storage Sense is unchanged: it is still enabled
+       (01), still cleans app temp files (04), still empties the Recycle Bin
+       after 1 day (08 + 256) and still runs daily (2048).
+    !  This only changes the Storage Sense SCHEDULE. The one-shot cleanup of
+       section [43] still offers to wipe Downloads during a full run - that
+       behaviour is unchanged, and it still skips the folder when the script
+       is launched from inside it.
+   [~] LIGHTFX is persisted to HKLM\SOFTWARE\LowLatOptimizer so the
+       verification screen (menu [8]) checks the values the machine actually
+       received instead of assuming "best appearance" everywhere.
+   [~] Restore ([5]) now puts the visual effects back to the Windows default
+       (VisualFXSetting = 0, UserPreferencesMask deleted, animations and
+       transparency re-enabled).
+   [~] Script renamed: win11-low-latency-optimizer_v3.8.bat
+    i  Why iGPU-only rather than a VRAM threshold: a discrete card, even an
+       older one, has its own memory and its own compositor budget - desktop
+       effects are free on it. Integrated graphics share bandwidth with the
+       CPU, which is exactly where compositing hurts.
 
 ================================================================================
   v3.7.1 -   0.5 ms TIMER WATCHDOG HARDENED (Fable 5 review)

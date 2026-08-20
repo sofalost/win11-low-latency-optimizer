@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.7)
+              win11-low-latency-optimizer   (v3.8)
                   How it works, detection, ordering
 ================================================================================
 
@@ -88,6 +88,14 @@ Just before applying, a DETECTION block queries Windows via PowerShell
   GPUVENDOR  -> "NVIDIA", "AMD" or "OTHER"
                (read from the graphics card name, Win32_VideoController)
   RAMGB      -> amount of RAM in GB (rounded)
+  ISIGPU     -> "1" if the machine has NO discrete graphics card, otherwise "0".
+                Read from Win32_VideoController: if no adapter name matches
+                GeForce / Quadro / RTX / GTX / Radeon RX / Radeon Pro / Arc,
+                the machine is running on integrated graphics only.
+                A laptop with both an iGPU and a dGPU counts as "0" (it has a
+                discrete card), which is the intended behaviour.
+  LIGHTFX    -> "1" if ISIGPU = 1 OR RAMGB <= 16, otherwise "0".
+                Drives the visual-effects branch of section [24] (see below).
   CPUVENDOR  -> "Intel", "AMD" or "OTHER" (from Win32_Processor.Name)
   ISX3D      -> "1" if the CPU name contains "X3D", otherwise "0"
                 -> the detection screen at startup then shows "AMD X3D mono-CCD"
@@ -111,6 +119,8 @@ These variables are then used to CHOOSE the right settings:
     process per service above 3.5 GB). A smart tweak, adapted to the detected
     RAM.
   - CPUCORES is used as info / a safety guard.
+  - LIGHTFX steers the visual effects of section [24]: modest machines get
+    "custom, almost everything off", stronger machines keep "best appearance".
 
 
 --------------------------------------------------------------------------------
@@ -229,7 +239,7 @@ Detail:
    [21] Xbox              [22] OneDrive
 
   INTERFACE / COMFORT
-   [23] Edge                  [24] Appearance   [25] Taskbar
+   [23] Edge                  [24] Appearance (adaptive, see section 7)   [25] Taskbar
    [26] Start menu            [27] Explorer     [27] Security warnings
    [29] Multitasking          [30] UAC          [31] Remote Desktop
 
@@ -242,7 +252,7 @@ Detail:
    [40] Drivers
 
   MAINTENANCE
-   [41] Disk optimization     [42] Storage Sense   [43] Cleanup (see section 10)
+   [41] Disk optimization     [42] Storage Sense (Downloads untouched)   [43] Cleanup (see section 10)
    [44] Windows Update (Microsoft Update, INCLUDING optional updates) + winget
    [45] 0.5 ms timer (resolution + task at startup)
    [46] Re-application at startup (see section 9)
@@ -267,6 +277,40 @@ Each section shows  [ OK ] [NN] <description>  when it has run.
   CPU / X3D:
     - parking + C-states by ISX3D (section [36], see section 8);
     - tscsyncpolicy enhanced only if AMD X3D bi-CCD (X3DMULTI, section [07]).
+
+  VISUAL EFFECTS (section [24], LIGHTFX):
+    Windows exposes three states for visual effects: 1 = best appearance,
+    2 = best performance, 3 = custom. Up to v3.7 the script always wrote 1.
+    Since v3.8:
+
+    - if LIGHTFX = 0 (a discrete GPU is present AND more than 16 GB of RAM)
+      -> VisualFXSetting = 1, transparency ON. Unchanged behaviour.
+
+    - if LIGHTFX = 1 (integrated graphics only, OR 16 GB of RAM or less)
+      -> VisualFXSetting = 3 (custom) and the effects are turned off one by
+         one, EXCEPT two that are deliberately kept:
+           * FontSmoothing = "2" + FontSmoothingType = 2
+             -> "Smooth edges of screen fonts" (ClearType). Costs nothing and
+                text is genuinely painful to read without it.
+           * ListviewAlphaSelect = 1
+             -> "Show translucent selection rectangle". Costs nothing and the
+                rubber-band selection in Explorer is unreadable without it.
+         Turned off: UserPreferencesMask (menu / tooltip / combo animations,
+         smooth scrolling), DragFullWindows, MinAnimate (window minimise and
+         maximise animations), ListviewShadow, TaskbarAnimations,
+         EnableAeroPeek, AlwaysHibernateThumbnails, and EnableTransparency
+         (Windows transparency costs real GPU time on an iGPU).
+
+    In BOTH cases the dark theme, the grey accent and the black wallpaper are
+    applied: they cost nothing to render.
+
+    Why "integrated graphics only" rather than a VRAM threshold: a discrete
+    card, even an old one, has its own memory and its own compositing budget,
+    so desktop effects are effectively free on it. Integrated graphics share
+    memory bandwidth with the CPU, which is exactly where compositing hurts.
+
+    LIGHTFX is saved to HKLM\SOFTWARE\LowLatOptimizer so the verification
+    screen (menu [8]) checks the values your machine actually received.
 
 Everything else is applied identically on all machines.
 
@@ -386,6 +430,17 @@ Robust Windows.old deletion:
   Result: Windows.old (including the "Windows" subfolder) is really removed. It
   is safe: this is only the old installation.
 
+Downloads and Storage Sense - two different things:
+  A FULL run also offers to wipe the Downloads folder as part of this one-shot
+  cleanup (and it SKIPS that step when the script is launched from inside
+  Downloads). That is unchanged.
+  What DID change in v3.8 is the Storage Sense SCHEDULE of section [42]: it no
+  longer configures Windows to delete Downloads automatically. Values 32
+  (delete Downloads content) and 512 (Downloads retention age) are no longer
+  written at all, so whatever you had set there stays untouched. The rest of
+  Storage Sense is unchanged: enabled (01), app temp files cleaned (04),
+  Recycle Bin emptied after 1 day (08 + 256), run daily (2048).
+
 Note: other long, silent steps also show a real-time progress line (gray arrow)
 to indicate the script is working: the debloat [15], the Outlook (new) + Copilot
 removal [16b] and the Edge removal [23] (which runs in a hidden window).
@@ -405,7 +460,9 @@ state: default values for the scheduler and the network, removal of the
 scheduled tasks created, return to the "Balanced" power plan (which natively
 parks and re-enables C-states), removal of the recent settings (Store pop-up
 block, TdrDelay), and reset of the Spectre/Meltdown mitigations to the Windows
-default (enabled). The Defender exclusions and the debloat are not all undone
+default (enabled). Since v3.8 it also puts the visual effects back to the
+Windows default: VisualFXSetting = 0, UserPreferencesMask deleted, and window
+animations, shadows, Aero Peek and transparency re-enabled. The Defender exclusions and the debloat are not all undone
 automatically (safe to leave).
 
 

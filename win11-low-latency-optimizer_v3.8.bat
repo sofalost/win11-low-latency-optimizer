@@ -1,8 +1,8 @@
 @echo off
 chcp 1252 >nul
-title win11-low-latency-optimizer  -  ALL-IN-ONE  v3.7.1
+title win11-low-latency-optimizer  -  ALL-IN-ONE  v3.8
 setlocal EnableExtensions EnableDelayedExpansion
-set "SCRIPT_VER=v3.7.1"
+set "SCRIPT_VER=v3.8"
 
 rem ====================================================================
 rem   LOW LATENCY GAMING SCRIPT
@@ -114,6 +114,7 @@ set "M34=!CW!Xbox!C0! !CR!removed!C0! (apps, services, task)"
 set "M35=!CW!Xbox!C0! !CG!restored!C0! (services back to manual)"
 set "M36=!CW!OneDrive!C0! !CR!uninstalled!C0!"
 set "M40=!CW!Appearance!C0!: transparency, grey accent, black wallpaper, !CW!dark theme!C0!"
+set "M40L=!CW!Appearance!C0!: visual effects !CR!off!C0! (small GPU / RAM <= 16 GB), !CW!font smoothing!C0! + !CW!translucent selection!C0! kept, !CW!dark theme!C0!"
 set "M43=Taskbar cleaned (search hidden, combined, !CW!Widgets!C0! !CR!off!C0!, !CW!Task View!C0! !CR!off!C0!, End task !CG!on!C0!)"
 set "M44=!CW!Start menu!C0!: no recommendations, no recent apps, notifications !CR!off!C0!"
 set "M45=!CW!File Explorer!C0!: hidden items shown, extensions !CG!on!C0!, opens to !CW!This PC!C0!"
@@ -134,7 +135,7 @@ set "M57=!CW!Fast Startup!C0! !CG!enabled!C0!"
 set "M58=!CW!Startup tray icons hidden!C0!: !CW!Vanguard + Defender!C0! (services keep running)"
 set "M59=Drivers kept !CG!up to date!C0! via Windows Update"
 set "M60=!CW!Disk optimization!C0!: native !CW!Windows!C0! task !CG!on!C0! (silent, daily)"
-set "M61=!CW!Storage Sense!C0! !CG!on!C0!: temp + recycle 1d + downloads 1d, daily"
+set "M61=!CW!Storage Sense!C0! !CG!on!C0!: temp + recycle 1d, daily (!CW!Downloads untouched!C0!)"
 set "M62=!CW!Cleanup!C0!: temp, !CW!Discord/Steam!C0! cache, WinSxS, Windows.old, recycle bin"
 set "M63=!CW!Windows Update!C0! !CY!running!C0! (incl. !CW!optional!C0! updates)... can take a while, do not close"
 set "M64=!CW!Windows Update!C0! !CG!finished!C0!"
@@ -284,6 +285,7 @@ if /i "!L!"=="FR" set "M34=!CW!Xbox!C0! !CR!supprimé!C0! (apps, services, tâche)
 if /i "!L!"=="FR" set "M35=!CW!Xbox!C0! !CG!restauré!C0! (services en manuel)"
 if /i "!L!"=="FR" set "M36=!CW!OneDrive!C0! !CR!désinstallé!C0!"
 if /i "!L!"=="FR" set "M40=!CW!Apparence!C0! : transparence, accent gris, fond noir, !CW!thème sombre!C0!"
+if /i "!L!"=="FR" set "M40L=!CW!Apparence!C0! : effets visuels !CR!off!C0! (petit GPU / RAM <= 16 Go), !CW!lissage des polices!C0! + !CW!sélection translucide!C0! gardés, !CW!thème sombre!C0!"
 if /i "!L!"=="FR" set "M43=Barre des tâches épurée (recherche masquée, combinée, !CW!Widgets!C0! !CR!off!C0!, !CW!Task View!C0! !CR!off!C0!, Terminer la tâche !CG!on!C0!)"
 if /i "!L!"=="FR" set "M44=!CW!Menu Démarrer!C0! : pas de reco, pas d'applis récentes, notifs !CR!off!C0!"
 if /i "!L!"=="FR" set "M45=!CW!Explorateur!C0! : éléments masqués visibles, extensions !CG!on!C0!, ouvre sur !CW!Ce PC!C0!"
@@ -304,7 +306,7 @@ if /i "!L!"=="FR" set "M57=!CW!Démarrage rapide!C0! !CG!activé!C0!"
 if /i "!L!"=="FR" set "M58=!CW!Icônes au démarrage masquées!C0! : !CW!Vanguard + Defender!C0! (services actifs)"
 if /i "!L!"=="FR" set "M59=Pilotes maintenus !CG!à jour!C0! via Windows Update"
 if /i "!L!"=="FR" set "M60=!CW!Optimisation des disques!C0! : tâche !CW!Windows!C0! native !CG!on!C0! (silencieuse, quotidienne)"
-if /i "!L!"=="FR" set "M61=!CW!Assistant de stockage!C0! !CG!on!C0! : temp + corbeille 1j + téléchargements 1j, chaque jour"
+if /i "!L!"=="FR" set "M61=!CW!Assistant de stockage!C0! !CG!on!C0! : temp + corbeille 1j, chaque jour (!CW!Téléchargements non touchés!C0!)"
 if /i "!L!"=="FR" set "M62=!CW!Nettoyage!C0! : temp, cache !CW!Discord/Steam!C0!, WinSxS, Windows.old, corbeille"
 if /i "!L!"=="FR" set "M63=!CW!Windows Update!C0! !CY!en cours!C0! (y compris les !CW!facultatives!C0!)... peut être long, ne ferme pas"
 if /i "!L!"=="FR" set "M64=!CW!Windows Update!C0! !CG!terminé!C0!"
@@ -511,6 +513,11 @@ set "GPUVENDOR=OTHER"
 for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "$v=(Get-CimInstance Win32_VideoController).Name -join ' '; if($v -match 'NVIDIA'){'NVIDIA'}elseif($v -match 'AMD|Radeon'){'AMD'}else{'OTHER'}"`) do set "GPUVENDOR=%%g"
 set "RAMGB=0"
 for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "[math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory/1GB)"`) do set "RAMGB=%%g"
+set "ISIGPU=0"
+for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "$n=@(Get-CimInstance Win32_VideoController | Where-Object{$_.Name}); $d=@($n | Where-Object{$_.Name -match 'GeForce|Quadro|RTX|GTX|Radeon RX|Radeon Pro|Arc A|Arc B'}); if($d.Count -ge 1){'0'}else{'1'}"`) do set "ISIGPU=%%g"
+set "LIGHTFX=0"
+if "!ISIGPU!"=="1" set "LIGHTFX=1"
+if !RAMGB! GEQ 1 if !RAMGB! LEQ 16 set "LIGHTFX=1"
 set "CPUVENDOR=OTHER"
 for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "$c=(Get-CimInstance Win32_Processor).Name -join ' '; if($c -match 'Intel'){'Intel'}elseif($c -match 'AMD|Ryzen'){'AMD'}else{'OTHER'}"`) do set "CPUVENDOR=%%g"
 set "ISX3D=0"
@@ -731,6 +738,7 @@ reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QBt /t REG_DWORD /d !BT! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QPrint /t REG_DWORD /d !PRINT! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QXbox /t REG_DWORD /d !XBOX! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v GpuVendor /t REG_SZ /d !GPUVENDOR! /f >nul 2>&1
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v LightFX /t REG_DWORD /d !LIGHTFX! /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v GlobalTimerResolutionRequests /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v PowerThrottlingOff /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v EnablePrefetcher /t REG_DWORD /d 3 /f >nul 2>&1
@@ -1156,8 +1164,26 @@ if exist "%SystemRoot%\SysWOW64\OneDriveSetup.exe" "%SystemRoot%\SysWOW64\OneDri
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v DisableFileSyncNGSC /t REG_DWORD /d 1 /f >nul 2>&1
 echo   !OK! !CC![22]!C0! !M36!
 rem ============ [23] APPARENCE : transparence + accent gris + fond noir ============
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v EnableTransparency /t REG_DWORD /d 1 /f >nul 2>&1
+rem LIGHTFX=1 : petit GPU integre ou RAM 16 Go et moins.
+rem Effets visuels personnalises : tout coupe SAUF le lissage des polices
+rem et le rectangle de selection translucide. Theme sombre conserve.
+if "!LIGHTFX!"=="1" (
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 3 /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop" /v UserPreferencesMask /t REG_BINARY /d 9012038010000000 /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop" /v DragFullWindows /t REG_SZ /d "0" /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop\WindowMetrics" /v MinAnimate /t REG_SZ /d "0" /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop" /v FontSmoothing /t REG_SZ /d "2" /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop" /v FontSmoothingType /t REG_DWORD /d 2 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewAlphaSelect /t REG_DWORD /d 1 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewShadow /t REG_DWORD /d 0 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAnimations /t REG_DWORD /d 0 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 0 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v AlwaysHibernateThumbnails /t REG_DWORD /d 0 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v EnableTransparency /t REG_DWORD /d 0 /f >nul 2>&1
+) else (
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 1 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v EnableTransparency /t REG_DWORD /d 1 /f >nul 2>&1
+)
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v AccentColorMenu /t REG_DWORD /d 0xff484848 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v AccentPalette /t REG_BINARY /d a6a6a6ff808080ff646464ff484848ff3a3a3aff2c2c2cff1e1e1eff101010ff /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v StartColorMenu /t REG_DWORD /d 0xff484848 /f >nul 2>&1
@@ -1175,7 +1201,7 @@ reg add "HKCU\Control Panel\Colors" /v Background /t REG_SZ /d "0 0 0" /f >nul 2
 rundll32.exe user32.dll,UpdatePerUserSystemParameters 1, True
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v SystemUsesLightTheme /t REG_DWORD /d 0 /f >nul 2>&1
-echo   !OK! !CC![23]!C0! !M40!
+if "!LIGHTFX!"=="1" ( echo   !OK! !CC![23]!C0! !M40L! ) else ( echo   !OK! !CC![23]!C0! !M40! )
 
 rem ============ [24] BARRE DES TACHES ============
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAl /t REG_DWORD /d 1 /f >nul 2>&1
@@ -1352,9 +1378,8 @@ reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\StorageSense" /v AllowStora
 reg add "!SS!" /v 01 /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "!SS!" /v 04 /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "!SS!" /v 08 /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "!SS!" /v 32 /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "!SS!" /v 256 /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "!SS!" /v 512 /t REG_DWORD /d 1 /f >nul 2>&1
+rem -- Telechargements : volontairement NON touches (ni 32 ni 512) --
 reg add "!SS!" /v 2048 /t REG_DWORD /d 1 /f >nul 2>&1
 echo   !OK! !CC![41]!C0! !M61!
 
@@ -1547,7 +1572,9 @@ if /i "!GPUVENDOR!"=="NVIDIA" call :vck "HKLM\SYSTEM\CurrentControlSet\Services\
 call :vck "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" AllowTelemetry 0 "Telemetry off"
 call :vck "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" EnableSmartScreen 0 "SmartScreen off"
 call :vck "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" AccentColorMenu 0xff484848 "Accent grey"
-call :vck "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" EnableTransparency 1 "Transparency"
+set "EVTR=1"
+if "!LIGHTFX!"=="1" set "EVTR=0"
+call :vck "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" EnableTransparency !EVTR! "Transparency"
 set "EW=skip"
 if "!WIFI!"=="2" set "EW=0x4"
 if "!WIFI!"=="4" set "EW=0x2"
@@ -1682,6 +1709,15 @@ reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments"
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Associations" /v LowRiskFileTypes /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v DisallowShaking /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" /v 01 /t REG_DWORD /d 0 /f >nul 2>&1
+rem -- Effets visuels : retour au defaut Windows (laisse Windows choisir) --
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 0 /f >nul 2>&1
+reg delete "HKCU\Control Panel\Desktop" /v UserPreferencesMask /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop" /v DragFullWindows /t REG_SZ /d "1" /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop\WindowMetrics" /v MinAnimate /t REG_SZ /d "1" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewShadow /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAnimations /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v EnableTransparency /t REG_DWORD /d 1 /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /f >nul 2>&1
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v GlobalUserDisabled /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v EnableActivityFeed /f >nul 2>&1
@@ -2163,6 +2199,9 @@ for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QBt 2^>n
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QPrint 2^>nul ^| findstr /i /c:"REG_"') do set "QPRINT=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QXbox 2^>nul ^| findstr /i /c:"REG_"') do set "QXBOX=%%a"
 for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v GpuVendor 2^>nul ^| findstr /i /c:"REG_SZ"') do set "GPUV=%%b"
+set "LIGHTFX="
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v LightFX 2^>nul ^| findstr /i /c:"REG_"') do set /a LIGHTFX=%%a 2>nul
+if not defined LIGHTFX set "LIGHTFX=0"
 if not defined QCAM set "QCAM=?"
 if not defined QWIFI set "QWIFI=?"
 if not defined QBT set "QBT=?"
@@ -2523,8 +2562,15 @@ call :ckdw "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenan
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" EnableFirstLogonAnimation 0 "EnableFirstLogonAnimation .."
 echo.
 echo   !CO! !H14!!C0!
-call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" VisualFXSetting 1 "VisualFXSetting ........."
-call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" EnableTransparency 1 "EnableTransparency ......"
+set "EFX=1"
+set "ETR=1"
+if "!LIGHTFX!"=="1" set "EFX=3"
+if "!LIGHTFX!"=="1" set "ETR=0"
+call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" VisualFXSetting !EFX! "VisualFXSetting ........."
+call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" EnableTransparency !ETR! "EnableTransparency ......"
+if "!LIGHTFX!"=="1" call :cksz "HKCU\Control Panel\Desktop" FontSmoothing "2" "FontSmoothing (kept) ...."
+if "!LIGHTFX!"=="1" call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ListviewAlphaSelect 1 "ListviewAlphaSelect (kept) .."
+if "!LIGHTFX!"=="1" call :cksz "HKCU\Control Panel\Desktop\WindowMetrics" MinAnimate "0" "MinAnimate off .........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" AccentColorMenu 0xff484848 "AccentColorMenu ........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" StartColorMenu 0xff484848 "StartColorMenu .........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\DWM" AccentColor 0xff484848 "AccentColor ............."
@@ -2606,9 +2652,7 @@ set "SS=HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\S
 call :ckdw "!SS!" 01 1 "01 ......................"
 call :ckdw "!SS!" 04 1 "04 ......................"
 call :ckdw "!SS!" 08 1 "08 ......................"
-call :ckdw "!SS!" 32 1 "32 ......................"
 call :ckdw "!SS!" 256 1 "256 ....................."
-call :ckdw "!SS!" 512 1 "512 ....................."
 call :ckdw "!SS!" 2048 1 "2048 ...................."
 echo.
 echo   !CK! ------------------------------------------------------------!C0!
