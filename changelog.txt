@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.8
+  Latest version : v3.9
 
 
 ================================================================================
@@ -292,6 +292,56 @@
     i  The default-microphone feature uses IPolicyConfig::SetDefaultEndpoint
        (no third-party module). It sets all three roles (Console, Multimedia,
        Communications). Re-applied at each logon, like the 0.5 ms timer.
+
+
+================================================================================
+  v3.9   -   BUGFIX SWEEP  (full audit of v3.8)
+================================================================================
+   [x] Quit [0] actually quits. The menu read "choice /C 1234567890" so the
+       0 key returns errorlevel 10, but the script tested for "9" - pressing
+       0 just fell back to the menu. Now tests for "10".
+   [x] Restore [5] no longer leaves hardware disabled. Apply disables Wi-Fi /
+       Ethernet / Bluetooth / camera when you ask it to, but restore never
+       turned them back on - after "restore all defaults" the machine had no
+       network. Restore now re-enables the adapters and devices it may have
+       disabled, and restarts WlanSvc.
+   [x] Restore [5] no longer wipes the visual-effect settings of users who
+       never got LIGHTFX. The effects block (UserPreferencesMask, animations,
+       transparency) used to run unconditionally on restore; it now only runs
+       when the run had actually applied LIGHTFX (read back before the
+       LowLatOptimizer key is deleted).
+   [x] Restore [5] now restores AlwaysHibernateThumbnails (thumbnail caching)
+       - written to 0 on LIGHTFX but never put back.
+   [x] Storage Sense Downloads leftover removed. v3.8 stopped writing values
+       32/512 but never deleted them, so anyone who ran v3.7 still had
+       "delete Downloads daily" active while the UI claimed the opposite.
+       The apply now deletes both values and the [8] screen checks they are
+       absent.
+   [x] iGPU detection regex replaced. It matched discrete GPU names
+       ("Radeon RX", "RTX"...) which both missed real dGPUs (TITAN, Tesla,
+       Arc Pro) and flagged the integrated "Radeon RX Vega 11 Graphics" as
+       discrete - exactly the population the feature targets. It now matches
+       known integrated names (UHD Graphics / Iris / HD Graphics N /
+       Vega N Graphics / Radeon(TM) Graphics) instead.
+   [x] Cleanup summary no longer counts the Downloads wipe as "Discord
+       cache". The Downloads deletion ran between the two space-delta
+       measurements, so its size was attributed to Discord. A dedicated
+       counter + line were added.
+   [x] Verification screen [8]: removed two permanent false FAILs - the
+       IFEO "%%~E" checks (a loop variable used outside any loop, so they
+       read a nonexistent key) and the Start_Layout check (a value the
+       script never writes). QCAM (camera choice) was read back but never
+       checked - a FrameServer service check now uses it.
+   [~] Restore [5] now refreshes the session (UpdatePerUserSystemParameters)
+       like the apply does, so restored visuals reappear without waiting for
+       the next sign-in.
+   [~] The "Ultimate Performance" power plan is no longer duplicated in Soft
+       mode or on a laptop - a ghost plan stayed in the power options for
+       nothing on those paths.
+   [~] Script renamed: win11-low-latency-optimizer_v3.9.bat
+    i  Not changed: the [8] "OK / total" score still counts [info] lines
+       (per-user-choice checks) in the total - they are not failures. The
+       LIGHTFX re-apply task payload is also untouched on purpose.
 
 
 ================================================================================

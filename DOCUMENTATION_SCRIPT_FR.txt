@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.8)
+              win11-low-latency-optimizer   (v3.9)
                   Fonctionnement complet, detection, ordre
 ================================================================================
 
@@ -447,10 +447,13 @@ Telechargements et Storage Sense - deux choses differentes :
   Ce qui change en v3.8, c'est la PLANIFICATION Storage Sense de la section
   [42] : elle ne configure plus Windows pour supprimer automatiquement les
   Telechargements. Les valeurs 32 (supprimer le contenu de Telechargements) et
-  512 (duree de retention Telechargements) ne sont plus ecrites du tout, donc
-  ce que tu avais regle la reste intact. Le reste de Storage Sense est
-  inchange : active (01), fichiers temporaires des applications nettoyes (04),
-  corbeille videe apres 1 jour (08 + 256), execution quotidienne (2048).
+  512 (duree de retention Telechargements) ne sont plus ecrites du tout.
+  Depuis la v3.9, l'apply SUPPRIME aussi ces deux valeurs, donc un reliquat
+  d'une v3.7 (qui ecrivait 32=1 / 512=1 et continuait de vider tes
+  Telechargements chaque jour) est reellement efface au lieu de survivre en
+  silence. Ce que tu avais regle la reste intact. Le reste de Storage Sense
+  est inchange : active (01), fichiers temporaires des applications nettoyes
+  (04), corbeille videe apres 1 jour (08 + 256), execution quotidienne (2048).
 
 A noter : d'autres etapes longues et silencieuses affichent aussi une ligne de
 progression en temps reel (fleche grise) pour montrer que le script travaille :
@@ -475,7 +478,13 @@ nativement et reactive les C-states), retrait des reglages recents (anti pop-up
 Store, TdrDelay), et remise des mitigations Spectre/Meltdown au defaut Windows
 (activees). Depuis la v3.8 elle remet aussi les effets visuels au defaut
 Windows : VisualFXSetting = 0, UserPreferencesMask supprime, et animations de
-fenetres, ombres, Aero Peek et transparence reactives. Les exclusions Defender et le debloat ne sont pas tous annules
+fenetres, ombres, Aero Peek et transparence reactives. Depuis la v3.9 ce bloc
+d'effets ne s'execute QUE si la machine avait reellement recu LIGHTFX (il
+n'ecrase plus les reglages d'effets de ceux qui ne les avaient jamais
+appliques), il restaure le cache des miniatures (AlwaysHibernateThumbnails),
+il reactive le Wi-Fi / Ethernet / Bluetooth / la camera que l'apply a pu
+desactiver, et il rafraichit la session pour que les effets restaures
+s'affichent sans fermer la session. Les exclusions Defender et le debloat ne sont pas tous annules
 automatiquement (sans danger a laisser).
 
 

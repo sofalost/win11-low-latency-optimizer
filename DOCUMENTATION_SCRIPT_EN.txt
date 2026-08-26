@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.8)
+              win11-low-latency-optimizer   (v3.9)
                   How it works, detection, ordering
 ================================================================================
 
@@ -437,7 +437,10 @@ Downloads and Storage Sense - two different things:
   What DID change in v3.8 is the Storage Sense SCHEDULE of section [42]: it no
   longer configures Windows to delete Downloads automatically. Values 32
   (delete Downloads content) and 512 (Downloads retention age) are no longer
-  written at all, so whatever you had set there stays untouched. The rest of
+  written at all. Since v3.9 the apply also DELETES those two values, so a
+  leftover from a v3.7 run (which wrote 32=1 / 512=1 and kept deleting your
+  Downloads daily) is actually cleared instead of surviving silently. The rest
+  of
   Storage Sense is unchanged: enabled (01), app temp files cleaned (04),
   Recycle Bin emptied after 1 day (08 + 256), run daily (2048).
 
@@ -462,7 +465,12 @@ parks and re-enables C-states), removal of the recent settings (Store pop-up
 block, TdrDelay), and reset of the Spectre/Meltdown mitigations to the Windows
 default (enabled). Since v3.8 it also puts the visual effects back to the
 Windows default: VisualFXSetting = 0, UserPreferencesMask deleted, and window
-animations, shadows, Aero Peek and transparency re-enabled. The Defender exclusions and the debloat are not all undone
+animations, shadows, Aero Peek and transparency re-enabled. Since v3.9 that
+effects block only runs if the machine had actually received LIGHTFX (it no
+longer wipes the effect settings of users who never had them applied), it
+restores thumbnail caching (AlwaysHibernateThumbnails), it re-enables any
+Wi-Fi / Ethernet / Bluetooth / camera the apply may have disabled, and it
+refreshes the session so the restored visuals show without a sign-out. The Defender exclusions and the debloat are not all undone
 automatically (safe to leave).
 
 

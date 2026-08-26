@@ -504,7 +504,7 @@ if "!CH!"=="5" goto RESTORE
 if "!CH!"=="6" goto SPECREVERT
 if "!CH!"=="7" goto RTREVERT
 if "!CH!"=="8" goto DEBUGRUN
-if "!CH!"=="9" goto AIOEND
+if "!CH!"=="10" goto AIOEND
 goto MENU
 :_aiofast
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Add-MpPreference -ExclusionPath '%~f0'" >nul 2>&1
@@ -514,7 +514,7 @@ for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "$v=(Get-CimIn
 set "RAMGB=0"
 for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "[math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory/1GB)"`) do set "RAMGB=%%g"
 set "ISIGPU=0"
-for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "$n=@(Get-CimInstance Win32_VideoController | Where-Object{$_.Name}); $d=@($n | Where-Object{$_.Name -match 'GeForce|Quadro|RTX|GTX|Radeon RX|Radeon Pro|Arc A|Arc B'}); if($d.Count -ge 1){'0'}else{'1'}"`) do set "ISIGPU=%%g"
+for /f "usebackq delims=" %%g in (`powershell -NoProfile -Command "$n=@(Get-CimInstance Win32_VideoController -EA SilentlyContinue | Where-Object{$_.Name}); $i=@($n | Where-Object{$_.Name -match 'UHD Graphics|Iris|HD Graphics [0-9]|Vega [0-9]+ Graphics|Radeon\(TM\) Graphics|Radeon Graphics'}); if($i.Count -ge 1 -and $i.Count -eq $n.Count){'1'}else{'0'}"`) do set "ISIGPU=%%g"
 set "LIGHTFX=0"
 if "!ISIGPU!"=="1" set "LIGHTFX=1"
 if !RAMGB! GEQ 1 if !RAMGB! LEQ 16 set "LIGHTFX=1"
@@ -1303,6 +1303,8 @@ echo.
 rem ============ [35] ALIMENTATION : aucun economiseur ============
 set "ULT="
 set "ULTSAVED="
+if "!MODEMARK!"=="soft" goto _pwrsave
+if "!ISLAPTOP!"=="1" goto _pwrsave
 for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v UltGuid 2^>nul ^| findstr /i /c:"REG_SZ"') do set "ULTSAVED=%%b"
 if defined ULTSAVED for /f %%Z in ('powercfg /list ^| findstr /i /c:"!ULTSAVED!"') do set "ULT=!ULTSAVED!"
 if not defined ULT for /f "tokens=2 delims=:" %%G in ('powercfg /list ^| findstr /i /c:"Ultimate Performance" /c:"Performances ultimes"') do for /f "tokens=1" %%H in ("%%G") do set "ULT=%%H"
@@ -1310,6 +1312,7 @@ if not defined ULT for /f "tokens=2 delims=:" %%G in ('powercfg -duplicatescheme
 if defined ULT reg add "HKLM\SOFTWARE\LowLatOptimizer" /v UltGuid /t REG_SZ /d !ULT! /f >nul 2>&1
 if defined ULT powercfg /setactive !ULT! >nul 2>&1
 if not defined ULT powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul 2>&1
+:_pwrsave
 if "!MODEMARK!"=="soft" powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul 2>&1
 if "!ISLAPTOP!"=="1" powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul 2>&1
 rem -- Parking + C-states selon le CPU : X3D = parking ON + C-states ON ; non-X3D / Intel = unpark + C-states OFF --
@@ -1379,7 +1382,9 @@ reg add "!SS!" /v 01 /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "!SS!" /v 04 /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "!SS!" /v 08 /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "!SS!" /v 256 /t REG_DWORD /d 1 /f >nul 2>&1
-rem -- Telechargements : volontairement NON touches (ni 32 ni 512) --
+rem -- Telechargements : supprime les restes 32/512 d une v3.7, sans rien imposer --
+reg delete "!SS!" /v 32 /f >nul 2>&1
+reg delete "!SS!" /v 512 /f >nul 2>&1
 reg add "!SS!" /v 2048 /t REG_DWORD /d 1 /f >nul 2>&1
 echo   !OK! !CC![41]!C0! !M61!
 
@@ -1419,9 +1424,11 @@ if not errorlevel 1 goto _dlskip
 echo   !CK!  -^> !C0!!CL7!...
 del /q /f "%USERPROFILE%\Downloads\*" >nul 2>&1
 for /d %%D in ("%USERPROFILE%\Downloads\*") do rd /s /q "%%D" >nul 2>&1
+call :cln43 CLNT7
 goto _dldone
 :_dlskip
 echo   !CK!  -^> !C0!!CL7B!
+set "CLNT7=0"
 :_dldone
 echo   !CK!  -^> !C0!!CL2!...
 del /q /f /s "%LOCALAPPDATA%\Discord\Cache\*" >nul 2>&1
@@ -1458,6 +1465,7 @@ if !CLNTOT! LSS 0 set "CLNTOT=0"
 echo   !OK! !CC![42]!C0! !M62!
 echo.
 echo   !CW!  !CLS!!C0!
+call :sh43 "!CL7!" !CLNT7!
 call :sh43 "!CL1!" !CLNT1!
 call :sh43 "!CL2!" !CLNT2!
 call :sh43 "!CL3!" !CLNT3!
@@ -1658,6 +1666,13 @@ netsh int tcp reset >nul 2>&1
 netsh winsock reset >nul 2>&1
 netsh int tcp set global autotuninglevel=normal >nul 2>&1
 netsh int tcp set global rsc=enabled >nul 2>&1
+rem -- Peripheriques : reactiver Wi-Fi / Ethernet / Bluetooth / Camera desactives a l apply --
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.Status -eq 'Disabled' } | Enable-NetAdapter -Confirm:$false" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Camera,Image,Bluetooth | Where-Object { $_.Status -ne 'OK' } | ForEach-Object { Enable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
+sc config WlanSvc start= auto >nul 2>&1
+sc start WlanSvc >nul 2>&1
+sc config bthserv start= demand >nul 2>&1
+sc config BTAGService start= demand >nul 2>&1
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object {$_.InterfaceDescription -notmatch 'Wireless|Wi-?Fi|802\.11'} | ForEach-Object { Set-NetAdapterAdvancedProperty -Name $_.Name -RegistryKeyword '*InterruptModeration' -RegistryValue 1 -NoRestart -EA SilentlyContinue; Set-NetAdapterAdvancedProperty -Name $_.Name -RegistryKeyword '*FlowControl' -RegistryValue 3 -NoRestart -EA SilentlyContinue; Set-NetAdapterAdvancedProperty -Name $_.Name -RegistryKeyword '*EEE' -RegistryValue 1 -NoRestart -EA SilentlyContinue }" >nul 2>&1
 for /f "delims=" %%i in ('reg query "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces" 2^>nul') do (
     reg delete "%%i" /v TcpAckFrequency /f >nul 2>&1
@@ -1709,15 +1724,20 @@ reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments"
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Associations" /v LowRiskFileTypes /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v DisallowShaking /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" /v 01 /t REG_DWORD /d 0 /f >nul 2>&1
-rem -- Effets visuels : retour au defaut Windows (laisse Windows choisir) --
+rem -- Effets visuels : on ne retablit QUE si le script les avait coupes (LightFX relu avant delete de la cle) --
+set "RSTLFX=0"
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v LightFX 2^>nul ^| findstr /i /c:"REG_"') do set /a RSTLFX=%%a 2>nul
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 0 /f >nul 2>&1
-reg delete "HKCU\Control Panel\Desktop" /v UserPreferencesMask /f >nul 2>&1
-reg add "HKCU\Control Panel\Desktop" /v DragFullWindows /t REG_SZ /d "1" /f >nul 2>&1
-reg add "HKCU\Control Panel\Desktop\WindowMetrics" /v MinAnimate /t REG_SZ /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewShadow /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAnimations /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v EnableTransparency /t REG_DWORD /d 1 /f >nul 2>&1
+if "!RSTLFX!"=="1" (
+    reg delete "HKCU\Control Panel\Desktop" /v UserPreferencesMask /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop" /v DragFullWindows /t REG_SZ /d "1" /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop\WindowMetrics" /v MinAnimate /t REG_SZ /d "1" /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewShadow /t REG_DWORD /d 1 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAnimations /t REG_DWORD /d 1 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 1 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v AlwaysHibernateThumbnails /t REG_DWORD /d 1 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v EnableTransparency /t REG_DWORD /d 1 /f >nul 2>&1
+)
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /f >nul 2>&1
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v GlobalUserDisabled /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v EnableActivityFeed /f >nul 2>&1
@@ -1743,6 +1763,7 @@ del /f /q "%SystemRoot%\timerres.ps1" >nul 2>&1
 del /f /q "%SystemRoot%\lowlat_reapply.ps1" >nul 2>&1
 reg delete "HKLM\SOFTWARE\LowLatOptimizer" /f >nul 2>&1
 reg delete "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v DirectXUserGlobalSettings /f >nul 2>&1
+rundll32.exe user32.dll,UpdatePerUserSystemParameters 1, True
 schtasks /Delete /F /TN "Opti Disques Quotidienne" >nul 2>&1
 echo   !OK! !R7!
 echo.
@@ -2505,6 +2526,7 @@ call :CKS XboxNetApiSvc !QXBOX! 2 0x4 3 0x3 "XboxNetApiSvc ..........."
 call :CKS PrintNotify !QPRINT! 2 0x4 3 0x3 "PrintNotify ............."
 call :CKS Spooler !QPRINT! 2 0x4 3 0x2 "Spooler (printing) ......"
 call :CKS WlanSvc !QWIFI! 2 0x4 4 0x2 "WlanSvc (Wi-Fi) ........."
+call :CKS FrameServer !QCAM! 2 0x4 3 0x3 "FrameServer (camera) ......"
 call :cksvc SysMain 2 "SysMain (auto, kept) ..."
 echo.
 echo   !CO! !H13!!C0!
@@ -2599,7 +2621,6 @@ call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" St
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" Start_IrisRecommendations 0 "Start_IrisRecommendations .."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" HideRecommendedSection 1 "HideRecommendedSection .."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings" NOC_GLOBAL_SETTING_TOASTS_ENABLED 0 "NOC_GLOBAL_SETTING_TOASTS_ENABLED .."
-call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" Start_Layout 1 "Start_Layout ............"
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" HideCategoryView 1 "HideCategoryView ........"
 call :ckdw "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Start" HideRecommendedSection 1 "HideRecommendedSection Start .."
 call :ckdw "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Start" HideRecommendedPersonalizedSites 1 "HideRecommendedPersonalizedSites .."
@@ -2617,8 +2638,6 @@ echo   !CO! !H15!!C0!
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" "GPU Priority" 8 "GPU Priority ............"
 call :cksz "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" "Scheduling Category" "High" "Scheduling Category ....."
 call :cksz "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" "SFIO Priority" "High" "SFIO Priority ..........."
-call :ckdw "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E\PerfOptions" CpuPriorityClass 3 "CpuPriorityClass ........"
-call :ckdw "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E\PerfOptions" IoPriority 3 "IoPriority .............."
 call :cksz "HKU\.DEFAULT\Control Panel\Mouse" MouseSpeed "0" "MouseSpeed .............."
 call :cksz "HKU\.DEFAULT\Control Panel\Mouse" MouseThreshold1 "0" "MouseThreshold1 ........."
 call :cksz "HKU\.DEFAULT\Control Panel\Mouse" MouseThreshold2 "0" "MouseThreshold2 ........."
@@ -2654,6 +2673,8 @@ call :ckdw "!SS!" 04 1 "04 ......................"
 call :ckdw "!SS!" 08 1 "08 ......................"
 call :ckdw "!SS!" 256 1 "256 ....................."
 call :ckdw "!SS!" 2048 1 "2048 ...................."
+call :ckdw "!SS!" 32 absent "32 Downloads (v3.7 leftover) .."
+call :ckdw "!SS!" 512 absent "512 retention (v3.7 leftover) .."
 echo.
 echo   !CK! ------------------------------------------------------------!C0!
 echo   !CW! !LRS! : !CG!!OKC!!CW! / !TOT! !LGR!!C0!
