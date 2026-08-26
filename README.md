@@ -101,5 +101,3 @@ The in-game and driver settings that matter most for CS2 input latency.
 2. Put it in a dedicated folder (not your Downloads folder: a full run wipes Downloads).
 3. Right-click -> **Run as administrator**.
 4. Pick a profile, then **reboot** (full restart, not shutdown).
-
-Built and reviewed with [Claude.ai](https://claude.ai).
