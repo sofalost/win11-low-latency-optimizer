@@ -338,6 +338,16 @@
    [~] The "Ultimate Performance" power plan is no longer duplicated in Soft
        mode or on a laptop - a ghost plan stayed in the power options for
        nothing on those paths.
+   [x] Accessibility "Animation effects" is no longer silently turned off.
+       On LIGHTFX the script wrote UserPreferencesMask = 9012038010000000,
+       which clears bit 0x02 of byte 4 - the exact bit behind Settings >
+       Accessibility > Visual effects > "Animation effects". The toggle
+       flipped to off without ever being mentioned. The mask is now
+       9012038012000000 (bit kept), and MinAnimate / TaskbarAnimations are
+       written as 1 instead of 0 so the toggle and the actual behaviour
+       agree. The [8] check for MinAnimate was updated to match.
+       Verified by letting Windows itself flip the toggle through
+       SPI_SETCLIENTAREAANIMATION and diffing the resulting mask bytes.
    [~] Script renamed: win11-low-latency-optimizer_v3.9.bat
     i  Not changed: the [8] "OK / total" score still counts [info] lines
        (per-user-choice checks) in the total - they are not failures. The

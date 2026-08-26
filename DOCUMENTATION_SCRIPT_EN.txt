@@ -288,16 +288,22 @@ Each section shows  [ OK ] [NN] <description>  when it has run.
 
     - if LIGHTFX = 1 (integrated graphics only, OR 16 GB of RAM or less)
       -> VisualFXSetting = 3 (custom) and the effects are turned off one by
-         one, EXCEPT two that are deliberately kept:
+         one, EXCEPT three that are deliberately kept:
            * FontSmoothing = "2" + FontSmoothingType = 2
              -> "Smooth edges of screen fonts" (ClearType). Costs nothing and
                 text is genuinely painful to read without it.
            * ListviewAlphaSelect = 1
              -> "Show translucent selection rectangle". Costs nothing and the
                 rubber-band selection in Explorer is unreadable without it.
-         Turned off: UserPreferencesMask (menu / tooltip / combo animations,
-         smooth scrolling), DragFullWindows, MinAnimate (window minimise and
-         maximise animations), ListviewShadow, TaskbarAnimations,
+           * Animation effects (since v3.9)
+             -> Settings > Accessibility > Visual effects > "Animation
+                effects" stays ON. This is bit 0x02 of byte 4 of
+                UserPreferencesMask; up to v3.8 the script cleared it, so that
+                accessibility toggle silently flipped to off. MinAnimate and
+                TaskbarAnimations are kept at 1 for the same reason - leaving
+                them at 0 while the toggle reads "on" would be a lie.
+         Turned off: the rest of UserPreferencesMask (menu / tooltip / combo
+         animations, smooth scrolling), DragFullWindows, ListviewShadow,
          EnableAeroPeek, AlwaysHibernateThumbnails, and EnableTransparency
          (Windows transparency costs real GPU time on an iGPU).
 

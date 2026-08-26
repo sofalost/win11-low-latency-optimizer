@@ -293,7 +293,7 @@ Chaque section affiche  [ OK ] [NN] <description>  quand elle est passee.
 
     - si LIGHTFX = 1 (GPU integre seul, OU 16 Go de RAM ou moins)
       -> VisualFXSetting = 3 (personnalise) et les effets sont coupes un par
-         un, SAUF deux qui sont gardes volontairement :
+         un, SAUF trois qui sont gardes volontairement :
            * FontSmoothing = "2" + FontSmoothingType = 2
              -> "Lisser les polices ecran" (ClearType). Ca ne coute rien et le
                 texte est vraiment penible a lire sans.
@@ -301,10 +301,17 @@ Chaque section affiche  [ OK ] [NN] <description>  quand elle est passee.
              -> "Afficher un rectangle de selection translucide". Ca ne coute
                 rien et la selection a la souris dans l'Explorateur devient
                 illisible sans.
-         Coupes : UserPreferencesMask (animations de menus, d'infobulles, de
-         listes deroulantes, defilement lisse), DragFullWindows, MinAnimate
-         (animations de reduction et d'agrandissement des fenetres),
-         ListviewShadow, TaskbarAnimations, EnableAeroPeek,
+           * Effets d'animation (depuis la v3.9)
+             -> Parametres > Accessibilite > Effets visuels > "Effets
+                d'animation" reste ACTIVE. C'est le bit 0x02 de l'octet 4 de
+                UserPreferencesMask ; jusqu'en v3.8 le script l'effacait, donc
+                ce reglage d'accessibilite basculait sur desactive sans
+                prevenir. MinAnimate et TaskbarAnimations sont gardes a 1 pour
+                la meme raison : les laisser a 0 pendant que l'interrupteur
+                affiche "active" serait un mensonge.
+         Coupes : le reste de UserPreferencesMask (animations de menus,
+         d'infobulles, de listes deroulantes, defilement lisse),
+         DragFullWindows, ListviewShadow, EnableAeroPeek,
          AlwaysHibernateThumbnails, et EnableTransparency (la transparence
          Windows coute du vrai temps GPU sur un iGPU).
 

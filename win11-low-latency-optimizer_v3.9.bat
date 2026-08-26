@@ -1165,18 +1165,21 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v DisableFileSyncNG
 echo   !OK! !CC![22]!C0! !M36!
 rem ============ [23] APPARENCE : transparence + accent gris + fond noir ============
 rem LIGHTFX=1 : petit GPU integre ou RAM 16 Go et moins.
-rem Effets visuels personnalises : tout coupe SAUF le lissage des polices
-rem et le rectangle de selection translucide. Theme sombre conserve.
+rem Effets visuels personnalises : coupe l ombre des listes, Aero Peek, le cache
+rem de miniatures et la transparence. GARDE le lissage des polices, le rectangle
+rem de selection translucide et les effets d animation (Parametres > Accessibilite
+rem > Effets visuels : bit 0x02 du byte 4 de UserPreferencesMask, plus MinAnimate
+rem et TaskbarAnimations). Theme sombre conserve.
 if "!LIGHTFX!"=="1" (
     reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 3 /f >nul 2>&1
-    reg add "HKCU\Control Panel\Desktop" /v UserPreferencesMask /t REG_BINARY /d 9012038010000000 /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop" /v UserPreferencesMask /t REG_BINARY /d 9012038012000000 /f >nul 2>&1
     reg add "HKCU\Control Panel\Desktop" /v DragFullWindows /t REG_SZ /d "0" /f >nul 2>&1
-    reg add "HKCU\Control Panel\Desktop\WindowMetrics" /v MinAnimate /t REG_SZ /d "0" /f >nul 2>&1
+    reg add "HKCU\Control Panel\Desktop\WindowMetrics" /v MinAnimate /t REG_SZ /d "1" /f >nul 2>&1
     reg add "HKCU\Control Panel\Desktop" /v FontSmoothing /t REG_SZ /d "2" /f >nul 2>&1
     reg add "HKCU\Control Panel\Desktop" /v FontSmoothingType /t REG_DWORD /d 2 /f >nul 2>&1
     reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewAlphaSelect /t REG_DWORD /d 1 /f >nul 2>&1
     reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewShadow /t REG_DWORD /d 0 /f >nul 2>&1
-    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAnimations /t REG_DWORD /d 0 /f >nul 2>&1
+    reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAnimations /t REG_DWORD /d 1 /f >nul 2>&1
     reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 0 /f >nul 2>&1
     reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v AlwaysHibernateThumbnails /t REG_DWORD /d 0 /f >nul 2>&1
     reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v EnableTransparency /t REG_DWORD /d 0 /f >nul 2>&1
@@ -2592,7 +2595,7 @@ call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffect
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" EnableTransparency !ETR! "EnableTransparency ......"
 if "!LIGHTFX!"=="1" call :cksz "HKCU\Control Panel\Desktop" FontSmoothing "2" "FontSmoothing (kept) ...."
 if "!LIGHTFX!"=="1" call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ListviewAlphaSelect 1 "ListviewAlphaSelect (kept) .."
-if "!LIGHTFX!"=="1" call :cksz "HKCU\Control Panel\Desktop\WindowMetrics" MinAnimate "0" "MinAnimate off .........."
+if "!LIGHTFX!"=="1" call :cksz "HKCU\Control Panel\Desktop\WindowMetrics" MinAnimate "1" "MinAnimate (kept) ......."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" AccentColorMenu 0xff484848 "AccentColorMenu ........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" StartColorMenu 0xff484848 "StartColorMenu .........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\DWM" AccentColor 0xff484848 "AccentColor ............."
