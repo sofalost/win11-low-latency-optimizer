@@ -348,6 +348,25 @@
        agree. The [8] check for MinAnimate was updated to match.
        Verified by letting Windows itself flip the toggle through
        SPI_SETCLIENTAREAANIMATION and diffing the resulting mask bytes.
+   [x] Phantom device cleanup removed nothing. The filter was
+       `Status -eq 'Unknown' -and Class -ne 'AudioEndpoint' -and Class -ne
+       'MEDIA'` - but phantom devices are almost always exactly the audio and
+       media endpoints left behind by unplugged USB DACs, headsets and
+       webcams, so the two exclusions cancelled the whole feature out. The
+       filter is now `Problem -eq 'CM_PROB_PHANTOM' -and Present -ne $true`,
+       which is the real definition of a phantom device: registered in the
+       PnP tree, not physically present. Applied at all three sites (apply
+       [33], menu [3] counter, re-apply task payload).
+    !  Safety: a disabled-but-connected device reports CM_PROB_DISABLED with
+       Present = true, so it can never match the new filter. Verified on a
+       live machine: 4 disabled devices, 0 of them matched.
+   [x] Storage Sense never ran. The script configured StoragePolicy correctly
+       but nothing ever triggered the assistant: the native Windows task
+       (\Microsoft\Windows\DiskFootprint\StorageSense) has no trigger and is
+       driven by automatic maintenance, which may not fire for days. The
+       script now runs it once at the end of [41], and the re-apply task runs
+       it at every logon - gated on StoragePolicy 01 = 1, so it stays a no-op
+       if the user disabled Storage Sense afterwards.
    [~] Script renamed: win11-low-latency-optimizer_v3.9.bat
     i  Not changed: the [8] "OK / total" score still counts [info] lines
        (per-user-choice checks) in the total - they are not failures. The

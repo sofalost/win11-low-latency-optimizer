@@ -395,7 +395,13 @@ C-states increases heat/power for a marginal latency gain: it is the classic
         the CPU-adapted parking / C-states (from the stored detection). The power
         plan can fall back to Balanced after sleep or an update: so it is
         guaranteed at each boot (X3D logic respected).
-      * REMOVES ghost devices (Status 'Unknown') via pnputil.
+      * REMOVES ghost devices via pnputil: those flagged CM_PROB_PHANTOM and
+        not present (Present = false). A merely disabled device stays
+        Present = true, so it is never touched.
+      * RUNS Storage Sense (DiskFootprint\StorageSense task) if Storage Sense
+        is enabled (StoragePolicy 01 = 1). The native Windows task has no
+        trigger: without this it waits for automatic maintenance and may
+        never run.
       * empties the Temp folders (user + Windows) and runs ipconfig /flushdns.
     - The hardware decisions (X3D, bi-CCD, RAM->KB) are stored at apply time in
       HKLM\SOFTWARE\LowLatOptimizer for re-reading without re-detection.

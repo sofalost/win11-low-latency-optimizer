@@ -406,8 +406,15 @@ compromis "low latency classique", assume.
         parking / C-states adaptes au CPU (depuis la detection stockee). Le plan
         d'alim peut retomber sur Equilibre apres une veille ou une MAJ : on le
         garantit donc a chaque boot (logique X3D respectee).
-      * SUPPRIME les peripheriques fantomes (Status 'Unknown') via pnputil.
+      * SUPPRIME les peripheriques fantomes via pnputil : ceux marques
+        CM_PROB_PHANTOM et absents (Present = false). Un peripherique
+        simplement desactive reste Present = true, il n'est donc jamais
+        touche.
       * vide les dossiers Temp (utilisateur + Windows) et fait ipconfig /flushdns.
+      * LANCE l'assistant de stockage (tache DiskFootprint\StorageSense) si
+        Storage Sense est actif (StoragePolicy 01 = 1). La tache Windows
+        native n'a aucun declencheur : sans ca elle attend la maintenance
+        automatique et peut ne jamais tourner.
     - Les decisions materielles (X3D, bi-CCD, RAM->Ko) sont stockees a l'apply
       dans HKLM\SOFTWARE\LowLatOptimizer pour relecture sans re-detection.
 
