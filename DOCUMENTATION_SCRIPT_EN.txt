@@ -252,7 +252,7 @@ Detail:
    [40] Drivers
 
   MAINTENANCE
-   [41] Disk optimization     [42] Storage Sense (Downloads untouched)   [43] Cleanup (see section 10)
+   [41] Disk optimization     [42] Storage Sense (Downloads untouched)   [43] Cleanup, 6 items (see section 10)
    [44] Windows Update (Microsoft Update, INCLUDING optional updates) + winget
    [45] 0.5 ms timer (resolution + task at startup)
    [46] Re-application at startup (see section 9)
@@ -443,9 +443,11 @@ Robust Windows.old deletion:
   is safe: this is only the old installation.
 
 Downloads and Storage Sense - two different things:
-  A FULL run also offers to wipe the Downloads folder as part of this one-shot
-  cleanup (and it SKIPS that step when the script is launched from inside
-  Downloads). That is unchanged.
+  Since v3.9 the one-shot cleanup NEVER touches the Downloads folder. Earlier
+  versions wiped it (unless the script was launched from inside it); that step
+  is gone entirely - Downloads is user content, the script does not decide for
+  you. The cleanup now covers six categories only: Temp, Discord cache, Steam
+  cache, WinSxS, Windows.old, Recycle Bin.
   What DID change in v3.8 is the Storage Sense SCHEDULE of section [42]: it no
   longer configures Windows to delete Downloads automatically. Values 32
   (delete Downloads content) and 512 (Downloads retention age) are no longer

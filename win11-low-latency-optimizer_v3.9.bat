@@ -1403,8 +1403,6 @@ set "CL3=Steam cache"
 set "CL4=Windows components (WinSxS)"
 set "CL5=Old install (Windows.old)"
 set "CL6=Recycle bin"
-set "CL7=Downloads folder (full wipe)"
-set "CL7B=Downloads kept (script runs from here; move it out to wipe)"
 set "CLW=may take a few minutes"
 set "CLS=Cleanup summary:"
 set "CLT=Total freed:"
@@ -1414,8 +1412,6 @@ if /i "!L!"=="FR" set "CL3=Cache Steam"
 if /i "!L!"=="FR" set "CL4=Composants Windows (WinSxS)"
 if /i "!L!"=="FR" set "CL5=Ancienne installation (Windows.old)"
 if /i "!L!"=="FR" set "CL6=Corbeille"
-if /i "!L!"=="FR" set "CL7=Dossier Telechargements (vidage total)"
-if /i "!L!"=="FR" set "CL7B=Telechargements gardé (script lancé depuis ce dossier)"
 if /i "!L!"=="FR" set "CLW=peut prendre quelques minutes"
 if /i "!L!"=="FR" set "CLS=Resume du nettoyage :"
 if /i "!L!"=="FR" set "CLT=Total libere :"
@@ -1426,17 +1422,7 @@ echo   !CK!  -^> !C0!!CL1!...
 del /q /f /s "%TEMP%\*" >nul 2>&1
 del /q /f /s "%SystemRoot%\Temp\*" >nul 2>&1
 call :cln43 CLNT1
-echo "%~f0"| findstr /i /c:"\Downloads\" >nul
-if not errorlevel 1 goto _dlskip
-echo   !CK!  -^> !C0!!CL7!...
-del /q /f "%USERPROFILE%\Downloads\*" >nul 2>&1
-for /d %%D in ("%USERPROFILE%\Downloads\*") do rd /s /q "%%D" >nul 2>&1
-call :cln43 CLNT7
-goto _dldone
-:_dlskip
-echo   !CK!  -^> !C0!!CL7B!
-set "CLNT7=0"
-:_dldone
+rem -- Le dossier Telechargements n est JAMAIS touche : contenu utilisateur. --
 echo   !CK!  -^> !C0!!CL2!...
 del /q /f /s "%LOCALAPPDATA%\Discord\Cache\*" >nul 2>&1
 del /q /f /s "%LOCALAPPDATA%\Discord\Code Cache\*" >nul 2>&1
@@ -1472,7 +1458,6 @@ if !CLNTOT! LSS 0 set "CLNTOT=0"
 echo   !OK! !CC![42]!C0! !M62!
 echo.
 echo   !CW!  !CLS!!C0!
-call :sh43 "!CL7!" !CLNT7!
 call :sh43 "!CL1!" !CLNT1!
 call :sh43 "!CL2!" !CLNT2!
 call :sh43 "!CL3!" !CLNT3!

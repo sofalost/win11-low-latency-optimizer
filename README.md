@@ -60,7 +60,7 @@ Everything is reversible from the menu: **[7]** re-enables Defender real-time, *
 
 ## What it deliberately does NOT touch
 
-Storage Sense is enabled and set to clean app temp files and empty the Recycle Bin daily, but it is **never pointed at your Downloads folder** — whatever you had configured there stays untouched. (The optional one-shot cleanup in a *full* run is separate and still offers to wipe Downloads; see "How to use" below.)
+Storage Sense is enabled and set to clean app temp files and empty the Recycle Bin daily, but it is **never pointed at your Downloads folder** — whatever you had configured there stays untouched. The one-shot cleanup in a *full* run does not touch it either — since v3.9 it cleans six categories (Temp, Discord cache, Steam cache, WinSxS, Windows.old, Recycle Bin) and leaves Downloads alone.
 
 Secure Boot and TPM are firmware settings the script never changes. Core Isolation / Memory Integrity / VBS / HVCI and Fast Startup stay **on** in the Soft and Lowest profiles — the kernel-level anticheats rely on them. Only answering **No** to the anticheat question turns VBS / HVCI / the hypervisor off, and a full restore puts them back.
 
@@ -98,6 +98,6 @@ The in-game and driver settings that matter most for CS2 input latency.
 ## How to use
 
 1. Save the `.bat` as **ANSI / Windows-1252** (not UTF-8) — accented characters depend on it.
-2. Put it in a dedicated folder (not your Downloads folder: a full run wipes Downloads).
+2. Put it in a dedicated folder.
 3. Right-click -> **Run as administrator**.
 4. Pick a profile, then **reboot** (full restart, not shutdown).

@@ -355,8 +355,11 @@
        webcams, so the two exclusions cancelled the whole feature out. The
        filter is now `Problem -eq 'CM_PROB_PHANTOM' -and Present -ne $true`,
        which is the real definition of a phantom device: registered in the
-       PnP tree, not physically present. Applied at all three sites (apply
-       [33], menu [3] counter, re-apply task payload).
+       PnP tree, not physically present. No class is excluded any more:
+       audio endpoints and media devices are removed like the rest - they are
+       precisely the ones that pile up (unplugged DACs, headsets, webcams).
+       Applied at all three sites (apply [33], menu [3] counter, re-apply
+       task payload).
     !  Safety: a disabled-but-connected device reports CM_PROB_DISABLED with
        Present = true, so it can never match the new filter. Verified on a
        live machine: 4 disabled devices, 0 of them matched.
@@ -367,6 +370,14 @@
        script now runs it once at the end of [41], and the re-apply task runs
        it at every logon - gated on StoragePolicy 01 = 1, so it stays a no-op
        if the user disabled Storage Sense afterwards.
+   [-] The one-shot cleanup no longer wipes the Downloads folder. It used to
+       delete everything in %USERPROFILE%\Downloads (files and subfolders) on
+       every full run, skipping only when the script itself sat inside that
+       folder. Downloads is user content: the script has no business deciding
+       it is garbage, and a single mis-click cost real data. The step, its two
+       labels, its skip branch and its summary line are gone. The cleanup now
+       covers six categories: Temp, Discord cache, Steam cache, WinSxS,
+       Windows.old, Recycle Bin.
    [~] Script renamed: win11-low-latency-optimizer_v3.9.bat
     i  Not changed: the [8] "OK / total" score still counts [info] lines
        (per-user-choice checks) in the total - they are not failures. The

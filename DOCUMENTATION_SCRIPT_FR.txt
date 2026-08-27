@@ -257,7 +257,7 @@ la maintenance. Detail :
    [40] Pilotes
 
   MAINTENANCE
-   [41] Optimisation disque   [42] Storage Sense (Telechargements non touches)   [43] Nettoyage (voir section 10)
+   [41] Optimisation disque   [42] Storage Sense (Telechargements non touches)   [43] Nettoyage, 6 postes (section 10)
    [44] Windows Update (Microsoft Update, Y COMPRIS les MAJ facultatives) + winget
    [45] Timer 0.5 ms (resolution + tache au demarrage)
    [46] Re-application au demarrage (voir section 9)
@@ -455,9 +455,12 @@ Suppression robuste de Windows.old :
   supprime. C'est sans danger : il ne s'agit que de l'ancienne installation.
 
 Telechargements et Storage Sense - deux choses differentes :
-  Un passage COMPLET propose aussi de vider le dossier Telechargements dans ce
-  nettoyage ponctuel (et il SAUTE cette etape si le script est lance depuis
-  Telechargements). Ca, c'est inchange.
+  Depuis la v3.9, le nettoyage ponctuel ne touche JAMAIS au dossier
+  Telechargements. Les versions precedentes le vidaient (sauf si le script
+  etait lance depuis ce dossier) : cette etape a ete supprimee. Les
+  Telechargements sont du contenu utilisateur, le script ne decide pas a ta
+  place. Le nettoyage couvre desormais six postes seulement : Temp, cache
+  Discord, cache Steam, WinSxS, Windows.old, corbeille.
   Ce qui change en v3.8, c'est la PLANIFICATION Storage Sense de la section
   [42] : elle ne configure plus Windows pour supprimer automatiquement les
   Telechargements. Les valeurs 32 (supprimer le contenu de Telechargements) et
