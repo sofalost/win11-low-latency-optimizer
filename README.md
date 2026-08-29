@@ -24,7 +24,7 @@ Everything lives behind one start menu:
 - **[5]** Restore all Windows defaults
 - **[6]** Restore Spectre/Meltdown mitigations
 - **[7]** Restore Defender real-time protection
-- **[9]** Peripherals: disable or restore Wi-Fi / Ethernet, printer, Xbox, Bluetooth, camera individually
+- **[8]** Peripherals: disable or restore Wi-Fi / Ethernet, printer, Xbox, Bluetooth, camera individually
 
 **Tools**
 - **[8]** Verification / debug

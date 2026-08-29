@@ -65,7 +65,7 @@ Internal code organization:
         [3] 0.5 ms timer + NVIDIA tweak + phantom-device cleanup
         [4] QWERTY layout       (FR systems only)
         [5] Restore Windows defaults   [6] Restore Spectre/Meltdown
-        [7] Restore Defender    [8] Verification / debug   [9] Peripherals   [0] Quit
+        [7] Restore Defender    [8] Peripherals   [9] Verification / debug   [0] Quit
      When you pick [1] or [2], the script first asks whether you need your kernel
      anticheat (Vanguard / FACEIT), then the MODE "soft" or "lowest", then applies.
      The profile questions accept [0] to go back to the menu (contextual "Back",

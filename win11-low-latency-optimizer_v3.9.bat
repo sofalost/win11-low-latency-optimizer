@@ -46,7 +46,7 @@ set "CO3=!ESC![38;5;202m"
 set "CBG1=!ESC![38;5;117m"
 set "CBG2=!ESC![38;5;75m"
 set "CBG3=!ESC![38;5;63m"
-set "CBG4=!ESC![38;5;57m"
+set "CBG4=!ESC![38;5;62m"
 set "CGE=!ESC![38;5;48m"
 set "CJ=!ESC![38;5;226m"
 set "OK=!CG![!CW!OK!CG!]!C0!"
@@ -236,7 +236,6 @@ set "BAN_F=Disks and maintenance"
 set "BAN_G=Updates"
 set "BAN_H=Real-time latency"
 set "BACK=Back"
-set "AO9=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
 set "PHEAD=PERIPHERALS - disable or restore"
 set "PH1=Camera"
 set "PH2=Network adapters (Wi-Fi / Ethernet)"
@@ -414,7 +413,6 @@ if /i "!L!"=="FR" set "BAN_F=Disques et maintenance"
 if /i "!L!"=="FR" set "BAN_G=Mises à jour"
 if /i "!L!"=="FR" set "BAN_H=Latence temps réel"
 if /i "!L!"=="FR" set "BACK=Retour"
-if /i "!L!"=="FR" set "AO9=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
 if /i "!L!"=="FR" set "PHEAD=PÉRIPHÉRIQUES - désactiver ou restaurer"
 if /i "!L!"=="FR" set "PH1=Caméra"
 if /i "!L!"=="FR" set "PH2=Cartes réseau (Wi-Fi / Ethernet)"
@@ -426,26 +424,26 @@ if /i "!L!"=="FR" set "PDONE=Terminé."
 rem ============ MENU AIO ============
 set "AHEAD=Choose an action:"
 set "AO1=Apply optimizations   (full: tweaks + cleanup + updates)"
-set "AO2=Apply optimizations   (fast: tweaks only)"
+set "AO2=Apply optimizations   (fast: no questions, tweaks only)"
 set "AO3=0.5 ms timer + NVIDIA tweak (old sharpening method)"
 set "AO4=QWERTY keyboard layout"
 set "AO5=Restore all Windows defaults"
 set "AO6=Restore Spectre/Meltdown mitigations"
 set "AO7=Restore Defender real-time protection"
-set "AO8=Verification / debug tool"
-set "AO9=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
+set "AO8=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
+set "AO9=Verification / debug tool"
 set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
-if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : tweaks seuls)"
+if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : sans questions)"
 if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne méthode de sharpening)"
 if /i "!L!"=="FR" set "AO4=Disposition clavier QWERTY"
 
 if /i "!L!"=="FR" set "AO5=Restaurer les valeurs Windows"
 if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
 if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
-if /i "!L!"=="FR" set "AO8=Outil de vérification / debug"
-if /i "!L!"=="FR" set "AO9=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
+if /i "!L!"=="FR" set "AO8=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
+if /i "!L!"=="FR" set "AO9=Outil de vérification / debug"
 if /i "!L!"=="FR" set "AO0=Quitter"
 set "MOPT=OPTIMIZER"
 set "MCAT1=optimize"
@@ -462,25 +460,25 @@ if /i "!L!"=="FR" set "SIG_MW=Fait avec "
 rem -- Override defensive : force les strings du menu (ecrase tout heritage cmd/environnement) --
 set "AHEAD=Choose an action:"
 set "AO1=Apply optimizations   (full: tweaks + cleanup + updates)"
-set "AO2=Apply optimizations   (fast: tweaks only)"
+set "AO2=Apply optimizations   (fast: no questions, tweaks only)"
 set "AO3=0.5 ms timer + NVIDIA tweak (old sharpening method)"
 set "AO4=QWERTY keyboard layout"
 set "AO5=Restore all Windows defaults"
 set "AO6=Restore Spectre/Meltdown mitigations"
 set "AO7=Restore Defender real-time protection"
-set "AO8=Verification / debug tool"
-set "AO9=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
+set "AO8=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
+set "AO9=Verification / debug tool"
 set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
-if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : tweaks seuls)"
+if /i "!L!"=="FR" set "AO2=Appliquer les optimisations   (rapide : sans questions)"
 if /i "!L!"=="FR" set "AO3=Timer 0.5 ms + tweak NVIDIA (ancienne méthode de sharpening)"
 if /i "!L!"=="FR" set "AO4=Disposition clavier QWERTY"
 if /i "!L!"=="FR" set "AO5=Restaurer les valeurs Windows"
 if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
 if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
-if /i "!L!"=="FR" set "AO8=Outil de vérification / debug"
-if /i "!L!"=="FR" set "AO9=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
+if /i "!L!"=="FR" set "AO8=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
+if /i "!L!"=="FR" set "AO9=Outil de vérification / debug"
 if /i "!L!"=="FR" set "AO0=Quitter"
 cls
 echo.
@@ -507,9 +505,9 @@ echo   !CK!   !MCAT3!!C0!
 echo       !CBG1![5]!C0!   !AO5!
 echo       !CBG2![6]!C0!   !AO6!
 echo       !CBG3![7]!C0!   !AO7!
-echo       !CBG4![9]!C0!   !AO9!
+echo       !CBG4![8]!C0!   !AO8!
 echo.
-echo       !CJ![8]!C0!   !AO8!
+echo       !CJ![9]!C0!   !AO9!
 echo       !CK![0]!C0!   !AO0!
 echo.
 choice /C 1234567890 /N /M "   !PROMPT!"
@@ -523,8 +521,8 @@ if "!CH!"=="4" if /i "!L!"=="FR" goto QWMENU
 if "!CH!"=="5" goto RESTORE
 if "!CH!"=="6" goto SPECREVERT
 if "!CH!"=="7" goto RTREVERT
-if "!CH!"=="8" goto DEBUGRUN
-if "!CH!"=="9" goto PERIPH
+if "!CH!"=="8" goto PERIPH
+if "!CH!"=="9" goto DEBUGRUN
 if "!CH!"=="10" goto AIOEND
 goto MENU
 :_aiofast

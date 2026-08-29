@@ -66,7 +66,7 @@ Organisation interne du code :
         [3] Timer 0.5 ms + tweak NVIDIA + nettoyage peripheriques fantomes
         [4] Disposition QWERTY   (FR uniquement)
         [5] Restaurer les valeurs Windows   [6] Restaurer Spectre/Meltdown
-        [7] Restaurer Defender   [8] Verification / debug   [9] Peripheriques   [0] Quitter
+        [7] Restaurer Defender   [8] Peripheriques   [9] Verification / debug   [0] Quitter
      Quand on choisit [1] ou [2], le script demande d'abord si tu as besoin de
      ton anticheat noyau (Vanguard / FACEIT), puis le MODE "soft" ou "lowest",
      puis applique. Les questions de profil acceptent [0] pour revenir au menu

@@ -400,14 +400,16 @@
        the same PowerShell command that then rewrote the file, so the write
        started before the exclusion was registered. The exclusion is now a
        separate command that runs first, followed by a short pause.
-   [+] Menu entry [9]: peripherals - disable or restore. The camera, network
+   [+] Menu entry [8]: peripherals - disable or restore. The camera, network
        adapter, Bluetooth, printer and Xbox questions could only be answered
        during a full run; changing your mind afterwards meant replaying the
        entire optimizer. [9] replays any single one of them. The five apply
        blocks [17]-[21] were factored into :pcam / :pnet / :pbt / :pprn /
        :pxbx subroutines called by both paths, so the menu and the full run
        can never drift apart. Each choice is persisted to
-       HKLM\SOFTWARE\LowLatOptimizer like the full run does.
+       HKLM\SOFTWARE\LowLatOptimizer like the full run does. It sits inside the
+       "system" group with the other restore actions, in the blue gradient
+       (117 / 75 / 63 / 62); the verification tool moved to [9], on its own.
    [-] The end-of-run restart prompt lost its [0] Back option: answering it
        returned to the main menu, which is what [2] No already did.
    [~] Fast mode [2] is now a true one-shot: it asks nothing at all. It used
