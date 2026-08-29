@@ -62,7 +62,7 @@ Organisation interne du code :
   3) Detection de la langue du systeme -> choisit les libelles EN ou FR.
   4) Banniere d'accueil (titre + sous-titre + signature).
   5) MENU PRINCIPAL (labels AO0-AO9) : un menu unique propose
-        [1] Appliquer (complet)   [2] Appliquer (rapide)
+        [1] Appliquer (complet)   [2] Appliquer (rapide, sans questions)
         [3] Timer 0.5 ms + tweak NVIDIA + nettoyage peripheriques fantomes
         [4] Disposition QWERTY   (FR uniquement)
         [5] Restaurer les valeurs Windows   [6] Restaurer Spectre/Meltdown

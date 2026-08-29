@@ -410,6 +410,18 @@
        HKLM\SOFTWARE\LowLatOptimizer like the full run does.
    [-] The end-of-run restart prompt lost its [0] Back option: answering it
        returned to the main menu, which is what [2] No already did.
+   [~] Fast mode [2] is now a true one-shot: it asks nothing at all. It used
+       to walk through the same seven questions as a full run (kernel
+       security, mode, camera, network, Bluetooth, printer, Xbox) and only
+       skipped the cleanup at the end, which made "fast" mostly a misnomer.
+       It now reads the answers persisted by the last full run from
+       HKLM\SOFTWARE\LowLatOptimizer (Mode, NoVBS, QCam, QWifi, QBt, QPrint,
+       QXbox) and applies them directly. The only prompt left is the
+       end-of-run "reboot?" question.
+    !  Never-run-before safety: any answer missing from the registry falls
+       back to 1 = leave unchanged, never 2 = disable. A fast run on a fresh
+       machine therefore touches no peripheral the user did not explicitly
+       ask to disable, and defaults to SOFT mode rather than LOWEST.
    [~] Script renamed: win11-low-latency-optimizer_v3.9.bat
     i  Not changed: the [8] "OK / total" score still counts [info] lines
        (per-user-choice checks) in the total - they are not failures. The

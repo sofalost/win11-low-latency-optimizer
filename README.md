@@ -14,7 +14,7 @@ Everything lives behind one start menu:
 
 **Optimize**
 - **[1]** Apply optimizations — full (tweaks + cleanup + updates)
-- **[2]** Apply optimizations — fast (tweaks only)
+- **[2]** Apply optimizations — fast (tweaks only, **no questions**: reuses the answers from your last full run, then asks only whether to reboot)
 
 **Standalone tweaks**
 - **[3]** 0.5 ms timer + NVIDIA tweak (restores the old sharpening method) + phantom-device cleanup

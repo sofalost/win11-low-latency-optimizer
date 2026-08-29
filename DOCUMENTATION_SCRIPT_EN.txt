@@ -61,7 +61,7 @@ Internal code organization:
   3) Detection of the system language -> picks the EN or FR labels.
   4) Welcome banner (title + subtitle + signature).
   5) MAIN MENU (labels AO0-AO9): a single menu offers
-        [1] Apply (full)        [2] Apply (fast)
+        [1] Apply (full)        [2] Apply (fast, no questions)
         [3] 0.5 ms timer + NVIDIA tweak + phantom-device cleanup
         [4] QWERTY layout       (FR systems only)
         [5] Restore Windows defaults   [6] Restore Spectre/Meltdown

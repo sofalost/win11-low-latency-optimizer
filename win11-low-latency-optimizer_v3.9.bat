@@ -576,6 +576,31 @@ if "!ISLAPTOP!"=="1" echo   !CO!  [ // ]  !LAPDET!!C0!
 echo.
 
 rem ============ QUESTIONS ============
+rem -- Mode rapide [2] : aucune question. On relit les reponses du dernier
+rem    passage complet dans HKLM\SOFTWARE\LowLatOptimizer ; a defaut on prend
+rem    le choix neutre 1 = ne rien changer, jamais 2 = desactiver. Un mode
+rem    rapide ne doit couper aucun peripherique que l utilisateur n a pas
+rem    explicitement demande de couper. --
+if not "!FASTMODE!"=="1" goto QQ_VBS
+set "NOVBS=0"
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v NoVBS 2^>nul ^| findstr /i /c:"REG_"') do set "NOVBS=%%a"
+if not "!NOVBS!"=="1" set "NOVBS=0"
+set "MM=1"
+for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v Mode 2^>nul ^| findstr /i /c:"REG_SZ"') do set "FMODE=%%b"
+if /i "!FMODE!"=="lowest" set "MM=2"
+for %%Q in ("QCam CAM" "QWifi WIFI" "QBt BT" "QPrint PRINT" "QXbox XBOX") do (
+    for /f "tokens=1,2" %%x in ("%%~Q") do (
+        set "%%y=1"
+        for /f "tokens=3" %%v in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v %%x 2^>nul ^| findstr /i /c:"REG_"') do set /a %%y=%%v 2>nul
+        if not defined %%y set "%%y=1"
+    )
+)
+if not defined CAM set "CAM=1"
+if not defined WIFI set "WIFI=1"
+if not defined BT set "BT=1"
+if not defined PRINT set "PRINT=1"
+if not defined XBOX set "XBOX=1"
+goto _qmode_apply
 :QQ_VBS
 echo.
 echo   !CC!=============================================================!C0!
@@ -640,6 +665,7 @@ echo      !CW!  [*] !MODE_ACTIVE! :!C0!  !CTHEME!!MODENAME!!C0!
 echo.
 echo  !CY!!Q_INTRO!!C0!
 echo.
+if "!FASTMODE!"=="1" goto _qq_done
 :QQ_CAM
 echo   !CY![ ? ]!C0!  !CW!!QH_CAM!!C0!
 echo.
@@ -723,6 +749,7 @@ if "!XBOX!"=="3" echo !CG!!QH_XBOX! : !CFM_RST!!C0!
 echo.
 
 
+:_qq_done
 set "CAMALLOW=1"
 if "!CAM!"=="2" set "CAMALLOW=0"
 
