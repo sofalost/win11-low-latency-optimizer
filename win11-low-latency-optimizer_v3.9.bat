@@ -46,6 +46,7 @@ set "CO3=!ESC![38;5;202m"
 set "CBG1=!ESC![38;5;117m"
 set "CBG2=!ESC![38;5;75m"
 set "CBG3=!ESC![38;5;63m"
+set "CBG4=!ESC![38;5;57m"
 set "CGE=!ESC![38;5;48m"
 set "CJ=!ESC![38;5;226m"
 set "OK=!CG![!CW!OK!CG!]!C0!"
@@ -86,8 +87,7 @@ set "M13=Windows indexing !CG!on!C0! (file search)"
 set "M14=Exclusive fullscreen !CG!forced!C0!, high-performance GPU on all !CC!7!C0! games"
 set "M15=!CW!GameDVR!C0! !CR!off!C0!, !CW!Game Mode!C0! !CG!on!C0!, windowed-game optimizations !CG!on!C0!"
 set "M16=!CW!Defender!C0!: games !CG!excluded!C0!, scheduled scan !CR!off!C0!, scans throttled"
-set "M16RT=!CW!Real-time + behavior + IOAV + cloud + samples!C0! !CR!OFF!C0! (Tamper Protection was off)"
-set "M16NT=!CW!Real-time protection ON!C0! (off only in LOWEST + Tamper Protection off)"
+set "M16NT=!CW!Real-time protection left ON!C0! (never disabled: it triggers a Defender alert)"
 set "M17=Debloat !CG!done!C0! (!CW!Store, Security, Snipping, Calculator, Paint, Spotify!C0! kept)"
 set "M19=New !CW!Outlook!C0! !CR!removed!C0!"
 set "M20=!CW!Privacy!C0!: app access !CR!off!C0! except !CG!microphone!C0!; background apps !CR!off!C0!"
@@ -236,6 +236,14 @@ set "BAN_F=Disks and maintenance"
 set "BAN_G=Updates"
 set "BAN_H=Real-time latency"
 set "BACK=Back"
+set "AO9=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
+set "PHEAD=PERIPHERALS - disable or restore"
+set "PH1=Camera"
+set "PH2=Network adapters (Wi-Fi / Ethernet)"
+set "PH3=Bluetooth"
+set "PH4=Printer"
+set "PH5=Xbox"
+set "PDONE=Done."
 goto _strdone
 :_strfr
 if /i "!L!"=="FR" set "M0=!CW!CPU/RAM!C0! : svchost regroupé, quantum premier plan, SysMain on"
@@ -257,8 +265,7 @@ if /i "!L!"=="FR" set "M13=Indexation Windows !CG!activée!C0! (recherche de fich
 if /i "!L!"=="FR" set "M14=Plein écran exclusif !CG!forcé!C0!, GPU hautes performances sur les !CC!7!C0! jeux"
 if /i "!L!"=="FR" set "M15=!CW!GameDVR!C0! !CR!off!C0!, !CW!Mode Jeu!C0! !CG!on!C0!, optimisations jeux fenêtrés !CG!on!C0!"
 if /i "!L!"=="FR" set "M16=!CW!Defender!C0! : jeux !CG!exclus!C0!, analyse planifiée !CR!off!C0!, analyses bridées"
-if /i "!L!"=="FR" set "M16RT=!CW!Temps réel + comportement + IOAV + cloud + échantillons!C0! !CR!OFF!C0! (Tamper Protection était off)"
-if /i "!L!"=="FR" set "M16NT=!CW!Protection temps réel ON!C0! (off seulement en LOWEST + Tamper Protection off)"
+if /i "!L!"=="FR" set "M16NT=!CW!Protection temps réel laissée ON!C0! (jamais coupée : Defender lève une alerte)"
 if /i "!L!"=="FR" set "M17=Debloat !CG!effectué!C0! (!CW!Store, Sécurité, Capture, Calculatrice, Paint, Spotify!C0! gardés)"
 if /i "!L!"=="FR" set "M19=!CW!Outlook!C0! (nouveau) !CR!retiré!C0!"
 if /i "!L!"=="FR" set "M20=!CW!Confidentialité!C0! : accès applis !CR!off!C0! sauf !CG!microphone!C0! ; applis en arrière-plan !CR!off!C0!"
@@ -407,6 +414,14 @@ if /i "!L!"=="FR" set "BAN_F=Disques et maintenance"
 if /i "!L!"=="FR" set "BAN_G=Mises à jour"
 if /i "!L!"=="FR" set "BAN_H=Latence temps réel"
 if /i "!L!"=="FR" set "BACK=Retour"
+if /i "!L!"=="FR" set "AO9=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
+if /i "!L!"=="FR" set "PHEAD=PÉRIPHÉRIQUES - désactiver ou restaurer"
+if /i "!L!"=="FR" set "PH1=Caméra"
+if /i "!L!"=="FR" set "PH2=Cartes réseau (Wi-Fi / Ethernet)"
+if /i "!L!"=="FR" set "PH3=Bluetooth"
+if /i "!L!"=="FR" set "PH4=Imprimante"
+if /i "!L!"=="FR" set "PH5=Xbox"
+if /i "!L!"=="FR" set "PDONE=Terminé."
 :_strdone
 rem ============ MENU AIO ============
 set "AHEAD=Choose an action:"
@@ -418,6 +433,7 @@ set "AO5=Restore all Windows defaults"
 set "AO6=Restore Spectre/Meltdown mitigations"
 set "AO7=Restore Defender real-time protection"
 set "AO8=Verification / debug tool"
+set "AO9=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
 set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
@@ -429,6 +445,7 @@ if /i "!L!"=="FR" set "AO5=Restaurer les valeurs Windows"
 if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
 if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
 if /i "!L!"=="FR" set "AO8=Outil de vérification / debug"
+if /i "!L!"=="FR" set "AO9=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
 if /i "!L!"=="FR" set "AO0=Quitter"
 set "MOPT=OPTIMIZER"
 set "MCAT1=optimize"
@@ -452,6 +469,7 @@ set "AO5=Restore all Windows defaults"
 set "AO6=Restore Spectre/Meltdown mitigations"
 set "AO7=Restore Defender real-time protection"
 set "AO8=Verification / debug tool"
+set "AO9=Peripherals: disable / restore  (Wi-Fi, printer, Xbox, BT, camera)"
 set "AO0=Quit"
 if /i "!L!"=="FR" set "AHEAD=Choisis une action :"
 if /i "!L!"=="FR" set "AO1=Appliquer les optimisations   (complet : tweaks + nettoyage + MAJ)"
@@ -462,6 +480,7 @@ if /i "!L!"=="FR" set "AO5=Restaurer les valeurs Windows"
 if /i "!L!"=="FR" set "AO6=Restaurer les mitigations Spectre/Meltdown"
 if /i "!L!"=="FR" set "AO7=Restaurer la protection temps réel Defender"
 if /i "!L!"=="FR" set "AO8=Outil de vérification / debug"
+if /i "!L!"=="FR" set "AO9=Périphériques : désactiver / restaurer  (Wi-Fi, imprimante, Xbox, BT, caméra)"
 if /i "!L!"=="FR" set "AO0=Quitter"
 cls
 echo.
@@ -488,6 +507,7 @@ echo   !CK!   !MCAT3!!C0!
 echo       !CBG1![5]!C0!   !AO5!
 echo       !CBG2![6]!C0!   !AO6!
 echo       !CBG3![7]!C0!   !AO7!
+echo       !CBG4![9]!C0!   !AO9!
 echo.
 echo       !CJ![8]!C0!   !AO8!
 echo       !CK![0]!C0!   !AO0!
@@ -504,6 +524,7 @@ if "!CH!"=="5" goto RESTORE
 if "!CH!"=="6" goto SPECREVERT
 if "!CH!"=="7" goto RTREVERT
 if "!CH!"=="8" goto DEBUGRUN
+if "!CH!"=="9" goto PERIPH
 if "!CH!"=="10" goto AIOEND
 goto MENU
 :_aiofast
@@ -886,7 +907,11 @@ if "!NOVBS!"=="0" ( echo   !OK! !CC![08]!C0! !M9A_AI_KEPT! ) else ( echo   !OK! 
 
 rem ============ [09b] BLOCAGE PUB / TELEMETRIE via le fichier HOSTS ============
 attrib -r "%SystemRoot%\System32\drivers\etc\hosts" >nul 2>&1
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; Add-MpPreference -ExclusionPath ($env:SystemRoot+'\System32\drivers\etc\hosts') -EA SilentlyContinue; $h=$env:SystemRoot+'\System32\drivers\etc\hosts'; $nl=[char]13+[char]10; $doms='doubleclick.net www.doubleclick.net googleadservices.com pagead2.googlesyndication.com googlesyndication.com pubads.g.doubleclick.net securepubads.g.doubleclick.net stats.g.doubleclick.net ad.doubleclick.net adservice.google.com www.googletagservices.com partner.googleadservices.com www.googletagmanager.com www.google-analytics.com google-analytics.com ssl.google-analytics.com adnxs.com ib.adnxs.com secure.adnxs.com prebid.adnxs.com advertising.com ads.yahoo.com analytics.yahoo.com scorecardresearch.com b.scorecardresearch.com sb.scorecardresearch.com quantserve.com pixel.quantserve.com criteo.com static.criteo.net gum.criteo.com bidder.criteo.com taboola.com cdn.taboola.com trc.taboola.com outbrain.com mab.outbrain.com tr.outbrain.com mgid.com jsc.mgid.com servicer.mgid.com revcontent.com trends.revcontent.com cdn.revcontent.com adskeeper.com moatads.com z.moatads.com applovin.com adcolony.com amazon-adsystem.com aax.amazon-adsystem.com c.amazon-adsystem.com s.amazon-adsystem.com pubmatic.com ads.pubmatic.com image6.pubmatic.com rubiconproject.com fastlane.rubiconproject.com pixel.rubiconproject.com openx.net us-u.openx.net rtb.openx.net casalemedia.com dsum.casalemedia.com as.casalemedia.com indexww.com 3lift.com eb2.3lift.com tlx.3lift.com sharethrough.com btlr.sharethrough.com sovrn.com ap.lijit.com lijit.com gumgum.com g2.gumgum.com adform.net adx.adform.net track.adform.net smartadserver.com ww1.smartadserver.com diff.smartadserver.com spotxchange.com spotx.tv search.spotxchange.com teads.tv t.teads.tv sync.teads.tv adsrvr.org match.adsrvr.org insight.adsrvr.org bidswitch.net x.bidswitch.net contextweb.com tag.contextweb.com yieldmo.com ads.yieldmo.com 33across.com ssc.33across.com media.net contextual.media.net static.media.net innovid.com rtr.innovid.com hotjar.com static.hotjar.com script.hotjar.com api.mixpanel.com cdn.mxpnl.com api.segment.io cdn.segment.com api.amplitude.com cdn.amplitude.com api2.branch.io mc.yandex.ru adsterra.com propellerads.com bat.bing.com clarity.ms ads.linkedin.com px.ads.linkedin.com ads.tiktok.com analytics.tiktok.com business-api.tiktok.com ads-twitter.com static.ads-twitter.com analytics.twitter.com adroll.com d.adroll.com demdex.net omtrdc.net 2o7.net everesttech.net krxd.net nr-data.net chartbeat.com mktoresp.com hsadspixel.net mouseflow.com fullstory.com smartlook.com doubleverify.com adsafeprotected.com crwdcntrl.net rlcdn.com agkn.com mathtag.com eyeota.net tapad.com adsymptotic.com bidr.io onetag-sys.com yieldlab.net stickyadstv.com smartclip.net xiti.com ati-host.net weborama.fr weborama.com adverline.com adyoulike.com omnitagjs.com themoneytizer.com sublime.xyz ayads.co tradedoubler.com hubvisor.io 1rx.io adition.com ligatus.com plista.com gemius.pl vortex.data.microsoft.com vortex-win.data.microsoft.com v10.vortex-win.data.microsoft.com us.vortex-win.data.microsoft.com settings-win.data.microsoft.com telemetry.microsoft.com df.telemetry.microsoft.com oca.telemetry.microsoft.com sqm.telemetry.microsoft.com telecommand.telemetry.microsoft.com watson.telemetry.microsoft.com watson.ppe.telemetry.microsoft.com telemetry.urs.microsoft.com telemetry.appex.bing.net watson.live.com watson.microsoft.com choice.microsoft.com reports.wes.df.telemetry.microsoft.com services.wes.df.telemetry.microsoft.com v10.events.data.microsoft.com v20.events.data.microsoft.com us-v10.events.data.microsoft.com eu-v20.events.data.microsoft.com self.events.data.microsoft.com umwatson.events.data.microsoft.com vortex-sandbox.data.microsoft.com settings-sandbox.data.microsoft.com i1.services.social.microsoft.com redir.metaservices.microsoft.com functional.events.data.microsoft.com browser.events.data.microsoft.com eu-v10.events.data.microsoft.com eu-mobile.events.data.microsoft.com mobile.events.data.microsoft.com v10c.events.data.microsoft.com sqm.df.telemetry.microsoft.com statsfe2.ws.microsoft.com statsfe1.ws.microsoft.com watson.events.data.microsoft.com feedback.windows.com feedback.search.microsoft.com survey.watson.microsoft.com tile-service.weather.microsoft.com'; if(Test-Path $h){ $c=[IO.File]::ReadAllText($h) } else { $c='' }; $c=[regex]::Replace($c,'(?s)# (?:ULTRA|WIN11)-ADBLOCK START.*?# (?:ULTRA|WIN11)-ADBLOCK END[\r\n]*',''); $b='# WIN11-ADBLOCK START'+$nl; foreach($d in $doms.Split(' ')){ if($d){ $b=$b+'0.0.0.0 '+$d+$nl } }; $b=$b+'# WIN11-ADBLOCK END'+$nl; [IO.File]::WriteAllText($h,$c.TrimEnd()+$nl+$nl+$b,[Text.Encoding]::ASCII)" >nul 2>&1
+rem -- Exclusion posee AVANT d ecrire hosts : sinon Defender leve
+rem    SettingsModifier:Win32/PossibleHostsFileHijack pendant l ecriture. --
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Add-MpPreference -ExclusionPath ($env:SystemRoot+'\System32\drivers\etc\hosts')" >nul 2>&1
+ping -n 2 127.0.0.1 >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $h=$env:SystemRoot+'\System32\drivers\etc\hosts'; $nl=[char]13+[char]10; $doms='doubleclick.net www.doubleclick.net googleadservices.com pagead2.googlesyndication.com googlesyndication.com pubads.g.doubleclick.net securepubads.g.doubleclick.net stats.g.doubleclick.net ad.doubleclick.net adservice.google.com www.googletagservices.com partner.googleadservices.com www.googletagmanager.com www.google-analytics.com google-analytics.com ssl.google-analytics.com adnxs.com ib.adnxs.com secure.adnxs.com prebid.adnxs.com advertising.com ads.yahoo.com analytics.yahoo.com scorecardresearch.com b.scorecardresearch.com sb.scorecardresearch.com quantserve.com pixel.quantserve.com criteo.com static.criteo.net gum.criteo.com bidder.criteo.com taboola.com cdn.taboola.com trc.taboola.com outbrain.com mab.outbrain.com tr.outbrain.com mgid.com jsc.mgid.com servicer.mgid.com revcontent.com trends.revcontent.com cdn.revcontent.com adskeeper.com moatads.com z.moatads.com applovin.com adcolony.com amazon-adsystem.com aax.amazon-adsystem.com c.amazon-adsystem.com s.amazon-adsystem.com pubmatic.com ads.pubmatic.com image6.pubmatic.com rubiconproject.com fastlane.rubiconproject.com pixel.rubiconproject.com openx.net us-u.openx.net rtb.openx.net casalemedia.com dsum.casalemedia.com as.casalemedia.com indexww.com 3lift.com eb2.3lift.com tlx.3lift.com sharethrough.com btlr.sharethrough.com sovrn.com ap.lijit.com lijit.com gumgum.com g2.gumgum.com adform.net adx.adform.net track.adform.net smartadserver.com ww1.smartadserver.com diff.smartadserver.com spotxchange.com spotx.tv search.spotxchange.com teads.tv t.teads.tv sync.teads.tv adsrvr.org match.adsrvr.org insight.adsrvr.org bidswitch.net x.bidswitch.net contextweb.com tag.contextweb.com yieldmo.com ads.yieldmo.com 33across.com ssc.33across.com media.net contextual.media.net static.media.net innovid.com rtr.innovid.com hotjar.com static.hotjar.com script.hotjar.com api.mixpanel.com cdn.mxpnl.com api.segment.io cdn.segment.com api.amplitude.com cdn.amplitude.com api2.branch.io mc.yandex.ru adsterra.com propellerads.com bat.bing.com clarity.ms ads.linkedin.com px.ads.linkedin.com ads.tiktok.com analytics.tiktok.com business-api.tiktok.com ads-twitter.com static.ads-twitter.com analytics.twitter.com adroll.com d.adroll.com demdex.net omtrdc.net 2o7.net everesttech.net krxd.net nr-data.net chartbeat.com mktoresp.com hsadspixel.net mouseflow.com fullstory.com smartlook.com doubleverify.com adsafeprotected.com crwdcntrl.net rlcdn.com agkn.com mathtag.com eyeota.net tapad.com adsymptotic.com bidr.io onetag-sys.com yieldlab.net stickyadstv.com smartclip.net xiti.com ati-host.net weborama.fr weborama.com adverline.com adyoulike.com omnitagjs.com themoneytizer.com sublime.xyz ayads.co tradedoubler.com hubvisor.io 1rx.io adition.com ligatus.com plista.com gemius.pl vortex.data.microsoft.com vortex-win.data.microsoft.com v10.vortex-win.data.microsoft.com us.vortex-win.data.microsoft.com settings-win.data.microsoft.com telemetry.microsoft.com df.telemetry.microsoft.com oca.telemetry.microsoft.com sqm.telemetry.microsoft.com telecommand.telemetry.microsoft.com watson.telemetry.microsoft.com watson.ppe.telemetry.microsoft.com telemetry.urs.microsoft.com telemetry.appex.bing.net watson.live.com watson.microsoft.com choice.microsoft.com reports.wes.df.telemetry.microsoft.com services.wes.df.telemetry.microsoft.com v10.events.data.microsoft.com v20.events.data.microsoft.com us-v10.events.data.microsoft.com eu-v20.events.data.microsoft.com self.events.data.microsoft.com umwatson.events.data.microsoft.com vortex-sandbox.data.microsoft.com settings-sandbox.data.microsoft.com i1.services.social.microsoft.com redir.metaservices.microsoft.com functional.events.data.microsoft.com browser.events.data.microsoft.com eu-v10.events.data.microsoft.com eu-mobile.events.data.microsoft.com mobile.events.data.microsoft.com v10c.events.data.microsoft.com sqm.df.telemetry.microsoft.com statsfe2.ws.microsoft.com statsfe1.ws.microsoft.com watson.events.data.microsoft.com feedback.windows.com feedback.search.microsoft.com survey.watson.microsoft.com tile-service.weather.microsoft.com'; if(Test-Path $h){ $c=[IO.File]::ReadAllText($h) } else { $c='' }; $c=[regex]::Replace($c,'(?s)# (?:ULTRA|WIN11)-ADBLOCK START.*?# (?:ULTRA|WIN11)-ADBLOCK END[\r\n]*',''); $b='# WIN11-ADBLOCK START'+$nl; foreach($d in $doms.Split(' ')){ if($d){ $b=$b+'0.0.0.0 '+$d+$nl } }; $b=$b+'# WIN11-ADBLOCK END'+$nl; [IO.File]::WriteAllText($h,$c.TrimEnd()+$nl+$nl+$b,[Text.Encoding]::ASCII)" >nul 2>&1
 ipconfig /flushdns >nul 2>&1
 echo   !OK! !CC![09b]!C0! !M10!
 
@@ -941,29 +966,17 @@ if defined STEAMPATH (
 powershell -NoProfile -Command "Add-MpPreference -ExclusionPath 'C:\Riot Games' -EA SilentlyContinue; Add-MpPreference -ExclusionProcess 'cs2.exe','Brawlhalla.exe','League of Legends.exe','RiotClientServices.exe','RainbowSix.exe','RainbowSix_DX11.exe','VALORANT.exe','VALORANT-Win64-Shipping.exe','r5apex.exe','r5apex_dx12.exe','FortniteClient-Win64-Shipping.exe' -EA SilentlyContinue" >nul 2>&1
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Set-MpPreference -ScanAvgCPULoadFactor 20 -DisableScanningNetworkFiles $true -DisableArchiveScanning $true" >nul 2>&1
 schtasks /Change /TN "\Microsoft\Windows\Windows Defender\Windows Defender Scheduled Scan" /Disable >nul 2>&1
-set "TPOFF=0"
-set "RTDONE=0"
-for /f "usebackq delims=" %%t in (`powershell -NoProfile -Command "try{[string]((Get-MpComputerStatus).IsTamperProtected)}catch{'True'}"`) do set "TPRES=%%t"
-if /i "!TPRES!"=="False" set "TPOFF=1"
-if not "!TPOFF!"=="1" goto _dfrt_reenable
-if not "!MODEMARK!"=="lowest" goto _dfrt_reenable
-powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Set-MpPreference -DisableRealtimeMonitoring $true -DisableBehaviorMonitoring $true -DisableIOAVProtection $true -DisableScriptScanning $true -MAPSReporting 0 -SubmitSamplesConsent 2" >nul 2>&1
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableRealtimeMonitoring /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableBehaviorMonitoring /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SpynetReporting /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SubmitSamplesConsent /t REG_DWORD /d 2 /f >nul 2>&1
-set "RTDONE=1"
-goto _dfrtskip
-:_dfrt_reenable
+rem -- La protection temps reel n est PLUS jamais coupee (v3.9). Couper Defender
+rem    declenchait VirTool:Win32/DefenderTamperingRestore a chaque passage, et le
+rem    gain de latence ne justifie pas de laisser la machine sans antivirus. Le
+rem    script remet au contraire en etat ce qu une version precedente avait coupe. --
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableRealtimeMonitoring /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableBehaviorMonitoring /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SpynetReporting /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SubmitSamplesConsent /f >nul 2>&1
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Set-MpPreference -DisableRealtimeMonitoring $false -DisableBehaviorMonitoring $false -DisableIOAVProtection $false -DisableScriptScanning $false" >nul 2>&1
-:_dfrtskip
 echo   !OK! !CC![14]!C0! !M16!
-if "!RTDONE!"=="1" echo   !OK! !CC![14]!C0! !M16RT!
-if "!RTDONE!"=="0" echo   !CK!  -^> !C0!!M16NT!
+echo   !CK!  -^> !C0!!M16NT!
 rem ============ [15] DEBLOAT (toujours) ============
 echo.
 set "RTI=Removing preinstalled bloatware..."
@@ -1062,95 +1075,14 @@ echo   !CK!------------------------------------------------------------!C0!
 echo.
 echo   !CC!::!C0!  !CM!!BAN_C!!C0!
 echo.
-rem ============ [17] CAMERA (3 choix) ============
-if "!CAM!"=="1" echo   !OK! !CC![17]!C0! !M21!
-if "!CAM!"=="2" (
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Camera,Image | Where-Object { $_.Status -eq 'OK' } | ForEach-Object { Disable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
-    powershell -NoProfile -Command "Get-AppxPackage -AllUsers *Microsoft.WindowsCamera* | Remove-AppxPackage -AllUsers -EA SilentlyContinue" >nul 2>&1
-    echo   !OK! !CC![17]!C0! !M22!
-)
-if "!CAM!"=="3" (
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Camera,Image | Where-Object { $_.Status -ne 'OK' } | ForEach-Object { Enable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
-    echo   !OK! !CC![17]!C0! !M23!
-)
-
-rem ============ [18] WIFI / ETHERNET (5 choix) ============
-if "!WIFI!"=="1" echo   !OK! !CC![18]!C0! !M24!
-if "!WIFI!"=="2" (
-    sc stop WlanSvc >nul 2>&1
-    sc config WlanSvc start= disabled >nul 2>&1
-    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq 'Native 802.11' } | Disable-NetAdapter -Confirm:$false" >nul 2>&1
-    echo   !OK! !CC![18]!C0! !M25!
-)
-if "!WIFI!"=="3" (
-    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq '802.3' } | Disable-NetAdapter -Confirm:$false" >nul 2>&1
-    echo   !OK! !CC![18]!C0! !M25E!
-)
-if "!WIFI!"=="4" (
-    sc config WlanSvc start= auto >nul 2>&1
-    sc start WlanSvc >nul 2>&1
-    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq 'Native 802.11' -or $_.InterfaceDescription -match 'Wireless|Wi-?Fi|802\.11' } | Enable-NetAdapter -Confirm:$false" >nul 2>&1
-    echo   !OK! !CC![18]!C0! !M26!
-)
-if "!WIFI!"=="5" (
-    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq '802.3' } | Enable-NetAdapter -Confirm:$false" >nul 2>&1
-    echo   !OK! !CC![18]!C0! !M26E!
-)
-
-rem ============ [19] BLUETOOTH (3 choix) ============
-if "!BT!"=="1" echo   !OK! !CC![19]!C0! !M27!
-if "!BT!"=="2" (
-    sc stop bthserv >nul 2>&1
-    sc config bthserv start= disabled >nul 2>&1
-    sc stop BTAGService >nul 2>&1
-    sc config BTAGService start= disabled >nul 2>&1
-    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Bluetooth | Where-Object { $_.Status -eq 'OK' } | ForEach-Object { Disable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
-    echo   !OK! !CC![19]!C0! !M28!
-)
-if "!BT!"=="3" (
-    sc config bthserv start= demand >nul 2>&1
-    sc config BTAGService start= demand >nul 2>&1
-    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Bluetooth | Where-Object { $_.Status -ne 'OK' } | ForEach-Object { Enable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
-    echo   !OK! !CC![19]!C0! !M29!
-)
-
-rem ============ [20] IMPRIMANTE (3 choix) ============
-if "!PRINT!"=="1" echo   !OK! !CC![20]!C0! !M30!
-if "!PRINT!"=="2" (
-    sc stop Spooler >nul 2>&1
-    sc config Spooler start= disabled >nul 2>&1
-    sc stop PrintNotify >nul 2>&1
-    sc config PrintNotify start= disabled >nul 2>&1
-    echo   !OK! !CC![20]!C0! !M31!
-)
-if "!PRINT!"=="3" (
-    sc config Spooler start= auto >nul 2>&1
-    sc start Spooler >nul 2>&1
-    sc config PrintNotify start= demand >nul 2>&1
-    echo   !OK! !CC![20]!C0! !M32!
-)
-
-rem ============ [21] XBOX (3 choix) ============
-if "!XBOX!"=="1" echo   !OK! !CC![21]!C0! !M33!
-if "!XBOX!"=="2" (
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "foreach($x in @('*Microsoft.GamingApp*','*Microsoft.XboxApp*','*Microsoft.Xbox.TCUI*','*Microsoft.XboxGameOverlay*','*Microsoft.XboxGamingOverlay*','*Microsoft.XboxIdentityProvider*','*Microsoft.XboxSpeechToTextOverlay*')){ Get-AppxPackage -AllUsers -Name $x -EA SilentlyContinue | Remove-AppxPackage -AllUsers -EA SilentlyContinue }" >nul 2>&1
-    sc config XblAuthManager start= disabled >nul 2>&1
-    sc config XblGameSave start= disabled >nul 2>&1
-    sc config XboxNetApiSvc start= disabled >nul 2>&1
-    sc config XboxGipSvc start= disabled >nul 2>&1
-    sc config GamingServices start= disabled >nul 2>&1
-    schtasks /Change /TN "\Microsoft\Windows\XblGameSave\XblGameSaveTask" /Disable >nul 2>&1
-    echo   !OK! !CC![21]!C0! !M34!
-)
-if "!XBOX!"=="3" (
-    sc config XblAuthManager start= demand >nul 2>&1
-    sc config XblGameSave start= demand >nul 2>&1
-    sc config XboxNetApiSvc start= demand >nul 2>&1
-    sc config XboxGipSvc start= demand >nul 2>&1
-    sc config GamingServices start= demand >nul 2>&1
-    schtasks /Change /TN "\Microsoft\Windows\XblGameSave\XblGameSaveTask" /Enable >nul 2>&1
-    echo   !OK! !CC![21]!C0! !M35!
-)
+rem ============ [17]-[21] PERIPHERIQUES ============
+rem -- Corps deplace dans :pcam / :pnet / :pbt / :pprn / :pxbx pour etre partage
+rem    avec le sous-menu [9] du menu principal. Un seul comportement, un seul code. --
+call :pcam
+call :pnet
+call :pbt
+call :pprn
+call :pxbx
 
 echo.
 echo   !CK!------------------------------------------------------------!C0!
@@ -1424,6 +1356,11 @@ del /q /f /s "%SystemRoot%\Temp\*" >nul 2>&1
 call :cln43 CLNT1
 rem -- Le dossier Telechargements n est JAMAIS touche : contenu utilisateur. --
 echo   !CK!  -^> !C0!!CL2!...
+rem -- Discord stocke son cache dans %APPDATA%\discord, pas dans %LOCALAPPDATA%. --
+for %%C in (Cache "Code Cache" GPUCache blob_storage DawnGraphiteCache DawnWebGPUCache "Service Worker") do (
+    del /q /f /s "%APPDATA%\discord\%%~C\*" >nul 2>&1
+    for /d %%D in ("%APPDATA%\discord\%%~C\*") do rd /s /q "%%D" >nul 2>&1
+)
 del /q /f /s "%LOCALAPPDATA%\Discord\Cache\*" >nul 2>&1
 del /q /f /s "%LOCALAPPDATA%\Discord\Code Cache\*" >nul 2>&1
 del /q /f /s "%LOCALAPPDATA%\Discord\GPUCache\*" >nul 2>&1
@@ -1599,10 +1536,9 @@ echo.
 echo   !CY![ ? ]!C0!  !CW!!Q_RESTART!!C0!
 echo.
 echo        !QO_YESNO!!C0!
-echo        !CK![0] !BACK!!C0!
 echo.
 powershell -NoProfile -Command "try{while([Console]::KeyAvailable){[Console]::ReadKey($true)|Out-Null}}catch{}" >nul 2>&1
-choice /C 120 /N /M "        !PROMPT!"
+choice /C 12 /N /M "        !PROMPT!"
 set "RBANS=!errorlevel!"
 if "!RBANS!"=="1" (
     echo.
@@ -1610,8 +1546,6 @@ if "!RBANS!"=="1" (
     shutdown /r /t 5
     pause
     goto ENDOK
-) else if "!RBANS!"=="3" (
-    goto MENU
 ) else (
     echo.
     echo   !CY!!RESTART_LATER!!C0!
@@ -2817,6 +2751,209 @@ goto :eof
 echo   !CC! [info]!C0! %~7 !CK!!LSV!!C0!
 goto :eof
 
+
+:pcam
+if "!CAM!"=="1" echo   !OK! !CC![17]!C0! !M21!
+if "!CAM!"=="2" (
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Camera,Image | Where-Object { $_.Status -eq 'OK' } | ForEach-Object { Disable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
+    powershell -NoProfile -Command "Get-AppxPackage -AllUsers *Microsoft.WindowsCamera* | Remove-AppxPackage -AllUsers -EA SilentlyContinue" >nul 2>&1
+    echo   !OK! !CC![17]!C0! !M22!
+)
+if "!CAM!"=="3" (
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Camera,Image | Where-Object { $_.Status -ne 'OK' } | ForEach-Object { Enable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
+    echo   !OK! !CC![17]!C0! !M23!
+)
+goto :eof
+
+:pnet
+if "!WIFI!"=="1" echo   !OK! !CC![18]!C0! !M24!
+if "!WIFI!"=="2" (
+    sc stop WlanSvc >nul 2>&1
+    sc config WlanSvc start= disabled >nul 2>&1
+    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq 'Native 802.11' } | Disable-NetAdapter -Confirm:$false" >nul 2>&1
+    echo   !OK! !CC![18]!C0! !M25!
+)
+if "!WIFI!"=="3" (
+    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq '802.3' } | Disable-NetAdapter -Confirm:$false" >nul 2>&1
+    echo   !OK! !CC![18]!C0! !M25E!
+)
+if "!WIFI!"=="4" (
+    sc config WlanSvc start= auto >nul 2>&1
+    sc start WlanSvc >nul 2>&1
+    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq 'Native 802.11' -or $_.InterfaceDescription -match 'Wireless|Wi-?Fi|802\.11' } | Enable-NetAdapter -Confirm:$false" >nul 2>&1
+    echo   !OK! !CC![18]!C0! !M26!
+)
+if "!WIFI!"=="5" (
+    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-NetAdapter -Physical | Where-Object { $_.PhysicalMediaType -eq '802.3' } | Enable-NetAdapter -Confirm:$false" >nul 2>&1
+    echo   !OK! !CC![18]!C0! !M26E!
+)
+goto :eof
+
+:pbt
+if "!BT!"=="1" echo   !OK! !CC![19]!C0! !M27!
+if "!BT!"=="2" (
+    sc stop bthserv >nul 2>&1
+    sc config bthserv start= disabled >nul 2>&1
+    sc stop BTAGService >nul 2>&1
+    sc config BTAGService start= disabled >nul 2>&1
+    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Bluetooth | Where-Object { $_.Status -eq 'OK' } | ForEach-Object { Disable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
+    echo   !OK! !CC![19]!C0! !M28!
+)
+if "!BT!"=="3" (
+    sc config bthserv start= demand >nul 2>&1
+    sc config BTAGService start= demand >nul 2>&1
+    powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Get-PnpDevice -Class Bluetooth | Where-Object { $_.Status -ne 'OK' } | ForEach-Object { Enable-PnpDevice -InstanceId $_.InstanceId -Confirm:$false }" >nul 2>&1
+    echo   !OK! !CC![19]!C0! !M29!
+)
+goto :eof
+
+:pprn
+if "!PRINT!"=="1" echo   !OK! !CC![20]!C0! !M30!
+if "!PRINT!"=="2" (
+    sc stop Spooler >nul 2>&1
+    sc config Spooler start= disabled >nul 2>&1
+    sc stop PrintNotify >nul 2>&1
+    sc config PrintNotify start= disabled >nul 2>&1
+    echo   !OK! !CC![20]!C0! !M31!
+)
+if "!PRINT!"=="3" (
+    sc config Spooler start= auto >nul 2>&1
+    sc start Spooler >nul 2>&1
+    sc config PrintNotify start= demand >nul 2>&1
+    echo   !OK! !CC![20]!C0! !M32!
+)
+goto :eof
+
+:pxbx
+if "!XBOX!"=="1" echo   !OK! !CC![21]!C0! !M33!
+if "!XBOX!"=="2" (
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "foreach($x in @('*Microsoft.GamingApp*','*Microsoft.XboxApp*','*Microsoft.Xbox.TCUI*','*Microsoft.XboxGameOverlay*','*Microsoft.XboxGamingOverlay*','*Microsoft.XboxIdentityProvider*','*Microsoft.XboxSpeechToTextOverlay*')){ Get-AppxPackage -AllUsers -Name $x -EA SilentlyContinue | Remove-AppxPackage -AllUsers -EA SilentlyContinue }" >nul 2>&1
+    sc config XblAuthManager start= disabled >nul 2>&1
+    sc config XblGameSave start= disabled >nul 2>&1
+    sc config XboxNetApiSvc start= disabled >nul 2>&1
+    sc config XboxGipSvc start= disabled >nul 2>&1
+    sc config GamingServices start= disabled >nul 2>&1
+    schtasks /Change /TN "\Microsoft\Windows\XblGameSave\XblGameSaveTask" /Disable >nul 2>&1
+    echo   !OK! !CC![21]!C0! !M34!
+)
+if "!XBOX!"=="3" (
+    sc config XblAuthManager start= demand >nul 2>&1
+    sc config XblGameSave start= demand >nul 2>&1
+    sc config XboxNetApiSvc start= demand >nul 2>&1
+    sc config XboxGipSvc start= demand >nul 2>&1
+    sc config GamingServices start= demand >nul 2>&1
+    schtasks /Change /TN "\Microsoft\Windows\XblGameSave\XblGameSaveTask" /Enable >nul 2>&1
+    echo   !OK! !CC![21]!C0! !M35!
+)
+goto :eof
+
+:PERIPH
+rem -- Sous-menu : rejoue une seule des questions [17]-[21] hors passage complet.
+rem    Les actions reelles vivent dans les sous-routines :pcam/:pnet/:pbt/:pprn/:pxbx,
+rem    appelees aussi par l apply pour eviter toute divergence de comportement. --
+cls
+echo.
+echo   !CB2!===============================================================!C0!
+echo.
+echo        !CBG4!!PHEAD!!C0!
+echo.
+echo   !CB2!===============================================================!C0!
+echo.
+echo       !CBG1![1]!C0!   !PH1!
+echo       !CBG2![2]!C0!   !PH2!
+echo       !CBG3![3]!C0!   !PH3!
+echo       !CBG4![4]!C0!   !PH4!
+echo       !CBG4![5]!C0!   !PH5!
+echo.
+echo       !CK![0]!C0!   !BACK!
+echo.
+choice /C 123450 /N /M "   !PROMPT!"
+set "PCH=!errorlevel!"
+if "!PCH!"=="6" goto MENU
+if "!PCH!"=="1" goto _pq_cam
+if "!PCH!"=="2" goto _pq_net
+if "!PCH!"=="3" goto _pq_bt
+if "!PCH!"=="4" goto _pq_prn
+if "!PCH!"=="5" goto _pq_xbx
+goto PERIPH
+
+:_pq_cam
+echo.
+echo   !CY![ ? ]!C0!  !CW!!QH_CAM!!C0!
+echo.
+echo        !QO_CAM!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+choice /C 1230 /N /M "        !PROMPT!"
+set "CAM=!errorlevel!"
+if "!CAM!"=="4" goto PERIPH
+call :pcam
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QCam /t REG_DWORD /d !CAM! /f >nul 2>&1
+goto _pdone
+
+:_pq_net
+echo.
+echo   !CY![ ? ]!C0!  !CW!!QH_WIFI!!C0!
+echo.
+echo        !QO_NET!!C0!
+echo        !QO_NET2!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+choice /C 123450 /N /M "        !PROMPT!"
+set "WIFI=!errorlevel!"
+if "!WIFI!"=="6" goto PERIPH
+call :pnet
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QWifi /t REG_DWORD /d !WIFI! /f >nul 2>&1
+goto _pdone
+
+:_pq_bt
+echo.
+echo   !CY![ ? ]!C0!  !CW!!QH_BT!!C0!
+echo.
+echo        !QO_NDR!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+choice /C 1230 /N /M "        !PROMPT!"
+set "BT=!errorlevel!"
+if "!BT!"=="4" goto PERIPH
+call :pbt
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QBt /t REG_DWORD /d !BT! /f >nul 2>&1
+goto _pdone
+
+:_pq_prn
+echo.
+echo   !CY![ ? ]!C0!  !CW!!QH_PRINT!!C0!
+echo.
+echo        !QO_NDR!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+choice /C 1230 /N /M "        !PROMPT!"
+set "PRINT=!errorlevel!"
+if "!PRINT!"=="4" goto PERIPH
+call :pprn
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QPrint /t REG_DWORD /d !PRINT! /f >nul 2>&1
+goto _pdone
+
+:_pq_xbx
+echo.
+echo   !CY![ ? ]!C0!  !CW!!QH_XBOX!!C0!
+echo.
+echo        !QO_XBOX!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+choice /C 1230 /N /M "        !PROMPT!"
+set "XBOX=!errorlevel!"
+if "!XBOX!"=="4" goto PERIPH
+call :pxbx
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QXbox /t REG_DWORD /d !XBOX! /f >nul 2>&1
+goto _pdone
+
+:_pdone
+echo.
+echo   !CG!  !PDONE!!C0!
+echo.
+pause
+goto PERIPH
 
 :RTREVERT
 cls

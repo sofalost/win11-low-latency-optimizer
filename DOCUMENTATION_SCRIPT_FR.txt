@@ -18,9 +18,9 @@ anticheats et SANS toucher a la securite materielle (Secure Boot, TPM, VBS /
 Memory Integrity, isolation du noyau restent ON par defaut ; ils ne se
 coupent que si tu reponds NON a la question anticheat). Le mode
 SOUPLE garde Defender et toutes les mitigations CPU actives ; le mode LOWEST
-desactive en plus la protection temps reel de Defender (seulement si tu as
-desactive Tamper Protection toi-meme) et les mitigations Spectre/Meltdown - les
-deux reversibles depuis le menu ; apres un run LOWEST, verifie que Vanguard et
+desactive en plus les mitigations Spectre/Meltdown - reversibles depuis le
+menu. Depuis la v3.9, AUCUN mode ne coupe la protection temps reel de
+Defender ; apres un run LOWEST, verifie que Vanguard et
 FACEIT se lancent encore.
 
 Principe : il applique un grand nombre de reglages connus (registre, services,
@@ -66,7 +66,7 @@ Organisation interne du code :
         [3] Timer 0.5 ms + tweak NVIDIA + nettoyage peripheriques fantomes
         [4] Disposition QWERTY   (FR uniquement)
         [5] Restaurer les valeurs Windows   [6] Restaurer Spectre/Meltdown
-        [7] Restaurer Defender   [8] Verification / debug   [0] Quitter
+        [7] Restaurer Defender   [8] Verification / debug   [9] Peripheriques   [0] Quitter
      Quand on choisit [1] ou [2], le script demande d'abord si tu as besoin de
      ton anticheat noyau (Vanguard / FACEIT), puis le MODE "soft" ou "lowest",
      puis applique. Les questions de profil acceptent [0] pour revenir au menu
@@ -171,7 +171,9 @@ HVCI et l'hyperviseur.
 IDEMPOTENCE (aucun residu entre modes) : chaque tweak sensible au mode est
 ecrit dans LES DEUX SENS, donc changer de mode et relancer remet toujours a
 zero ce que le nouveau mode ne touche plus. Le temps reel Defender est
-reactive hors LOWEST, les mitigations Spectre/Meltdown sont restaurees hors
+reactive a chaque passage (il n'est plus jamais coupe depuis la v3.9, et une
+machine abimee par une version anterieure est reparee), les mitigations
+Spectre/Meltdown sont restaurees hors
 LOWEST, et VBS / HVCI / l'hyperviseur sont remis ON si tu reponds OUI. Rien
 d'un run precedent ne subsiste.
 
@@ -429,7 +431,10 @@ fleche grise, avant d'etre traite) puis un BILAN chiffre a la fin.
 
 Les six categories nettoyees :
   1. Temp (utilisateur + Windows) : fichiers temporaires.
-  2. Cache Discord (Cache, Code Cache, GPUCache).
+  2. Cache Discord, dans %APPDATA%\discord (Cache, Code Cache, GPUCache,
+     blob_storage, DawnGraphiteCache, DawnWebGPUCache, Service Worker).
+     Jusqu'a la v3.8 le script visait %LOCALAPPDATA%\Discord, qui n'existe
+     pas : le poste affichait donc toujours 0 Mo.
   3. Cache Steam (httpcache + htmlcache), si Steam est detecte.
   4. Composants Windows (WinSxS) : via DISM /StartComponentCleanup
      (peut prendre quelques minutes).

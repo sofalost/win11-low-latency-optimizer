@@ -17,9 +17,9 @@ reduces input lag and stabilizes responsiveness, WITHOUT breaking anticheats and
 WITHOUT touching hardware security (Secure Boot, TPM, VBS / Memory Integrity and
 kernel isolation stay ON by default;
 they turn off only if you answer NO to the anticheat question). SOFT mode keeps Defender and every CPU
-mitigation active; LOWEST mode additionally turns OFF Defender real-time protection
-(only if you disabled Tamper Protection yourself) and the Spectre/Meltdown CPU
-mitigations - both reversible from the menu; after a LOWEST run, confirm Vanguard
+mitigation active; LOWEST mode additionally turns OFF the Spectre/Meltdown CPU
+mitigations - reversible from the menu. Since v3.9 NO mode ever disables
+Defender real-time protection; after a LOWEST run, confirm Vanguard
 and FACEIT still launch.
 
 Principle: it applies a large number of known settings (registry, services,
@@ -65,7 +65,7 @@ Internal code organization:
         [3] 0.5 ms timer + NVIDIA tweak + phantom-device cleanup
         [4] QWERTY layout       (FR systems only)
         [5] Restore Windows defaults   [6] Restore Spectre/Meltdown
-        [7] Restore Defender    [8] Verification / debug   [0] Quit
+        [7] Restore Defender    [8] Verification / debug   [9] Peripherals   [0] Quit
      When you pick [1] or [2], the script first asks whether you need your kernel
      anticheat (Vanguard / FACEIT), then the MODE "soft" or "lowest", then applies.
      The profile questions accept [0] to go back to the menu (contextual "Back",
@@ -166,8 +166,9 @@ restore) puts VBS, HVCI and the hypervisor back.
 
 IDEMPOTENCE (no residue between modes): every mode-sensitive tweak is written
 in BOTH directions, so switching modes and re-running always resets what the
-new mode no longer applies. Defender real-time is re-enabled outside LOWEST,
-the Spectre/Meltdown mitigations are restored outside LOWEST, and VBS / HVCI /
+new mode no longer applies. Defender real-time is re-enabled on every run
+(it is never disabled since v3.9, and a machine crippled by an older version is
+repaired), the Spectre/Meltdown mitigations are restored outside LOWEST, and VBS / HVCI /
 the hypervisor are turned back ON when you answer YES. Nothing from a previous
 run lingers.
 
@@ -417,7 +418,10 @@ runs) then an itemized SUMMARY at the end.
 
 The six cleaned categories:
   1. Temp (user + Windows): temporary files.
-  2. Discord cache (Cache, Code Cache, GPUCache).
+  2. Discord cache, under %APPDATA%\discord (Cache, Code Cache, GPUCache,
+     blob_storage, DawnGraphiteCache, DawnWebGPUCache, Service Worker).
+     Up to v3.8 the script targeted %LOCALAPPDATA%\Discord, which does not
+     exist, so this line always reported 0 MB.
   3. Steam cache (httpcache + htmlcache), if Steam is detected.
   4. Windows components (WinSxS): via DISM /StartComponentCleanup
      (may take a few minutes).

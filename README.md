@@ -24,6 +24,7 @@ Everything lives behind one start menu:
 - **[5]** Restore all Windows defaults
 - **[6]** Restore Spectre/Meltdown mitigations
 - **[7]** Restore Defender real-time protection
+- **[9]** Peripherals: disable or restore Wi-Fi / Ethernet, printer, Xbox, Bluetooth, camera individually
 
 **Tools**
 - **[8]** Verification / debug
@@ -50,11 +51,11 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 ## Profiles and modes
 
 - **Soft** — strong latency gains while every safety feature stays on. Safe pick if unsure.
-- **Lowest** — everything Soft does, plus per-game priority, an 8 s GPU timeout and a constant timer. It **additionally** turns off Windows Defender real-time protection (only if you disabled Tamper Protection yourself first) and the Spectre/Meltdown CPU mitigations — Vanguard and FACEIT keep working without them.
+- **Lowest** — everything Soft does, plus per-game priority, an 8 s GPU timeout and a constant timer. It **additionally** turns off the Spectre/Meltdown CPU mitigations — Vanguard and FACEIT keep working without them. Since v3.9 no mode ever disables Defender real-time protection: doing so made Windows flag the script as `VirTool:Win32/DefenderTamperingRestore`, and the latency gain did not justify leaving the machine unprotected.
 
 **Do you need your anticheat?** — asked once, before the Soft/Lowest choice and independent of it. Answer **No** only if you don't play kernel-anticheat games: the script then turns off Virtualization-Based Security, Memory Integrity (HVCI) and the hypervisor for extra performance. They stay **on** when you answer **Yes**, because Vanguard and FACEIT rely on them. Answering No is the fastest option and the one most likely to stop those anticheats from launching.
 
-The two choices combine freely (Soft or Lowest × anticheat Yes or No), and the apply is **idempotent**: switching modes and re-running resets anything the new mode no longer applies (Defender real-time, Spectre/Meltdown, VBS/HVCI/hypervisor), so no setting from a previous run lingers.
+The two choices combine freely (Soft or Lowest × anticheat Yes or No), and the apply is **idempotent**: switching modes and re-running resets anything the new mode no longer applies (Spectre/Meltdown, VBS/HVCI/hypervisor), so no setting from a previous run lingers. Defender real-time protection is re-enabled on every run, which also repairs a machine left unprotected by an older version.
 
 Everything is reversible from the menu: **[7]** re-enables Defender real-time, **[6]** restores the Spectre/Meltdown mitigations, and **[5]** restores all Windows defaults (VBS / HVCI / hypervisor included). After answering No to the anticheat question, reboot and confirm the anticheats you use still launch; if one refuses, run the matching restore.
 

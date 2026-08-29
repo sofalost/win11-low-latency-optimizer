@@ -378,6 +378,38 @@
        labels, its skip branch and its summary line are gone. The cleanup now
        covers six categories: Temp, Discord cache, Steam cache, WinSxS,
        Windows.old, Recycle Bin.
+   [x] Discord cache cleanup freed 0 MB every single run. The script emptied
+       %LOCALAPPDATA%\Discord\Cache, which does not exist - Discord (the
+       Electron app) keeps its cache under %APPDATA%\discord. Measured on a
+       live machine: 334 MB sitting in the real path, 0 in the one being
+       wiped. The cleanup now covers %APPDATA%\discord for Cache, Code Cache,
+       GPUCache, blob_storage, DawnGraphiteCache, DawnWebGPUCache and
+       Service Worker (files and subfolders), and still clears the old
+       %LOCALAPPDATA% path for anyone on a legacy install.
+   [-] Defender real-time protection is never disabled any more. In LOWEST
+       mode the script used to run Set-MpPreference -DisableRealtimeMonitoring
+       $true plus policy writes on DisableBehaviorMonitoring. Windows logged
+       this as VirTool:Win32/DefenderTamperingRestore - 7 of the 9 detections
+       recorded on the test machine - and Trojan:Win32/PowExcEnv.B!MTB on the
+       PowerShell command line itself. Leaving a gaming machine without an
+       antivirus is not a latency trade worth making. The section now only
+       REMOVES those policy values, so a machine crippled by an earlier
+       version is repaired instead. Menu [7] still exists for a manual repair.
+   [x] Hosts-file ad blocking triggered SettingsModifier:Win32/PossibleHosts
+       FileHijack. The Defender exclusion for the hosts file was requested in
+       the same PowerShell command that then rewrote the file, so the write
+       started before the exclusion was registered. The exclusion is now a
+       separate command that runs first, followed by a short pause.
+   [+] Menu entry [9]: peripherals - disable or restore. The camera, network
+       adapter, Bluetooth, printer and Xbox questions could only be answered
+       during a full run; changing your mind afterwards meant replaying the
+       entire optimizer. [9] replays any single one of them. The five apply
+       blocks [17]-[21] were factored into :pcam / :pnet / :pbt / :pprn /
+       :pxbx subroutines called by both paths, so the menu and the full run
+       can never drift apart. Each choice is persisted to
+       HKLM\SOFTWARE\LowLatOptimizer like the full run does.
+   [-] The end-of-run restart prompt lost its [0] Back option: answering it
+       returned to the main menu, which is what [2] No already did.
    [~] Script renamed: win11-low-latency-optimizer_v3.9.bat
     i  Not changed: the [8] "OK / total" score still counts [info] lines
        (per-user-choice checks) in the total - they are not failures. The
