@@ -424,6 +424,40 @@
        back to 1 = leave unchanged, never 2 = disable. A fast run on a fresh
        machine therefore touches no peripheral the user did not explicitly
        ask to disable, and defaults to SOFT mode rather than LOWEST.
+   [x] ROOT FIX - the 0.5 ms timer never actually applied. timerres.ps1 built
+       its P/Invoke bindings with `Add-Type -PassThru`, which returns an ARRAY
+       when the definition also declares a nested struct (here SPS, for the
+       battery check). $TR therefore held [System.Object[]], not a type, and
+       every $TR::Xxx call threw "does not contain a method named ...". The
+       first loop iteration died on $TR::NtSetTimerResolution, outside any
+       try/catch, so the process exited before writing its own TimerCur
+       telemetry - which is why nothing ever looked wrong. Measured on the
+       test machine: task reported Running, LastResult 0x800710E0, zero
+       timerres.ps1 processes alive, mutex ABANDONED, and the kernel timer
+       sitting at 1 ms instead of 0.5 ms. The fix selects the right type
+       (`| Where-Object { $_.Name -eq 'Trs' }`) and wraps the loop body so a
+       future P/Invoke failure is recorded in TimerState instead of killing
+       the process silently. Verified live: 0.5 ms obtained, process still
+       alive, timer released on exit.
+   [x] Verification [8] could not have caught the above: it only asked
+       schtasks whether the task EXISTED, which was true while the timer was
+       dead. It now MEASURES the kernel resolution through
+       NtQueryTimerResolution and fails unless it really reads 0.5 ms.
+       Counter-tested both ways (0.5 ms -> OK, 1 ms -> FAIL).
+   [x] The "LowLat Reapply" task was created by plain `schtasks /Create`,
+       inheriting hostile defaults: DisallowStartIfOnBatteries,
+       StopIfGoingOnBatteries and StartWhenAvailable=False. On a laptop
+       running on battery the whole re-apply (timer, phantom devices, Storage
+       Sense, post-update repair) simply never ran, and a missed logon was
+       never caught up. It is now reconfigured right after creation with
+       -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable.
+   [+] The re-apply safety net now repairs more than it used to. It only
+       recreated the timer task when timerres.ps1 still existed, so a file
+       lost to a disk cleanup or an antivirus was never restored. The payload
+       now carries its own copy of timerres.ps1 and rewrites it when missing,
+       registers the task with the same battery-tolerant settings as the
+       installer, and restarts it when the task exists but no timerres
+       process is alive - the exact state this release had to debug.
    [~] Script renamed: win11-low-latency-optimizer_v3.9.bat
     i  Not changed: the [8] "OK / total" score still counts [info] lines
        (per-user-choice checks) in the total - they are not failures. The
