@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.9
+  Latest version : v3.9.1
 
 
 ================================================================================
@@ -557,6 +557,49 @@
        it is a separate privacy setting, not the removed mic-default feature.
    [~] Cosmetic: removed 8 dead variables and 2 redundant gotos (no behavior
        change); added .gitignore; deleted the obsolete deploy-workflow branch.
+
+================================================================================
+  v3.9.1   -   WARFRAME + ROBLOX, AND THE FSO/GPU BUG THAT KILLED 3 GAMES
+================================================================================
+   [x] ROOT FIX (section [12], FSO + GPU preference): the absolute-path array
+       was written
+
+         $abs=@($env:ProgramFiles+'\Epic Games\...\FortniteClient...exe',
+                'C:\Riot Games\VALORANT\...\VALORANT-Win64-Shipping.exe',
+                'C:\Riot Games\League of Legends\Game\League of Legends.exe')
+
+       In PowerShell the "+" binds tighter than the "," list separator, so the
+       three strings were concatenated into ONE 240-char path that matches
+       nothing. $abs.Count was 1, Test-Path was always False, and Fortnite,
+       Valorant and League of Legends NEVER got fullscreen optimizations
+       disabled nor the high-performance GPU preference. Only the Steam titles
+       (separate loop, unaffected) were ever configured.
+       Fixed by parenthesising the concatenation: @(($env:ProgramFiles+'...'),
+       '...', '...'). Verified on the target machine: $abs.Count 1 -> 7, and
+       all three games now match.
+    !  IFEO priorities [03] were NOT affected by this bug (plain exe names,
+       no path), which is why the issue stayed invisible: the games did get
+       their CPU/IO priority, just not the FSO/GPU part.
+   [+] Warframe and Roblox added to the per-game sections:
+         [03] IFEO priorities      -> +Warframe.x64.exe, Warframe.exe,
+                                      RobloxPlayerBeta.exe (13 exe total)
+         [12] FSO off + GPU perf   -> Steam (D:\ libraries included), Epic
+                                      (Program Files\Epic Games\Warframe,
+                                      the real exe is in \Downloaded\),
+                                      Roblox Xbox build (C:\XboxGames\Roblox)
+         [14] Defender exclusions  -> the 3 exe + the Warframe/Roblox folders
+         RESTORE                   -> same 3 exe removed from IFEO, and the
+                                      Layers/UserGpuPreferences regex widened
+                                      (Warframe|RobloxPlayerBeta, and VALORANT
+                                      instead of VALORANT-Win64 so the launcher
+                                      entry is cleaned too)
+    i  Roblox: the Microsoft Store / Xbox build (RobloxGDK) ships a real exe at
+       C:\XboxGames\Roblox\Content\RobloxPlayerBeta.exe, so IFEO and FSO both
+       apply normally. The classic %LOCALAPPDATA%\Roblox\Versions build is
+       covered by IFEO (name-based) whatever its version folder.
+    i  Warframe has three install shapes: Steam (Warframe.x64.exe), Epic
+       (Warframe.exe launcher + Downloaded\Warframe.x64.exe), and standalone
+       (%LOCALAPPDATA%\Warframe\Downloaded\Public\). All three are covered.
 
 ================================================================================
   v3.6   -   BILINGUAL FIX, MIC LIST, [0] BACK, FR/EN COHERENCE

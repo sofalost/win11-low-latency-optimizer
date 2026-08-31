@@ -225,7 +225,8 @@ la maintenance. Detail :
    [0]  Elevation administrateur
    [01] Noyau CPU / RAM (seuil svchost selon RAM, priorites, timer global, SysMain)
    [02] MMCSS (priorites multimedia pour les jeux)
-   [03] IFEO : priorite des executables de jeu
+   [03] IFEO : priorite des executables de jeu (13 exe / 9 jeux :
+        CS2, LoL, Brawlhalla, R6 Siege, Valorant, Apex, Fortnite, Warframe, Roblox)
    [04] GPU (NVIDIA EnableGR535=0 = ancienne methode de sharpening, ou AMD ULPS off) + MSI mode + TdrDelay (lowest)
    [05] Souris + clavier + accessibilite + anti pop-up Store
    [06] Reseau + QoS (RSS on, RSC off, file QoS...)

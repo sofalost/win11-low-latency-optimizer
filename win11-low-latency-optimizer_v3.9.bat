@@ -70,7 +70,7 @@ echo.
 if /i "!L!"=="FR" goto _strfr
 set "M0=!CW!CPU/RAM!C0!: svchost grouped, foreground quantum, SysMain on"
 set "M2=!CW!MMCSS!C0! Games profile: GPU and CPU priority !CG!maxed!C0!"
-set "M3L=High CPU and I/O priority on !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite!C0!"
+set "M3L=High CPU and I/O priority on !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite, Warframe, Roblox!C0!"
 set "M3S=Per-game CPU/IO priority: !CG!default (soft)!C0!"
 set "M4=!CW!NVIDIA!C0! GPU: old sharpening method !CG!restored!C0!, MSI mode !CG!on!C0!"
 set "M5=!CW!AMD!C0! GPU: ULPS !CR!off!C0!, MSI mode !CG!on!C0!"
@@ -247,7 +247,7 @@ goto _strdone
 :_strfr
 if /i "!L!"=="FR" set "M0=!CW!CPU/RAM!C0! : svchost regroupé, quantum premier plan, SysMain on"
 if /i "!L!"=="FR" set "M2=!CW!MMCSS!C0! profil Games : priorité GPU et CPU !CG!maximale!C0!"
-if /i "!L!"=="FR" set "M3L=Priorité CPU et E/S élevée sur !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite!C0!"
+if /i "!L!"=="FR" set "M3L=Priorité CPU et E/S élevée sur !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite, Warframe, Roblox!C0!"
 if /i "!L!"=="FR" set "M3S=Priorité CPU/E-S par jeu : !CG!défaut (soft)!C0!"
 if /i "!L!"=="FR" set "M4=GPU !CW!NVIDIA!C0! : ancienne méthode de sharpening !CG!restaurée!C0!, mode MSI !CG!activé!C0!"
 if /i "!L!"=="FR" set "M5=GPU !CW!AMD!C0! : ULPS !CR!off!C0!, mode MSI !CG!on!C0!"
@@ -817,13 +817,13 @@ echo   !OK! !CC![02]!C0! !M2!
 
 rem ============ [03] PRIORITES PAR JEU (IFEO) ============
 if "!MODEMARK!"=="soft" goto _ifeoDef
-for %%E in ("cs2.exe" "League of Legends.exe" "Brawlhalla.exe" "RainbowSix.exe" "RainbowSix_DX11.exe" "VALORANT-Win64-Shipping.exe" "VALORANT.exe" "r5apex.exe" "r5apex_dx12.exe" "FortniteClient-Win64-Shipping.exe") do (
+for %%E in ("cs2.exe" "League of Legends.exe" "Brawlhalla.exe" "RainbowSix.exe" "RainbowSix_DX11.exe" "VALORANT-Win64-Shipping.exe" "VALORANT.exe" "r5apex.exe" "r5apex_dx12.exe" "FortniteClient-Win64-Shipping.exe" "Warframe.x64.exe" "Warframe.exe" "RobloxPlayerBeta.exe") do (
     reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E\PerfOptions" /v CpuPriorityClass /t REG_DWORD /d 3 /f >nul 2>&1
     reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E\PerfOptions" /v IoPriority /t REG_DWORD /d 3 /f >nul 2>&1
 )
 goto _ifeoEnd
 :_ifeoDef
-for %%E in ("cs2.exe" "League of Legends.exe" "Brawlhalla.exe" "RainbowSix.exe" "RainbowSix_DX11.exe" "VALORANT-Win64-Shipping.exe" "VALORANT.exe" "r5apex.exe" "r5apex_dx12.exe" "FortniteClient-Win64-Shipping.exe") do reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E\PerfOptions" /f >nul 2>&1
+for %%E in ("cs2.exe" "League of Legends.exe" "Brawlhalla.exe" "RainbowSix.exe" "RainbowSix_DX11.exe" "VALORANT-Win64-Shipping.exe" "VALORANT.exe" "r5apex.exe" "r5apex_dx12.exe" "FortniteClient-Win64-Shipping.exe" "Warframe.x64.exe" "Warframe.exe" "RobloxPlayerBeta.exe") do reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E\PerfOptions" /f >nul 2>&1
 :_ifeoEnd
 echo   !OK! !CC![03]!C0! !M3!
 
@@ -972,7 +972,7 @@ sc start WSearch >nul 2>&1
 echo   !OK! !CC![11]!C0! !M13!
 
 rem ============ [12] FSO (plein ecran) OFF par-jeu ============
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $q=[char]34; $steam=(Get-ItemProperty 'HKCU:\Software\Valve\Steam' -Name SteamPath).SteamPath; if(-not $steam){ $steam=(Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Valve\Steam' -Name InstallPath).InstallPath }; $libs=@(); if($steam){ $libs+=$steam; $vdf=Join-Path $steam 'steamapps\libraryfolders.vdf'; if(Test-Path $vdf){ Get-Content $vdf | Select-String ($q+'path'+$q) | ForEach-Object { $libs += (($_ -split $q)[3]).Replace('\\','\') } } }; $rel=@('steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe','steamapps\common\Brawlhalla\Brawlhalla.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix_DX11.exe','steamapps\common\Apex Legends\r5apex.exe','steamapps\common\Apex Legends\r5apex_dx12.exe'); $lay='HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers'; if(-not(Test-Path $lay)){New-Item $lay -Force|Out-Null}; $gpu='HKCU:\Software\Microsoft\DirectX\UserGpuPreferences'; if(-not(Test-Path $gpu)){New-Item $gpu -Force|Out-Null}; foreach($lib in ($libs | Select-Object -Unique)){ foreach($r in $rel){ $full=Join-Path $lib $r; if(Test-Path $full){ New-ItemProperty $lay $full -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $full -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } } }; $abs=@($env:ProgramFiles+'\Epic Games\Fortnite\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping.exe','C:\Riot Games\VALORANT\live\ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe','C:\Riot Games\League of Legends\Game\League of Legends.exe'); foreach($f in $abs){ if(Test-Path $f){ New-ItemProperty $lay $f -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $f -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } }" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $q=[char]34; $steam=(Get-ItemProperty 'HKCU:\Software\Valve\Steam' -Name SteamPath).SteamPath; if(-not $steam){ $steam=(Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Valve\Steam' -Name InstallPath).InstallPath }; $libs=@(); if($steam){ $libs+=$steam; $vdf=Join-Path $steam 'steamapps\libraryfolders.vdf'; if(Test-Path $vdf){ Get-Content $vdf | Select-String ($q+'path'+$q) | ForEach-Object { $libs += (($_ -split $q)[3]).Replace('\\','\') } } }; $rel=@('steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe','steamapps\common\Brawlhalla\Brawlhalla.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix_DX11.exe','steamapps\common\Apex Legends\r5apex.exe','steamapps\common\Apex Legends\r5apex_dx12.exe','steamapps\common\Warframe\Warframe.x64.exe','steamapps\common\Warframe\Warframe.exe'); $lay='HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers'; if(-not(Test-Path $lay)){New-Item $lay -Force|Out-Null}; $gpu='HKCU:\Software\Microsoft\DirectX\UserGpuPreferences'; if(-not(Test-Path $gpu)){New-Item $gpu -Force|Out-Null}; foreach($lib in ($libs | Select-Object -Unique)){ foreach($r in $rel){ $full=Join-Path $lib $r; if(Test-Path $full){ New-ItemProperty $lay $full -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $full -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } } }; $abs=@(($env:ProgramFiles+'\Epic Games\Fortnite\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping.exe'),'C:\Riot Games\VALORANT\live\ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe','C:\Riot Games\League of Legends\Game\League of Legends.exe',($env:ProgramFiles+'\Epic Games\Warframe\Downloaded\Warframe.x64.exe'),($env:ProgramFiles+'\Epic Games\Warframe\Warframe.exe'),($env:LOCALAPPDATA+'\Warframe\Downloaded\Public\Warframe.x64.exe'),'C:\XboxGames\Roblox\Content\RobloxPlayerBeta.exe'); foreach($f in $abs){ if(Test-Path $f){ New-ItemProperty $lay $f -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $f -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } }" >nul 2>&1
 echo   !OK! !CC![12]!C0! !M14!
 
 rem ============ [13] GAMEDVR OFF + MODE JEU FORCE ON ============
@@ -986,9 +986,9 @@ echo   !OK! !CC![13]!C0! !M15!
 
 rem ============ [14] DEFENDER : exclusions jeux + analyses bridees ============
 if defined STEAMPATH (
-    powershell -NoProfile -Command "Add-MpPreference -ExclusionPath '!STEAMPATH!\steamapps\common\Counter-Strike Global Offensive' -EA SilentlyContinue; Add-MpPreference -ExclusionPath '!STEAMPATH!\steamapps\common\Brawlhalla' -EA SilentlyContinue; Add-MpPreference -ExclusionPath '!STEAMPATH!\steamapps\common\Tom Clancy''s Rainbow Six Siege' -EA SilentlyContinue" >nul 2>&1
+    powershell -NoProfile -Command "Add-MpPreference -ExclusionPath '!STEAMPATH!\steamapps\common\Counter-Strike Global Offensive' -EA SilentlyContinue; Add-MpPreference -ExclusionPath '!STEAMPATH!\steamapps\common\Brawlhalla' -EA SilentlyContinue; Add-MpPreference -ExclusionPath '!STEAMPATH!\steamapps\common\Tom Clancy''s Rainbow Six Siege' -EA SilentlyContinue; Add-MpPreference -ExclusionPath '!STEAMPATH!\steamapps\common\Warframe' -EA SilentlyContinue" >nul 2>&1
 )
-powershell -NoProfile -Command "Add-MpPreference -ExclusionPath 'C:\Riot Games' -EA SilentlyContinue; Add-MpPreference -ExclusionProcess 'cs2.exe','Brawlhalla.exe','League of Legends.exe','RiotClientServices.exe','RainbowSix.exe','RainbowSix_DX11.exe','VALORANT.exe','VALORANT-Win64-Shipping.exe','r5apex.exe','r5apex_dx12.exe','FortniteClient-Win64-Shipping.exe' -EA SilentlyContinue" >nul 2>&1
+powershell -NoProfile -Command "Add-MpPreference -ExclusionPath 'C:\Riot Games' -EA SilentlyContinue; Add-MpPreference -ExclusionPath ($env:ProgramFiles+'\Epic Games\Warframe') -EA SilentlyContinue; Add-MpPreference -ExclusionPath 'C:\XboxGames\Roblox' -EA SilentlyContinue; Add-MpPreference -ExclusionProcess 'cs2.exe','Brawlhalla.exe','League of Legends.exe','RiotClientServices.exe','RainbowSix.exe','RainbowSix_DX11.exe','VALORANT.exe','VALORANT-Win64-Shipping.exe','r5apex.exe','r5apex_dx12.exe','FortniteClient-Win64-Shipping.exe','Warframe.x64.exe','Warframe.exe','RobloxPlayerBeta.exe' -EA SilentlyContinue" >nul 2>&1
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Set-MpPreference -ScanAvgCPULoadFactor 20 -DisableScanningNetworkFiles $true -DisableArchiveScanning $true" >nul 2>&1
 schtasks /Change /TN "\Microsoft\Windows\Windows Defender\Windows Defender Scheduled Scan" /Disable >nul 2>&1
 rem -- La protection temps reel n est PLUS jamais coupee (v3.9). Couper Defender
@@ -1638,9 +1638,9 @@ for /f "delims=" %%i in ('reg query "HKLM\SYSTEM\CurrentControlSet\Services\Tcpi
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Psched" /v NonBestEffortLimit /f >nul 2>&1
 echo   !OK! !R1!
 rem -- IFEO + FSO --
-for %%E in ("cs2.exe" "League of Legends.exe" "Brawlhalla.exe" "RainbowSix.exe" "RainbowSix_DX11.exe" "VALORANT-Win64-Shipping.exe" "VALORANT.exe" "r5apex.exe" "r5apex_dx12.exe" "FortniteClient-Win64-Shipping.exe") do reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E" /f >nul 2>&1
-powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $lay='HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers'; if(Test-Path $lay){ (Get-Item $lay).Property | Where-Object { $_ -match 'cs2.exe|Brawlhalla.exe|RainbowSix|r5apex|FortniteClient|VALORANT-Win64|League of Legends' } | ForEach-Object { Remove-ItemProperty -Path $lay -Name $_ } }" >nul 2>&1
-powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $gpu='HKCU:\Software\Microsoft\DirectX\UserGpuPreferences'; if(Test-Path $gpu){ (Get-Item $gpu).Property | Where-Object { $_ -match 'cs2.exe|Brawlhalla.exe|RainbowSix|r5apex|FortniteClient|VALORANT-Win64|League of Legends' } | ForEach-Object { Remove-ItemProperty -Path $gpu -Name $_ } }" >nul 2>&1
+for %%E in ("cs2.exe" "League of Legends.exe" "Brawlhalla.exe" "RainbowSix.exe" "RainbowSix_DX11.exe" "VALORANT-Win64-Shipping.exe" "VALORANT.exe" "r5apex.exe" "r5apex_dx12.exe" "FortniteClient-Win64-Shipping.exe" "Warframe.x64.exe" "Warframe.exe" "RobloxPlayerBeta.exe") do reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~E" /f >nul 2>&1
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $lay='HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers'; if(Test-Path $lay){ (Get-Item $lay).Property | Where-Object { $_ -match 'cs2.exe|Brawlhalla.exe|RainbowSix|r5apex|FortniteClient|VALORANT|League of Legends|Warframe|RobloxPlayerBeta' } | ForEach-Object { Remove-ItemProperty -Path $lay -Name $_ } }" >nul 2>&1
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $gpu='HKCU:\Software\Microsoft\DirectX\UserGpuPreferences'; if(Test-Path $gpu){ (Get-Item $gpu).Property | Where-Object { $_ -match 'cs2.exe|Brawlhalla.exe|RainbowSix|r5apex|FortniteClient|VALORANT|League of Legends|Warframe|RobloxPlayerBeta' } | ForEach-Object { Remove-ItemProperty -Path $gpu -Name $_ } }" >nul 2>&1
 echo   !OK! !R2!
 rem -- GameDVR + EnableGR535 --
 reg add "HKCU\System\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 1 /f >nul 2>&1

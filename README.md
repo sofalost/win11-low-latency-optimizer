@@ -36,7 +36,7 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 
 - **CPU / RAM** — SvcHost split threshold sized to your RAM, priority separation
 - **Scheduling** — MMCSS / `SystemResponsiveness`
-- **Per-game priority** — IFEO high priority for common competitive titles
+- **Per-game priority** — IFEO high priority for CS2, LoL, Brawlhalla, R6 Siege, Valorant, Apex, Fortnite, Warframe, Roblox
 - **GPU** — NVIDIA `EnableGR535=0` (restores the old sharpening method) or AMD ULPS off, MSI mode, TdrDelay
 - **Input** — mouse (pointer precision off) and keyboard responsiveness
 - **Network** — latency-oriented interface tweaks

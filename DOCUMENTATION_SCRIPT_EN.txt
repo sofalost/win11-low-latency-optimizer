@@ -219,7 +219,8 @@ Detail:
    [0]  Administrator elevation
    [01] CPU / RAM kernel (svchost threshold by RAM, priorities, global timer, SysMain)
    [02] MMCSS (multimedia priorities for games)
-   [03] IFEO: priority of game executables
+   [03] IFEO: priority of game executables (13 exe / 9 games:
+        CS2, LoL, Brawlhalla, R6 Siege, Valorant, Apex, Fortnite, Warframe, Roblox)
    [04] GPU (NVIDIA EnableGR535=0 = old sharpening method, or AMD ULPS off) + MSI mode + TdrDelay (lowest)
    [05] Mouse + keyboard + accessibility + Store pop-up block
    [06] Network + QoS (RSS on, RSC off, QoS queue...)
