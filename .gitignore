@@ -13,3 +13,7 @@ graphify-out/
 # OS junk
 Thumbs.db
 desktop.ini
+
+# Python bytecode (tools/)
+__pycache__/
+*.pyc
