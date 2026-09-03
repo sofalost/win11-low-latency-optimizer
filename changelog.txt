@@ -6,7 +6,7 @@
   Legend :  [+] added   [~] changed   [x] fixed   [-] removed
             i  note      !  heads-up
 
-  Latest version : v3.9.1
+  Latest version : v4.0
 
 
 ================================================================================
@@ -634,6 +634,64 @@
     i  Encoding rule reminder: the .bat stays CP1252 / CRLF. Never edit it
        with a UTF-8 tool (produces U+FFFD). Docs (this file, README, the two
        DOCUMENTATION_SCRIPT_*.txt) ARE UTF-8 and are safe to edit normally.
+
+================================================================================
+  v4.0   -   JOURNALLED WRITES  (restore gives back your real settings)
+================================================================================
+   [x] ROOT FIX: "Restore all Windows defaults" [5] was restoring 78 of the
+       210 registry values the script writes - 37%. The other 132 stayed
+       forced while the menu told you the machine was back to stock.
+   [~] Writes no longer go through "reg add". They go through a new :T
+       subroutine, which reads the value your machine currently has, appends
+       it to a journal, then writes. [5] replays that journal.
+       Two consequences worth the rewrite:
+         - coverage is 100% BY CONSTRUCTION. A new tweak cannot be forgotten
+           on the restore side, because there is no restore side to update.
+         - what you get back is YOUR value, not a supposed Windows default.
+           If you had SystemResponsiveness at 14 before, you get 14 back.
+       Journal: %ProgramData%\LowLatOptimizer\restore-journal.csv, deleted
+       once replayed. Re-running the script never overwrites it: the first
+       capture of a value wins, so your pre-first-run state is what is kept.
+   [x] The re-apply task knew 10 of the 13 games. After a Windows feature
+       update it restored IFEO priority for the original ten and silently
+       skipped Warframe (both exes) and Roblox - the three added in v3.9.1.
+       The embedded payload was regenerated with all 13.
+   [x] The game list existed at FOUR places in the script and had already
+       diverged (that is the bug above). One declaration now, read by the
+       IFEO apply, the soft reset, the restore and the re-apply payload.
+   [x] Defender exclusions were NEVER removed. [5] left 7 excluded paths and
+       14 excluded processes in place, so after "restore all defaults" you
+       were running with a permanently holed antivirus without knowing it.
+       All of them are now removed on restore.
+    !  Included in that: the hosts file exclusion. It exists so Defender does
+       not revert our blocklist mid-write (VirTool/PossibleHostsFileHijack),
+       but left behind it also disarms detection of a REAL hosts hijack by
+       malware - forever. It is now dropped immediately after the write.
+   [x] Wi-Fi did not come back after a restore. [5] set WlanSvc to "auto" and
+       started it, then a loop thirty lines later set it back to "demand" -
+       so at the next boot there was no network. On a laptop with no Ethernet
+       port that is a hard lock-out. Same for bthserv and BTAGService.
+   [x] System sounds were disabled with no restore path at all: the PC stayed
+       mute after a "restore defaults". The sound scheme and every per-event
+       sound are now put back.
+   [x] The title bar and the version line read v3.8 in a file named v3.9.
+   [x] Four strings had an unterminated quote, embedding a stray " in the
+       value. And MICNAME was dead code: written under "if defined MICNAME",
+       a variable nothing ever defined, then read back by the debug tool.
+   [+] tools/lint.py - static checks for the failure modes cmd.exe does not
+       report: a UTF-8 re-encode, a bare LF, a goto to a missing label, the
+       PowerShell array-concat bug from v3.9.1, an EN string with no FR
+       counterpart, and now a "reg add" that bypasses the journal. That last
+       rule immediately caught one the rewrite had missed.
+   [+] tools/test_journal.py - extracts the SHIPPED :T (not a copy that can
+       drift), runs it under a real cmd.exe and asserts the round-trip:
+       apply, replay, registry byte-identical. It covers the three cases that
+       broke during development - a value name containing a space, a value
+       written twice, and data containing the "|" the journal separates on.
+   [+] CI runs both on every push: lint on Ubuntu, the journal round-trip on
+       Windows, and a deploy cannot push unless they pass.
+    i  v3.9 stays in the repo as an archive. It fails the new lint rules by
+       design - that 271-error baseline is what v4.0 was built against.
 
 ================================================================================
                             END OF FILE

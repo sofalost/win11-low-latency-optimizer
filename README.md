@@ -1,12 +1,12 @@
 # Windows 11 Low-Latency Optimizer (all-in-one)
 
-**Current version: v3.9** — see `changelog.txt` for the full history.
+**Current version: v4.0** — see `changelog.txt` for the full history.
 
 > **Francophones** : ce script fonctionne aussi en français — la langue est détectée automatiquement d'après celle de ton Windows (affichage ou région).
 
 A bilingual (EN / FR) batch project that applies a **curated, reversible** set of latency and responsiveness tweaks for competitive gaming on Windows 11. No third-party software — everything runs through native registry keys, services and scheduled tasks.
 
-The main file is **`win11-low-latency-optimizer_v3.9.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, whether that GPU is discrete or integrated, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), whether you need virtualization / AI, then offers two profiles — **soft** and **lowest**.
+The main file is **`win11-low-latency-optimizer_v4.0.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, whether that GPU is discrete or integrated, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), whether you need virtualization / AI, then offers two profiles — **soft** and **lowest**.
 
 ## The all-in-one menu
 
@@ -27,7 +27,7 @@ Everything lives behind one start menu:
 - **[8]** Peripherals: disable or restore Wi-Fi / Ethernet, printer, Xbox, Bluetooth, camera individually
 
 **Tools**
-- **[8]** Verification / debug
+- **[9]** Verification / debug
 - **[0]** Quit
 
 When you pick **[1]** or **[2]**, the script first asks whether you need your kernel anticheat (Vanguard / FACEIT), then asks for the Soft or Lowest profile.
@@ -58,6 +58,17 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 The two choices combine freely (Soft or Lowest × anticheat Yes or No), and the apply is **idempotent**: switching modes and re-running resets anything the new mode no longer applies (Spectre/Meltdown, VBS/HVCI/hypervisor), so no setting from a previous run lingers. Defender real-time protection is re-enabled on every run, which also repairs a machine left unprotected by an older version.
 
 Everything is reversible from the menu: **[7]** re-enables Defender real-time, **[6]** restores the Spectre/Meltdown mitigations, and **[5]** restores all Windows defaults (VBS / HVCI / hypervisor included). After answering No to the anticheat question, reboot and confirm the anticheats you use still launch; if one refuses, run the matching restore.
+
+### How the restore works (v4.0)
+
+Every setting is written through a subroutine that first **reads the value your machine already has** and appends it to a journal (`%ProgramData%\LowLatOptimizer\restore-journal.csv`), then writes. **[5]** replays that journal.
+
+Two things follow from this, and they are the reason for the rewrite:
+
+- **Nothing can be missed.** In v3.9 the apply phase and the restore phase were two hand-maintained lists, and they had drifted: 210 values written, 78 restored. There is no second list to maintain any more.
+- **You get your value back, not a guess.** Restoring "the Windows default" is only correct on a stock machine. If your `SystemResponsiveness` was 14 before you ever ran this, the journal gives you 14 — not the 20 the documentation says Windows ships with.
+
+Re-running the script does not spoil this: the first capture of a value is the one kept, so the journal always holds your state from *before the first run*.
 
 ## What it deliberately does NOT touch
 
@@ -91,9 +102,11 @@ The in-game and driver settings that matter most for CS2 input latency.
 
 ## Files in this repo
 
-- **`win11-low-latency-optimizer_v3.9.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the QWERTY tool and the read-only debug checker (menu **[8]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
+- **`win11-low-latency-optimizer_v4.0.bat`** — the all-in-one; **the only file you run**. It embeds the optimizer, the 0.5 ms timer + NVIDIA tweak (with phantom-device cleanup), the QWERTY tool and the read-only debug checker (menu **[9]**), and the whole UI (menus, questions, every action screen) is fully bilingual EN/FR, auto-detected.
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (placebo-adjacent ones clearly flagged)
 - `changelog.txt` — the full version history: every version with its detailed changes
+- `tools/lint.py` and `tools/test_journal.py` — the checks CI runs on every push. The lint catches what cmd.exe never reports (a UTF-8 re-encode, a bare LF, a `goto` to a missing label, a write that bypasses the journal); the test runs the shipped subroutine under a real `cmd.exe` and asserts that apply-then-restore leaves the registry byte-identical. You don't need either to use the script.
+- `win11-low-latency-optimizer_v3.9.bat` — kept as an archive. It fails the current lint rules by design.
 - *(optional)* **`BLACK_W11_CURSOR.zip`** — a black Windows pointer pack. Unzip -> right-click `install.inf` -> **Install** -> apply it in Mouse settings.
 
 ## How to use

@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.9)
+              win11-low-latency-optimizer   (v4.0)
                   How it works, detection, ordering
 ================================================================================
 
@@ -489,8 +489,58 @@ effects block only runs if the machine had actually received LIGHTFX (it no
 longer wipes the effect settings of users who never had them applied), it
 restores thumbnail caching (AlwaysHibernateThumbnails), it re-enables any
 Wi-Fi / Ethernet / Bluetooth / camera the apply may have disabled, and it
-refreshes the session so the restored visuals show without a sign-out. The Defender exclusions and the debloat are not all undone
-automatically (safe to leave).
+refreshes the session so the restored visuals show without a sign-out.
+
+  HOW IT WORKS SINCE v4.0 - and why the earlier versions were lying to you
+
+  Up to v3.9.1 the restore was a hand-written list of values to put back,
+  maintained alongside the (separate) list of values to apply. The two had
+  drifted: the apply wrote 210 registry values, the restore handled 78. The
+  menu entry said "restore all Windows defaults" while 132 settings stayed
+  forced. That is not a bug you fix by adding 132 lines - it is a bug you fix
+  by removing the second list.
+
+  So in v4.0 nothing writes to the registry directly any more. Every write
+  goes through one subroutine (:T) that:
+
+    1. reads the value your machine currently has, with its type
+    2. appends key|value|SET|type|data to a journal - or key|value|ABSENT
+       if the value did not exist at all
+    3. only then writes the new value
+
+  The restore replays that journal backwards into the registry: SET rows are
+  written back, ABSENT rows are deleted. The journal lives at
+  %ProgramData%\LowLatOptimizer\restore-journal.csv and is deleted once
+  replayed.
+
+  Two properties follow, and they are the whole point:
+
+  - Coverage is 100% by construction. A tweak added in a future version
+    cannot be forgotten on the restore side, because there is no restore side
+    to update.
+
+  - You get YOUR value back, not a documented default. Restoring "the Windows
+    default" is only correct on a stock machine. If your SystemResponsiveness
+    was 14 before you ever ran this script - because another tool set it, or
+    because you set it yourself - v3.9 would have written 20 and called that
+    a restore. v4.0 gives you 14.
+
+  Running the script several times does not degrade this: :T checks whether
+  the value is already in the journal and does not overwrite the entry. The
+  first capture wins, so the journal always holds your state from before the
+  FIRST run, not from before the most recent one.
+
+  What the journal does NOT cover, and is handled explicitly next to it:
+  scheduled tasks, services, the hosts file, Defender exclusions, disabled
+  devices and the debloat. Those are not registry values, so they have their
+  own symmetric undo in the restore - including, since v4.0, the removal of
+  every Defender exclusion the script added. Earlier versions left all of
+  them in place and this documentation described that as "safe to leave". It
+  was not: 7 excluded paths and 14 excluded processes survived a full
+  restore, permanently, and the user believed the machine was back to stock.
+  The hosts file exclusion in particular disarmed Defender's detection of a
+  genuine hosts hijack by malware; it is now removed as soon as the write
+  that needed it is finished.
 
 
 --------------------------------------------------------------------------------
@@ -508,7 +558,7 @@ Note v3.7: the "default microphone" feature (previously menu [5], via COM
   IPolicyConfig / micdef.ps1) has been REMOVED from the script. It failed
   silently (E_NOINTERFACE on IMMDeviceEnumerator, cross-apartment) and added
   nothing the Windows Sound panel doesn't already do. The menu was renumbered:
-  Restore->[5], Spectre->[6], Defender->[7], Verification->[8].
+  Restore->[5], Spectre->[6], Defender->[7], Peripherals->[8], Verification->[9].
 
 
 ================================================================================

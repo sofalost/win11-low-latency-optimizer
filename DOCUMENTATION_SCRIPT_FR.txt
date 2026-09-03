@@ -1,5 +1,5 @@
 ================================================================================
-              win11-low-latency-optimizer   (v3.9)
+              win11-low-latency-optimizer   (v4.0)
                   Fonctionnement complet, detection, ordre
 ================================================================================
 
@@ -507,8 +507,62 @@ n'ecrase plus les reglages d'effets de ceux qui ne les avaient jamais
 appliques), il restaure le cache des miniatures (AlwaysHibernateThumbnails),
 il reactive le Wi-Fi / Ethernet / Bluetooth / la camera que l'apply a pu
 desactiver, et il rafraichit la session pour que les effets restaures
-s'affichent sans fermer la session. Les exclusions Defender et le debloat ne sont pas tous annules
-automatiquement (sans danger a laisser).
+s'affichent sans fermer la session.
+
+  COMMENT CA MARCHE DEPUIS LA v4.0 - et pourquoi les versions d'avant te
+  mentaient
+
+  Jusqu'a la v3.9.1 la restauration etait une liste ecrite a la main, tenue a
+  jour a cote de l'autre liste, celle des valeurs a appliquer. Les deux
+  avaient diverge : l'apply ecrivait 210 valeurs de registre, la restauration
+  en traitait 78. L'entree du menu annoncait "restaurer les valeurs Windows"
+  pendant que 132 reglages restaient forces. Ce n'est pas un bug qu'on corrige
+  en ajoutant 132 lignes - c'est un bug qu'on corrige en supprimant la
+  deuxieme liste.
+
+  Donc en v4.0, plus rien n'ecrit dans le registre directement. Toute
+  ecriture passe par un sous-programme unique (:T) qui :
+
+    1. lit la valeur que ta machine a actuellement, avec son type
+    2. ajoute cle|valeur|SET|type|donnee a un journal - ou cle|valeur|ABSENT
+       si la valeur n'existait pas du tout
+    3. seulement ensuite ecrit la nouvelle valeur
+
+  La restauration rejoue ce journal dans le registre : les lignes SET sont
+  reecrites, les lignes ABSENT sont supprimees. Le journal se trouve dans
+  %ProgramData%\LowLatOptimizer\restore-journal.csv et est supprime une fois
+  rejoue.
+
+  Deux proprietes en decoulent, et c'est tout l'interet :
+
+  - La couverture est de 100% par construction. Un tweak ajoute dans une
+    version future ne PEUT PAS etre oublie cote restauration, puisqu'il n'y a
+    plus de cote restauration a mettre a jour.
+
+  - Tu recuperes TA valeur, pas un defaut documente. Restaurer "le defaut
+    Windows" n'est correct que sur une machine d'origine. Si ton
+    SystemResponsiveness valait 14 avant que tu lances ce script - parce
+    qu'un autre outil l'avait mis, ou parce que tu l'avais mis toi-meme - la
+    v3.9 ecrivait 20 et appelait ca une restauration. La v4.0 te rend 14.
+
+  Relancer le script plusieurs fois ne degrade pas ca : :T verifie si la
+  valeur est deja dans le journal et n'ecrase pas l'entree. La premiere
+  capture gagne, donc le journal contient toujours ton etat d'avant la
+  PREMIERE execution, pas d'avant la derniere.
+
+  Ce que le journal ne couvre PAS, et qui est traite explicitement a cote :
+  les taches planifiees, les services, le fichier hosts, les exclusions
+  Defender, les peripheriques desactives et le debloat. Ce ne sont pas des
+  valeurs de registre, ils ont donc leur propre annulation symetrique dans la
+  restauration - y compris, depuis la v4.0, le retrait de toutes les
+  exclusions Defender posees par le script. Les versions precedentes les
+  laissaient toutes en place et cette documentation decrivait ca comme "sans
+  danger a laisser". C'etait faux : 7 chemins exclus et 14 processus exclus
+  survivaient a une restauration complete, definitivement, et l'utilisateur
+  croyait sa machine revenue a l'etat d'origine. L'exclusion du fichier hosts
+  en particulier desarmait la detection par Defender d'un VRAI detournement
+  de hosts par un malware ; elle est maintenant retiree des que l'ecriture
+  qui la necessitait est terminee.
 
 
 --------------------------------------------------------------------------------
@@ -526,7 +580,7 @@ Note v3.7 : la fonction "micro par defaut" (menu [5] precedant, via COM
   IPolicyConfig / micdef.ps1) a ete RETIREe du script. Elle echouait en silence
   (E_NOINTERFACE sur IMMDeviceEnumerator, cross-apartment) et n'apportait rien
   que le Panneau de son Windows ne fasse deja. Le menu a ete renumerate :
-  Restore->[5], Spectre->[6], Defender->[7], Verification->[8].
+  Restore->[5], Spectre->[6], Defender->[7], Peripheriques->[8], Verification->[9].
 
 
 ================================================================================
