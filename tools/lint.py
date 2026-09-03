@@ -265,8 +265,15 @@ class Lint:
         return self.errors, self.warnings
 
 
+def latest_bat():
+    """The highest-versioned .bat — the one actually shipped. Older versions
+    stay in the repo as archives and are expected to fail these rules."""
+    key = lambda p: [int(n) for n in re.findall(r"\d+", p)] or [0]
+    return sorted(glob.glob("*.bat"), key=key)[-1:]
+
+
 def main():
-    targets = sys.argv[1:] or sorted(glob.glob("*.bat"))
+    targets = sys.argv[1:] or latest_bat()
     if not targets:
         print("no .bat found")
         return 1

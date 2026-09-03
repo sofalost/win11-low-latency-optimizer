@@ -80,7 +80,10 @@ def win_temp():
 
 
 def main():
-    target = (sys.argv[1:] or sorted(glob.glob("*v4*.bat")) or sorted(glob.glob("*.bat")))[0]
+    # highest-versioned .bat by default, so this keeps testing the shipped
+    # script after a version bump instead of pinning itself to v4
+    key = lambda p: [int(n) for n in re.findall(r"\d+", p)] or [0]
+    target = (sys.argv[1:] or sorted(glob.glob("*.bat"), key=key)[-1:])[0]
     cmd = shutil.which("cmd.exe")
     tmp = win_temp()
     if not cmd or not tmp:

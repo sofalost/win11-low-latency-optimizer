@@ -1,0 +1,34 @@
+name: Checks
+
+# The failure modes this catches are all SILENT: cmd.exe runs a mangled
+# encoding, an unreachable label or an unjournalled write without complaining,
+# and the damage only shows up on a user's machine.
+on:
+  push:
+    paths: ['**.bat', 'tools/**', '.github/workflows/checks.yml']
+  pull_request:
+  workflow_dispatch:
+  workflow_call:   # deploy.yml gates on this
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Static checks
+        run: python3 tools/lint.py
+
+  journal:
+    # :T and :RESTORE are batch subroutines; the only honest way to test them
+    # is to run them against a real registry.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Journal round-trip
+        run: python tools/test_journal.py
