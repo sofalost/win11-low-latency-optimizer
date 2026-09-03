@@ -197,6 +197,34 @@ class Lint:
         if missing:
             self.err(0, f"restore coverage: {len(applied) - len(missing)}/{len(applied)} values")
 
+    # -- every apply-phase write must go through :T -------------------------
+    # :T records the value the machine had before overwriting it, and :RESTORE
+    # replays that journal. A raw `reg add` in the apply phase is invisible to
+    # both: it is applied, and it is never given back.
+    def check_journalled(self):
+        bounds = self._section_bounds()
+        if bounds is None:
+            return
+        apply_seg, rest_seg = bounds
+        restored = set(self._reg_keys(rest_seg))
+        for l in apply_seg:
+            for m in re.finditer(r'reg add "([^"]+)"(?:\s+/v\s+("[^"]+"|\S+))?', l):
+                key, val = m.group(1), (m.group(2) or "").strip('"')
+                # an explicit counterpart in :RESTORE is as good as the journal
+                if (key.upper(), val.upper()) in restored:
+                    continue
+                # the script's own state key is deleted wholesale by :RESTORE
+                if key.upper().startswith("HKLM\\SOFTWARE\\LOWLATOPTIMIZER"):
+                    continue
+                # %%-expanded keys are loop bodies, covered by a whole-key delete
+                if "%%" in key or "%%" in val:
+                    continue
+                self.err(
+                    self.lines.index(l) + 1,
+                    f"reg add outside :T — {key} /v {val or '(default)'} is applied "
+                    "but not journalled, so :RESTORE cannot put it back",
+                )
+
     def _section_bounds(self):
         find = lambda pred: next((i for i, l in enumerate(self.lines) if pred(l.strip().lower())), None)
         apply_at = find(lambda s: s.startswith("rem ===") and "[01]" in s)
@@ -208,11 +236,17 @@ class Lint:
 
     @staticmethod
     def _reg_keys(seg):
+        """Value name per `reg add|delete "KEY" ...`. /ve and /v "" both name a
+        key's default value; they must compare equal or a value written with one
+        spelling and restored with the other looks unrestored."""
         out = {}
         for l in seg:
-            for m in re.finditer(r'reg (add|delete) "([^"]+)"(?:\s+/v\s+("[^"]+"|\S+))?', l):
-                key = (m.group(2).upper(), (m.group(3) or "").strip('"').upper())
-                out.setdefault(key, set()).add(m.group(1))
+            for m in re.finditer(
+                r'reg (add|delete) "([^"]+)"((?:\s+/(?:v\s+(?:"[^"]*"|\S+)|ve))*)', l
+            ):
+                v = re.search(r'/v\s+("[^"]*"|\S+)', m.group(3))
+                name = v.group(1).strip('"').upper() if v else ""
+                out.setdefault((m.group(2).upper(), name), set()).add(m.group(1))
         return out
 
     def run(self):
@@ -224,6 +258,7 @@ class Lint:
             self.check_rem_in_block,
             self.check_ps_array_concat,
             self.check_i18n_parity,
+            self.check_journalled,
             self.check_restore_coverage,
         ):
             c()
