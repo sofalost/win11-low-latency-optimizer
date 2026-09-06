@@ -692,6 +692,11 @@
        Windows, and a deploy cannot push unless they pass.
     i  v3.9 stays in the repo as an archive. It fails the new lint rules by
        design - that 271-error baseline is what v4.0 was built against.
+   [~] On AC power the screen no longer turns off after 15 minutes
+       (monitor-timeout-ac 15 -> 0, section [35]). Standby, hibernate and disk
+       timeout were already 0, and the section announces "never sleeps", so
+       the display was the odd one out. Unchanged on battery. A restore still
+       puts back the Windows default of 10 minutes with the Balanced plan.
 
 ================================================================================
                             END OF FILE

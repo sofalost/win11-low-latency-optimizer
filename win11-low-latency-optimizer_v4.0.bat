@@ -1312,7 +1312,7 @@ if "!ISLAPTOP!"=="1" if "!HASWIFI!"=="1" powercfg /setdcvalueindex scheme_curren
 if "!ISLAPTOP!"=="1" if "!HASWIFI!"=="1" powercfg /setacvalueindex scheme_current 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 0 >nul 2>&1
 powercfg /change standby-timeout-ac 0 >nul 2>&1
 powercfg /change hibernate-timeout-ac 0 >nul 2>&1
-powercfg /change monitor-timeout-ac 15 >nul 2>&1
+powercfg /change monitor-timeout-ac 0 >nul 2>&1
 powercfg /change disk-timeout-ac 0 >nul 2>&1
 powercfg /setactive scheme_current >nul 2>&1
 echo   !OK! !CC![35]!C0! !M54!
