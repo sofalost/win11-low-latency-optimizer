@@ -397,6 +397,12 @@ C-states increases heat/power for a marginal latency gain: it is the classic
         the CPU-adapted parking / C-states (from the stored detection). The power
         plan can fall back to Balanced after sleep or an update: so it is
         guaranteed at each boot (X3D logic respected).
+      * GUARANTEES the screen NEVER turns off, on AC and on battery alike.
+        The timeout is re-applied to ALL power plans (not just the active one)
+        because Windows switches plans on its own, especially on a laptop: low
+        battery, resume from sleep, an update. The console-lock timeout is set
+        to 0 as well, otherwise the display still blanks once the session is
+        locked.
       * REMOVES ghost devices via pnputil: those flagged CM_PROB_PHANTOM and
         not present (Present = false). A merely disabled device stays
         Present = true, so it is never touched.
