@@ -106,7 +106,6 @@ The in-game and driver settings that matter most for CS2 input latency.
 - `DOCUMENTATION_SCRIPT_EN.txt` / `DOCUMENTATION_SCRIPT_FR.txt` — a section-by-section, honest explanation of every tweak (placebo-adjacent ones clearly flagged)
 - `changelog.txt` — the full version history: every version with its detailed changes
 - `tools/lint.py` and `tools/test_journal.py` — the checks CI runs on every push. The lint catches what cmd.exe never reports (a UTF-8 re-encode, a bare LF, a `goto` to a missing label, a write that bypasses the journal); the test runs the shipped subroutine under a real `cmd.exe` and asserts that apply-then-restore leaves the registry byte-identical. You don't need either to use the script.
-- `win11-low-latency-optimizer_v3.9.bat` — kept as an archive. It fails the current lint rules by design.
 - *(optional)* **`BLACK_W11_CURSOR.zip`** — a black Windows pointer pack. Unzip -> right-click `install.inf` -> **Install** -> apply it in Mouse settings.
 
 ## How to use
