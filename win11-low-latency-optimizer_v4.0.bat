@@ -2142,6 +2142,7 @@ if /i "!LG!"=="FR" (
     set "LTP=presente"
     set "LTA=absente"
     set "LSA=devrait etre absent"
+    set "LWO=absent, normal : strategie Widgets active"
     set "LNI=present sur une interface"
     set "LIL=illisible"
     set "LHN=cle absente, HAGS non dispo"
@@ -2188,6 +2189,7 @@ if /i "!LG!"=="FR" (
     set "LTP=present"
     set "LTA=missing"
     set "LSA=should be absent"
+    set "LWO=absent, expected: Widgets policy active"
     set "LNI=present on an interface"
     set "LIL=unreadable"
     set "LHN=key absent, HAGS unavailable"
@@ -2689,7 +2691,10 @@ call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" Ta
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" PenWorkspaceButtonDesiredVisibility 0 "PenWorkspaceButtonDesiredVisibility .."
 call :ckdw "HKCU\SOFTWARE\Microsoft\TabletTip\1.7" TipbandDesiredVisibility 0 "TipbandDesiredVisibility .."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" TaskbarEndTask 1 "TaskbarEndTask .........."
-call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" TaskbarDa 0 "TaskbarDa ..............."
+rem -- Widgets : la strategie Dsh\AllowNewsAndInterests posee en [08] prive le
+rem reglage par-utilisateur de tout effet, et Explorer supprime alors TaskbarDa.
+rem 0 et absent decrivent donc le meme etat obtenu : les deux sont acceptes.
+call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" TaskbarDa 0 "TaskbarDa ..............." okabs
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowTaskViewButton 0 "ShowTaskViewButton ......"
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" Start_TrackProgs 0 "Start_TrackProgs ........"
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" Start_TrackDocs 0 "Start_TrackDocs ........."
@@ -2772,6 +2777,7 @@ if defined rl for /f "tokens=1" %%v in ("!rl:*REG_DWORD=!") do set "cur=%%v"
 set /a TOT+=1
 if /i "%~3"=="absent" goto ckdw_wantabs
 if "%~3"=="show" goto ckdw_show
+if not defined cur if /i "%~5"=="okabs" goto ckdw_okgone
 if not defined cur goto ckdw_absent
 set "cue=%~3"
 if /i "!cue:~0,2!"=="0x" goto ckdw_hex
@@ -2802,6 +2808,10 @@ goto :eof
 :ckdw_show
 if defined cur echo   !CC! [info]!C0! %~4 !CW!!cur!!C0!
 if not defined cur echo   !CC! [info]!C0! %~4 !CK!absent!C0!
+set /a OKC+=1
+goto :eof
+:ckdw_okgone
+echo   !CG! [ OK ]!C0! %~4 !CG!absent (!LWO!)!C0!
 set /a OKC+=1
 goto :eof
 :ckdw_absent

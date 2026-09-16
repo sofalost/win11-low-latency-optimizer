@@ -717,6 +717,13 @@
    [x] Restore now puts back the Windows defaults on both AC and DC and on
        every plan, not just AC on the active one: 10/5 min screen, 30/15 min
        standby, 180 min hibernate, 20/10 min disk, 60 s console lock.
+   [x] [9] Debug reported TaskbarDa as FAIL/absent while expecting 0. The
+       value was genuinely gone from the registry, but that is the correct
+       end state, not a failure: section [08] sets the Widgets policy
+       Dsh\AllowNewsAndInterests to 0, and once Widgets are off by policy the
+       per-user setting no longer governs anything, so Explorer drops it. The
+       check now accepts absent as a pass for this value only, and says why.
+       Every other check keeps failing on a missing value.
 
 ================================================================================
                             END OF FILE
