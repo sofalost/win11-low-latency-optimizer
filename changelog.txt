@@ -717,6 +717,40 @@
    [x] Restore now puts back the Windows defaults on both AC and DC and on
        every plan, not just AC on the active one: 10/5 min screen, 30/15 min
        standby, 180 min hibernate, 20/10 min disk, 60 s console lock.
+   [x] [9] Debug reported TaskbarDa as FAIL/absent while expecting 0. The
+       value was genuinely gone from the registry, but that is the correct
+       end state, not a failure: section [08] sets the Widgets policy
+       Dsh\AllowNewsAndInterests to 0, and once Widgets are off by policy the
+       per-user setting no longer governs anything, so Explorer drops it. The
+       check now accepts absent as a pass for this value only, and says why.
+       Every other check keeps failing on a missing value.
+
+   [+] Eight games added to the per-game priority list: Deadlock, Marvel Rivals,
+       Overwatch 2, Bodycam, Ready or Not, Rocket League, REMATCH, Team Fortress 2.
+       Thirteen executables in all, every name taken from the shipping build rather
+       than guessed - a wrong name creates an IFEO key for a binary that never runs,
+       so the game is silently never optimised. Several are not the obvious name:
+       Marvel Rivals ships as Marvel-Win64-Shipping.exe, REMATCH as
+       RuntimeClient-Win64-Shipping.exe, Deadlock as project8.exe or deadlock.exe
+       depending on the build, Team Fortress 2 as tf_win64.exe since the 64-bit
+       update. Ready or Not was renamed ReadyOrNotSteam-Win64-Shipping.exe in
+       July 2025; both names are kept so older installs stay covered.
+    i  IFEO is keyed by executable name, not by path, so these work from any
+       launcher - Steam, Epic, Riot, Battle.net, Xbox, EA, Ubisoft, GOG or a
+       native installer alike. Only the full-screen-optimisation and GPU-preference
+       tweaks need a real path, hence the discovery below.
+
+   [~] Full-screen optimisations and GPU preference no longer rely on hardcoded
+       install paths. Epic games are read from the launcher manifests in
+       %PROGRAMDATA% (which stays on the system drive even when the games do not),
+       Riot games from their per-game InstallLocation, Overwatch 2 from the
+       Battle.net uninstall entry. Fortnite installed outside C: was previously
+       missed; it no longer is.
+
+   [~] The cleanup of AppCompatFlags\Layers and UserGpuPreferences, and the Defender
+       Steam-folder exclusions, now derive from the single game list instead of
+       keeping their own copies. Four hand-maintained lists became one - this is the
+       same drift that left the logon task knowing only 10 of 13 games in v3.9.
 
 ================================================================================
                             END OF FILE
