@@ -697,6 +697,26 @@
        timeout were already 0, and the section announces "never sleeps", so
        the display was the odd one out. Unchanged on battery. A restore still
        puts back the Windows default of 10 minutes with the Balanced plan.
+   [x] ...and the screen kept turning off after 15 minutes anyway, on
+       laptops especially. Section [35] did set monitor-timeout-ac 0, but the
+       "LowLat Reapply" logon task carried its own hardcoded
+       "monitor-timeout-ac 15" and put the 15 minutes straight back at every
+       logon. The fix above was real and was undone a few seconds later.
+   [~] The screen now never turns off, on AC and on battery alike. Three
+       things were missing for laptops: the -dc side was never set (a laptop
+       runs on DC the moment it is unplugged), VIDEOIDLE was only written to
+       the active plan while Windows switches plans on its own (low battery,
+       resume from sleep) and the plan it switches to still held 15 minutes,
+       and the console-lock timeout blanked the display after a lock
+       regardless. VIDEOIDLE and VIDEOCONLOCK are now set to 0 on EVERY plan,
+       AC and DC, in section [35] and in the logon task. Standby, hibernate
+       and disk timeout also gained their -dc counterparts.
+    i  powercfg /attributes -ATTRIB_HIDE un-hides both timeouts in the power
+       options UI, where Windows hides them by default - so the value is
+       visible and changeable by hand rather than silently forced.
+   [x] Restore now puts back the Windows defaults on both AC and DC and on
+       every plan, not just AC on the active one: 10/5 min screen, 30/15 min
+       standby, 180 min hibernate, 20/10 min disk, 60 s console lock.
 
 ================================================================================
                             END OF FILE

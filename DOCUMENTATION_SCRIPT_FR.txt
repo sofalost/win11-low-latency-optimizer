@@ -409,6 +409,12 @@ compromis "low latency classique", assume.
         parking / C-states adaptes au CPU (depuis la detection stockee). Le plan
         d'alim peut retomber sur Equilibre apres une veille ou une MAJ : on le
         garantit donc a chaque boot (logique X3D respectee).
+      * GARANTIT que l'ecran ne s'eteint JAMAIS, sur secteur comme sur
+        batterie. Le delai est repose sur TOUS les plans d'alim (pas seulement
+        l'actif) car Windows change de plan tout seul, surtout sur portable :
+        batterie faible, sortie de veille, MAJ. Le delai apres verrouillage de
+        session est mis a 0 lui aussi, sans quoi l'ecran s'eteint quand meme
+        une fois la session verrouillee.
       * SUPPRIME les peripheriques fantomes via pnputil : ceux marques
         CM_PROB_PHANTOM et absents (Present = false). Un peripherique
         simplement desactive reste Present = true, il n'est donc jamais
