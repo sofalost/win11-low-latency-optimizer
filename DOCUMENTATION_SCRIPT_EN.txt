@@ -164,6 +164,17 @@ freely (SOFT or LOWEST x anticheat YES or NO). Reversible: menu choice [7]
 restores the Spectre/Meltdown mitigations alone, and choice [6] (full
 restore) puts VBS, HVCI and the hypervisor back.
 
+WINDOWS AI (Copilot / Recall / WindowsAI) is NOT tied to that question: it is
+turned OFF on EVERY run, whatever you answer. Section [08] writes the
+TurnOffWindowsCopilot policies (HKLM and HKCU), the Recall policy
+(DisableAIDataAnalysis) and the Copilot-in-Edge policy (HubsCopilotEnabled),
+and uninstalls the Recall optional feature itself
+(Disable-WindowsOptionalFeature - no-op on machines without Recall). Section
+[24] hides the taskbar Copilot button (ShowCopilotButton=0), and section
+[16b] removes the Copilot Store app next to Outlook (new). The full restore
+[5] deletes the policies and re-enables the Recall feature; the Store app can
+be reinstalled from the Microsoft Store.
+
 IDEMPOTENCE (no residue between modes): every mode-sensitive tweak is written
 in BOTH directions, so switching modes and re-running always resets what the
 new mode no longer applies. Defender real-time is re-enabled on every run
@@ -233,7 +244,7 @@ Detail:
    [08] Telemetry        [09] Telemetry tasks
    [09b] Hosts: ad + MS telemetry blocking (215 domains) + Defender exclusion
    [10] Services         [11] Indexing
-   [12] FSO (Fullscreen Optimizations)
+   [12] FSO (Fullscreen Optimizations) - LoL excluded (exclusive-fullscreen blur bug; leftovers from older versions are cleaned up)
    [13] Game DVR + Game Mode
    [14] Defender exclusions (the games, to avoid scanning mid-match)
    [15] Debloat (useless apps)    [16] Privacy

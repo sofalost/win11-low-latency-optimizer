@@ -168,6 +168,18 @@ OUI ou NON). Reversible : le choix [7] restaure les mitigations
 Spectre/Meltdown seules, et le choix [6] (restauration complete) remet VBS,
 HVCI et l'hyperviseur.
 
+L'IA WINDOWS (Copilot / Recall / WindowsAI) n'est PAS liee a cette question :
+elle est coupee a CHAQUE run, quelle que soit ta reponse. La section [08]
+ecrit les strategies TurnOffWindowsCopilot (HKLM et HKCU), la strategie
+Recall (DisableAIDataAnalysis) et la strategie Copilot dans Edge
+(HubsCopilotEnabled), et desinstalle la fonctionnalite optionnelle Recall
+elle-meme (Disable-WindowsOptionalFeature - sans effet sur les machines sans
+Recall). La section [24] masque le bouton Copilot de la barre des taches
+(ShowCopilotButton=0), et la section [16b] retire l'appli Copilot du Store a
+cote d'Outlook (new). La restauration complete [5] supprime les strategies et
+reinstalle la fonctionnalite Recall ; l'appli se reinstalle depuis le
+Microsoft Store.
+
 IDEMPOTENCE (aucun residu entre modes) : chaque tweak sensible au mode est
 ecrit dans LES DEUX SENS, donc changer de mode et relancer remet toujours a
 zero ce que le nouveau mode ne touche plus. Le temps reel Defender est
@@ -239,7 +251,7 @@ la maintenance. Detail :
    [08] Telemetrie        [09] Taches de telemetrie
    [09b] Hosts : blocage pub + telemetrie MS (215 domaines) + exclusion Defender
    [10] Services          [11] Indexation
-   [12] FSO (Fullscreen Optimizations)
+   [12] FSO (Fullscreen Optimizations) - LoL exclu (bug de flou en plein ecran exclusif ; les restes des versions anterieures sont nettoyes)
    [13] Game DVR + Game Mode
    [14] Exclusions Defender (les jeux, pour eviter le scan en pleine partie)
    [15] Debloat (apps inutiles)   [16] Vie privee

@@ -70,7 +70,7 @@ echo.
 if /i "!L!"=="FR" goto _strfr
 set "M0=!CW!CPU/RAM!C0!: svchost grouped, foreground quantum, SysMain on"
 set "M2=!CW!MMCSS!C0! Games profile: GPU and CPU priority !CG!maxed!C0!"
-set "M3L=High CPU and I/O priority on !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite, Warframe, Roblox!C0!"
+set "M3L=High CPU and I/O priority on !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite, Warframe, Roblox, Deadlock, Marvel Rivals, Overwatch, Bodycam, Ready or Not, Rocket League, Rematch, TF2!C0!"
 set "M3S=Per-game CPU/IO priority: !CG!default (soft)!C0!"
 set "M4=!CW!NVIDIA!C0! GPU: old sharpening method !CG!restored!C0!, MSI mode !CG!on!C0!"
 set "M5=!CW!AMD!C0! GPU: ULPS !CR!off!C0!, MSI mode !CG!on!C0!"
@@ -84,12 +84,12 @@ set "M10=!CW!Ad and telemetry blocklist!C0!: !CC!215 domains!C0! via hosts"
 set "M11=Telemetry scheduled tasks !CR!disabled!C0!"
 set "M12=Useless services !CR!disabled!C0! (!CW!anticheats!C0! and drivers untouched)"
 set "M13=Windows indexing !CG!on!C0! (file search)"
-set "M14=Exclusive fullscreen !CG!forced!C0!, high-performance GPU on all !CC!7!C0! games"
+set "M14=Exclusive fullscreen !CG!forced!C0!, high-performance GPU on !CW!every supported game!C0!"
 set "M15=!CW!GameDVR!C0! !CR!off!C0!, !CW!Game Mode!C0! !CG!on!C0!, windowed-game optimizations !CG!on!C0!"
 set "M16=!CW!Defender!C0!: games !CG!excluded!C0!, scheduled scan !CR!off!C0!, scans throttled"
 set "M16NT=!CW!Real-time protection left ON!C0! (never disabled: it triggers a Defender alert)"
 set "M17=Debloat !CG!done!C0! (!CW!Store, Security, Snipping, Calculator, Paint, Spotify!C0! kept)"
-set "M19=New !CW!Outlook!C0! !CR!removed!C0!"
+set "M19=New !CW!Outlook!C0! and !CW!Copilot!C0! !CR!removed!C0!"
 set "M20=!CW!Privacy!C0!: app access !CR!off!C0! except !CG!microphone!C0!; background apps !CR!off!C0!"
 set "M72=!CW!Typing insights!C0! + !CW!suggestions!C0! + spotlight/speech/clipboard suggestions !CR!OFF!C0!"
 set "M73=!CW!MSI mode!C0! on GPU (Message Signaled Interrupts): !CG!ON!C0! (reboot)"
@@ -155,14 +155,13 @@ set "R6=Restored: !CW!UAC, remote, SmartScreen, power, telemetry!C0!; !CW!AMD!C0
 set "R7=Restored: !CW!custom tasks!C0! removed"
 set "QMODE_HEAD=CHOOSE YOUR OPTIMIZATION MODE"
 set "QVBS_HEAD=KEEP KERNEL SECURITY + VIRTUALIZATION ?"
-set "QVBS_YES_NAME=YES - keep ON (anticheat / VM / WSL2 / AI)"
+set "QVBS_YES_NAME=YES - keep ON (anticheat / VM / WSL2)"
 set "QVBS_YES_DESC=Keeps VBS / HVCI / hypervisor ON - needs: Vanguard / FACEIT,"
-set "QVBS_YES_DESC2=WSL2 / Hyper-V / VMs, Copilot and Recall"
+set "QVBS_YES_DESC2=WSL2 / Hyper-V / VMs"
 set "QVBS_NO_NAME=NO - turn OFF for max performance"
-set "QVBS_NO_DESC=Turns VBS / HVCI / hypervisor OFF + Copilot / Recall OFF - pure perf,"
-set "QVBS_NO_DESC2=no anticheat, no VM, no AI"
-set "M9A_AI_KEPT=AI / Copilot / Recall kept ON - VBS kept for anticheat/VM/AI"
-set "M9A_AI_OFF=AI / Copilot / Recall turned OFF - VBS off for max performance"
+set "QVBS_NO_DESC=Turns VBS / HVCI / hypervisor OFF - pure perf,"
+set "QVBS_NO_DESC2=no anticheat, no VM"
+set "M9A_AI_OFF=Windows AI / Copilot / Recall turned OFF - always, whatever your answer"
 set "QMODE_S_NAME=SOFT MODE"
 set "QMODE_S_DESC=Strong latency gains, every safety feature stays on. Safe pick if unsure."
 set "QMODE_L_NAME=LOWEST LATENCY"
@@ -248,7 +247,7 @@ goto _strdone
 :_strfr
 if /i "!L!"=="FR" set "M0=!CW!CPU/RAM!C0! : svchost regroupé, quantum premier plan, SysMain on"
 if /i "!L!"=="FR" set "M2=!CW!MMCSS!C0! profil Games : priorité GPU et CPU !CG!maximale!C0!"
-if /i "!L!"=="FR" set "M3L=Priorité CPU et E/S élevée sur !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite, Warframe, Roblox!C0!"
+if /i "!L!"=="FR" set "M3L=Priorité CPU et E/S élevée sur !CW!CS2, LoL, Brawlhalla, R6, Valorant, Apex, Fortnite, Warframe, Roblox, Deadlock, Marvel Rivals, Overwatch, Bodycam, Ready or Not, Rocket League, Rematch, TF2!C0!"
 if /i "!L!"=="FR" set "M3S=Priorité CPU/E-S par jeu : !CG!défaut (soft)!C0!"
 if /i "!L!"=="FR" set "M4=GPU !CW!NVIDIA!C0! : ancienne méthode de sharpening !CG!restaurée!C0!, mode MSI !CG!activé!C0!"
 if /i "!L!"=="FR" set "M5=GPU !CW!AMD!C0! : ULPS !CR!off!C0!, mode MSI !CG!on!C0!"
@@ -262,12 +261,12 @@ if /i "!L!"=="FR" set "M10=!CW!Liste de blocage pub et télémétrie!C0! : !CC!215 
 if /i "!L!"=="FR" set "M11=Tâches planifiées de télémétrie !CR!désactivées!C0!"
 if /i "!L!"=="FR" set "M12=Services inutiles !CR!désactivés!C0! (!CW!anticheats!C0! et pilotes intacts)"
 if /i "!L!"=="FR" set "M13=Indexation Windows !CG!activée!C0! (recherche de fichiers)"
-if /i "!L!"=="FR" set "M14=Plein écran exclusif !CG!forcé!C0!, GPU hautes performances sur les !CC!7!C0! jeux"
+if /i "!L!"=="FR" set "M14=Plein écran exclusif !CG!forcé!C0!, GPU hautes performances sur !CW!tous les jeux supportés!C0!"
 if /i "!L!"=="FR" set "M15=!CW!GameDVR!C0! !CR!off!C0!, !CW!Mode Jeu!C0! !CG!on!C0!, optimisations jeux fenêtrés !CG!on!C0!"
 if /i "!L!"=="FR" set "M16=!CW!Defender!C0! : jeux !CG!exclus!C0!, analyse planifiée !CR!off!C0!, analyses bridées"
 if /i "!L!"=="FR" set "M16NT=!CW!Protection temps réel laissée ON!C0! (jamais coupée : Defender lève une alerte)"
 if /i "!L!"=="FR" set "M17=Debloat !CG!effectué!C0! (!CW!Store, Sécurité, Capture, Calculatrice, Paint, Spotify!C0! gardés)"
-if /i "!L!"=="FR" set "M19=!CW!Outlook!C0! (nouveau) !CR!retiré!C0!"
+if /i "!L!"=="FR" set "M19=!CW!Outlook!C0! (nouveau) et !CW!Copilot!C0! !CR!retirés!C0!"
 if /i "!L!"=="FR" set "M20=!CW!Confidentialité!C0! : accès applis !CR!off!C0! sauf !CG!microphone!C0! ; applis en arrière-plan !CR!off!C0!"
 if /i "!L!"=="FR" set "M72=!CW!Infos de saisie!C0! + !CW!suggestions!C0! + spotlight/voix/presse-papier !CR!OFF!C0!"
 if /i "!L!"=="FR" set "M73=!CW!MSI mode!C0! sur le GPU (interruptions signalées) : !CG!ON!C0! (au reboot)"
@@ -333,14 +332,13 @@ if /i "!L!"=="FR" set "R6=Restauré : !CW!UAC, distance, SmartScreen, alimentatio
 if /i "!L!"=="FR" set "R7=Restauré : !CW!tâches personnalisées!C0! retirées"
 if /i "!L!"=="FR" set "QMODE_HEAD=CHOISIS TON MODE D'OPTIMISATION"
 if /i "!L!"=="FR" set "QVBS_HEAD=GARDER LA SéCURITé NOYAU + VIRTUALISATION ?"
-if /i "!L!"=="FR" set "QVBS_YES_NAME=OUI - garder ON (anticheat / VM / WSL2 / IA)"
+if /i "!L!"=="FR" set "QVBS_YES_NAME=OUI - garder ON (anticheat / VM / WSL2)"
 if /i "!L!"=="FR" set "QVBS_YES_DESC=Garde VBS / HVCI / hyperviseur ON - nécessite : Vanguard / FACEIT,"
-if /i "!L!"=="FR" set "QVBS_YES_DESC2=WSL2 / Hyper-V / VM, Copilot et Recall"
+if /i "!L!"=="FR" set "QVBS_YES_DESC2=WSL2 / Hyper-V / VM"
 if /i "!L!"=="FR" set "QVBS_NO_NAME=NON - couper pour la perf max"
-if /i "!L!"=="FR" set "QVBS_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF + Copilot / Recall OFF - perf pure,"
-if /i "!L!"=="FR" set "QVBS_NO_DESC2=pas d'anticheat, pas de VM, pas d'IA"
-if /i "!L!"=="FR" set "M9A_AI_KEPT=IA / Copilot / Recall gardés ON - VBS gardé pour anticheat/VM/IA"
-if /i "!L!"=="FR" set "M9A_AI_OFF=IA / Copilot / Recall coupés OFF - VBS off pour la perf max"
+if /i "!L!"=="FR" set "QVBS_NO_DESC=Coupe VBS / HVCI / hyperviseur OFF - perf pure,"
+if /i "!L!"=="FR" set "QVBS_NO_DESC2=pas d'anticheat, pas de VM"
+if /i "!L!"=="FR" set "M9A_AI_OFF=IA Windows / Copilot / Recall coupés OFF - toujours, quelle que soit ta réponse"
 if /i "!L!"=="FR" set "QMODE_S_NAME=MODE SOUPLE"
 if /i "!L!"=="FR" set "QMODE_S_DESC=Gros gain de latence, toutes les protections restent actives. Sûr si tu hésites."
 if /i "!L!"=="FR" set "QMODE_L_NAME=LATENCE MINIMALE"
@@ -429,6 +427,18 @@ rem la tache de re-application n en connaissait que 10 sur 13.
 set "GAMES="cs2.exe" "League of Legends.exe" "Brawlhalla.exe" "RainbowSix.exe" "RainbowSix_DX11.exe" "VALORANT-Win64-Shipping.exe" "VALORANT.exe" "r5apex.exe" "r5apex_dx12.exe" "FortniteClient-Win64-Shipping.exe" "Warframe.x64.exe" "Warframe.exe" "RobloxPlayerBeta.exe" "project8.exe" "deadlock.exe" "Marvel-Win64-Shipping.exe" "Overwatch.exe" "Bodycam-Win64-Shipping.exe" "ReadyOrNotSteam-Win64-Shipping.exe" "ReadyOrNot-Win64-Shipping.exe" "RocketLeague.exe" "RuntimeClient-Win64-Shipping.exe" "tf_win64.exe""
 rem Meme liste pour le regex PowerShell (FSO / preference GPU)
 set "GAMESRX=cs2\.exe|League of Legends\.exe|Brawlhalla\.exe|RainbowSix|VALORANT|r5apex|FortniteClient|Warframe|RobloxPlayerBeta|project8\.exe|deadlock\.exe|Marvel-Win64-Shipping|Overwatch\.exe|Bodycam-Win64-Shipping|ReadyOrNot|RocketLeague|RuntimeClient-Win64-Shipping|tf_win64"
+rem -- Le compte d executables affiche dans M3L / M14 est recalcule depuis
+rem    GAMES a chaque lancement : il ne peut plus diverger. Si un jeu est
+rem    ajoute ou retire dans GAMES, mettre a jour AUSSI les noms de jeux
+rem    affiches dans M3L - bloc EN et bloc FR.
+set /a GAMESN=0
+for %%E in (!GAMES!) do set /a GAMESN+=1
+rem -- M14 : LoL exclu du patch FSO/GPU (bug de flou), d ou le -1 --
+set /a GAMESF=GAMESN-1
+set "SXE=executables"
+if /i "!L!"=="FR" set "SXE=exécutables"
+set "M3L=!M3L! (!CC!!GAMESN!!C0! !SXE!)"
+set "M14=!M14! (!CC!!GAMESF!!C0! !SXE!)"
 
 rem ============ MENU AIO ============
 set "AHEAD=Choose an action:"
@@ -928,24 +938,22 @@ call :T "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" "DisableWindowsC
 call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" "SystemPaneSuggestionsEnabled" REG_DWORD "0"
 call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" "SubscribedContent-338388Enabled" REG_DWORD "0"
 call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" "BingSearchEnabled" REG_DWORD "0"
-rem -- IA (Copilot / Recall / WindowsAI) : OFF sauf si VM/IA conservee --
-if "!NOVBS!"=="0" goto _ia_kept
+rem -- IA Windows (Copilot / Recall / WindowsAI) : OFF sans condition - l IA ne
+rem    depend plus de la question VBS, qui ne couvre plus que anticheat / VM /
+rem    WSL2. Copilot dans Edge coupe, FoD Recall desinstalle. La restauration
+rem    complete [5] supprime les strategies et reinstalle le FoD Recall.
 call :T "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" "DisableAIDataAnalysis" REG_DWORD "1"
 call :T "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "TurnOffWindowsCopilot" REG_DWORD "1"
 call :T "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "TurnOffWindowsCopilot" REG_DWORD "1"
-goto _ia_done
-:_ia_kept
-reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v DisableAIDataAnalysis /f >nul 2>&1
-reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
-reg delete "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
-:_ia_done
+call :T "HKLM\SOFTWARE\Policies\Microsoft\Edge" "HubsCopilotEnabled" REG_DWORD "0"
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Disable-WindowsOptionalFeature -Online -FeatureName Recall -NoRestart | Out-Null" >nul 2>&1
 call :T "HKLM\SOFTWARE\Policies\Microsoft\Dsh" "AllowNewsAndInterests" REG_DWORD "0"
 call :T "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" "EnableFeeds" REG_DWORD "0"
 call :T "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" "Disabled" REG_DWORD "1"
 call :T "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" "LetAppsRunInBackground" REG_DWORD "2"
 call :T "HKLM\SOFTWARE\Policies\Microsoft\Edge" "StartupBoostEnabled" REG_DWORD "0"
 echo   !OK! !CC![08]!C0! !M9!
-if "!NOVBS!"=="0" ( echo   !OK! !CC![08]!C0! !M9A_AI_KEPT! ) else ( echo   !OK! !CC![08]!C0! !M9A_AI_OFF! )
+echo   !OK! !CC![08]!C0! !M9A_AI_OFF!
 
 rem ============ [09b] BLOCAGE PUB / TELEMETRIE via le fichier HOSTS ============
 attrib -r "%SystemRoot%\System32\drivers\etc\hosts" >nul 2>&1
@@ -992,7 +1000,13 @@ sc start WSearch >nul 2>&1
 echo   !OK! !CC![11]!C0! !M13!
 
 rem ============ [12] FSO (plein ecran) OFF par-jeu ============
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $q=[char]34; $steam=(Get-ItemProperty 'HKCU:\Software\Valve\Steam' -Name SteamPath).SteamPath; if(-not $steam){ $steam=(Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Valve\Steam' -Name InstallPath).InstallPath }; $libs=@(); if($steam){ $libs+=$steam; $vdf=Join-Path $steam 'steamapps\libraryfolders.vdf'; if(Test-Path $vdf){ Get-Content $vdf | Select-String ($q+'path'+$q) | ForEach-Object { $libs += (($_ -split $q)[3]).Replace('\\','\') } } }; $rel=@('steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe','steamapps\common\Brawlhalla\Brawlhalla.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix_DX11.exe','steamapps\common\Apex Legends\r5apex.exe','steamapps\common\Apex Legends\r5apex_dx12.exe','steamapps\common\Warframe\Warframe.x64.exe','steamapps\common\Warframe\Warframe.exe','steamapps\common\Deadlock\game\bin\win64\deadlock.exe','steamapps\common\Deadlock\game\bin\win64\project8.exe','steamapps\common\MarvelRivals\MarvelGame\Marvel\Binaries\Win64\Marvel-Win64-Shipping.exe','steamapps\common\Bodycam\Bodycam\Binaries\Win64\Bodycam-Win64-Shipping.exe','steamapps\common\Ready Or Not\ReadyOrNot\Binaries\Win64\ReadyOrNotSteam-Win64-Shipping.exe','steamapps\common\Ready Or Not\ReadyOrNot\Binaries\Win64\ReadyOrNot-Win64-Shipping.exe','steamapps\common\Rematch\Runtime\Binaries\Win64\RuntimeClient-Win64-Shipping.exe','steamapps\common\Team Fortress 2\tf_win64.exe'); $lay='HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers'; if(-not(Test-Path $lay)){New-Item $lay -Force|Out-Null}; $gpu='HKCU:\Software\Microsoft\DirectX\UserGpuPreferences'; if(-not(Test-Path $gpu)){New-Item $gpu -Force|Out-Null}; foreach($lib in ($libs | Select-Object -Unique)){ foreach($r in $rel){ $full=Join-Path $lib $r; if(Test-Path $full){ New-ItemProperty $lay $full -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $full -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } } }; $rx='!GAMESRX!'; $abs=@(($env:LOCALAPPDATA+'\Warframe\Downloaded\Public\Warframe.x64.exe'),'C:\XboxGames\Roblox\Content\RobloxPlayerBeta.exe'); $mf=$env:ProgramData+'\Epic\EpicGamesLauncher\Data\Manifests'; if(Test-Path $mf){ $abs+=@(Get-ChildItem $mf -Filter *.item -EA SilentlyContinue | ForEach-Object { $j=Get-Content $_.FullName -Raw | ConvertFrom-Json; Join-Path $j.InstallLocation $j.LaunchExecutable } | Where-Object { $_ -match $rx }) }; foreach($rg in @(@('valorant','ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe','C:\Riot Games\VALORANT\live'),@('league_of_legends','Game\League of Legends.exe','C:\Riot Games\League of Legends'))){ $rr=(Get-ItemProperty ('HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Riot Game '+$rg[0]+'.live') -Name InstallLocation -EA SilentlyContinue).InstallLocation; if(-not $rr){ $rr=$rg[2] }; $abs+=(Join-Path $rr $rg[1]) }; foreach($uk in 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall','HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall'){ $abs+=@(Get-ChildItem $uk -EA SilentlyContinue | ForEach-Object { Get-ItemProperty $_.PSPath -EA SilentlyContinue } | Where-Object { $_.UninstallString -match 'Battle\.net.*--uid=pro' -and $_.InstallLocation } | ForEach-Object { Join-Path $_.InstallLocation '_retail_\Overwatch.exe' }) };  foreach($f in $abs){ if(Test-Path $f){ New-ItemProperty $lay $f -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $f -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } }" >nul 2>&1
+rem -- League of Legends exclu du patch FSO/GPU : le flag plein ecran exclusif
+rem    rendait le client flou sur certaines configs, jusqu a un changement de
+rem    resolution manuel. LoL garde sa priorite IFEO [03] et son exclusion
+rem    Defender [14]. La ligne ci-dessous efface aussi ce que les versions
+rem    precedentes ont ecrit, sans restauration complete.
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; foreach($k in 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers','HKCU:\Software\Microsoft\DirectX\UserGpuPreferences'){ if(Test-Path $k){ (Get-Item $k).Property | Where-Object { $_ -match 'League of Legends\.exe' } | ForEach-Object { Remove-ItemProperty -Path $k -Name $_ } } }" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $q=[char]34; $steam=(Get-ItemProperty 'HKCU:\Software\Valve\Steam' -Name SteamPath).SteamPath; if(-not $steam){ $steam=(Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Valve\Steam' -Name InstallPath).InstallPath }; $libs=@(); if($steam){ $libs+=$steam; $vdf=Join-Path $steam 'steamapps\libraryfolders.vdf'; if(Test-Path $vdf){ Get-Content $vdf | Select-String ($q+'path'+$q) | ForEach-Object { $libs += (($_ -split $q)[3]).Replace('\\','\') } } }; $rel=@('steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe','steamapps\common\Brawlhalla\Brawlhalla.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix.exe','steamapps\common\Tom Clancy''s Rainbow Six Siege\RainbowSix_DX11.exe','steamapps\common\Apex Legends\r5apex.exe','steamapps\common\Apex Legends\r5apex_dx12.exe','steamapps\common\Warframe\Warframe.x64.exe','steamapps\common\Warframe\Warframe.exe','steamapps\common\Deadlock\game\bin\win64\deadlock.exe','steamapps\common\Deadlock\game\bin\win64\project8.exe','steamapps\common\MarvelRivals\MarvelGame\Marvel\Binaries\Win64\Marvel-Win64-Shipping.exe','steamapps\common\Bodycam\Bodycam\Binaries\Win64\Bodycam-Win64-Shipping.exe','steamapps\common\Ready Or Not\ReadyOrNot\Binaries\Win64\ReadyOrNotSteam-Win64-Shipping.exe','steamapps\common\Ready Or Not\ReadyOrNot\Binaries\Win64\ReadyOrNot-Win64-Shipping.exe','steamapps\common\Rematch\Runtime\Binaries\Win64\RuntimeClient-Win64-Shipping.exe','steamapps\common\Team Fortress 2\tf_win64.exe'); $lay='HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers'; if(-not(Test-Path $lay)){New-Item $lay -Force|Out-Null}; $gpu='HKCU:\Software\Microsoft\DirectX\UserGpuPreferences'; if(-not(Test-Path $gpu)){New-Item $gpu -Force|Out-Null}; foreach($lib in ($libs | Select-Object -Unique)){ foreach($r in $rel){ $full=Join-Path $lib $r; if(Test-Path $full){ New-ItemProperty $lay $full -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $full -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } } }; $rx='!GAMESRX!'; $abs=@(($env:LOCALAPPDATA+'\Warframe\Downloaded\Public\Warframe.x64.exe'),'C:\XboxGames\Roblox\Content\RobloxPlayerBeta.exe'); $mf=$env:ProgramData+'\Epic\EpicGamesLauncher\Data\Manifests'; if(Test-Path $mf){ $abs+=@(Get-ChildItem $mf -Filter *.item -EA SilentlyContinue | ForEach-Object { $j=Get-Content $_.FullName -Raw | ConvertFrom-Json; Join-Path $j.InstallLocation $j.LaunchExecutable } | Where-Object { $_ -match $rx }) }; foreach($rg in @(@('valorant','ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe','C:\Riot Games\VALORANT\live'))){ $rr=(Get-ItemProperty ('HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Riot Game '+$rg[0]+'.live') -Name InstallLocation -EA SilentlyContinue).InstallLocation; if(-not $rr){ $rr=$rg[2] }; $abs+=(Join-Path $rr $rg[1]) }; foreach($uk in 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall','HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall'){ $abs+=@(Get-ChildItem $uk -EA SilentlyContinue | ForEach-Object { Get-ItemProperty $_.PSPath -EA SilentlyContinue } | Where-Object { $_.UninstallString -match 'Battle\.net.*--uid=pro' -and $_.InstallLocation } | ForEach-Object { Join-Path $_.InstallLocation '_retail_\Overwatch.exe' }) };  foreach($f in $abs){ if(Test-Path $f){ New-ItemProperty $lay $f -Value '~ DISABLEDXMAXIMIZEDWINDOWEDMODE' -PropertyType String -Force|Out-Null; New-ItemProperty $gpu $f -Value 'GpuPreference=2;' -PropertyType String -Force|Out-Null } }" >nul 2>&1
 echo   !OK! !CC![12]!C0! !M14!
 
 rem ============ [13] GAMEDVR OFF + MODE JEU FORCE ON ============
@@ -1031,11 +1045,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "$a=@('*Microsoft.YourPho
 winget uninstall --id WhatsApp.WhatsApp -e --accept-source-agreements --disable-interactivity >nul 2>&1
 echo   !OK! !CC![15]!C0! !M17!
 
-rem ============ [16b] OUTLOOK (nouveau) retire (toujours) ============
-set "RTI=Removing Outlook (new)..."
-if /i "!L!"=="FR" set "RTI=Retrait d'Outlook (new)..."
+rem ============ [16b] OUTLOOK (nouveau) + COPILOT retires (toujours) ============
+set "RTI=Removing Outlook (new) + Copilot..."
+if /i "!L!"=="FR" set "RTI=Retrait d'Outlook (new) + Copilot..."
 echo   !CK!  -^> !C0!!RTI!
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; foreach($x in @('*Microsoft.OutlookForWindows*')){ Get-AppxPackage -AllUsers -Name $x | Remove-AppxPackage -AllUsers; Get-AppxProvisionedPackage -Online | Where-Object { $_.DisplayName -like $x } | Remove-AppxProvisionedPackage -Online | Out-Null }" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; foreach($x in @('*Microsoft.OutlookForWindows*','*Copilot*')){ Get-AppxPackage -AllUsers -Name $x | Remove-AppxPackage -AllUsers; Get-AppxProvisionedPackage -Online | Where-Object { $_.DisplayName -like $x } | Remove-AppxProvisionedPackage -Online | Out-Null }" >nul 2>&1
 echo   !OK! !CC![16b]!C0! !M19!
 
 rem ============ [16] CONFIDENTIALITE : acces applis OFF sauf MICRO ============
@@ -1194,7 +1208,7 @@ call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "PenW
 call :T "HKCU\SOFTWARE\Microsoft\TabletTip\1.7" "TipbandDesiredVisibility" REG_DWORD "0"
 call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" "TaskbarEndTask" REG_DWORD "1"
 call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarDa" REG_DWORD "0"
-if "!NOVBS!"=="0" ( call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowCopilotButton" REG_DWORD "1" ) else ( call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowCopilotButton" REG_DWORD "0" )
+call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowCopilotButton" REG_DWORD "0"
 call :T "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowTaskViewButton" REG_DWORD "0"
 echo   !OK! !CC![24]!C0! !M43!
 
@@ -1648,6 +1662,8 @@ rem -- IA (Copilot / Recall / WindowsAI) : restaure les valeurs Windows par defa
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" /v DisableAIDataAnalysis /f >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
 reg delete "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v HubsCopilotEnabled /f >nul 2>&1
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; Enable-WindowsOptionalFeature -Online -FeatureName Recall -All -NoRestart | Out-Null" >nul 2>&1
 rem -- CPU / RAM / planificateur --
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 2 /f >nul 2>&1
 reg delete "HKLM\SYSTEM\CurrentControlSet\Control" /v SvcHostSplitThresholdInKB /f >nul 2>&1
@@ -2569,14 +2585,15 @@ echo   !CO! !H10!!C0!
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" AllowTelemetry 0 "Telemetry (policy) ......"
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" AllowTelemetry 0 "Telemetry (cv) .........."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" DODownloadMode 0 "Delivery Optimization ..."
-if "!NOVBS!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" DisableAIDataAnalysis 1 "Recall off .............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" "Recall kept (VM/AI) ....." )
+call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI" DisableAIDataAnalysis 1 "Recall off .............."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" DisableWindowsConsumerFeatures 1 "Consumer features off ..."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" BingSearchEnabled 0 "Bing search off ........."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" AllowGameDVR 0 "GameDVR policy off ......"
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" AppCaptureEnabled 0 "App capture off ........."
 call :ckdw "HKCU\SOFTWARE\Microsoft\GameBar" AutoGameModeEnabled 1 "Game Mode on ............"
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Edge" StartupBoostEnabled 0 "Edge startup boost off .."
-if "!NOVBS!"=="1" ( call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "Copilot off ............." ) else ( call :cksvci "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot kept (VM/AI) ...." )
+call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "Copilot off ............."
+call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Edge" HubsCopilotEnabled 0 "Copilot in Edge off ......."
 
 echo.
 echo   !CO! !H11!!C0!
@@ -2610,7 +2627,7 @@ echo   !CO! !H13!!C0!
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" Enabled 0 "Enabled ................."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" SystemPaneSuggestionsEnabled 0 "SystemPaneSuggestionsEnabled .."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" SubscribedContent-338388Enabled 0 "SubscribedContent-338388Enabled .."
-if "!NOVBS!"=="1" ( call :ckdw "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "TurnOffWindowsCopilot ..." ) else ( call :cksvci "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" "Copilot HKCU kept (VM/AI)." )
+call :ckdw "HKCU\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" TurnOffWindowsCopilot 1 "TurnOffWindowsCopilot ..."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Dsh" AllowNewsAndInterests 0 "AllowNewsAndInterests ..."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" EnableFeeds 0 "EnableFeeds ............."
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" Disabled 1 "Disabled ................"
@@ -2732,7 +2749,7 @@ call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" NoUseStoreOpenWit
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\Psched" NonBestEffortLimit 0 "NonBestEffortLimit ......"
 call :ckdw "HKCU\SOFTWARE\Microsoft\GameBar" AllowAutoGameMode 1 "AllowAutoGameMode ......."
 call :cksz "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" DirectXUserGlobalSettings "SwapEffectUpgradeEnable=1;" "DirectXUserGlobalSettings .."
-if "!NOVBS!"=="1" ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 0 "ShowCopilotButton ......." ) else ( call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 1 "Copilot btn kept (VM/AI)." )
+call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" ShowCopilotButton 0 "ShowCopilotButton ......."
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" DisableFileSyncNGSC 1 "DisableFileSyncNGSC ....."
 call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" DisallowShaking 1 "DisallowShaking ........."
 call :cksz "HKCU\Control Panel\Desktop" WindowArrangementActive "1" "WindowArrangementActive .."
@@ -2869,18 +2886,6 @@ set /a OKC+=1
 goto :eof
 :ckpwr_na
 echo   !CC! [info]!C0! %~4 !CK!!LNS!!C0!
-goto :eof
-
-
-:cksvci
-set "st="
-for /f "tokens=3" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Services\%~1" /v Start 2^>nul ^| findstr /i /c:"REG_"') do set "st=%%a"
-if not defined st goto cksvci_na
-set /a std=st 2>nul
-echo   !CC! [info]!C0! %~2 !CW!Start=!std!!C0!  !CK!(!LCH!)!C0!
-goto :eof
-:cksvci_na
-echo   !CC! [info]!C0! %~2 !CK!!LSV!!C0!
 goto :eof
 
 :CKS

@@ -6,7 +6,7 @@
 
 A bilingual (EN / FR) batch project that applies a **curated, reversible** set of latency and responsiveness tweaks for competitive gaming on Windows 11. No third-party software — everything runs through native registry keys, services and scheduled tasks.
 
-The main file is **`win11-low-latency-optimizer_v4.0.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, whether that GPU is discrete or integrated, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT), whether you need virtualization / AI, then offers two profiles — **soft** and **lowest**.
+The main file is **`win11-low-latency-optimizer_v4.0.bat`** — a single self-contained all-in-one (the filename carries the version). It is self-elevating and hardware-aware: it detects your GPU vendor, whether that GPU is discrete or integrated, RAM size, whether your CPU is an AMD X3D part and whether the machine is a desktop or laptop, then adapts. Before applying, it asks whether you need your kernel anticheat (Vanguard / FACEIT) and whether you need virtualization, then offers two profiles — **soft** and **lowest**. Windows AI — Copilot, Recall — is turned off on every run, whatever you answer.
 
 ## The all-in-one menu
 
@@ -44,6 +44,7 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 - **Defender (performance)** — game folders/processes excluded, scheduled scan disabled, scans throttled
 - **Security warnings** — SmartScreen and the "Open File" attachment warning suppressed for downloaded files
 - **Debloat / privacy** — services trim, telemetry, camera, Xbox, OneDrive, Edge, WhatsApp, and more
+- **Windows AI off** — Copilot (policies HKLM + HKCU, taskbar button, Store app removed in [16b], sidebar in Edge by policy), Recall (policy + optional feature uninstalled) and WindowsAI are disabled on every run, independent of the anticheat/virtualization answers; the full restore puts the policies back and reinstalls the Recall feature
 - **0.5 ms timer** — persistent SYSTEM task (`NtSetTimerResolution`), re-armed at every startup; power-aware (0.5 ms on desktop / laptop-on-AC; on laptop battery the script stops requesting 0.5 ms — note another process like Chrome can keep the global timer high regardless)
 - **Auto-reapply** — key settings are re-applied after a Windows feature update
 - **Appearance, adapted to your hardware** — on a machine with **integrated graphics only** or **16 GB of RAM or less**, Windows visual effects are switched to *custom* and turned off, keeping only **font smoothing (ClearType)** and the **translucent selection rectangle**; transparency goes off too. On anything stronger, the previous "best appearance" behaviour is kept. The dark theme, grey accent and black wallpaper apply either way.
@@ -53,7 +54,7 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 - **Soft** — strong latency gains while every safety feature stays on. Safe pick if unsure.
 - **Lowest** — everything Soft does, plus per-game priority, an 8 s GPU timeout and a constant timer. It **additionally** turns off the Spectre/Meltdown CPU mitigations — Vanguard and FACEIT keep working without them. Since v3.9 no mode ever disables Defender real-time protection: doing so made Windows flag the script as `VirTool:Win32/DefenderTamperingRestore`, and the latency gain did not justify leaving the machine unprotected.
 
-**Do you need your anticheat?** — asked once, before the Soft/Lowest choice and independent of it. Answer **No** only if you don't play kernel-anticheat games: the script then turns off Virtualization-Based Security, Memory Integrity (HVCI) and the hypervisor for extra performance. They stay **on** when you answer **Yes**, because Vanguard and FACEIT rely on them. Answering No is the fastest option and the one most likely to stop those anticheats from launching.
+**Do you need your anticheat?** — asked once, before the Soft/Lowest choice and independent of it. Answer **No** only if you don't play kernel-anticheat games: the script then turns off Virtualization-Based Security, Memory Integrity (HVCI) and the hypervisor for extra performance. They stay **on** when you answer **Yes**, because Vanguard and FACEIT rely on them. Answering No is the fastest option and the one most likely to stop those anticheats from launching. Windows AI (Copilot / Recall) no longer rides on this question — it is turned off on every run, whichever you pick.
 
 The two choices combine freely (Soft or Lowest × anticheat Yes or No), and the apply is **idempotent**: switching modes and re-running resets anything the new mode no longer applies (Spectre/Meltdown, VBS/HVCI/hypervisor), so no setting from a previous run lingers. Defender real-time protection is re-enabled on every run, which also repairs a machine left unprotected by an older version.
 

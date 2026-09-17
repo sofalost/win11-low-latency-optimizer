@@ -752,6 +752,38 @@
        keeping their own copies. Four hand-maintained lists became one - this is the
        same drift that left the logon task knowing only 10 of 13 games in v3.9.
 
+   [x] The per-game messages displayed a stale list: [03] named nine games out
+       of seventeen, and [12] still announced the hardcoded "7 games" of the
+       v1.2 era while 23 executables are patched. Both messages are rebuilt at
+       startup from the single GAMES list - the full name list, plus an
+       executable count the script computes itself - so the display can no
+       longer drift when a game is added or removed.
+   [~] Windows AI is now turned OFF unconditionally, on every run and whatever
+       the answer to the VBS question: the Copilot policies (HKLM + HKCU),
+       Recall (DisableAIDataAnalysis) and the taskbar Copilot button
+       (ShowCopilotButton=0). The Copilot Store app is removed in [16b] next
+       to Outlook (new) - the docs announced that removal while the code had
+       lost it. The VBS question now only covers anticheat / VM / WSL2; the
+       "AI kept" branch, its M9A_AI_KEPT message and the mode-dependent [9]
+       debug checks for those values are gone. The full restore deletes the
+       policies as before; the Store app is reinstalled from the Store.
+
+   [x] League of Legends came out blurry after the script ran: the FSO flag
+       ~ DISABLEDXMAXIMIZEDWINDOWEDMODE written by [12] pushes the client into
+       true exclusive fullscreen, and on some setups it renders at the wrong
+       scale until the player cycles the in-game resolution. LoL is dropped
+       from the FSO / GPU-preference discovery (its IFEO priority [03] and its
+       Defender exclusion [14] stay), and [12] now actively deletes the Layers
+       flag and the GpuPreference entry for League of Legends.exe - machines
+       patched by an earlier version are healed on the next run without a full
+       restore. The [12] count in M14 excludes it (GAMESF = GAMESN - 1).
+   [+] Copilot in Edge is turned off too: HubsCopilotEnabled=0 (HKLM policy),
+       journalled, checked in [9], deleted by the full restore.
+   [+] The Recall optional feature itself is now uninstalled on top of the
+       DisableAIDataAnalysis policy (Disable-WindowsOptionalFeature, no-op on
+       machines without Recall, never prompts a reboot). The full restore
+       re-enables the feature.
+
 ================================================================================
                             END OF FILE
 ================================================================================
