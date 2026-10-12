@@ -784,6 +784,13 @@
        machines without Recall, never prompts a reboot). The full restore
        re-enables the feature.
 
+   [~] Fast Startup is now kept OFF. Section [37] wrote HiberbootEnabled=1
+       after a "powercfg /hibernate on" - the script actively enabled fast
+       boot on every run. It now writes HiberbootEnabled=0, and the
+       powercfg call is gone: the hibernation feature is left exactly as you
+       had it, only hybrid boot is refused. [9] now expects 0; a restore
+       still replays your pre-run value.
+
 ================================================================================
                             END OF FILE
 ================================================================================

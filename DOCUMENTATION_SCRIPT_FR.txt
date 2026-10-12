@@ -271,7 +271,7 @@ la maintenance. Detail :
    [34] Peripheriques fantomes         [35] FTH (Fault Tolerant Heap)
    [36] Alimentation (plan + parking + C-states adaptatifs : voir section 8)
    [37] HAGS (verifie le support PUIS active)
-   [38] Demarrage rapide (laisse ON)  [39] Icones de demarrage
+   [38] Demarrage rapide (desactive)  [39] Icones de demarrage
    [40] Pilotes
 
   MAINTENANCE

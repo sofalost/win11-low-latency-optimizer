@@ -264,7 +264,7 @@ Detail:
    [34] Ghost devices                  [35] FTH (Fault Tolerant Heap)
    [36] Power (plan + parking + adaptive C-states: see section 8)
    [37] HAGS (checks support THEN enables)
-   [38] Fast Startup (left ON)         [39] Startup icons
+   [38] Fast Startup (disabled)        [39] Startup icons
    [40] Drivers
 
   MAINTENANCE

@@ -131,7 +131,7 @@ set "M54L=!CW!Ultimate Performance!C0!: USB suspend !CR!off!C0!, ASPM !CR!off!C0
 set "M54S=!CW!High Performance!C0!: USB suspend !CR!off!C0!, ASPM !CR!off!C0!; parking/C-states per CPU"
 set "M55=!CW!HAGS!C0! supported: !CG!enabled!C0! (takes effect after reboot)"
 set "M56=!CW!HAGS!C0! not exposed by the platform: !CY!not enabled!C0!"
-set "M57=!CW!Fast Startup!C0! !CG!enabled!C0!"
+set "M57=!CW!Fast Startup!C0! !CR!disabled!C0!"
 set "M58=!CW!Startup tray icons hidden!C0!: !CW!Vanguard + Defender!C0! (services keep running)"
 set "M59=Drivers kept !CG!up to date!C0! via Windows Update"
 set "M60=!CW!Disk optimization!C0!: native !CW!Windows!C0! task !CG!on!C0! (silent, daily)"
@@ -308,7 +308,7 @@ if /i "!L!"=="FR" set "M54L=!CW!Performances optimales!C0! : USB suspend !CR!off
 if /i "!L!"=="FR" set "M54S=!CW!Performances élevées!C0! : USB suspend !CR!off!C0!, ASPM !CR!off!C0! ; parking/C-states selon le CPU"
 if /i "!L!"=="FR" set "M55=!CW!HAGS!C0! supporté : !CG!activé!C0! (effet au redémarrage)"
 if /i "!L!"=="FR" set "M56=!CW!HAGS!C0! non exposé par la plateforme : !CY!non activé!C0!"
-if /i "!L!"=="FR" set "M57=!CW!Démarrage rapide!C0! !CG!activé!C0!"
+if /i "!L!"=="FR" set "M57=!CW!Démarrage rapide!C0! !CR!désactivé!C0!"
 if /i "!L!"=="FR" set "M58=!CW!Icônes au démarrage masquées!C0! : !CW!Vanguard + Defender!C0! (services actifs)"
 if /i "!L!"=="FR" set "M59=Pilotes maintenus !CG!à jour!C0! via Windows Update"
 if /i "!L!"=="FR" set "M60=!CW!Optimisation des disques!C0! : tâche !CW!Windows!C0! native !CG!on!C0! (silencieuse, quotidienne)"
@@ -1351,9 +1351,8 @@ if /i "!HAGSOK!"=="YES" (
 )
 if /i not "!HAGSOK!"=="YES" echo   !OK! !CC![36]!C0! !M56!
 
-rem ============ [37] FAST STARTUP ON ============
-powercfg /hibernate on >nul 2>&1
-call :T "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" "HiberbootEnabled" REG_DWORD "1"
+rem ============ [37] FAST STARTUP OFF ============
+call :T "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" "HiberbootEnabled" REG_DWORD "0"
 echo   !OK! !CC![37]!C0! !M57!
 
 rem ============ [38] ICONES DEMARRAGE + ANCIEN TIMERRES SUPPRIME ============
@@ -2761,7 +2760,7 @@ call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Serialize" S
 call :cksz "HKCU\Control Panel\Desktop" HungAppTimeout "4000" "HungAppTimeout .........."
 call :cksz "HKLM\SYSTEM\CurrentControlSet\Control" WaitToKillServiceTimeout "2000" "WaitToKillServiceTimeout .."
 call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" HwSchMode 2 "HwSchMode ..............."
-call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" HiberbootEnabled 1 "HiberbootEnabled ........"
+call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" HiberbootEnabled 0 "HiberbootEnabled ........"
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Systray" HideSystray 1 "HideSystray ............."
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" SearchOrderConfig 1 "SearchOrderConfig ......."
 set "SS=HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy"
