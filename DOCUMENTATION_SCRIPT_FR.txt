@@ -69,7 +69,8 @@ Organisation interne du code :
         [7] Restaurer Defender   [8] Peripheriques   [9] Verification / debug   [0] Quitter
      Quand on choisit [1] ou [2], le script demande d'abord si tu as besoin de
      ton anticheat noyau (Vanguard / FACEIT), puis le MODE "soft" ou "lowest",
-     puis applique. Les questions de profil acceptent [0] pour revenir au menu
+     puis les questions peripheriques (camera, cartes reseau, Bluetooth,
+     imprimante, Xbox, demarrage rapide), puis applique. Les questions de profil acceptent [0] pour revenir au menu
      ("Retour" contextuel, v3.6).
   6) DETECTION MATERIELLE (voir section 4 ci-dessous).
   7) APPLICATION des sections [0] a [46], dans l'ordre, chacune affichant
@@ -271,7 +272,7 @@ la maintenance. Detail :
    [34] Peripheriques fantomes         [35] FTH (Fault Tolerant Heap)
    [36] Alimentation (plan + parking + C-states adaptatifs : voir section 8)
    [37] HAGS (verifie le support PUIS active)
-   [38] Demarrage rapide (desactive)  [39] Icones de demarrage
+   [38] Demarrage rapide (question)   [39] Icones de demarrage
    [40] Pilotes
 
   MAINTENANCE

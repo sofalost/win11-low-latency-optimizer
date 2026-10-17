@@ -132,6 +132,8 @@ set "M54S=!CW!High Performance!C0!: USB suspend !CR!off!C0!, ASPM !CR!off!C0!; p
 set "M55=!CW!HAGS!C0! supported: !CG!enabled!C0! (takes effect after reboot)"
 set "M56=!CW!HAGS!C0! not exposed by the platform: !CY!not enabled!C0!"
 set "M57=!CW!Fast Startup!C0! !CR!disabled!C0!"
+set "M57E=!CW!Fast Startup!C0! !CG!enabled!C0!"
+set "M57K=!CW!Fast Startup!C0! !CY!left unchanged!C0!"
 set "M58=!CW!Startup tray icons hidden!C0!: !CW!Vanguard + Defender!C0! (services keep running)"
 set "M59=Drivers kept !CG!up to date!C0! via Windows Update"
 set "M60=!CW!Disk optimization!C0!: native !CW!Windows!C0! task !CG!on!C0! (silent, daily)"
@@ -184,15 +186,18 @@ set "QH_WIFI=NETWORK ADAPTERS (WI-FI / ETHERNET)"
 set "QH_BT=BLUETOOTH"
 set "QH_PRINT=PRINTER"
 set "QH_XBOX=XBOX"
+set "QH_FBOOT=FAST STARTUP"
 set "QO_YESNO=!CG![1] Yes!C0!  !CR![2] No!C0!"
 set "CFM_KEEP=unchanged"
 set "CFM_OFF=disabled"
 set "CFM_RST=restored"
+set "CFM_ON=enabled"
 set "QO_CAM=!CL![1] Keep active!C0!  !CR![2] Disable!C0!  !CG![3] Restore default!C0!"
 set "QO_NDR=!CL![1] Leave as is!C0!  !CR![2] Disable!C0!  !CG![3] Restore default!C0!"
 set "QO_NET=!CL![1] Keep!C0!  !CR![2] Disable Wi-Fi!C0!  !CR![3] Disable Ethernet!C0!"
 set "QO_NET2=!CG![4] Restore Wi-Fi!C0!  !CG![5] Restore Ethernet!C0!"
 set "QO_XBOX=!CL![1] Leave as is!C0!  !CR![2] Remove all!C0!  !CG![3] Restore services!C0!"
+set "QO_FBOOT=!CL![1] Leave as is!C0!  !CR![2] Disable!C0!  !CG![3] Enable!C0!"
 set "APPLYING=Applying optimizations, please wait..."
 set "DONE_APPLY=ALL DONE"
 set "SUMMARY_HEAD=SUMMARY"
@@ -309,6 +314,8 @@ if /i "!L!"=="FR" set "M54S=!CW!Performances élevées!C0! : USB suspend !CR!off!C
 if /i "!L!"=="FR" set "M55=!CW!HAGS!C0! supporté : !CG!activé!C0! (effet au redémarrage)"
 if /i "!L!"=="FR" set "M56=!CW!HAGS!C0! non exposé par la plateforme : !CY!non activé!C0!"
 if /i "!L!"=="FR" set "M57=!CW!Démarrage rapide!C0! !CR!désactivé!C0!"
+if /i "!L!"=="FR" set "M57E=!CW!Démarrage rapide!C0! !CG!activé!C0!"
+if /i "!L!"=="FR" set "M57K=!CW!Démarrage rapide!C0! !CY!inchangé!C0!"
 if /i "!L!"=="FR" set "M58=!CW!Icônes au démarrage masquées!C0! : !CW!Vanguard + Defender!C0! (services actifs)"
 if /i "!L!"=="FR" set "M59=Pilotes maintenus !CG!à jour!C0! via Windows Update"
 if /i "!L!"=="FR" set "M60=!CW!Optimisation des disques!C0! : tâche !CW!Windows!C0! native !CG!on!C0! (silencieuse, quotidienne)"
@@ -361,15 +368,18 @@ if /i "!L!"=="FR" set "QH_WIFI=CARTES RÉSEAU (WI-FI / ETHERNET)"
 if /i "!L!"=="FR" set "QH_BT=BLUETOOTH"
 if /i "!L!"=="FR" set "QH_PRINT=IMPRIMANTE"
 if /i "!L!"=="FR" set "QH_XBOX=XBOX"
+if /i "!L!"=="FR" set "QH_FBOOT=DÉMARRAGE RAPIDE"
 if /i "!L!"=="FR" set "QO_YESNO=!CG![1] Oui!C0!  !CR![2] Non!C0!"
 if /i "!L!"=="FR" set "CFM_KEEP=inchangé"
 if /i "!L!"=="FR" set "CFM_OFF=désactivé"
 if /i "!L!"=="FR" set "CFM_RST=restauré"
+if /i "!L!"=="FR" set "CFM_ON=activé"
 if /i "!L!"=="FR" set "QO_CAM=!CL![1] Garder active!C0!  !CR![2] Désactiver!C0!  !CG![3] Restaurer défaut!C0!"
 if /i "!L!"=="FR" set "QO_NDR=!CL![1] Ne rien faire!C0!  !CR![2] Désactiver!C0!  !CG![3] Restaurer défaut!C0!"
 if /i "!L!"=="FR" set "QO_NET=!CL![1] Garder!C0!  !CR![2] Désactiver Wi-Fi!C0!  !CR![3] Désactiver Ethernet!C0!"
 if /i "!L!"=="FR" set "QO_NET2=!CG![4] Restaurer Wi-Fi!C0!  !CG![5] Restaurer Ethernet!C0!"
 if /i "!L!"=="FR" set "QO_XBOX=!CL![1] Ne rien faire!C0!  !CR![2] Tout supprimer!C0!  !CG![3] Restaurer services!C0!"
+if /i "!L!"=="FR" set "QO_FBOOT=!CL![1] Ne rien faire!C0!  !CR![2] Désactiver!C0!  !CG![3] Activer!C0!"
 if /i "!L!"=="FR" set "APPLYING=Application des optimisations, patiente..."
 if /i "!L!"=="FR" set "DONE_APPLY=TERMINÉ"
 if /i "!L!"=="FR" set "SUMMARY_HEAD=RÉSUMÉ"
@@ -605,7 +615,7 @@ if not "!NOVBS!"=="1" set "NOVBS=0"
 set "MM=1"
 for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v Mode 2^>nul ^| findstr /i /c:"REG_SZ"') do set "FMODE=%%b"
 if /i "!FMODE!"=="lowest" set "MM=2"
-for %%Q in ("QCam CAM" "QWifi WIFI" "QBt BT" "QPrint PRINT" "QXbox XBOX") do (
+for %%Q in ("QCam CAM" "QWifi WIFI" "QBt BT" "QPrint PRINT" "QXbox XBOX" "QFBoot FBOOT") do (
     for /f "tokens=1,2" %%x in ("%%~Q") do (
         set "%%y=1"
         for /f "tokens=3" %%v in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v %%x 2^>nul ^| findstr /i /c:"REG_"') do set /a %%y=%%v 2>nul
@@ -617,6 +627,7 @@ if not defined WIFI set "WIFI=1"
 if not defined BT set "BT=1"
 if not defined PRINT set "PRINT=1"
 if not defined XBOX set "XBOX=1"
+if not defined FBOOT set "FBOOT=1"
 goto _qmode_apply
 :QQ_VBS
 echo.
@@ -764,6 +775,22 @@ if "!XBOX!"=="1" echo !CL!!QH_XBOX! : !CFM_KEEP!!C0!
 if "!XBOX!"=="2" echo !CR!!QH_XBOX! : !CFM_OFF!!C0!
 if "!XBOX!"=="3" echo !CG!!QH_XBOX! : !CFM_RST!!C0!
 echo.
+:QQ_FBOOT
+echo   !CY![ ? ]!C0!  !CW!!QH_FBOOT!!C0!
+echo.
+echo        !QO_FBOOT!!C0!
+echo        !CK![0] !BACK!!C0!
+echo.
+<nul set /p "=        !PROMPT!"
+choice /C 1230 /N >nul
+set "ANS=!errorlevel!"
+if "!ANS!"=="4" echo.
+if "!ANS!"=="4" goto QQ_XBOX
+set "FBOOT=!ANS!"
+if "!FBOOT!"=="1" echo !CL!!QH_FBOOT! : !CFM_KEEP!!C0!
+if "!FBOOT!"=="2" echo !CR!!QH_FBOOT! : !CFM_OFF!!C0!
+if "!FBOOT!"=="3" echo !CG!!QH_FBOOT! : !CFM_ON!!C0!
+echo.
 
 
 :_qq_done
@@ -810,6 +837,7 @@ reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QWifi /t REG_DWORD /d !WIFI! /f >nul 
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QBt /t REG_DWORD /d !BT! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QPrint /t REG_DWORD /d !PRINT! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QXbox /t REG_DWORD /d !XBOX! /f >nul 2>&1
+reg add "HKLM\SOFTWARE\LowLatOptimizer" /v QFBoot /t REG_DWORD /d !FBOOT! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v GpuVendor /t REG_SZ /d !GPUVENDOR! /f >nul 2>&1
 reg add "HKLM\SOFTWARE\LowLatOptimizer" /v LightFX /t REG_DWORD /d !LIGHTFX! /f >nul 2>&1
 call :T "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" "GlobalTimerResolutionRequests" REG_DWORD "1"
@@ -1351,9 +1379,21 @@ if /i "!HAGSOK!"=="YES" (
 )
 if /i not "!HAGSOK!"=="YES" echo   !OK! !CC![36]!C0! !M56!
 
-rem ============ [37] FAST STARTUP OFF ============
-call :T "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" "HiberbootEnabled" REG_DWORD "0"
-echo   !OK! !CC![37]!C0! !M57!
+rem ============ [37] FAST STARTUP : reponse a la question QFBoot ============
+rem -- 3 = activer : le fast boot exige l hibernation ; on ne l allume que si
+rem    hiberfil.sys etait absent, et le flag HibernateWasOff permet a [5] de
+rem    l eteindre a la restauration. 2 = desactiver. 1 = ne rien toucher. --
+if "!FBOOT!"=="3" (
+    if not exist "%SystemDrive%\hiberfil.sys" reg add "HKLM\SOFTWARE\LowLatOptimizer" /v HibernateWasOff /t REG_DWORD /d 1 /f >nul 2>&1
+    powercfg /hibernate on >nul 2>&1
+    call :T "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" "HiberbootEnabled" REG_DWORD "1"
+    echo   !OK! !CC![37]!C0! !M57E!
+)
+if "!FBOOT!"=="2" (
+    call :T "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" "HiberbootEnabled" REG_DWORD "0"
+    echo   !OK! !CC![37]!C0! !M57!
+)
+if "!FBOOT!"=="1" echo   !OK! !CC![37]!C0! !M57K!
 
 rem ============ [38] ICONES DEMARRAGE + ANCIEN TIMERRES SUPPRIME ============
 call :T "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Systray" "HideSystray" REG_DWORD "1"
@@ -1795,6 +1835,11 @@ powercfg /change hibernate-timeout-ac 180 >nul 2>&1
 powercfg /change hibernate-timeout-dc 180 >nul 2>&1
 powercfg /change disk-timeout-ac 20 >nul 2>&1
 powercfg /change disk-timeout-dc 10 >nul 2>&1
+rem -- Fast Startup : si un run l avait allumee pour le fast boot, on
+rem    l eteint. HiberbootEnabled, lui, revient via le journal. --
+set "HIBOFF="
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v HibernateWasOff 2^>nul ^| findstr /i /c:"REG_"') do set "HIBOFF=%%a"
+if /i "!HIBOFF!"=="0x1" powercfg /hibernate off >nul 2>&1
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions" /f >nul 2>&1
 echo   !OK! !R6!
 rem -- Taches creees + stockage reserve --
@@ -2297,6 +2342,8 @@ for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QWifi 2^
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QBt 2^>nul ^| findstr /i /c:"REG_"') do set "QBT=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QPrint 2^>nul ^| findstr /i /c:"REG_"') do set "QPRINT=%%a"
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QXbox 2^>nul ^| findstr /i /c:"REG_"') do set "QXBOX=%%a"
+set "QFBOOT="
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v QFBoot 2^>nul ^| findstr /i /c:"REG_"') do set /a QFBOOT=%%a 2>nul
 for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v GpuVendor 2^>nul ^| findstr /i /c:"REG_SZ"') do set "GPUV=%%b"
 set "LIGHTFX="
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\LowLatOptimizer" /v LightFX 2^>nul ^| findstr /i /c:"REG_"') do set /a LIGHTFX=%%a 2>nul
@@ -2306,6 +2353,7 @@ if not defined QWIFI set "QWIFI=?"
 if not defined QBT set "QBT=?"
 if not defined QPRINT set "QPRINT=?"
 if not defined QXBOX set "QXBOX=?"
+if not defined QFBOOT set "QFBOOT=?"
 if not defined GPUV set "GPUV=?"
 
 echo   !CW! Mode!CK! ....... !C0!!CW!!MODE!!C0!     !CW!X3D!CK! ... !C0!!CW!!ISX3D!!C0!     !CW!!LLAP!!CK! ... !C0!!CW!!ISLAP!!C0!
@@ -2760,7 +2808,9 @@ call :ckdw "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Serialize" S
 call :cksz "HKCU\Control Panel\Desktop" HungAppTimeout "4000" "HungAppTimeout .........."
 call :cksz "HKLM\SYSTEM\CurrentControlSet\Control" WaitToKillServiceTimeout "2000" "WaitToKillServiceTimeout .."
 call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" HwSchMode 2 "HwSchMode ..............."
-call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" HiberbootEnabled 0 "HiberbootEnabled ........"
+if "!QFBOOT!"=="2" call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" HiberbootEnabled 0 "HiberbootEnabled ........"
+if "!QFBOOT!"=="3" call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" HiberbootEnabled 1 "HiberbootEnabled ........"
+if not "!QFBOOT!"=="2" if not "!QFBOOT!"=="3" call :ckdw "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" HiberbootEnabled show "HiberbootEnabled ........"
 call :ckdw "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Systray" HideSystray 1 "HideSystray ............."
 call :ckdw "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" SearchOrderConfig 1 "SearchOrderConfig ......."
 set "SS=HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy"

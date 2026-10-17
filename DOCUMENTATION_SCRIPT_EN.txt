@@ -67,7 +67,9 @@ Internal code organization:
         [5] Restore Windows defaults   [6] Restore Spectre/Meltdown
         [7] Restore Defender    [8] Peripherals   [9] Verification / debug   [0] Quit
      When you pick [1] or [2], the script first asks whether you need your kernel
-     anticheat (Vanguard / FACEIT), then the MODE "soft" or "lowest", then applies.
+     anticheat (Vanguard / FACEIT), then the MODE "soft" or "lowest", then the
+     peripheral questions (camera, network adapters, Bluetooth, printer, Xbox,
+     Fast Startup), then applies.
      The profile questions accept [0] to go back to the menu (contextual "Back",
      v3.6).
   6) HARDWARE DETECTION (see section 4 below).
@@ -264,7 +266,7 @@ Detail:
    [34] Ghost devices                  [35] FTH (Fault Tolerant Heap)
    [36] Power (plan + parking + adaptive C-states: see section 8)
    [37] HAGS (checks support THEN enables)
-   [38] Fast Startup (disabled)        [39] Startup icons
+   [38] Fast Startup (question)        [39] Startup icons
    [40] Drivers
 
   MAINTENANCE

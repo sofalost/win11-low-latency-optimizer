@@ -791,6 +791,16 @@
        had it, only hybrid boot is refused. [9] now expects 0; a restore
        still replays your pre-run value.
 
+   [+] New question alongside camera / network / Bluetooth / printer / Xbox:
+       Fast Startup, tri-state like the others - [1] leave as is (default),
+       [2] disable, [3] enable, [0] back. The answer is saved as QFBoot and
+       replayed by quick mode [2]. Section [37] applies it: "disable" writes
+       HiberbootEnabled=0, "enable" writes 1 and switches hibernation on -
+       but only if hiberfil.sys was absent, and the run remembers it did
+       (HibernateWasOff) so a full restore switches hibernation back off.
+       [9] expects 0 or 1 depending on the answer, and shows the raw value
+       when the answer was "leave as is".
+
 ================================================================================
                             END OF FILE
 ================================================================================
