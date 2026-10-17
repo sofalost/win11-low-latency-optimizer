@@ -802,8 +802,8 @@
        when the answer was "leave as is".
 
    [~] The peripherals menu [8] asks the Fast Startup question too (entry [6],
-       saved as QFBoot like in the full run), and its entries now carry a
-       per-number color gradient. The Fast Startup code is shared between the
+       saved as QFBoot like in the full run), and all its entries are written
+       the same way (single color). The Fast Startup code is shared between the
        apply [37] and the menu [8] path (new :pfbt subroutine, journal-aware).
        The [8] entry in the main menu is magenta. The "LowLat Reapply" task
        now also enforces the Fast Startup answer at EVERY logon (writes

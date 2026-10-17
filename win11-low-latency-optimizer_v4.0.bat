@@ -46,9 +46,7 @@ set "CO3=!ESC![38;5;202m"
 set "CBG1=!ESC![38;5;117m"
 set "CBG2=!ESC![38;5;75m"
 set "CBG3=!ESC![38;5;63m"
-set "CBG4=!ESC![38;5;62m"
-set "CBG5=!ESC![38;5;61m"
-set "CBG6=!ESC![38;5;60m"
+set "CBG4=!ESC![38;5;61m"
 set "CGE=!ESC![38;5;48m"
 set "CJ=!ESC![38;5;226m"
 set "OK=!CG![!CW!OK!CG!]!C0!"
@@ -3092,12 +3090,12 @@ echo        !CBG4!!PHEAD!!C0!
 echo.
 echo   !CB2!===============================================================!C0!
 echo.
-echo       !CBG1![1]   !PH1!!C0!
-echo       !CBG2![2]   !PH2!!C0!
-echo       !CBG3![3]   !PH3!!C0!
-echo       !CBG4![4]   !PH4!!C0!
-echo       !CBG5![5]   !PH5!!C0!
-echo       !CBG6![6]   !PH6!!C0!
+echo       !CBG1![1]!C0!   !PH1!
+echo       !CBG1![2]!C0!   !PH2!
+echo       !CBG1![3]!C0!   !PH3!
+echo       !CBG1![4]!C0!   !PH4!
+echo       !CBG1![5]!C0!   !PH5!
+echo       !CBG1![6]!C0!   !PH6!
 echo.
 echo       !CK![0]!C0!   !BACK!
 echo.
