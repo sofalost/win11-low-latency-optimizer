@@ -1021,7 +1021,7 @@ echo   !OK! !CC![09]!C0! !M11!
 
 rem ============ [10] SERVICES INUTILES OFF ============
 rem -- services inutiles desactives en une passe PowerShell (SysMain garde l etat ON de [01]) --
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; foreach($s in @('DiagTrack','dmwappushservice','diagsvc','Fax','RemoteRegistry','RemoteAccess','WerSvc','MapsBroker','lfsvc','PhoneSvc','SmsRouter','TapiSrv','autotimesvc','tzautoupdate','SCardSvr','ScDeviceEnum','SCPolicySvc','CertPropSvc','SensorService','SensrSvc','SensorDataService','TrkWks','WpcMonSvc','RetailDemo','wisvc','WalletService','SEMgrSvc','FDResPub','fdPHost','lltdsvc','NetTcpPortSharing','StiSvc','AJRouter','WMPNetworkSvc','diagnosticshub.standardcollector.service','p2pimsvc','p2psvc','PNRPsvc','PNRPAutoReg')){ Stop-Service -Name $s -EA SilentlyContinue; Set-Service -Name $s -StartupType Disabled -EA SilentlyContinue }" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; foreach($s in @('DiagTrack','dmwappushservice','diagsvc','Fax','RemoteRegistry','RemoteAccess','WerSvc','MapsBroker','lfsvc','PhoneSvc','SmsRouter','TapiSrv','autotimesvc','tzautoupdate','CertPropSvc','SensorService','SensrSvc','SensorDataService','TrkWks','WpcMonSvc','RetailDemo','wisvc','WalletService','SEMgrSvc','FDResPub','fdPHost','lltdsvc','NetTcpPortSharing','StiSvc','AJRouter','WMPNetworkSvc','diagnosticshub.standardcollector.service','p2pimsvc','p2psvc','PNRPsvc','PNRPAutoReg')){ Stop-Service -Name $s -EA SilentlyContinue; Set-Service -Name $s -StartupType Disabled -EA SilentlyContinue }" >nul 2>&1
 echo   !OK! !CC![10]!C0! !M12!
 
 rem ============ [11] INDEXATION WINDOWS REACTIVEE ============
