@@ -419,6 +419,9 @@ C-states increases heat/power for a marginal latency gain: it is the classic
         battery, resume from sleep, an update. The console-lock timeout is set
         to 0 as well, otherwise the display still blanks once the session is
         locked.
+      * ENFORCES the Fast Startup answer: a Windows update can re-enable
+        HiberbootEnabled on its own, so the answer you gave (apply or menu
+        [8]) is re-written at EVERY startup, update or not.
       * REMOVES ghost devices via pnputil: those flagged CM_PROB_PHANTOM and
         not present (Present = false). A merely disabled device stays
         Present = true, so it is never touched.

@@ -24,7 +24,7 @@ Everything lives behind one start menu:
 - **[5]** Restore all Windows defaults
 - **[6]** Restore Spectre/Meltdown mitigations
 - **[7]** Restore Defender real-time protection
-- **[8]** Peripherals: disable or restore Wi-Fi / Ethernet, printer, Xbox, Bluetooth, camera individually
+- **[8]** Peripherals: disable or restore Wi-Fi / Ethernet, printer, Xbox, Bluetooth, camera, Fast Startup individually
 
 **Tools**
 - **[9]** Verification / debug
@@ -75,7 +75,7 @@ Re-running the script does not spoil this: the first capture of a value is the o
 
 Storage Sense is enabled and set to clean app temp files and empty the Recycle Bin daily, but it is **never pointed at your Downloads folder** — whatever you had configured there stays untouched. The one-shot cleanup in a *full* run does not touch it either — since v3.9 it cleans six categories (Temp, Discord cache, Steam cache, WinSxS, Windows.old, Recycle Bin) and leaves Downloads alone.
 
-Secure Boot and TPM are firmware settings the script never changes. Core Isolation / Memory Integrity / VBS / HVCI stay **on** in the Soft and Lowest profiles — the kernel-level anticheats rely on them. Fast Startup is its own question — leave it as is, disable it, or enable it; the answer is saved and replayed by quick mode **[2]**, and a full restore puts your previous setting back. Only answering **No** to the anticheat question turns VBS / HVCI / the hypervisor off, and a full restore puts them back.
+Secure Boot and TPM are firmware settings the script never changes. Core Isolation / Memory Integrity / VBS / HVCI stay **on** in the Soft and Lowest profiles — the kernel-level anticheats rely on them. Fast Startup is its own question — leave it as is, disable it, or enable it; the answer is saved, replayed by quick mode **[2]**, re-answerable any time from menu **[8]**, enforced at every logon by the re-apply task (a Windows update can turn fast boot back on by itself), and a full restore puts your previous setting back. Only answering **No** to the anticheat question turns VBS / HVCI / the hypervisor off, and a full restore puts them back.
 
 ## Counter-Strike 2 — recommended settings
 

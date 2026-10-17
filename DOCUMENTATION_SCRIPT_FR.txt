@@ -430,7 +430,10 @@ compromis "low latency classique", assume.
         l'actif) car Windows change de plan tout seul, surtout sur portable :
         batterie faible, sortie de veille, MAJ. Le delai apres verrouillage de
         session est mis a 0 lui aussi, sans quoi l'ecran s'eteint quand meme
-        une fois la session verrouillee.
+        une fois la         session verrouillee.
+      * FORCE ta reponse Demarrage rapide : une MAJ Windows peut reactiver
+        HiberbootEnabled toute seule, donc la reponse donnee (apply ou menu
+        [8]) est reecrite a CHAQUE demarrage, MAJ ou pas.
       * SUPPRIME les peripheriques fantomes via pnputil : ceux marques
         CM_PROB_PHANTOM et absents (Present = false). Un peripherique
         simplement desactive reste Present = true, il n'est donc jamais
