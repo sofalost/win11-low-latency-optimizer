@@ -1518,7 +1518,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='
 echo   !OK! !CC![43]!C0! !M64!
 rem ---- winget : MAJ globale de toutes les applis (peut etre long) ----
 echo   !OK! !CC![45b]!C0! !M66!
-rem winget upgrade --all desactive (retire a la demande de Hugo)
+where winget >nul 2>&1 && winget upgrade --all --include-unknown --accept-source-agreements --accept-package-agreements --disable-interactivity --silent
 echo   !OK! !CC![45b]!C0! !M67!
 
 echo.
