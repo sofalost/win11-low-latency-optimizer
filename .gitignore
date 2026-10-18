@@ -17,3 +17,4 @@ desktop.ini
 # Python bytecode (tools/)
 __pycache__/
 *.pyc
+.opencode/

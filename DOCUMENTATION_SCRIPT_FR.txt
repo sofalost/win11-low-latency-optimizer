@@ -446,6 +446,16 @@ compromis "low latency classique", assume.
     - Les decisions materielles (X3D, bi-CCD, RAM->Ko) sont stockees a l'apply
       dans HKLM\SOFTWARE\LowLatOptimizer pour relecture sans re-detection.
 
+  [46b] Tache "Winget Upgrade All" (demande utilisateur, v4.0) :
+    - a la fin de l'apply, le script cree une tache planifiee UTILISATEUR
+      "Winget Upgrade All" qui lance `winget upgrade --all --silent`
+      (--include-unknown, accords sources/paquets pre-acceptes) 90 secondes
+      apres CHAQUE ouverture de session.
+      * contexte utilisateur : winget et ses sources vivent cote user,
+      * tourne sur batterie, rattrape un logon manque (StartWhenAvailable),
+        instances multiples ignorees, limite d'execution 2 h.
+    - la restauration complete supprime cette tache.
+
 
 --------------------------------------------------------------------------------
 10. LE NETTOYAGE [43] (progression en temps reel + bilan chiffre)

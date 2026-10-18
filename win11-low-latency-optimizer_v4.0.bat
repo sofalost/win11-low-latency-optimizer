@@ -1071,8 +1071,8 @@ echo.
 set "RTI=Removing preinstalled bloatware..."
 if /i "!L!"=="FR" set "RTI=Suppression des applications preinstallees inutiles..."
 echo   !CK!  -^> !C0!!RTI!
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$a=@('*Microsoft.YourPhone*','*MicrosoftWindows.CrossDevice*','*WindowsBackup*','*Microsoft.Getstarted*','*Microsoft.GetHelp*','*PowerAutomate*','*Microsoft.BingNews*','*Microsoft.BingWeather*','*Microsoft.BingFinance*','*Microsoft.BingSports*','*Microsoft.News*','*Microsoft.3DBuilder*','*Microsoft.Microsoft3DViewer*','*Microsoft.MicrosoftOfficeHub*','*Microsoft.OutlookForWindows*','*Microsoft.SkypeApp*','*MicrosoftTeams*','*Microsoft.People*','*Microsoft.WindowsFeedbackHub*','*Microsoft.WindowsMaps*','*Microsoft.MixedReality.Portal*','*Microsoft.MicrosoftSolitaireCollection*','*Microsoft.Todos*','*Clipchamp.Clipchamp*','*Microsoft.Windows.DevHome*','*Microsoft.549981C3F5F10*','*Microsoft.QuickAssist*','*Microsoft.Whiteboard*','*CandyCrush*','*Disney*','*TikTok*','*Netflix*','*Facebook*','*Twitter*','*Duolingo*','*MicrosoftCorporationII.QuickAssist*','*Microsoft.RemoteDesktop*','*microsoft.windowscommunicationsapps*','*LanguageExperiencePacken-US*','*Microsoft.WindowsSoundRecorder*','*MicrosoftCorporationII.MicrosoftFamily*','*Microsoft.ZuneVideo*','*Microsoft.OneConnect*','*LinkedIn*','*Microsoft.BingSearch*','*Microsoft.MicrosoftEdge.GameAssist*','*Microsoft.Office.OneNote*','*Microsoft.MicrosoftStickyNotes*','*WhatsApp*'); foreach($x in $a){ Get-AppxPackage -AllUsers -Name $x -EA SilentlyContinue | Remove-AppxPackage -AllUsers -EA SilentlyContinue; Get-AppxProvisionedPackage -Online -EA SilentlyContinue | Where-Object {$_.DisplayName -like $x} | Remove-AppxProvisionedPackage -Online -EA SilentlyContinue | Out-Null }" >nul 2>&1
-winget uninstall --id WhatsApp.WhatsApp -e --accept-source-agreements --disable-interactivity >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$a=@('*Microsoft.YourPhone*','*MicrosoftWindows.CrossDevice*','*WindowsBackup*','*Microsoft.Getstarted*','*Microsoft.GetHelp*','*PowerAutomate*','*Microsoft.BingNews*','*Microsoft.BingWeather*','*Microsoft.BingFinance*','*Microsoft.BingSports*','*Microsoft.News*','*Microsoft.3DBuilder*','*Microsoft.Microsoft3DViewer*','*Microsoft.MicrosoftOfficeHub*','*Microsoft.OutlookForWindows*','*Microsoft.SkypeApp*','*MicrosoftTeams*','*Microsoft.People*','*Microsoft.WindowsFeedbackHub*','*Microsoft.WindowsMaps*','*Microsoft.MixedReality.Portal*','*Microsoft.MicrosoftSolitaireCollection*','*Microsoft.Todos*','*Clipchamp.Clipchamp*','*Microsoft.Windows.DevHome*','*Microsoft.549981C3F5F10*','*Microsoft.QuickAssist*','*Microsoft.Whiteboard*','*CandyCrush*','*Disney*','*TikTok*','*Netflix*','*Facebook*','*Twitter*','*Duolingo*','*MicrosoftCorporationII.QuickAssist*','*Microsoft.RemoteDesktop*','*microsoft.windowscommunicationsapps*','*LanguageExperiencePacken-US*','*Microsoft.WindowsSoundRecorder*','*MicrosoftCorporationII.MicrosoftFamily*','*Microsoft.ZuneVideo*','*Microsoft.OneConnect*','*LinkedIn*','*Microsoft.BingSearch*','*Microsoft.MicrosoftEdge.GameAssist*','*Microsoft.Office.OneNote*','*Microsoft.MicrosoftStickyNotes*'); foreach($x in $a){ Get-AppxPackage -AllUsers -Name $x -EA SilentlyContinue | Remove-AppxPackage -AllUsers -EA SilentlyContinue; Get-AppxProvisionedPackage -Online -EA SilentlyContinue | Where-Object {$_.DisplayName -like $x} | Remove-AppxProvisionedPackage -Online -EA SilentlyContinue | Out-Null }" >nul 2>&1
+rem winget uninstall WhatsApp retire (demande Hugo, 2026-10-18) : plus aucune desinstallation de WhatsApp
 echo   !OK! !CC![15]!C0! !M17!
 
 rem ============ [16b] OUTLOOK (nouveau) + COPILOT retires (toujours) ============
@@ -1566,6 +1566,12 @@ rem    debranche la tache ne tourne alors JAMAIS, et une ouverture de session
 rem    manquee n est jamais rattrapee. On la reconfigure derriere. --
 schtasks /Create /F /TN "LowLat Reapply" /TR "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"%SystemRoot%\lowlat_reapply.ps1\"" /SC ONLOGON /RL HIGHEST >nul 2>&1
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Minutes 30); Set-ScheduledTask -TaskName 'LowLat Reapply' -Settings $s" >nul 2>&1
+rem -- Tache ONLOGON "Winget Upgrade All" (demande Hugo, 2026-10-18) :
+rem    winget upgrade --all a chaque ouverture de session, en contexte
+rem    utilisateur (winget vit cote user), 90 s apres le logon pour ne
+rem    pas peser sur le demarrage. La restauration la supprime. --
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $a=New-ScheduledTaskAction -Execute 'cmd.exe' -Argument '/c winget upgrade --all --include-unknown --accept-source-agreements --accept-package-agreements --disable-interactivity --silent'; $t=New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME; $t.Delay='PT90S'; $p=New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Hours 2); Register-ScheduledTask -TaskName 'Winget Upgrade All' -Action $a -Trigger $t -Principal $p -Settings $s -Force | Out-Null" >nul 2>&1
+
 echo   !OK! !CC![45]!C0! !M71!
 
 
@@ -1841,6 +1847,7 @@ rem -- Taches creees + stockage reserve --
 schtasks /Delete /F /TN "TimerResolution 0.5ms" >nul 2>&1
 schtasks /Delete /F /TN "TimerRes 0.5ms" >nul 2>&1
 schtasks /Delete /F /TN "LowLat Reapply" >nul 2>&1
+schtasks /Delete /F /TN "Winget Upgrade All" >nul 2>&1
 del /f /q "%SystemRoot%\timerres.ps1" >nul 2>&1
 del /f /q "%SystemRoot%\lowlat_reapply.ps1" >nul 2>&1
 reg delete "HKLM\SOFTWARE\LowLatOptimizer" /f >nul 2>&1

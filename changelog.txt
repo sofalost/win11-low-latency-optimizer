@@ -638,6 +638,12 @@
 ================================================================================
   v4.0   -   JOURNALLED WRITES  (restore gives back your real settings)
 ================================================================================
+   [+] Scheduled task "Winget Upgrade All" (user request): winget
+       upgrade --all --silent runs 90 s after every logon, in the user
+       context (2 h cap, runs on battery, single instance). The full
+       restore removes it.
+   [-] WhatsApp is no longer uninstalled by the debloat (Appx list +
+       winget uninstall), per user request.
    [x] ROOT FIX: "Restore all Windows defaults" [5] was restoring 78 of the
        210 registry values the script writes - 37%. The other 132 stayed
        forced while the menu told you the machine was back to stock.

@@ -433,6 +433,16 @@ C-states increases heat/power for a marginal latency gain: it is the classic
     - The hardware decisions (X3D, bi-CCD, RAM->KB) are stored at apply time in
       HKLM\SOFTWARE\LowLatOptimizer for re-reading without re-detection.
 
+  [46b] "Winget Upgrade All" task (user request, v4.0):
+    - at the end of the apply, the script creates a USER-level scheduled task
+      "Winget Upgrade All" that runs `winget upgrade --all --silent`
+      (--include-unknown, source/package agreements pre-accepted) 90 seconds
+      after EVERY logon.
+      * user context: winget and its sources live per user,
+      * runs on battery, catches up a missed logon (StartWhenAvailable),
+        multiple instances ignored, 2 h execution cap.
+    - the full restore deletes this task.
+
 
 --------------------------------------------------------------------------------
 10. THE CLEANUP [43] (real-time progress + itemized summary)
