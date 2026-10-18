@@ -811,6 +811,14 @@
        update can re-enable fast boot on its own - fast boot can no longer
        come back uninvited between two runs.
 
+   [x] League of Legends resolution bug: Windows' compatibility assistant
+       re-writes DPI/compat flags on the game exe (HIGHDPIAWARE in
+       AppCompatFlags\Layers, AppStatus in UserGpuPreferences) after every
+       clean-up - the client goes blurry until you change the resolution and
+       change it back. The "LowLat Reapply" task now removes those flags at
+       EVERY logon, the same clean-up section [12] does at each apply. [03]
+       IFEO priority and [14] Defender exclusion for LoL are untouched.
+
 ================================================================================
                             END OF FILE
 ================================================================================

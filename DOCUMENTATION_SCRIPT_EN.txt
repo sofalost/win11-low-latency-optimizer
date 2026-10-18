@@ -422,6 +422,12 @@ C-states increases heat/power for a marginal latency gain: it is the classic
       * ENFORCES the Fast Startup answer: a Windows update can re-enable
         HiberbootEnabled on its own, so the answer you gave (apply or menu
         [8]) is re-written at EVERY startup, update or not.
+      * League of Legends: Windows' compatibility assistant keeps re-writing
+        DPI/compat flags on the game exe (HIGHDPIAWARE in AppCompatFlags\Layers,
+        AppStatus in UserGpuPreferences), which breaks the client's resolution
+        (blurry until you change the resolution and change it back). Those
+        flags are now removed at EVERY startup too, like section [12] does at
+        every apply.
       * REMOVES ghost devices via pnputil: those flagged CM_PROB_PHANTOM and
         not present (Present = false). A merely disabled device stays
         Present = true, so it is never touched.

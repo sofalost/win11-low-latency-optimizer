@@ -434,6 +434,12 @@ compromis "low latency classique", assume.
       * FORCE ta reponse Demarrage rapide : une MAJ Windows peut reactiver
         HiberbootEnabled toute seule, donc la reponse donnee (apply ou menu
         [8]) est reecrite a CHAQUE demarrage, MAJ ou pas.
+      * League of Legends : l assistant de compatibilite Windows reecrit des
+        flags DPI/compat sur l exe du jeu (HIGHDPIAWARE dans
+        AppCompatFlags\Layers, AppStatus dans UserGpuPreferences), ce qui casse
+        la resolution du client (flou jusqu a changer la resolution puis la
+        remettre). Ces flags sont aussi retires a CHAQUE demarrage, comme la
+        section [12] le fait a chaque apply.
       * SUPPRIME les peripheriques fantomes via pnputil : ceux marques
         CM_PROB_PHANTOM et absents (Present = false). Un peripherique
         simplement desactive reste Present = true, il n'est donc jamais
