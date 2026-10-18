@@ -447,14 +447,19 @@ compromis "low latency classique", assume.
       dans HKLM\SOFTWARE\LowLatOptimizer pour relecture sans re-detection.
 
   [46b] Tache "Winget Upgrade All" (demande utilisateur, v4.0) :
-    - a la fin de l'apply, le script cree une tache planifiee UTILISATEUR
-      "Winget Upgrade All" qui lance `winget upgrade --all --silent`
-      (--include-unknown, accords sources/paquets pre-acceptes) 90 secondes
-      apres CHAQUE ouverture de session.
+    - a la fin de l'apply, le script ecrit un mini script VBS
+      (%SystemRoot%\winget_upgrade.vbs) puis cree une tache planifiee
+      UTILISATEUR "Winget Upgrade All" qui lance ce VBS 90 secondes
+      apres CHAQUE ouverture de session. Le VBS lance
+      `winget upgrade --all --silent` (--include-unknown, accords
+      sources/paquets pre-acceptes) en fenetre style 0 : RIEN ne
+      s'affiche, aucun flash console.
       * contexte utilisateur : winget et ses sources vivent cote user,
+      * lancement asynchrone : la tache rend la main aussitot, l'upgrade
+        continue en arriere-plan,
       * tourne sur batterie, rattrape un logon manque (StartWhenAvailable),
         instances multiples ignorees, limite d'execution 2 h.
-    - la restauration complete supprime cette tache.
+    - la restauration complete supprime la tache ET le VBS.
 
 
 --------------------------------------------------------------------------------

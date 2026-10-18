@@ -1567,10 +1567,15 @@ rem    manquee n est jamais rattrapee. On la reconfigure derriere. --
 schtasks /Create /F /TN "LowLat Reapply" /TR "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"%SystemRoot%\lowlat_reapply.ps1\"" /SC ONLOGON /RL HIGHEST >nul 2>&1
 powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Minutes 30); Set-ScheduledTask -TaskName 'LowLat Reapply' -Settings $s" >nul 2>&1
 rem -- Tache ONLOGON "Winget Upgrade All" (demande Hugo, 2026-10-18) :
-rem    winget upgrade --all a chaque ouverture de session, en contexte
-rem    utilisateur (winget vit cote user), 90 s apres le logon pour ne
-rem    pas peser sur le demarrage. La restauration la supprime. --
-powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $a=New-ScheduledTaskAction -Execute 'cmd.exe' -Argument '/c winget upgrade --all --include-unknown --accept-source-agreements --accept-package-agreements --disable-interactivity --silent'; $t=New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME; $t.Delay='PT90S'; $p=New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Hours 2); Register-ScheduledTask -TaskName 'Winget Upgrade All' -Action $a -Trigger $t -Principal $p -Settings $s -Force | Out-Null" >nul 2>&1
+rem    winget upgrade --all a chaque ouverture de session, 90 s apres
+rem    le logon pour ne pas peser sur le demarrage. Le lancement passe
+rem    par un mini script VBS (fenetre style 0) : RIEN ne s affiche,
+rem    aucun flash console, contrairement a un cmd.exe direct. La tache
+rem    est en contexte utilisateur (winget vit cote user) et rend la
+rem    main aussitot (lancement asynchrone). La restauration supprime
+rem    la tache ET le script VBS. --
+echo CreateObject("WScript.Shell").Run "cmd /c winget upgrade --all --include-unknown --accept-source-agreements --accept-package-agreements --disable-interactivity --silent", 0, False>"%SystemRoot%\winget_upgrade.vbs"
+powershell -NoProfile -Command "$ErrorActionPreference='SilentlyContinue'; $a=New-ScheduledTaskAction -Execute 'wscript.exe' -Argument '%SystemRoot%\winget_upgrade.vbs'; $t=New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME; $t.Delay='PT90S'; $p=New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive; $s=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Hours 2); Register-ScheduledTask -TaskName 'Winget Upgrade All' -Action $a -Trigger $t -Principal $p -Settings $s -Force | Out-Null" >nul 2>&1
 
 echo   !OK! !CC![45]!C0! !M71!
 
@@ -1848,6 +1853,7 @@ schtasks /Delete /F /TN "TimerResolution 0.5ms" >nul 2>&1
 schtasks /Delete /F /TN "TimerRes 0.5ms" >nul 2>&1
 schtasks /Delete /F /TN "LowLat Reapply" >nul 2>&1
 schtasks /Delete /F /TN "Winget Upgrade All" >nul 2>&1
+del /f /q "%SystemRoot%\winget_upgrade.vbs" >nul 2>&1
 del /f /q "%SystemRoot%\timerres.ps1" >nul 2>&1
 del /f /q "%SystemRoot%\lowlat_reapply.ps1" >nul 2>&1
 reg delete "HKLM\SOFTWARE\LowLatOptimizer" /f >nul 2>&1

@@ -47,7 +47,7 @@ When you pick **[1]** or **[2]**, the script first asks whether you need your ke
 - **Windows AI off** — Copilot (policies HKLM + HKCU, taskbar button, Store app removed in [16b], sidebar in Edge by policy), Recall (policy + optional feature uninstalled) and WindowsAI are disabled on every run, independent of the anticheat/virtualization answers; the full restore puts the policies back and reinstalls the Recall feature
 - **0.5 ms timer** — persistent SYSTEM task (`NtSetTimerResolution`), re-armed at every startup; power-aware (0.5 ms on desktop / laptop-on-AC; on laptop battery the script stops requesting 0.5 ms — note another process like Chrome can keep the global timer high regardless)
 - **Auto-reapply** — key settings are re-applied after a Windows feature update
-- **Winget upgrade at logon** — a user-level scheduled task runs `winget upgrade --all` silently 90 s after every logon; the full restore removes it
+- **Winget upgrade at logon** — a user-level task runs `winget upgrade --all` invisibly in the background (hidden VBS launcher, no console flash) 90 s after every logon; the full restore removes it
 - **Appearance, adapted to your hardware** — on a machine with **integrated graphics only** or **16 GB of RAM or less**, Windows visual effects are switched to *custom* and turned off, keeping only **font smoothing (ClearType)** and the **translucent selection rectangle**; transparency goes off too. On anything stronger, the previous "best appearance" behaviour is kept. The dark theme, grey accent and black wallpaper apply either way.
 
 ## Profiles and modes
